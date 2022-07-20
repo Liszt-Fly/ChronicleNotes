@@ -41,7 +41,7 @@ body {
     }
 
     5% {
-      background-position: 0px 1px, calc(100% - 1px) -200px,
+      background-position: 0 1px, calc(100% - 1px) -200px,
         calc(100% + 200px) calc(100% - 1px), 1px -200px;
     }
 
@@ -51,7 +51,7 @@ body {
     }
 
     35% {
-      background-position: calc(100% + 200px) 1px, calc(100% - 1px) 0px,
+      background-position: calc(100% + 200px) 1px, calc(100% - 1px) 0,
         calc(100% + 200px) calc(100% - 1px), 1px -200px;
     }
 
@@ -68,7 +68,7 @@ body {
 
     80% {
       background-position: calc(100% + 200px) 1px,
-        calc(100% - 1px) calc(100% + 200px), 0px calc(100% - 1px),
+        calc(100% - 1px) calc(100% + 200px), 0 calc(100% - 1px),
         1px calc(100% + 200px);
     }
 
@@ -120,7 +120,6 @@ body {
         width: 100%;
         border-radius: 4px;
         box-sizing: border-box;
-        border-radius: 4px;
 
         &:hover {
           cursor: pointer;
@@ -298,7 +297,7 @@ body {
     }
 
     table th {
-      font-weight: 600px;
+      font-weight: 600 ;
       padding: 16px 13px;
     }
 
@@ -381,7 +380,7 @@ body {
       }
 
       .cm-content {
-        padding: 0px;
+        padding: 0;
       }
 
       .content {
