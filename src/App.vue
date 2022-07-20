@@ -1,14 +1,12 @@
 <script setup lang="ts">
+import ControlBar from "@/components/common/ControlBar.vue";
+
+const fsp =require('fs-extra')
 
 </script>
 
 <template>
-  <div class="logo-box">
-    <i class="bi-activity"></i>
-    <el-button>Button</el-button>
-    <router-link to="/">link</router-link>
-    <router-view></router-view>
-  </div>
+  <control-bar></control-bar>
 </template>
 
 <style>
