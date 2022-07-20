@@ -33,5 +33,11 @@
     "vite",
     "vue3",
     "vue"
-  ]
+  ],
+  "dependencies": {
+    "bootstrap-icons": "^1.9.1",
+    "element-plus": "^2.2.9",
+    "sass": "^1.53.0",
+    "vue-router": "^4.1.2"
+  }
 }
