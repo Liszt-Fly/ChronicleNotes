@@ -1,6 +1,22 @@
-<template>Home.vue</template>
+<template>
+  <el-scrollbar>
+    <div>
+      <div class="info">
+        Our Home
+      </div>
+    </div>
+  </el-scrollbar>
+</template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+</script>
 
-<style lang="scss">
+<style>
+.info {
+  height: 20vh;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 </style>

@@ -2,6 +2,8 @@
 import {NavigationGuardNext, RouteLocationNormalized} from "vue-router";
 import {NodeType} from "@/fileTree/type";
 import * as path from "path";
+import {fileNode} from "@/fileTree/fileNode";
+import {fileTree} from "@/fileTree/fileTree";
 
 const fsp = require("fs-extra")
 
@@ -68,4 +70,20 @@ export function removeExtName(file: string): string {
     } else {
         return file
     }
+}
+
+export function setCurrentFileNode(file: fileNode) {
+    fileTree.currentFileNode = file
+}
+
+export let validateFilename = function validateFilename(
+    filename: string
+): string | undefined {
+    //省略扩展名
+    let length = filename.length - path.extname(filename).length
+    if (filename == ".DS_Store" || filename == ".trash")
+        return undefined
+    else if (path.extname(filename) == ".md" || path.extname(filename) == "")
+        return filename.substring(0, length)
+    else return undefined
 }

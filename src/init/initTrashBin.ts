@@ -1,4 +1,4 @@
-import fsp from "fs-extra"
+const fsp=require("fs-extra")
 import path from "path";
 import {chronicleUserPath} from "@/init/path";
 import {fileNode} from "@/FileTree/fileNode";

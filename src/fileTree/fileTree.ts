@@ -1,5 +1,5 @@
 import { fileNode } from "./fileNode";
-import fs from "fs-extra"
+const fs=require('fs-extra')
 import path from "path"
 import { NodeType } from "./type";
 export class fileTree {
@@ -13,7 +13,7 @@ export class fileTree {
     private static constructFileTree(pathName: string, currentNode: fileNode) {
         let list = fs.readdirSync(pathName)
         if (list.length == 0) return
-        list.forEach(item => {
+        list.forEach((item:string) => {
             //* 对应的文件/文件夹路径
             let currentPath = path.resolve(pathName, item)
             //* 构建对应的node

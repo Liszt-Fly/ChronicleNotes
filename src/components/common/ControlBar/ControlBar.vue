@@ -60,7 +60,7 @@
 
 <script lang="ts" setup>
 import { ipcRenderer } from 'electron'
-import Tabs from "@/components/Common/Tabs.vue"
+import Tabs from "@/components/common/ControlBar/Tabs.vue"
 import { ref } from 'vue'
 let winMax = ref(true)
 let sideBar = ref(true)

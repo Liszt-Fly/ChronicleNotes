@@ -1,18 +1,17 @@
-import fsp from "fs-extra"
-import { NodeType } from "./type"
+
+import {NodeType} from "./type"
 import p from "path"
-import { getValidName } from "@/Helper"
-import deepclone from "deep-clone"
-import matter from 'gray-matter'
-import { removeExtName } from "@/Helper"
-import { trashBin } from "@/data/configdb"
+import fs from "fs"
+import {getValidName} from "@/Helper"
+const matter=require("gray-matter")
+import {removeExtName} from "@/Helper"
+import {trashBin} from "@/data/configdb"
 import deepClone from "deep-clone"
 import {chronicleUserPath} from "@/init/path";
-
+const fsp=require("fs-extra")
 export class fileNode {
     //* constructor
     constructor(path: string, name: string) {
-
         this.stat = fsp.statSync(path)
         this.name = name
         this.path = path
@@ -22,15 +21,17 @@ export class fileNode {
         this.tags = []
         this.parent = null
 
+
         if (this.type == NodeType.FOLDER) {
             this.children = []
         }
-
         this.checkValidateFrontMatter()
     }
+
     //* property
     name: string
     path: string
+    //@ts-ignore
     stat: fsp.Stats
     createdDate: Date
     modifiedDate: Date
@@ -41,13 +42,13 @@ export class fileNode {
 
     //* methods
     addChildren(createdType: NodeType) {
+
         let name = getValidName(this.path, createdType)
         if (this.type == NodeType.FOLDER) {
             //sum 两种情况，添加文件夹或者是添加子文件
             if (createdType == NodeType.FOLDER) {
                 fsp.mkdirsSync(p.resolve(this.path, name))
-            }
-            else if (createdType == NodeType.FILE) {
+            } else if (createdType == NodeType.FILE) {
                 fsp.createFileSync(p.resolve(this.path, name))
             }
         }
@@ -56,8 +57,8 @@ export class fileNode {
         node.parent = this
 
 
-
     }
+
     //* 删除
     removeSelf() {
         let name = this.name
@@ -83,6 +84,7 @@ export class fileNode {
         fsp.moveSync(this.path, p.resolve(chronicleUserPath, ".trash", name))
         trashBin.value?.root.children?.push(generatedNode)
     }
+
     //* 重命名
     rename(newName: string) {
         this.name = newName
@@ -90,8 +92,7 @@ export class fileNode {
         let obj = p.parse(this.path)
         if (this.type == NodeType.FILE) {
             obj.base = newName + ".md"
-        }
-        else {
+        } else {
             obj.base = newName
         }
 
@@ -101,6 +102,7 @@ export class fileNode {
         this.path = p.resolve(obj.dir, obj.base)
         fsp.renameSync(prevPath, this.path)
     }
+
     //* 替身
     substitute() {
         let name
@@ -109,15 +111,14 @@ export class fileNode {
             name = removeExtName(this.name) + "的副本"
             path = p.resolve(p.parse(this.path).dir, name + ".md")
             fsp.copySync(this.path, path)
-        }
-        else {
+        } else {
             name = this.name + "的副本"
             path = p.resolve(p.parse(this.path).dir, name)
 
             fsp.copySync(this.path, path)
 
         }
-        let children = deepclone(this.children)
+        let children = deepClone(this.children)
         let node = new fileNode(path, name)
         node.children = children
         console.log(node)
@@ -133,19 +134,17 @@ export class fileNode {
 
             if (Object.keys(obj.data).length == 0) {
 
-                fsp.writeFileSync(this.path, matter.stringify(obj.content, { star: false, tags: [] }))
+                fsp.writeFileSync(this.path, matter.stringify(obj.content, {star: false, tags: []}))
             }
 
         }
     }
+
     addTag(tags: string[]) {
         let obj = matter.read(this.path)
         console.log(obj)
         console.log(tags)
-        fsp.writeFileSync(this.path, matter.stringify(obj.content, { tags, star: obj.data.star }))
+        fsp.writeFileSync(this.path, matter.stringify(obj.content, {tags, star: obj.data.star}))
     }
 }
 
-export class trashFileNode extends fileNode {
-
-}

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ControlBar from "@/components/common/ControlBar.vue";
+import ControlBar from "@/components/common/ControlBar/ControlBar.vue";
 import TabBar from "@/components/common/TabBar.vue";
 
 const fsp =require('fs-extra')
@@ -11,15 +11,17 @@ const fsp =require('fs-extra')
   <div class="main" spellcheck="false" >
    <tab-bar></tab-bar>
     <div class=" article">
-<!--      <router-view v-slot="{ Component }">-->
-<!--        <keep-alive>-->
-<!--          <component :is="Component" />-->
-<!--        </keep-alive>-->
-<!--      </router-view>-->
+      <router-view v-slot="{ Component }">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </router-view>
     </div>
   </div>
 </template>
 
 <style>
-
+.article {
+  width: 100%;
+}
 </style>

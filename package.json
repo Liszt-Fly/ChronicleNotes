@@ -35,12 +35,14 @@
     "vue"
   ],
   "dependencies": {
-    "@types/node": "^18.0.6",
+    "@electron/remote": "^2.0.8",
+    "@element-plus/icons-vue": "^2.0.6",
     "bootstrap-icons": "^1.9.1",
     "deep-clone": "^3.0.3",
     "element-plus": "^2.2.9",
     "fs-extra": "^10.1.0",
     "gray-matter": "^4.0.3",
+    "path": "^0.12.7",
     "sass": "^1.53.0",
     "vue-i18n": "^9.1.10",
     "vue-router": "^4.1.2"

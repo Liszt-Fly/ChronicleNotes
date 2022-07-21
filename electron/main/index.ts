@@ -28,7 +28,7 @@ const preload = join(__dirname, '../preload/index.js')
 // 🚧 Use ['ENV_NAME'] avoid vite:define plugin
 const url = `http://${process.env['VITE_DEV_SERVER_HOST']}:${process.env['VITE_DEV_SERVER_PORT']}`
 const indexHtml = join(ROOT_PATH.dist, 'index.html')
-
+require('@electron/remote/main').initialize()
 async function createWindow() {
   win = new BrowserWindow({
     title: 'Main window',
@@ -47,7 +47,7 @@ async function createWindow() {
     win.loadURL(url)
     // win.webContents.openDevTools()
   }
-
+  require("@electron/remote/main").enable(win.webContents)
   // Test actively push message to the Electron-Renderer
   win.webContents.on('did-finish-load', () => {
     win?.webContents.send('main-process-message', new Date().toLocaleString())
