@@ -65,12 +65,14 @@ export class fileNode {
         //* 生成一个新的节点，放入垃圾箱中
         let generatedNode = deepClone(this)
         console.log(generatedNode)
-
+        let parent=this.parent
         //* 情况为文件夹的情形
         if (this.type == NodeType.FOLDER) {
             if (this.parent) {
                 this.parent.children = this.parent.children!.filter(item => item.name != this.name)
+                console.log(this.parent.children);
                 this.parent = null
+
             }
 
         }
@@ -78,11 +80,14 @@ export class fileNode {
         else if (this.type == NodeType.FILE) {
             if (this.parent) {
                 this.parent.children = this.parent.children!.filter(item => item.name != this.name)
+                console.log(this.parent.children);
                 this.parent = null
             }
-        }
-        fsp.moveSync(this.path, p.resolve(chronicleUserPath, ".trash", name))
-        trashBin.value?.root.children?.push(generatedNode)
+        };
+        console.log(parent);
+        fsp.removeSync(this.path)
+        // fsp.moveSync(this.path, p.resolve(chronicleUserPath, ".trash", name))
+        // trashBin.value?.root.children?.push(generatedNode)
     }
 
     //* 重命名

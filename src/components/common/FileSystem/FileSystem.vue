@@ -8,6 +8,7 @@ import {NodeType} from "@/FileTree/type";
 import {onMounted, Ref, ref} from "vue";
 import {fileNode} from "@/FileTree/fileNode";
 import router from "@/router/index";
+import {FileSystemMenu} from "@/Menus/FileSystemMenu";
 
 const fsp = require("fs-extra")
 
@@ -16,18 +17,11 @@ let targetDom: Ref<null | HTMLElement> = ref(null);
 
 
 const menu = new Menu()
-menu.append(new MenuItem(
-    {
-      label: '📓 创建笔记本', click: function () {
-        fTree.value!.root.addChildren(NodeType.FOLDER)
-      }
-    }));
-menu.append(new MenuItem({
-  label: "📒 创建笔记", click: function () {
-    fTree.value?.root.addChildren(NodeType.FILE)
-  }
-}))
-const showMenu = () => {
+
+FileSystemMenu.forEach(item=>{
+  menu.append(new MenuItem(item))
+})
+const showMenu = ($event: any) => {
   menu.popup()
 }
 
@@ -127,18 +121,14 @@ let menu_items = [
 </script>
 
 <template>
-  <div class="file-system" ref="filesystem" @contextmenu.prevent="showMenu"
+  <div class="file-system" ref="filesystem"
        @dragover.prevent @drop="drop($event)">
     <el-scrollbar height="calc(100vh - var(--brand-height))">
       <template v-for="file in fTree?.tree.children" :key="file.path">
-        <file-list :file="file" @contextmenu.stop="showMenu($event)"></file-list>
+        <file-list :file="file"></file-list>
       </template>
       <div style="padding-bottom: 40px;"></div>
     </el-scrollbar>
-    <Menu :style="{
-      display: menuDisplay,
-      top: menuY + 'px',
-      left: menuX + 'px',
-    }" @click="hideMenu()" :menu_items="menu_items"></Menu>
+
   </div>
 </template>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import {reactive,ref} from'vue'
 import { useRouter } from "vue-router";
 import { setCurrentFileNode } from "@/Helper";
 import path from "path"
@@ -6,17 +7,22 @@ const fsp=require("fs-extra")
 import { validateFilename } from "@/Helper";
 import {  currentFile, openFiles, fTree } from "@/data/configdb";
 import { chronicleUserPath } from "@/init/path";
-import {  reactive, ref } from "vue";
+
 import { fileNode } from "@/FileTree/fileNode";
 import { NodeType } from "@/FileTree/type";
+import {Menu} from "@electron/remote";
+import {FileSystemMenu} from "@/Menus/FileSystemMenu";
+import {MenuItem} from "_@electron_remote@2.0.8@@electron/remote";
+import {FileListMenu} from "@/Menus/FileListMenu";
 const props = defineProps({
   file: Object as () => fileNode,
 });
 
 const router = useRouter();
-let subfolder = ref<HTMLDivElement | null>(null);
-let refSubfolder = reactive({ dom: subfolder });
-let namebox = ref<HTMLSpanElement | null>(null);
+
+let subFolder = ref<HTMLDivElement | null>(null);
+let refSubFolder = reactive({ dom: subFolder });
+let nameBox = ref<HTMLSpanElement | null>(null);
 const fileDom = ref<HTMLElement | null>(null);
 
 function openFile(event: MouseEvent, file: fileNode) {
@@ -31,19 +37,18 @@ function openFile(event: MouseEvent, file: fileNode) {
 
 function renameNote() {
   //启用contentEdible
-  namebox.value!.contentEditable = "true";
-  namebox.value!.focus();
+  nameBox.value!.contentEditable = "true";
+  nameBox.value!.focus();
   let range = new Range();
-  range.setStart(namebox.value as Node, 0);
-  range.setEnd(namebox.value as Node, 1);
+  range.setStart(nameBox.value as Node, 0);
+  range.setEnd(nameBox.value as Node, 1);
   document.getSelection()!.removeAllRanges();
   document.getSelection()!.addRange(range);
 }
 
-function toggleSubfolder(
+function toggleSubFolder(
     event: MouseEvent,
-    file: fileNode,
-    subfolder: { dom: HTMLElement | null }
+    file: fileNode
 ) {
   if (file.children) {
     if (event) {
@@ -52,13 +57,13 @@ function toggleSubfolder(
       folder.classList.toggle("bi-folder");
       folder.classList.toggle("bi-folder2-open");
       if (folder.classList.contains("bi-folder2-open")) {
-        if (subfolder.dom) {
-          subfolder.dom.style.display = "block";
-        }
+
+          subFolder.value!.style.display="block"
+
       } else {
-        if (subfolder.dom) {
-          subfolder.dom.style.display = "";
-        }
+
+          subFolder.value!.style.display = "";
+
       }
     }
   }
@@ -71,6 +76,14 @@ function enter(event: KeyboardEvent) {
 
 // 右键菜单
 
+const menu = new Menu()
+
+FileListMenu.forEach(item=>{
+  menu.append(new MenuItem(item))
+})
+const showMenu = () => {
+  menu.popup()
+}
 const drop = (e: DragEvent) => {
   // FIXME: 仅仅检查了自己放置自己的情况，还有一种放置本身区域的情况没有做完
   let filepath = e.dataTransfer?.getData("path") as string
@@ -123,21 +136,21 @@ const getEmoji = (str: string) => {
 
 <template>
 
-  <div class="folder" v-if="file" ref="fileDom">
+  <div class="folder" v-if="file" ref="fileDom" @contextmenu="setCurrentFileNode(props.file);showMenu()">
     <div class="item" tabindex="1" draggable="true" @dragover.prevent @drop="drop($event)"
-         @dragstart="startDrag($event)" @click="toggleSubfolder($event, file!, refSubfolder), openFile($event, file!)"
-         :data-path="file.path" v-if="validateFilename(file.name!)"
-         :class="[{ 'clicked': props.file!.path == currentFile }]" @contextmenu="setCurrentFileNode(props.file!)">
+         @dragstart="startDrag($event)" @click="toggleSubFolder($event, file, refSubFolder);openFile($event, file)"
+         :data-path="file.path" v-if="validateFilename(file.name)"
+         :class="[{ 'clicked': props.file.path === currentFile }]" @contextmenu.prevent=" ">
 
-      <i class="bi bi-file-earmark-text" v-show="!getEmoji(file.name!) && file.type == NodeType.FILE"></i>
-      <i class="bi bi-folder" v-show="!getEmoji(file.name!) && file.type == NodeType.FOLDER"></i>
+      <i class="bi bi-file-earmark-text" v-show="!getEmoji(file.name) && file.type === NodeType.FILE"></i>
+      <i class="bi bi-folder" v-show="!getEmoji(file.name) && file.type === NodeType.FOLDER"></i>
 
-      <span ref="namebox" @blur="props.file!.rename(namebox!.innerText)" @keydown.enter.prevent="enter($event)"
-            :class="getEmoji(file.name!) ? 'emoji' : ''" :data-emoji="getEmoji(file.name!) ? getEmoji(file.name!) : ''">
-        {{ getEmoji(file.name!) ? validateFilename(file.name!)!.slice(2) : validateFilename(file.name!) }}
+      <span ref="nameBox" @blur="props.file.rename(nameBox.innerText)" @keydown.enter.prevent="enter($event)"
+            :class="getEmoji(file.name) ? 'emoji' : ''" :data-emoji="getEmoji(file.name) ? getEmoji(file.name) : ''">
+        {{ getEmoji(file.name) ? validateFilename(file.name).slice(2) : validateFilename(file.name) }}
       </span>
     </div>
-    <div class="subfolder" v-if="file.children" ref="subfolder" id="subfolder">
+    <div class="subfolder" v-if="file.children" ref="subFolder" id="subfolder">
       <file-list :files="file.children" :file="f" v-for="f in file.children" :key="f.path"></file-list>
     </div>
   </div>
