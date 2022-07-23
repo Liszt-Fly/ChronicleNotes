@@ -53,17 +53,13 @@ function toggleSubFolder(
   if (file.children) {
     if (event) {
       let item = event.currentTarget as HTMLElement;
-      let folder = item.firstElementChild!;
-      folder.classList.toggle("bi-folder");
+      let folder =item.children[1]!
+      folder.classList.toggle("bi-folder2");
       folder.classList.toggle("bi-folder2-open");
       if (folder.classList.contains("bi-folder2-open")) {
-
         subFolder.value!.style.display = "block"
-
       } else {
-
         subFolder.value!.style.display = "";
-
       }
     }
   }
@@ -138,12 +134,12 @@ const getEmoji = (str: string) => {
 
   <div class="folder" v-if="file" ref="fileDom" @contextmenu="setCurrentFileNode(props.file); showMenu()">
     <div class="item" tabindex="1" draggable="true" @dragover.prevent @drop="drop($event)"
-      @dragstart="startDrag($event)" @click="toggleSubFolder($event, file, refSubFolder); openFile($event, file)"
+      @dragstart="startDrag($event)" @click="toggleSubFolder($event, file); openFile($event, file)"
       :data-path="file.path" v-if="validateFilename(file.name)"
       :class="[{ 'clicked': props.file.path === currentFile }]" @contextmenu.prevent=" ">
 
       <i class="bi bi-file-earmark-text" v-show="!getEmoji(file.name) && file.type === NodeType.FILE"></i>
-      <i class="bi bi-folder" v-show="!getEmoji(file.name) && file.type === NodeType.FOLDER"></i>
+      <i class="bi bi-folder2" v-show="!getEmoji(file.name) && file.type === NodeType.FOLDER"></i>
 
       <span ref="nameBox" @blur="props.file.rename(nameBox.innerText)" @keydown.enter.prevent="enter($event)"
         :class="getEmoji(file.name) ? 'emoji' : ''" :data-emoji="getEmoji(file.name) ? getEmoji(file.name) : ''">
