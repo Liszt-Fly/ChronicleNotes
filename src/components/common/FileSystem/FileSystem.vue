@@ -8,7 +8,7 @@ import {NodeType} from "@/FileTree/type";
 import {onMounted, Ref, ref} from "vue";
 import {fileNode} from "@/FileTree/fileNode";
 import router from "@/router/index";
-import {FileSystemMenu} from "@/Menus/FileSystemMenu";
+// import {FileSystemMenu} from "@/Menus/FileSystemMenu";
 
 const fsp = require("fs-extra")
 
@@ -18,12 +18,12 @@ let targetDom: Ref<null | HTMLElement> = ref(null);
 
 const menu = new Menu()
 
-FileSystemMenu.forEach(item=>{
-  menu.append(new MenuItem(item))
-})
-const showMenu = ($event: any) => {
-  menu.popup()
-}
+// FileSystemMenu.forEach(item=>{
+//   menu.append(new MenuItem(item))
+// })
+// const showMenu = ($event: any) => {
+//   menu.popup()
+// }
 
 
 const drop = (event: DragEvent) => {

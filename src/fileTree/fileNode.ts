@@ -1,14 +1,14 @@
-
-import {NodeType} from "./type"
+import { NodeType } from "./type"
 import p from "path"
 import fs from "fs"
-import {getValidName} from "@/Helper"
-const matter=require("gray-matter")
-import {removeExtName} from "@/Helper"
-import {fTree, trashBin} from "@/data/configdb"
+import { getValidName } from "@/Helper"
+const matter = require("gray-matter")
+import { removeExtName } from "@/Helper"
+import { fTree, trashBin } from "@/data/configdb"
 import deepClone from "deep-clone"
-import {chronicleUserPath} from "@/init/path";
-const fsp=require("fs-extra")
+import { chronicleUserPath } from "@/init/path";
+import { log } from "console"
+const fsp = require("fs-extra")
 export class fileNode {
     //* constructor
     constructor(path: string, name: string) {
@@ -20,7 +20,6 @@ export class fileNode {
         this.type = this.stat.isDirectory() ? NodeType.FOLDER : NodeType.FILE
         this.tags = []
         this.parent = null
-
 
         if (this.type == NodeType.FOLDER) {
             this.children = []
@@ -42,7 +41,6 @@ export class fileNode {
 
     //* methods
     addChildren(createdType: NodeType) {
-
         let name = getValidName(this.path, createdType)
         if (this.type == NodeType.FOLDER) {
             //sum 两种情况，添加文件夹或者是添加子文件
@@ -55,35 +53,24 @@ export class fileNode {
         let node: fileNode = new fileNode(p.resolve(this.path, name), name)
         this.children!.push(node)
         node.parent = this
-
-
     }
 
     //* 删除
     removeSelf() {
-        console.log(this.path);
-        fs.rmdir(this.path,(err=>{
-            console.log(err);
-        }))
         //* 情况为文件夹的情形
         if (this.type == NodeType.FOLDER) {
+            fs.rmdirSync(this.path, { recursive: true })
             if (this.parent) {
-
                 this.parent.children = this.parent.children!.filter(item => item.name != this.name)
-
-
             }
-
         }
         //* 情况为文件
         else if (this.type == NodeType.FILE) {
+            fs.rmSync(this.path, { recursive: true })
             if (this.parent) {
                 this.parent.children = this.parent.children!.filter(item => item.name != this.name)
-
             }
         }
-
-
     }
 
     //* 重命名
@@ -134,10 +121,8 @@ export class fileNode {
             let obj = matter.read(this.path)
 
             if (Object.keys(obj.data).length == 0) {
-
-                fsp.writeFileSync(this.path, matter.stringify(obj.content, {star: false, tags: []}))
+                fsp.writeFileSync(this.path, matter.stringify(obj.content, { star: false, tags: [] }))
             }
-
         }
     }
 
@@ -145,7 +130,7 @@ export class fileNode {
         let obj = matter.read(this.path)
         console.log(obj)
         console.log(tags)
-        fsp.writeFileSync(this.path, matter.stringify(obj.content, {tags, star: obj.data.star}))
+        fsp.writeFileSync(this.path, matter.stringify(obj.content, { tags, star: obj.data.star }))
     }
 }
 

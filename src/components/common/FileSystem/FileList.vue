@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import {reactive,ref} from'vue'
+import { reactive, ref } from 'vue'
 import { useRouter } from "vue-router";
 import { setCurrentFileNode } from "@/Helper";
 import path from "path"
-const fsp=require("fs-extra")
+const fsp = require("fs-extra")
 import { validateFilename } from "@/Helper";
-import {  currentFile, openFiles, fTree } from "@/data/configdb";
+import { currentFile, openFiles, fTree } from "@/data/configdb";
 import { chronicleUserPath } from "@/init/path";
 
 import { fileNode } from "@/FileTree/fileNode";
 import { NodeType } from "@/FileTree/type";
-import {Menu} from "@electron/remote";
-import {FileSystemMenu} from "@/Menus/FileSystemMenu";
-import {MenuItem} from "_@electron_remote@2.0.8@@electron/remote";
-import {FileListMenu} from "@/Menus/FileListMenu";
+import { Menu } from "@electron/remote";
+// import {FileSystemMenu} from "@/Menus/FileSystemMenu";
+import { MenuItem } from "_@electron_remote@2.0.8@@electron/remote";
+import { FileListMenu } from "@/Menus/FileListMenu";
 const props = defineProps({
   file: Object as () => fileNode,
 });
@@ -47,8 +47,8 @@ function renameNote() {
 }
 
 function toggleSubFolder(
-    event: MouseEvent,
-    file: fileNode
+  event: MouseEvent,
+  file: fileNode
 ) {
   if (file.children) {
     if (event) {
@@ -58,11 +58,11 @@ function toggleSubFolder(
       folder.classList.toggle("bi-folder2-open");
       if (folder.classList.contains("bi-folder2-open")) {
 
-          subFolder.value!.style.display="block"
+        subFolder.value!.style.display = "block"
 
       } else {
 
-          subFolder.value!.style.display = "";
+        subFolder.value!.style.display = "";
 
       }
     }
@@ -78,7 +78,7 @@ function enter(event: KeyboardEvent) {
 
 const menu = new Menu()
 
-FileListMenu.forEach(item=>{
+FileListMenu.forEach(item => {
   menu.append(new MenuItem(item))
 })
 const showMenu = () => {
@@ -136,17 +136,17 @@ const getEmoji = (str: string) => {
 
 <template>
 
-  <div class="folder" v-if="file" ref="fileDom" @contextmenu="setCurrentFileNode(props.file);showMenu()">
+  <div class="folder" v-if="file" ref="fileDom" @contextmenu="setCurrentFileNode(props.file); showMenu()">
     <div class="item" tabindex="1" draggable="true" @dragover.prevent @drop="drop($event)"
-         @dragstart="startDrag($event)" @click="toggleSubFolder($event, file, refSubFolder);openFile($event, file)"
-         :data-path="file.path" v-if="validateFilename(file.name)"
-         :class="[{ 'clicked': props.file.path === currentFile }]" @contextmenu.prevent=" ">
+      @dragstart="startDrag($event)" @click="toggleSubFolder($event, file, refSubFolder); openFile($event, file)"
+      :data-path="file.path" v-if="validateFilename(file.name)"
+      :class="[{ 'clicked': props.file.path === currentFile }]" @contextmenu.prevent=" ">
 
       <i class="bi bi-file-earmark-text" v-show="!getEmoji(file.name) && file.type === NodeType.FILE"></i>
       <i class="bi bi-folder" v-show="!getEmoji(file.name) && file.type === NodeType.FOLDER"></i>
 
       <span ref="nameBox" @blur="props.file.rename(nameBox.innerText)" @keydown.enter.prevent="enter($event)"
-            :class="getEmoji(file.name) ? 'emoji' : ''" :data-emoji="getEmoji(file.name) ? getEmoji(file.name) : ''">
+        :class="getEmoji(file.name) ? 'emoji' : ''" :data-emoji="getEmoji(file.name) ? getEmoji(file.name) : ''">
         {{ getEmoji(file.name) ? validateFilename(file.name).slice(2) : validateFilename(file.name) }}
       </span>
     </div>
