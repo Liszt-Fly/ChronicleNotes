@@ -99,3 +99,26 @@ ipcMain.handle('open-win', (event, arg) => {
     // childWindow.webContents.openDevTools({ mode: "undocked", activate: true })
   }
 })
+
+
+ipcMain.on('close-app', () => {
+  if (win) {
+    win.close()
+  }
+})
+
+ipcMain.on('window-max', function () {
+  if (win!.isMaximized()) {
+    win!.restore();
+  } else {
+    win!.maximize();
+  }
+})
+
+ipcMain.on('min-app', () => {
+  win!.minimize()
+})
+
+ipcMain.on('devTools', () => {
+  win!.webContents.toggleDevTools()
+})
