@@ -8,7 +8,7 @@ export class fileTree {
     //* 文件树
     tree: fileNode
     //* 全局静态变量
-    static currentFileNode: fileNode
+    currentFileNode: fileNode
     //* 构造Tree,仅仅在fileTree内部进行调用
     private static constructFileTree(pathName: string, currentNode: fileNode) {
         let list = fs.readdirSync(pathName)
@@ -28,6 +28,7 @@ export class fileTree {
     }
     constructor(root: fileNode) {
         this.root = root
+        this.currentFileNode=root
         this.tree = root
         //* 构造tree
         fileTree.constructFileTree(this.tree.path, this.tree)

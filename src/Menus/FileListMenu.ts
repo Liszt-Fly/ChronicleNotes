@@ -6,8 +6,9 @@ import {fileTree} from "@/fileTree/fileTree";
 export const FileListMenu:MenuItemConstructorOptions[]=[
     {
         label: '📓 删除笔记/笔记本', click: function (menuItem, browserWindow, event) {
-            console.log(event);
-            fileTree.currentFileNode.removeSelf()
+            fTree.value!.currentFileNode.removeSelf()
+            console.log(fTree.value!.currentFileNode);
+            console.log(123);
 
         }
     },

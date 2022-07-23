@@ -4,6 +4,7 @@ import {NodeType} from "@/fileTree/type";
 import * as path from "path";
 import {fileNode} from "@/fileTree/fileNode";
 import {fileTree} from "@/fileTree/fileTree";
+import {fTree} from "@/data/configdb";
 
 const fsp = require("fs-extra")
 
@@ -73,7 +74,7 @@ export function removeExtName(file: string): string {
 }
 
 export function setCurrentFileNode(file: fileNode) {
-    fileTree.currentFileNode = file
+    fTree.value!.currentFileNode = file
 }
 
 export let validateFilename = function validateFilename(

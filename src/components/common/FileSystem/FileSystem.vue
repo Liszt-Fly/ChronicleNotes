@@ -51,7 +51,7 @@ onMounted(() => {
   fTree.value = new fileTree(
       new fileNode(path.resolve(chronicleUserPath, "assets"), "assets")
   );
-  if (!fileTree.currentFileNode) {
+  if (!fTree.value!.currentFileNode) {
     // fileTree.currentFileNode = fTree.value.root.children![0]
   }
 });
@@ -63,7 +63,7 @@ const remove = () => {
   } else {
     currentFile.value = ""
   }
-  fileTree.currentFileNode.removeSelf();
+  fTree.value!.currentFileNode.removeSelf();
   router.push("/Editor")
 };
 
@@ -82,7 +82,7 @@ const rename = () => {
 };
 
 const duplicate = () => {
-  fileTree.currentFileNode.duplicate();
+  fTree.value!.currentFileNode.duplicate();
 };
 
 const exportFile = () => {
@@ -95,7 +95,7 @@ const addChildren = (t: NodeType) => {
   if (bClickedParent.value) {
     fTree.value!.root.addChildren(t);
   } else {
-    fileTree.currentFileNode.addChildren(t);
+    fTree.value!.currentFileNode.addChildren(t);
   }
 };
 

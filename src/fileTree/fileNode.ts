@@ -5,7 +5,7 @@ import fs from "fs"
 import {getValidName} from "@/Helper"
 const matter=require("gray-matter")
 import {removeExtName} from "@/Helper"
-import {trashBin} from "@/data/configdb"
+import {fTree, trashBin} from "@/data/configdb"
 import deepClone from "deep-clone"
 import {chronicleUserPath} from "@/init/path";
 const fsp=require("fs-extra")
@@ -61,17 +61,16 @@ export class fileNode {
 
     //* 删除
     removeSelf() {
-        let name = this.name
-        //* 生成一个新的节点，放入垃圾箱中
-        let generatedNode = deepClone(this)
-        console.log(generatedNode)
-        let parent=this.parent
+        console.log(this.path);
+        fs.rmdir(this.path,(err=>{
+            console.log(err);
+        }))
         //* 情况为文件夹的情形
         if (this.type == NodeType.FOLDER) {
             if (this.parent) {
+
                 this.parent.children = this.parent.children!.filter(item => item.name != this.name)
-                console.log(this.parent.children);
-                this.parent = null
+
 
             }
 
@@ -80,14 +79,11 @@ export class fileNode {
         else if (this.type == NodeType.FILE) {
             if (this.parent) {
                 this.parent.children = this.parent.children!.filter(item => item.name != this.name)
-                console.log(this.parent.children);
-                this.parent = null
+
             }
-        };
-        console.log(parent);
-        fsp.removeSync(this.path)
-        // fsp.moveSync(this.path, p.resolve(chronicleUserPath, ".trash", name))
-        // trashBin.value?.root.children?.push(generatedNode)
+        }
+
+
     }
 
     //* 重命名
