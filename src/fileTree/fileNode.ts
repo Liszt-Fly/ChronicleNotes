@@ -12,6 +12,7 @@ const fsp = require("fs-extra")
 export class fileNode {
     //* constructor
     constructor(path: string, name: string) {
+        this.data=[]
         this.stat = fsp.statSync(path)
         this.name = name
         this.path = path
@@ -38,6 +39,7 @@ export class fileNode {
     tags: string[]
     parent: fileNode | null
     children?: fileNode[] | null
+    data:any[]
 
     //* methods
     addChildren(createdType: NodeType) {

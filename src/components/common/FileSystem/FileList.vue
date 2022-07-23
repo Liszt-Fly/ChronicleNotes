@@ -13,7 +13,7 @@ import { NodeType } from "@/FileTree/type";
 import { Menu } from "@electron/remote";
 // import {FileSystemMenu} from "@/Menus/FileSystemMenu";
 import { MenuItem } from "_@electron_remote@2.0.8@@electron/remote";
-import { FileListMenu } from "@/Menus/FileListMenu";
+import {FileMenu, FolderMenu} from "@/Menus/FileListMenu";
 const props = defineProps({
   file: Object as () => fileNode,
 });
@@ -73,10 +73,17 @@ function enter(event: KeyboardEvent) {
 // 右键菜单
 
 const menu = new Menu()
+if(props.file!.type==NodeType.FILE){
+  FileMenu.forEach((item: Electron.MenuItemConstructorOptions) => {
+    menu.append(new MenuItem(item))
+  })
+}
+else{
+  FolderMenu.forEach((item: Electron.MenuItemConstructorOptions) => {
+    menu.append(new MenuItem(item))
+  })
+}
 
-FileListMenu.forEach(item => {
-  menu.append(new MenuItem(item))
-})
 const showMenu = () => {
   menu.popup()
 }
@@ -132,7 +139,7 @@ const getEmoji = (str: string) => {
 
 <template>
 
-  <div class="folder" v-if="file" ref="fileDom" @contextmenu="setCurrentFileNode(props.file); showMenu()">
+  <div class="folder" v-if="file" ref="fileDom" @contextmenu="setCurrentFileNode(props.file,renameNote); showMenu()">
     <div class="item" tabindex="1" draggable="true" @dragover.prevent @drop="drop($event)"
       @dragstart="startDrag($event)" @click="toggleSubFolder($event, file); openFile($event, file)"
       :data-path="file.path" v-if="validateFilename(file.name)"
