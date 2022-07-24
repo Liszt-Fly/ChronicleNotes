@@ -18,3 +18,4 @@ export let SettingPage: Ref<string> = ref("/Setting/Info")
 export let menuDisplay = ref("none");
 export let dialogVisible = ref(false)
 export let trashBin: Ref<fileTree | null> = ref(null)
+//* 配置全局菜单

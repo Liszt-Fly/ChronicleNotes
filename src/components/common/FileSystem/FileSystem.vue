@@ -8,11 +8,14 @@ import {NodeType} from "@/FileTree/type";
 import {onMounted, Ref, ref} from "vue";
 import {fileNode} from "@/FileTree/fileNode";
 import router from "@/router/index";
+
+import {FileSystemMenu} from "@/Menus/FileSystemMenu";
+import {Menu, MenuItem} from "@electron/remote";
 // import {FileSystemMenu} from "@/Menus/FileSystemMenu";
 
 const fsp = require("fs-extra")
 
-const {Menu, MenuItem} = require("@electron/remote")
+
 let targetDom: Ref<null | HTMLElement> = ref(null);
 
 
@@ -25,7 +28,17 @@ const menu = new Menu()
 //   menu.popup()
 // }
 
-
+const isRoot=(event:MouseEvent)=>{
+  let target=event.target as HTMLElement
+  console.log(target);
+  if(!target.parentElement!.classList.contains("item")){
+    const menu=new Menu()
+    FileSystemMenu.forEach(item=>{
+      menu.append(new MenuItem(item))
+    })
+    menu.popup()
+  }
+}
 const drop = (event: DragEvent) => {
   let filepath = event.dataTransfer?.getData("path") as string
   if (filepath == fTree.value!.root.path) return
@@ -72,11 +85,11 @@ const addTags = () => {
 };
 
 const rename = () => {
-  targetDom!.contentEditable = "true";
-  targetDom!.focus();
+  targetDom.value!.contentEditable = "true";
+  targetDom.value!.focus();
   let range = new Range();
-  range.setStart(targetDom! as Node, 0);
-  range.setEnd(targetDom! as Node, 1);
+  range.setStart(targetDom.value! as Node, 0);
+  range.setEnd(targetDom.value! as Node, 1);
   document.getSelection()!.removeAllRanges();
   document.getSelection()!.addRange(range);
 };
@@ -121,9 +134,9 @@ let menu_items = [
 </script>
 
 <template>
-  <div class="file-system" ref="filesystem"
-       @dragover.prevent @drop="drop($event)">
-    <el-scrollbar height="calc(100vh - var(--brand-height))">
+  <div  class="file-system " ref="filesystem"
+       @dragover.prevent @drop="drop($event)" @contextmenu.stop.prevent="isRoot($event)">
+    <el-scrollbar height="calc(100vh - var(--brand-height))" class="root">
       <template v-for="file in fTree?.tree.children" :key="file.path">
         <file-list :file="file"></file-list>
       </template>

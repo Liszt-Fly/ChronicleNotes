@@ -77,20 +77,19 @@ export class fileNode {
 
     //* 重命名
     rename(newName: string) {
-        this.name = newName
-        let prevPath = this.path
-        let obj = p.parse(this.path)
-        if (this.type == NodeType.FILE) {
-            obj.base = newName + ".md"
-        } else {
-            obj.base = newName
-        }
+        // this.name = newName
+        // let prevPath = this.path
+        // let obj = p.parse(this.path)
+        // if (this.type == NodeType.FILE) {
+        //     obj.base = newName + ".md"
+        // } else {
+        //     obj.base = newName
+        // }
+        // obj.name = newName
+        // //更新
+        // this.path = p.resolve(obj.dir, obj.base)
+        // fsp.renameSync(prevPath, this.path)
 
-        console.log(obj.base)
-        obj.name = newName
-        //更新
-        this.path = p.resolve(obj.dir, obj.base)
-        fsp.renameSync(prevPath, this.path)
     }
 
     //* 替身

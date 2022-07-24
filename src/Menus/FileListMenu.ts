@@ -20,6 +20,7 @@ export const FolderMenu: MenuItemConstructorOptions[] = [
     {
         label:"⚡️ 笔记本重命名",click:function(){
             (fTree.value!.currentFileNode.data[0] as Function)()
+
         }
     }
 ]

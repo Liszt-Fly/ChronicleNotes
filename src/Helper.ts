@@ -73,9 +73,11 @@ export function removeExtName(file: string): string {
     }
 }
 
-export function setCurrentFileNode(file: fileNode,method:Function) {
+export function setCurrentFileNode(file: fileNode,method:Function,) {
     fTree.value!.currentFileNode = file
     fTree.value!.currentFileNode.data.push(method)
+
+
 }
 
 

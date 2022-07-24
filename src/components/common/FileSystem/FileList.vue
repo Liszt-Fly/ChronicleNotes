@@ -7,12 +7,10 @@ const fsp = require("fs-extra")
 import { validateFilename } from "@/Helper";
 import { currentFile, openFiles, fTree } from "@/data/configdb";
 import { chronicleUserPath } from "@/init/path";
-
 import { fileNode } from "@/FileTree/fileNode";
 import { NodeType } from "@/FileTree/type";
 import { Menu } from "@electron/remote";
-// import {FileSystemMenu} from "@/Menus/FileSystemMenu";
-import { MenuItem } from "_@electron_remote@2.0.8@@electron/remote";
+import { MenuItem } from "@electron/remote";
 import {FileMenu, FolderMenu} from "@/Menus/FileListMenu";
 const props = defineProps({
   file: Object as () => fileNode,
@@ -36,6 +34,7 @@ function openFile(event: MouseEvent, file: fileNode) {
 }
 
 function renameNote() {
+  console.log(`name:${nameBox.value}`);
   //启用contentEdible
   nameBox.value!.contentEditable = "true";
   nameBox.value!.focus();
@@ -66,13 +65,17 @@ function toggleSubFolder(
 }
 
 function enter(event: KeyboardEvent) {
-  let target = event.target as HTMLDivElement;
-  target.blur();
+  console.log(props.file!);
+  let target = event.target as HTMLSpanElement;
+  target.contentEditable="false"
+  console.log(props.file!);
+  props.file!.rename(nameBox.value!.innerText)
+
 }
 
 // 右键菜单
 
-const menu = new Menu()
+const menu=new Menu()
 if(props.file!.type==NodeType.FILE){
   FileMenu.forEach((item: Electron.MenuItemConstructorOptions) => {
     menu.append(new MenuItem(item))
@@ -143,12 +146,12 @@ const getEmoji = (str: string) => {
     <div class="item" tabindex="1" draggable="true" @dragover.prevent @drop="drop($event)"
       @dragstart="startDrag($event)" @click="toggleSubFolder($event, file); openFile($event, file)"
       :data-path="file.path" v-if="validateFilename(file.name)"
-      :class="[{ 'clicked': props.file.path === currentFile }]"  @contextmenu="setCurrentFileNode(props.file,renameNote); showMenu()">
+      :class="[{ 'clicked': file.path === currentFile }]"  @contextmenu="setCurrentFileNode(props.file,renameNote); showMenu()">
 
       <i class="bi bi-file-earmark-text" v-show="!getEmoji(file.name) && file.type === NodeType.FILE"></i>
       <i class="bi bi-folder2" v-show="!getEmoji(file.name) && file.type === NodeType.FOLDER"></i>
 
-      <span ref="nameBox" @blur="props.file.rename(nameBox.innerText)" @keydown.enter.prevent="enter($event)"
+      <span ref="nameBox"  @keydown.enter.prevent="enter($event)"
         :class="getEmoji(file.name) ? 'emoji' : ''" :data-emoji="getEmoji(file.name) ? getEmoji(file.name) : ''">
         {{ getEmoji(file.name) ? validateFilename(file.name).slice(2) : validateFilename(file.name) }}
       </span>
@@ -162,6 +165,9 @@ const getEmoji = (str: string) => {
 </template>
 
 <style scoped>
+div:focus{
+  outline:none;
+}
 i {
   padding-right: 4px;
   font-size: 1rem;
