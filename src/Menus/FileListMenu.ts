@@ -20,7 +20,8 @@ export const FolderMenu: MenuItemConstructorOptions[] = [
     },
     {
         label: "⚡️ 笔记本重命名", click: function () {
-            (fTree.value!.currentFileNode.data[0] as Function)()
+            console.log(fTree.value!.currentFileNode.data);
+            fTree.value!.currentFileNode.data[0](fTree.value!.currentFileNode.data[1])
         }
     }
 ]
@@ -33,7 +34,11 @@ export const FileMenu: MenuItemConstructorOptions[] = [
     },
     {
         label: "⚡️ 笔记重命名", click: function () {
-            (fTree.value!.currentFileNode.data[0] as Function)()
+
+            const rename=fTree.value!.currentFileNode.data[0]
+
+            rename(fTree.value?.currentFileNode.data[1])
+
         }
     }
 ]

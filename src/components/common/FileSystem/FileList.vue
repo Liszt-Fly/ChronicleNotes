@@ -33,12 +33,12 @@ function openFile(event: MouseEvent, file: fileNode) {
   }
 }
 
-const renameNote = (nameBox: any) => {
-  nameBox.value!.contentEditable = "true";
-  nameBox.value!.focus();
+const renameNote = (nameBox: HTMLSpanElement) => {
+  nameBox.contentEditable = "true";
+  nameBox.focus();
   let range = new Range();
-  range.setStart(nameBox.value as Node, 0);
-  range.setEnd(nameBox.value as Node, 1);
+  range.setStart(nameBox as Node, 0);
+  range.setEnd(nameBox as Node, 1);
   document.getSelection()!.removeAllRanges();
   document.getSelection()!.addRange(range);
 }
@@ -141,7 +141,7 @@ const getEmoji = (str: string) => {
     <div class="item" tabindex="1" draggable="true" @dragover.prevent @drop="drop($event)"
       @dragstart="startDrag($event)" @click="toggleSubFolder($event, file); openFile($event, file)"
       :data-path="file.path" v-if="validateFilename(file.name)" :class="[{ 'clicked': file.path === currentFile }]"
-      @contextmenu="setCurrentFileNode(props.file, renameNote(nameBox), nameBox); showMenu()">
+      @contextmenu="setCurrentFileNode(props.file, renameNote, nameBox); showMenu()">
 
       <i class="bi bi-file-earmark-text" v-show="!getEmoji(file.name) && file.type === NodeType.FILE"></i>
       <i class="bi bi-folder2" v-show="!getEmoji(file.name) && file.type === NodeType.FOLDER"></i>
