@@ -11,7 +11,7 @@ import { fileNode } from "@/FileTree/fileNode";
 import { NodeType } from "@/FileTree/type";
 import { Menu } from "@electron/remote";
 import { MenuItem } from "@electron/remote";
-import {FileMenu, FolderMenu} from "@/Menus/FileListMenu";
+import { FileMenu, FolderMenu } from "@/Menus/FileListMenu";
 const props = defineProps({
   file: Object as () => fileNode,
 });
@@ -33,9 +33,7 @@ function openFile(event: MouseEvent, file: fileNode) {
   }
 }
 
-function renameNote() {
-  console.log(`name:${nameBox.value}`);
-  //启用contentEdible
+const renameNote = (nameBox: any) => {
   nameBox.value!.contentEditable = "true";
   nameBox.value!.focus();
   let range = new Range();
@@ -52,7 +50,7 @@ function toggleSubFolder(
   if (file.children) {
     if (event) {
       let item = event.currentTarget as HTMLElement;
-      let folder =item.children[1]!
+      let folder = item.children[1]!
       folder.classList.toggle("bi-folder2");
       folder.classList.toggle("bi-folder2-open");
       if (folder.classList.contains("bi-folder2-open")) {
@@ -65,23 +63,21 @@ function toggleSubFolder(
 }
 
 function enter(event: KeyboardEvent) {
-  console.log(props.file!);
   let target = event.target as HTMLSpanElement;
-  target.contentEditable="false"
-  console.log(props.file!);
   props.file!.rename(nameBox.value!.innerText)
-
+  target.contentEditable = "false"
+  console.log("执行了 enter")
 }
 
 // 右键菜单
+const menu = new Menu()
 
-const menu=new Menu()
-if(props.file!.type==NodeType.FILE){
+if (props.file!.type == NodeType.FILE) {
   FileMenu.forEach((item: Electron.MenuItemConstructorOptions) => {
     menu.append(new MenuItem(item))
   })
 }
-else{
+else {
   FolderMenu.forEach((item: Electron.MenuItemConstructorOptions) => {
     menu.append(new MenuItem(item))
   })
@@ -90,6 +86,7 @@ else{
 const showMenu = () => {
   menu.popup()
 }
+
 const drop = (e: DragEvent) => {
   // FIXME: 仅仅检查了自己放置自己的情况，还有一种放置本身区域的情况没有做完
   let filepath = e.dataTransfer?.getData("path") as string
@@ -126,9 +123,7 @@ const drop = (e: DragEvent) => {
   }
 }
 const startDrag = (e: DragEvent) => {
-
   e.dataTransfer?.setData("path", props.file!.path)
-
 }
 
 const getEmoji = (str: string) => {
@@ -145,17 +140,17 @@ const getEmoji = (str: string) => {
   <div class="folder" v-if="file" ref="fileDom">
     <div class="item" tabindex="1" draggable="true" @dragover.prevent @drop="drop($event)"
       @dragstart="startDrag($event)" @click="toggleSubFolder($event, file); openFile($event, file)"
-      :data-path="file.path" v-if="validateFilename(file.name)"
-      :class="[{ 'clicked': file.path === currentFile }]"  @contextmenu="setCurrentFileNode(props.file,renameNote); showMenu()">
+      :data-path="file.path" v-if="validateFilename(file.name)" :class="[{ 'clicked': file.path === currentFile }]"
+      @contextmenu="setCurrentFileNode(props.file, renameNote(nameBox), nameBox); showMenu()">
 
       <i class="bi bi-file-earmark-text" v-show="!getEmoji(file.name) && file.type === NodeType.FILE"></i>
       <i class="bi bi-folder2" v-show="!getEmoji(file.name) && file.type === NodeType.FOLDER"></i>
 
-      <span ref="nameBox"  @keydown.enter.prevent="enter($event)"
-        :class="getEmoji(file.name) ? 'emoji' : ''" :data-emoji="getEmoji(file.name) ? getEmoji(file.name) : ''">
+      <span ref="nameBox" @keydown.enter.prevent="enter($event)" :class="getEmoji(file.name) ? 'emoji' : ''"
+        :data-emoji="getEmoji(file.name) ? getEmoji(file.name) : ''">
         {{ getEmoji(file.name) ? validateFilename(file.name).slice(2) : validateFilename(file.name) }}
       </span>
-    </div >
+    </div>
     <div class="subfolder" v-if="file.children" ref="subFolder" id="subfolder">
       <file-list :files="file.children" :file="f" v-for="f in file.children" :key="f.path"></file-list>
     </div>
@@ -165,9 +160,10 @@ const getEmoji = (str: string) => {
 </template>
 
 <style scoped>
-div:focus{
-  outline:none;
+div:focus {
+  outline: none;
 }
+
 i {
   padding-right: 4px;
   font-size: 1rem;

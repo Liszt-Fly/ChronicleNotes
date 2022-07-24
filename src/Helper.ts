@@ -1,10 +1,10 @@
 //* 设置文件和文件夹在没有命名的默认名称
-import {NavigationGuardNext, RouteLocationNormalized} from "vue-router";
-import {NodeType} from "@/fileTree/type";
+import { NavigationGuardNext, RouteLocationNormalized } from "vue-router";
+import { NodeType } from "@/fileTree/type";
 import * as path from "path";
-import {fileNode} from "@/fileTree/fileNode";
-import {fileTree} from "@/fileTree/fileTree";
-import {fTree} from "@/data/configdb";
+import { fileNode } from "@/fileTree/fileNode";
+import { fileTree } from "@/fileTree/fileTree";
+import { fTree } from "@/data/configdb";
 
 const fsp = require("fs-extra")
 
@@ -73,15 +73,10 @@ export function removeExtName(file: string): string {
     }
 }
 
-export function setCurrentFileNode(file: fileNode,method:Function,) {
+export function setCurrentFileNode(file: fileNode, method: Function, nameBox) {
     fTree.value!.currentFileNode = file
-    fTree.value!.currentFileNode.data.push(method)
-
-
+    fTree.value!.currentFileNode.data.push(nameBox)
 }
-
-
-
 
 export let validateFilename = function validateFilename(
     filename: string

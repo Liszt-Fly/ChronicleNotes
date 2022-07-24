@@ -12,7 +12,7 @@ const fsp = require("fs-extra")
 export class fileNode {
     //* constructor
     constructor(path: string, name: string) {
-        this.data=[]
+        this.data = []
         this.stat = fsp.statSync(path)
         this.name = name
         this.path = path
@@ -39,7 +39,7 @@ export class fileNode {
     tags: string[]
     parent: fileNode | null
     children?: fileNode[] | null
-    data:any[]
+    data: any[]
 
     //* methods
     addChildren(createdType: NodeType) {
@@ -77,19 +77,21 @@ export class fileNode {
 
     //* 重命名
     rename(newName: string) {
-        // this.name = newName
-        // let prevPath = this.path
-        // let obj = p.parse(this.path)
-        // if (this.type == NodeType.FILE) {
-        //     obj.base = newName + ".md"
-        // } else {
-        //     obj.base = newName
-        // }
-        // obj.name = newName
-        // //更新
-        // this.path = p.resolve(obj.dir, obj.base)
-        // fsp.renameSync(prevPath, this.path)
+        console.log("执行了 rename")
+        console.log(newName);
 
+        this.name = newName
+        let prevPath = this.path
+        let obj = p.parse(this.path)
+        if (this.type == NodeType.FILE) {
+            obj.base = newName + ".md"
+        } else {
+            obj.base = newName
+        }
+        obj.name = newName
+        //更新
+        this.path = p.resolve(obj.dir, obj.base)
+        fsp.renameSync(prevPath, this.path)
     }
 
     //* 替身
