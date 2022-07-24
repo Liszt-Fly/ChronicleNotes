@@ -139,11 +139,11 @@ const getEmoji = (str: string) => {
 
 <template>
 
-  <div class="folder" v-if="file" ref="fileDom" @contextmenu="setCurrentFileNode(props.file,renameNote); showMenu()">
+  <div class="folder" v-if="file" ref="fileDom">
     <div class="item" tabindex="1" draggable="true" @dragover.prevent @drop="drop($event)"
       @dragstart="startDrag($event)" @click="toggleSubFolder($event, file); openFile($event, file)"
       :data-path="file.path" v-if="validateFilename(file.name)"
-      :class="[{ 'clicked': props.file.path === currentFile }]" @contextmenu.prevent=" ">
+      :class="[{ 'clicked': props.file.path === currentFile }]"  @contextmenu="setCurrentFileNode(props.file,renameNote); showMenu()">
 
       <i class="bi bi-file-earmark-text" v-show="!getEmoji(file.name) && file.type === NodeType.FILE"></i>
       <i class="bi bi-folder2" v-show="!getEmoji(file.name) && file.type === NodeType.FOLDER"></i>
@@ -152,7 +152,7 @@ const getEmoji = (str: string) => {
         :class="getEmoji(file.name) ? 'emoji' : ''" :data-emoji="getEmoji(file.name) ? getEmoji(file.name) : ''">
         {{ getEmoji(file.name) ? validateFilename(file.name).slice(2) : validateFilename(file.name) }}
       </span>
-    </div>
+    </div >
     <div class="subfolder" v-if="file.children" ref="subFolder" id="subfolder">
       <file-list :files="file.children" :file="f" v-for="f in file.children" :key="f.path"></file-list>
     </div>
