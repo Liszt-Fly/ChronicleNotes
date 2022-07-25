@@ -6,7 +6,7 @@ export default function useDialog(option?: any) {
         ...option
     }
     const vm = createVNode(ChronDialog, props)
-    console.log(JSON.stringify(vm, null, 2));
+
     const container = document.createElement("div");
     render(vm, container);
     console.log(vm.props);

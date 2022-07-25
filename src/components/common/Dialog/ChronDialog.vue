@@ -17,7 +17,7 @@
     <el-divider></el-divider>
     <el-row justify="space-between">
       <el-button>取消</el-button>
-      <el-button>提交</el-button>
+      <el-button @click="submit">提交</el-button>
     </el-row>
   </div>
 </template>
@@ -25,8 +25,10 @@
 <script lang="ts" setup>
 import {ElInput,ElDivider,ElForm,ElTag,ElButton,ElCol,ElFormItem,ElRow} from'element-plus'
 import {reactive, ref} from "vue";
+import {fileNode} from "@/fileTree/fileNode";
 const props=defineProps({
-  dialogVisible:Boolean
+  dialogVisible:Boolean,
+  node:fileNode
 })
 const alert=ref<HTMLElement|null>()
 let shouldInput=ref<Boolean>(true)
@@ -47,6 +49,8 @@ const addPreview=()=>{
 }
 const submit=()=>{
   //TODO 提交表单
+  props.node!.addTag(data.tags)
+
 }
 const check=()=>{
   console.log(data.input);
