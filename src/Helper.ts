@@ -3,9 +3,7 @@ import { NavigationGuardNext, RouteLocationNormalized } from "vue-router";
 import { NodeType } from "@/fileTree/type";
 import * as path from "path";
 import { fileNode } from "@/fileTree/fileNode";
-
 import { fTree } from "@/data/configdb";
-
 const fsp = require("fs-extra")
 
 function getDefaultName(type: NodeType): string {
@@ -14,7 +12,6 @@ function getDefaultName(type: NodeType): string {
 
 //* 获取不重复的数字
 export function getValidNumber(basePath: string, index: number, type: NodeType): number {
-
     //* 如果是文件夹
     if (type == NodeType.FOLDER) {
         if (fsp.existsSync(path.resolve(basePath, getDefaultName(type) + index.toString()))) {
@@ -62,7 +59,6 @@ export function getValidName(basePath: string, type: NodeType): string {
     }
 }
 
-
 export function removeExtName(file: string): string {
     if (path.extname(file)) {
         let remainedLength = file.length - path.extname(file).length + 1
@@ -73,13 +69,13 @@ export function removeExtName(file: string): string {
     }
 }
 
-export function setCurrentFileNode(file: fileNode, method: (v:HTMLSpanElement)=>void, nameBox:HTMLSpanElement) {
+export function setCurrentFileNode(file: fileNode, method: (v: HTMLSpanElement) => void, nameBox: HTMLSpanElement) {
     fTree.value!.currentFileNode = file
-    fTree.value!.currentFileNode.data.rename=method
-    fTree.value!.currentFileNode.data.nameBox=nameBox
+    fTree.value!.currentFileNode.data.rename = method
+    fTree.value!.currentFileNode.data.nameBox = nameBox
 }
 
-export function validateFilename(f: string){
+export function validateFilename(f: string) {
     //省略扩展名
     let length = f.length - path.extname(f).length
     if (f == ".DS_Store" || f == ".trash")

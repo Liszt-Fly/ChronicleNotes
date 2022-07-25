@@ -1,7 +1,6 @@
 import path from "path";
 
-export let chronicleUserPath = path.resolve(process.cwd(),"src","user")
-
+export let chronicleUserPath = path.resolve(process.cwd(), "src", "user")
 
 export let appearanceFile = path.resolve(chronicleUserPath, "config", "chronicle.appearance.json")
 
@@ -14,3 +13,5 @@ export let shortcutFileDefault = path.resolve(chronicleUserPath, "config", "chro
 export let generalFile = path.resolve(chronicleUserPath, "config", "chronicle.general.json")
 
 export let generalFileDefault = path.resolve(chronicleUserPath, "config", "chronicle.general.default.json")
+
+export let jottings_path = path.resolve(chronicleUserPath, "jottings")
