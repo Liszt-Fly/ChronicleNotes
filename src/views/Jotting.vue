@@ -15,7 +15,9 @@
             <template v-for="(jotting, index) in jottingList" :key="index">
                 <el-col :span="8">
                     <div shadow="never" class="jotting_card" @click="jotting.fullscreen = true">
-                        <p>{{ jotting.text }}</p>
+                        <el-scrollbar>
+                            <p>{{ jotting.text }}</p>
+                        </el-scrollbar>
                     </div>
                     <el-dialog v-model="jotting.fullscreen" :fullscreen="true">
                         <el-scrollbar height="80vh">
@@ -45,7 +47,9 @@ import path from 'path';
 import { Ref, ref } from 'vue';
 const fs = require('fs')
 
-const jottingList = ref([])
+type Tjotting = { path: string, text: string, fullscreen: boolean }
+
+const jottingList: Ref<Tjotting[]> = ref([])
 let jotting_input = ref("")
 let addJotting = ref(true)
 
@@ -69,13 +73,13 @@ const addAJotting = () => {
     }
 }
 
-const deleteAJotting = (jotting: string, index: number) => {
+const deleteAJotting = (jotting: Tjotting, index: number) => {
     jotting.fullscreen = false
     fs.unlinkSync(jotting.path)
     jottingList.value.splice(index, 1)
 }
 
-const editAJotting = (jotting: string) => {
+const editAJotting = (jotting: Tjotting) => {
     fs.writeFileSync(jotting.path, jotting.text)
     jotting.fullscreen = false
 }
@@ -91,16 +95,17 @@ loadJottings()
 
 .jotting_card {
     white-space: pre-line;
+    word-wrap: break-word;
     border-radius: 4px;
     box-sizing: border-box;
     border: 1px solid var(--el-color-info-light-9);
-    padding: 4px 16px;
+    padding: 4px 8px;
     height: 136px;
     margin-bottom: 12px;
-    overflow: hidden;
+    font-size: 0.9rem;
 
     &:hover {
-        padding: 3px 15px;
+        padding: 3px 7px;
         border: 2px solid var(--el-color-info-light-9);
         cursor: pointer;
     }
@@ -144,10 +149,6 @@ loadJottings()
 .zoom {
     white-space: pre-line;
     font-size: 1.2rem;
-
-    // .el-textarea textarea {
-    //     overflow: hidden;
-    // }
 }
 
 .jotting_btn {
