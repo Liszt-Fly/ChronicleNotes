@@ -6,6 +6,7 @@ import {init} from "@/init";
 
 
 const app=createApp(App)
+
 //* 设置路由
 setupRouter(app)
 //* 设置插件
