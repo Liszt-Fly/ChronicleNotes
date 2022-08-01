@@ -42,7 +42,7 @@
           </el-button>
         </el-tooltip>
         <el-tooltip :content="winMax ? $t('control.maximise') : $t('control.restore')" placement="bottom-start"
-                    effect="customized">
+          effect="customized">
           <el-button key="plain" text @click="maxRestoreWindow">
             <i class="bi bi-square" v-if="winMax"></i>
             <i class="bi bi-files" v-else style="transform: scaleX(1.3)"></i>

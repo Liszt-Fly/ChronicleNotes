@@ -1,23 +1,25 @@
 <script setup lang="ts">
 import FileSystem from "@/components/common/FileSystem/FileSystem.vue";
-import 'prosemirror-view'
-import codemark from 'prosemirror-codemark';
-import 'prosemirror-codemark/dist/codemark.css';
-import {baseKeymap} from "prosemirror-commands"
-import {onMounted, ref, Ref} from "vue";
-import {schema, defaultMarkdownParser,
-  defaultMarkdownSerializer} from "prosemirror-markdown"
-import {EditorState,Command} from "prosemirror-state"
-import {EditorView} from "prosemirror-view"
-import {buildInputRules, exampleSetup} from "prosemirror-example-setup"
-import {Transform} from "prosemirror-transform"
-import {undo, redo, history} from "prosemirror-history"
-import {keymap} from "prosemirror-keymap"
-import {Transaction} from "_prosemirror-state@1.4.1@prosemirror-state";
-import {markRule} from "@milkdown/prose";
+// import 'prosemirror-view'
+// import codemark from 'prosemirror-codemark';
+// import 'prosemirror-codemark/dist/codemark.css';
+// import { baseKeymap } from "prosemirror-commands"
+import { onMounted, ref, Ref } from "vue";
+// import {
+//   schema, defaultMarkdownParser,
+//   defaultMarkdownSerializer
+// } from "prosemirror-markdown"
+// import { EditorState, Command } from "prosemirror-state"
+// import { EditorView } from "prosemirror-view"
+// import { buildInputRules, exampleSetup } from "prosemirror-example-setup"
+// import { Transform } from "prosemirror-transform"
+// import { undo, redo, history } from "prosemirror-history"
+// import { keymap } from "prosemirror-keymap"
+// import { Transaction } from "_prosemirror-state@1.4.1@prosemirror-state";
+// import { markRule } from "@milkdown/prose";
 import Milkdown from "@/components/Editor/MilkEditor.vue";
 
-let content=ref<HTMLDivElement|null>()
+let content = ref<HTMLDivElement | null>()
 // let initState:EditorState
 // let recoverParagraph:Command
 // recoverParagraph=(state: EditorState, dispatch?: (tr: Transaction) => void, view?: EditorView):boolean=>{
@@ -38,7 +40,7 @@ let content=ref<HTMLDivElement|null>()
 //   // }
 //   // return  true
 // }
-onMounted(()=>{
+onMounted(() => {
   // let state = EditorState.create({schema,plugins:[ keymap(baseKeymap),history(),  keymap({"Mod-z": undo, "Backspace": recoverParagraph}),buildInputRules(schema),...codemark({markType:schema.marks.code})]})
   // initState=state
   // let view = new EditorView(content.value!, {
@@ -80,9 +82,9 @@ onMounted(()=>{
     <div class="column-right">
       <!-- 右侧 editor -->
       <el-scrollbar>
-     <div id="milkdown">
-       <milkdown></milkdown>
-     </div>
+        <div id="milkdown">
+          <milkdown></milkdown>
+        </div>
       </el-scrollbar>
     </div>
   </div>
@@ -140,10 +142,9 @@ onMounted(()=>{
   width: 200px;
   height: inherit;
 }
-#milkdown{
+
+#milkdown {
   height: calc(100vh - var(--brand-height));
   overflow: scroll;
 }
-
-
 </style>
