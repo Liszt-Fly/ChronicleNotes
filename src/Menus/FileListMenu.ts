@@ -4,7 +4,7 @@ import { NodeType } from "@/fileTree/type";
 import showDialog from "@/hooks/useDialog"
 export const FolderMenu: MenuItemConstructorOptions[] = [
     {
-        label: '📓 删除笔记本', click: function (menuItem, browserWindow, event) {
+        label: '🗑️ 删除', click: function (menuItem, browserWindow, event) {
             fTree.value!.currentFileNode.removeSelf()
         }
     },
@@ -28,22 +28,22 @@ export const FolderMenu: MenuItemConstructorOptions[] = [
 
 export const FileMenu: MenuItemConstructorOptions[] = [
     {
-        label: '📓 删除笔记', click: function (menuItem, browserWindow, event) {
+        label: '🗑️ 删除', click: function (menuItem, browserWindow, event) {
             fTree.value!.currentFileNode.removeSelf()
         }
     },
     {
         label: "⚡️ 笔记重命名", click: function () {
 
-            const rename=fTree.value!.currentFileNode.data.rename!
+            const rename = fTree.value!.currentFileNode.data.rename!
 
             rename(fTree.value?.currentFileNode.data.nameBox!)
 
         }
     },
     {
-        label:"✈️ 添加标签",click:function(){
-            showDialog({dialogVisible:true,node:fTree.value?.currentFileNode})
+        label: "✈️ 添加标签", click: function () {
+            showDialog({ dialogVisible: true, node: fTree.value?.currentFileNode })
         }
     }
 ]

@@ -137,11 +137,11 @@ const getEmoji = (str: string) => {
 
 <template>
 
-  <div class="folder" v-if="file" ref="fileDom">
+  <div class="folder" v-if="file" ref="fileDom"
+    @contextmenu="setCurrentFileNode(props.file, renameNote, nameBox); showMenu()">
     <div class="item" tabindex="1" draggable="true" @dragover.prevent @drop="drop($event)"
       @dragstart="startDrag($event)" @click="toggleSubFolder($event, file); openFile($event, file)"
-      :data-path="file.path" v-if="validateFilename(file.name)" :class="[{ 'clicked': file.path === currentFile }]"
-      @contextmenu="setCurrentFileNode(props.file, renameNote, nameBox); showMenu()">
+      :data-path="file.path" v-if="validateFilename(file.name)" :class="[{ 'clicked': file.path === currentFile }]">
 
       <i class="bi bi-file-earmark-text" v-show="!getEmoji(file.name) && file.type === NodeType.FILE"></i>
       <i class="bi bi-folder2" v-show="!getEmoji(file.name) && file.type === NodeType.FOLDER"></i>

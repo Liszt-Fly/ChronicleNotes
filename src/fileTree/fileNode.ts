@@ -12,7 +12,7 @@ const fsp = require("fs-extra")
 export class fileNode {
     //* constructor
     constructor(path: string, name: string) {
-        this.data ={}
+        this.data = {}
         this.stat = fsp.statSync(path)
         this.name = name
         this.path = path
@@ -68,7 +68,10 @@ export class fileNode {
         }
         //* 情况为文件
         else if (this.type == NodeType.FILE) {
-            fs.rmSync(this.path, { recursive: true })
+            console.log(this.path);
+
+            // fs.renameSync(this.path, )
+            // fs.rmSync(this.path, { recursive: true })
             if (this.parent) {
                 this.parent.children = this.parent.children!.filter(item => item.name != this.name)
             }

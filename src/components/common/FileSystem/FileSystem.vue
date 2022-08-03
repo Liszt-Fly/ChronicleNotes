@@ -28,7 +28,6 @@ const menu = new Menu()
 
 const isRoot = (event: MouseEvent) => {
   let target = event.target as HTMLElement
-  console.log(target);
   if (!target.parentElement!.classList.contains("item")) {
     const menu = new Menu()
     FileSystemMenu.forEach(item => {

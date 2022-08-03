@@ -3,6 +3,7 @@ import Home from "@/views/Home.vue"
 import Editor from "@/views/Editor.vue"
 import Setting from "@/views/Settting.vue"
 import Jotting from "@/views/Jotting.vue"
+import Trash from "@/views/Trash.vue"
 import Info from "@/components/Setting/Info.vue"
 import General from "@/components/Setting/General.vue"
 import Appearance from "@/components/Setting/Appearance.vue"
@@ -21,6 +22,7 @@ const router = createRouter({
         { path: "/WorkSpace", name: "WorkSpace", component: WorkSpace },
         { path: "/Editor", name: "EditorPage", component: Editor },
         { path: "/Jotting", name: "JottingPage", component: Jotting },
+        { path: "/Trash", name: "TrashPage", component: Trash },
         {
             path: "/Setting", name: "Setting", component: Setting,
             children: [
