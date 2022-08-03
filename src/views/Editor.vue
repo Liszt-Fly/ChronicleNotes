@@ -81,11 +81,11 @@ onMounted(() => {
     </div>
     <div class="column-right">
       <!-- 右侧 editor -->
-      <el-scrollbar>
+
         <div id="milkdown">
           <milkdown></milkdown>
         </div>
-      </el-scrollbar>
+
     </div>
   </div>
 </template>
@@ -145,6 +145,6 @@ onMounted(() => {
 
 #milkdown {
   height: calc(100vh - var(--brand-height));
-  overflow: scroll;
+  overflow: hidden;
 }
 </style>
