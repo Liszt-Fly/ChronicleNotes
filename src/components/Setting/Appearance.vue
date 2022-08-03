@@ -112,7 +112,7 @@ const formatParagraphSpaceTip = (val: number) => {
         <el-switch v-model="appearance.trotting_horse" />
       </el-form-item>
 
-      <el-divider></el-divider>
+      <!-- <el-divider></el-divider>
 
       <el-form-item>
         <template #label>
@@ -178,7 +178,7 @@ const formatParagraphSpaceTip = (val: number) => {
           <el-option v-for="cf in code_fonts" :label="cf" :key="cf" :value="cf">{{ cf }}
           </el-option>
         </el-select>
-      </el-form-item>
+      </el-form-item> -->
 
     </el-form>
 

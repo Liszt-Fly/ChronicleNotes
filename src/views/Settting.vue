@@ -19,12 +19,13 @@
           {{ $t('setting.appearance_tab') }}
         </el-button>
       </router-link>
-      <router-link to="/Setting/Shortcut" @click="SettingPage = '/Setting/Shortcut'">
+
+      <!-- <router-link to="/Setting/Shortcut" @click="SettingPage = '/Setting/Shortcut'">
         <el-button key="primary" text>
           <i class="bi bi-command"></i>
           {{ $t('setting.shortcut_tab') }}
         </el-button>
-      </router-link>
+      </router-link> -->
     </div>
 
     <el-scrollbar>

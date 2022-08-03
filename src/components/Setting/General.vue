@@ -63,13 +63,14 @@ onMounted(() => {
 <template>
   <div class="general">
     <el-form label-width="180px" :model="general" label-position="left">
-      <el-form-item>
+      <!-- <el-form-item>
         <template #label>
           <i class="bi bi-person-workspace"></i> {{ $t('setting.general.workspaceName') }}
         </template>
         <el-input v-model="general.workspaceName" maxlength="20" show-word-limit />
-      </el-form-item>
-      <el-form-item>
+      </el-form-item> -->
+
+      <!-- <el-form-item>
         <template #label>
           <i class="bi bi-bounding-box-circles"></i> {{ $t('setting.general.open') }}
         </template>
@@ -77,9 +78,9 @@ onMounted(() => {
           <el-option v-for="openOption in openOptions" :label="openOption" :key="openOption"
                      :value="openOption">{{ $t(`setting.general.${openOption}`) }}</el-option>
         </el-select>
-      </el-form-item>
+      </el-form-item> -->
 
-      <el-divider></el-divider>
+      <!-- <el-divider></el-divider> -->
 
       <el-form-item>
         <template #label>
@@ -91,7 +92,7 @@ onMounted(() => {
         </el-select>
       </el-form-item>
 
-      <el-divider></el-divider>
+      <!-- <el-divider></el-divider>
 
       <el-form-item>
         <template #label>
@@ -108,7 +109,7 @@ onMounted(() => {
           <el-option v-for="time in autoSaveTimes" :key="time" :label="time + $t('setting.general.interval')"
                      :value="time" />
         </el-select>
-      </el-form-item>
+      </el-form-item> -->
 
       <el-divider></el-divider>
 

@@ -20,36 +20,40 @@ import { SettingPage } from "@/data/configdb"
             </router-link>
           </div>
         </el-tooltip>
-        <el-tooltip :content="$t('tab.stream')" placement="right" effect="customized">
+
+        <!-- <el-tooltip :content="$t('tab.stream')" placement="right" effect="customized">
           <div class="tab-item" id="stream">
             <router-link to="/Stream">
               <i class="bi bi-kanban"></i>
             </router-link>
           </div>
-        </el-tooltip>
-        <el-tooltip :content="$t('tab.security')" placement="right" effect="customized">
+        </el-tooltip> -->
+
+        <!-- <el-tooltip :content="$t('tab.security')" placement="right" effect="customized">
           <div class="tab-item" id="stream">
             <router-link to="/Security">
               <i class="bi bi-safe2"></i>
             </router-link>
           </div>
-        </el-tooltip>
-        <el-tooltip :content="$t('tab.trash')" placement="right" effect="customized">
+        </el-tooltip> -->
+
+        <!-- <el-tooltip :content="$t('tab.trash')" placement="right" effect="customized">
           <div class="tab-item" id="trash">
             <router-link to="/Trash">
               <i class="bi bi-trash3"></i>
             </router-link>
           </div>
-        </el-tooltip>
+        </el-tooltip> -->
       </div>
       <div class="sub-tab">
-        <el-tooltip :content="$t('tab.workspace')" placement="right" effect="customized">
+        <!-- <el-tooltip :content="$t('tab.workspace')" placement="right" effect="customized">
           <div class="tab-item" id="workspace">
             <router-link to="/WorkSpace">
               <i class="bi bi-collection"></i>
             </router-link>
           </div>
-        </el-tooltip>
+        </el-tooltip> -->
+        
         <el-tooltip :content="$t('tab.setting')" placement="right" effect="customized">
           <div class="tab-item" id="setting">
             <router-link :to="SettingPage">
