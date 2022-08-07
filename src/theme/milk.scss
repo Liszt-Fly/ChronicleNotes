@@ -1,17 +1,55 @@
 .milkdown {
+  font-family: var(--chronicle-global-en-font), var(--chronicle-global-cn-font) !important;
+
   .editor > * {
     margin: 10px 0 !important;
   }
   .editor {
     padding: 0 !important;
 
-    h1,
     .heading {
       margin: 12px 0 !important;
+      font-weight: bolder !important;
+      padding-bottom: 8px;
+    }
+
+    h1 {
+      font-size: 2rem !important;
+      border-bottom: 1px #eee solid !important ;
+    }
+
+    h2 {
+      font-size: 1.8rem !important;
+      border-bottom: 1px #eee solid !important ;
+    }
+
+    h3 {
+      font-size: 1.6rem !important;
+      border-bottom: 1px #eee solid !important ;
+    }
+
+    h4 {
+      font-size: 1.4rem !important;
+    }
+
+    h5 {
+      font-size: 1.2rem !important;
+    }
+
+    h6 {
+      font-size: 1rem !important;
+    }
+
+    p {
+      font-size: 1rem !important;
     }
 
     blockquote {
       padding-left: 20px !important;
+    }
+
+    .code-fence pre code {
+      font-family: var(--chronicle-code-font) !important;
     }
   }
 }

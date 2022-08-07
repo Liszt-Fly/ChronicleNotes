@@ -99,8 +99,7 @@ const formatParagraphSpaceTip = (val: number) => {
 
         <template v-for="color in predefineColors">
           <el-tooltip :content="$t(`setting.appearance.colors.${color}`)" placement="top" effect="customized">
-            <el-button :color="color" :dark="true" size="small" @click="appearance.color = color"
-                       class="color_picker">
+            <el-button :color="color" :dark="true" size="small" @click="appearance.color = color" class="color_picker">
             </el-button>
           </el-tooltip>
         </template>
@@ -112,32 +111,34 @@ const formatParagraphSpaceTip = (val: number) => {
         <el-switch v-model="appearance.trotting_horse" />
       </el-form-item>
 
-      <!-- <el-divider></el-divider>
+      <el-divider></el-divider>
 
-      <el-form-item>
+      <!-- 字体大小 -->
+      <!-- <el-form-item>
         <template #label>
           <i class="bi bi-lightning-charge"></i>{{ $t('setting.appearance.font_size') }}
         </template>
-        <el-slider v-model="appearance.font_size" :min="12" :max="20" :step="2"
-                   :format-tooltip="formatFontSizeTip" />
+        <el-slider v-model="appearance.font_size" :min="12" :max="20" :step="2" :format-tooltip="formatFontSizeTip" />
+      </el-form-item> -->
+
+      <!-- 行宽 -->
+      <el-form-item>
+        <template #label>
+          <i class="bi bi-arrows-angle-expand" style="transform: rotate(45deg);"></i> {{
+              $t('setting.appearance.line_width')
+          }}
+        </template>
+        <el-slider v-model="appearance.line_width" :min="60" :max="100" :step="10"
+          :format-tooltip="formatLineWidthTip" />
       </el-form-item>
 
+      <!-- 行高 -->
       <el-form-item>
         <template #label>
           <i class="bi bi-arrows-expand"></i> {{ $t('setting.appearance.line_height') }}
         </template>
         <el-slider v-model="appearance.line_height" :min="1" :max="2" :step="0.5"
-                   :format-tooltip="formatLineHeightTip" />
-      </el-form-item>
-
-      <el-form-item>
-        <template #label>
-          <i class="bi bi-arrows-angle-expand" style="transform: rotate(45deg);"></i> {{
-            $t('setting.appearance.line_width')
-          }}
-        </template>
-        <el-slider v-model="appearance.line_width" :min="60" :max="100" :step="10"
-                   :format-tooltip="formatLineWidthTip" />
+          :format-tooltip="formatLineHeightTip" />
       </el-form-item>
 
       <el-form-item>
@@ -145,7 +146,7 @@ const formatParagraphSpaceTip = (val: number) => {
           <i class="bi bi-justify"></i> {{ $t('setting.appearance.paragraph_space') }}
         </template>
         <el-slider v-model="appearance.paragraph_space" :min="1" :max="2" :step="0.5"
-                   :format-tooltip="formatParagraphSpaceTip" />
+          :format-tooltip="formatParagraphSpaceTip" />
       </el-form-item>
 
       <el-divider></el-divider>
@@ -178,7 +179,7 @@ const formatParagraphSpaceTip = (val: number) => {
           <el-option v-for="cf in code_fonts" :label="cf" :key="cf" :value="cf">{{ cf }}
           </el-option>
         </el-select>
-      </el-form-item> -->
+      </el-form-item>
 
     </el-form>
 
@@ -188,13 +189,13 @@ const formatParagraphSpaceTip = (val: number) => {
     <el-dialog v-model="restoreDialogVisible" width="300px">
       <span>{{ $t("setting.restore") }}</span>
       <template #footer>
-                <span class="dialog-footer">
-                    <el-button @click="restoreDialogVisible = false">{{ $t("setting.cancel") }}</el-button>
-                    <el-button type="primary" @click="restoreDefault(), restoreDialogVisible = false">{{
-                        $t("setting.sure")
-                      }}
-                    </el-button>
-                </span>
+        <span class="dialog-footer">
+          <el-button @click="restoreDialogVisible = false">{{ $t("setting.cancel") }}</el-button>
+          <el-button type="primary" @click="restoreDefault(), restoreDialogVisible = false">{{
+              $t("setting.sure")
+          }}
+          </el-button>
+        </span>
       </template>
     </el-dialog>
   </div>
