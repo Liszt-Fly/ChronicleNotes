@@ -28,12 +28,12 @@ export const initAppearance = () => {
 		}
 
 		.milkdown .editor p {
-			font-size: ${font_size}px;
+			font-size: ${font_size}px !important;
 			line-height: ${line_height}rem !important;
 		}
 
 		.milkdown .editor p {
-			margin-bottom: ${paragraph_space}rem;
+			margin-bottom: ${paragraph_space}rem !important;
 		}
 
 		body .editor {

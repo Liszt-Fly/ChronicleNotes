@@ -41,15 +41,26 @@
     }
 
     p {
-      font-size: 1rem !important;
+      font-size: 0.9rem !important;
     }
 
     blockquote {
-      padding-left: 20px !important;
+      padding-left: 12px !important;
     }
 
     .code-fence pre code {
       font-family: var(--chronicle-code-font) !important;
+    }
+
+    .code-inline {
+      font-weight: bolder !important;
+      font-family: var(--chronicle-code-font) !important;
+      border: 1px solid #e7eaed !important;
+      background-color: #f8f8f8 !important;
+      color: rgba(46, 52, 64, 1) !important;
+      border-radius: 4px !important;
+      padding: 2px 4px 2px 4px !important;
+      font-size: 0.9em !important;
     }
   }
 }
