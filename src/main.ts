@@ -1,11 +1,10 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import router, {setupRouter} from "@/router";
-import {setupPlugins} from "@/plugins";
-import {init} from "@/init";
+import router, { setupRouter } from "@/router";
+import { setupPlugins } from "@/plugins";
+import { init } from "@/init";
 
-
-const app=createApp(App)
+const app = createApp(App)
 
 //* 设置路由
 setupRouter(app)
@@ -17,5 +16,5 @@ await router.isReady()
 
 app.mount('#app')
     .$nextTick(() => {
-        postMessage({payload: 'removeLoading'}, '*')
+        postMessage({ payload: 'removeLoading' }, '*')
     }).then()

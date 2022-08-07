@@ -14,9 +14,6 @@ const editor = useEditor((root) =>
       ctx.set(defaultValueCtx, "# Milkdown 💖 Vue");
     })
     .use(plugins())
-
-
-
 );
 
 </script>

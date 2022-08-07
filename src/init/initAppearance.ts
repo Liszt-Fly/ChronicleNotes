@@ -38,6 +38,7 @@ export const initAppearance = () => {
 
 		body .editor {
 			width: ${line_width}%  !important;
+			margin: auto;
 		}
 	`
     head.appendChild(globalStyle);

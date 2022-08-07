@@ -1,0 +1,17 @@
+.milkdown {
+  .editor > * {
+    margin: 10px 0 !important;
+  }
+  .editor {
+    padding: 0 !important;
+
+    h1,
+    .heading {
+      margin: 12px 0 !important;
+    }
+
+    blockquote {
+      padding-left: 20px !important;
+    }
+  }
+}
