@@ -27,14 +27,18 @@ export const initAppearance = () => {
 			--brand-height: 40px;
 		}
 
-		.milkdown .editor p {
+		.milkdown .editor p, .list-item[data-list-type="bullet"] > .list-item_label {
 			font-size: ${font_size}px !important;
-			line-height: ${line_height}rem !important;
+			line-height: ${line_height} !important;
 		}
 
 		.milkdown .editor p {
 			margin-bottom: ${paragraph_space}rem !important;
 		}
+
+		.milkdown .editor p.paragraph {
+			margin-bottom: ${paragraph_space - 1}rem !important;
+		  }
 
 		body .editor {
 			width: ${line_width}%  !important;
