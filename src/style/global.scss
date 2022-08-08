@@ -1,3 +1,6 @@
+*{
+  font-variant-ligatures: common-ligatures;
+}
 body {
   font-family: var(--pi-global-en-font), var(--pi-global-cn-font);
   *:focus {
