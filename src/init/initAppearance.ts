@@ -48,6 +48,7 @@ const primary_colors = {
 
 export const initAppearance = () => {
 	const color = appearance.color
+	// @ts-ignore
 	const primary_color: string = primary_colors[color]
 	const global_en_font = appearance.global_en_font
 	const global_cn_font = appearance.global_cn_font
