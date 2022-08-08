@@ -1,27 +1,27 @@
 body {
-  font-family: var(--chronicle-global-en-font), var(--chronicle-global-cn-font);
+  font-family: var(--pi-global-en-font), var(--pi-global-cn-font);
   line-height: 1.5;
 
   .trotting_horse {
     background-image: linear-gradient(
         90deg,
         rgba(255, 255, 255, 0) 0%,
-        var(--chronicle-theme-color) 100%
+        var(--pi-theme-color) 100%
       ),
       linear-gradient(
         0deg,
-        var(--chronicle-theme-color) 0%,
+        var(--pi-theme-color) 0%,
         rgba(255, 255, 255, 0) 100%
       ),
       linear-gradient(
         -90deg,
         rgba(255, 255, 255, 0) 0%,
-        var(--chronicle-theme-color) 100%
+        var(--pi-theme-color) 100%
       ),
       linear-gradient(
         0deg,
         rgba(255, 255, 255, 0) 0%,
-        var(--chronicle-theme-color) 100%
+        var(--pi-theme-color) 100%
       );
     background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
     background-size: 200px 4px, 4px 200px, 200px 4px, 4px 200px;
@@ -88,13 +88,13 @@ body {
   }
 
   input {
-    font-family: var(--chronicle-global-en-font),
-      var(--chronicle-global-cn-font);
+    font-family: var(--pi-global-en-font),
+      var(--pi-global-cn-font);
   }
 
   .el-button > span {
-    font-family: var(--chronicle-global-en-font),
-      var(--chronicle-global-cn-font);
+    font-family: var(--pi-global-en-font),
+      var(--pi-global-cn-font);
   }
 
   .tab-system {
@@ -184,7 +184,7 @@ body {
         }
 
         &.clicked {
-          background-color: var(--chronicle-theme-color);
+          background-color: var(--pi-theme-color);
           color: var(--el-bg-color);
           border-radius: 6px;
         }

@@ -1,12 +1,13 @@
 <template>
   <div class="info">
     <el-form label-width="180px" :model="info" label-position="left">
-      <h1> 🎉 Welcome to Chronicle, Made with ❤️</h1>
+      <h1> Welcome to <span class="icon">π</span> 🤗</h1>
+      <h3> Made with ❤️</h3>
 
       <img src="@/assets/img/成功.svg" />
 
-      <el-button type="primary"><i class="bi bi-plugin"></i>{{ $t('setting.info.sponsorUs') }}
-      </el-button>
+      <!-- <el-button type="primary"><i class="bi bi-plugin"></i>{{ $t('setting.info.sponsorUs') }}
+      </el-button> -->
     </el-form>
   </div>
 </template>
@@ -32,7 +33,16 @@ const info = reactive({})
   }
 
   h1 {
-    margin: 20px
+    margin: 20px;
+
+    .icon {
+      font-family: sans-serif;
+      color: var(--pi-theme-color);
+      font-size: 3rem;
+      font-weight: bolder;
+      position: relative;
+      top: 2px;
+    }
   }
 
   .el-button i {

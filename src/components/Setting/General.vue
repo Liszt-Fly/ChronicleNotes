@@ -87,8 +87,8 @@ onMounted(() => {
           <i class="bi bi-translate"></i> {{ $t('setting.general.language') }}
         </template>
         <el-select v-model="general.locale" :placeholder="$t('setting.general.select_language')">
-          <el-option v-for="locale in $i18n.availableLocales" :label="locale" :key="`locale-${locale}`"
-                     :value="locale">{{ $t(`setting.general.${locale}`) }}</el-option>
+          <el-option v-for="locale in $i18n.availableLocales" :label="locale" :key="`locale-${locale}`" :value="locale">
+            {{ $t(`setting.general.${locale}`) }}</el-option>
         </el-select>
       </el-form-item>
 
@@ -121,9 +121,8 @@ onMounted(() => {
       </el-form-item>
       <el-form-item>
         <template #label>
-          <i class="bi bi-chat-square"
-             style="transform: rotate(180deg); position: relative; bottom: 1px;"></i> {{
-            $t('setting.general.tooltips')
+          <i class="bi bi-chat-square" style="transform: rotate(180deg); position: relative; bottom: 1px;"></i> {{
+              $t('setting.general.tooltips')
           }}
         </template>
         <el-switch v-model="general.tooltips" />
@@ -136,13 +135,13 @@ onMounted(() => {
     <el-dialog v-model="restoreDialogVisible" width="300px">
       <span>{{ $t("setting.restore") }}</span>
       <template #footer>
-                <span class="dialog-footer">
-                    <el-button @click="restoreDialogVisible = false">{{ $t("setting.cancel") }}</el-button>
-                    <el-button type="primary" @click="restoreDefault(), restoreDialogVisible = false">{{
-                        $t("setting.sure")
-                      }}
-                    </el-button>
-                </span>
+        <span class="dialog-footer">
+          <el-button @click="restoreDialogVisible = false">{{ $t("setting.cancel") }}</el-button>
+          <el-button type="primary" @click="restoreDefault(), restoreDialogVisible = false">{{
+              $t("setting.sure")
+          }}
+          </el-button>
+        </span>
       </template>
     </el-dialog>
   </div>

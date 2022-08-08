@@ -4,7 +4,7 @@
       <el-tag v-for="file in openFiles" effect="plain" :key="file" closable type="info"
               @click="toggleCurrentFile(file)" class="tab-item" @close="remove(file)"
               :class="{ 'tab-item-active': file === currentFile }">
-        {{ path.relative(path.join(chronicleUserPath, "assets"), file).replaceAll("\\", "/").slice(0, -3) }}
+        {{ path.relative(path.join(piUserPath, "assets"), file).replaceAll("\\", "/").slice(0, -3) }}
       </el-tag>
     </div>
   </el-scrollbar>
@@ -12,13 +12,13 @@
 
 <script lang="ts" setup>
 import { openFiles, currentFile } from "@/data/configdb"
-import { chronicleUserPath } from "@/init/path"
+import { piUserPath } from "@/init/path"
 import path from 'path'
 import router from "@/router";
 
 let toggleCurrentFile = (file: string) => {
   currentFile.value = file
-  router.push(`/Editor/${path.relative(path.join(chronicleUserPath, "assets"), file).replaceAll("\\", "/")}`)
+  router.push(`/Editor/${path.relative(path.join(piUserPath, "assets"), file).replaceAll("\\", "/")}`)
 }
 
 let remove = (file: string) => {
@@ -46,20 +46,20 @@ let remove = (file: string) => {
   &:hover {
     background-color: var(--el-tag-bg-color);
     border: 2px solid var(--el-color-info-light-9);
-    color: var(--chronicle-theme-color);
+    color: var(--pi-theme-color);
     padding-right: 5px !important;
   }
 }
 
 
 .tab-item-active {
-  background-color: var(--chronicle-theme-color);
+  background-color: var(--pi-theme-color);
   color: var(--el-bg-color);
-  border: 2px solid var(--chronicle-theme-color);
+  border: 2px solid var(--pi-theme-color);
 
   &:hover {
     background-color: var(--el-color-info-light-9);
-    border: 2px solid var(--chronicle-theme-color);
+    border: 2px solid var(--pi-theme-color);
   }
 }
 </style>
