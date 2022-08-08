@@ -138,7 +138,7 @@ const getEmoji = (str: string) => {
 <template>
 
   <div class="folder" v-if="file" ref="fileDom"
-    @contextmenu="setCurrentFileNode(props.file, renameNote, nameBox); showMenu()">
+    @contextmenu.stop.prevent="setCurrentFileNode(props.file, renameNote, nameBox); showMenu()">
     <div class="item" tabindex="1" draggable="true" @dragover.prevent @drop="drop($event)"
       @dragstart="startDrag($event)" @click="toggleSubFolder($event, file); openFile($event, file)"
       :data-path="file.path" v-if="validateFilename(file.name)" :class="[{ 'clicked': file.path === currentFile }]">

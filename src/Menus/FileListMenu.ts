@@ -42,7 +42,7 @@ export const FileMenu: MenuItemConstructorOptions[] = [
         }
     },
     {
-        label: "🏷️ 添加标签", click: function () {
+        label: "🔖 添加标签", click: function () {
             showDialog({ dialogVisible: true, node: fTree.value?.currentFileNode })
         }
     }

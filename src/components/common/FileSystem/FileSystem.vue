@@ -131,8 +131,7 @@ let menu_items = [
 </script>
 
 <template>
-  <div class="file-system " ref="filesystem" @dragover.prevent @drop="drop($event)"
-    @contextmenu.stop.prevent="isRoot($event)">
+  <div class="file-system " ref="filesystem" @dragover.prevent @drop="drop($event)" @contextmenu="isRoot($event)">
     <el-scrollbar height="calc(100vh - var(--brand-height))" class="root">
       <template v-for="file in fTree?.tree.children" :key="file.path">
         <file-list :file="file"></file-list>
