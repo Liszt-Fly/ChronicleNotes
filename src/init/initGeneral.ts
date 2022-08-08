@@ -1,14 +1,14 @@
 // 通用初始化
-import {general} from "@/init/data";
+import { general } from "@/init/data";
 
 export const initGeneral = () => {
-    const head = document.head || document.getElementsByTagName('head')[0];
+	const head = document.head || document.getElementsByTagName('head')[0];
 
-    const devTools = general.devTools
-    const tooltips = general.tooltips
+	const devTools = general.devTools
+	const tooltips = general.tooltips
 
-    let generalStyle = document.createElement('style');
-    generalStyle.innerText = `
+	let generalStyle = document.createElement('style');
+	generalStyle.innerText = `
 	.devTools{
 		display: ${devTools ? 'inline-flex' : 'none'}
 	}
@@ -16,16 +16,18 @@ export const initGeneral = () => {
 		/* Set padding to ensure the height is 32px */\
 		padding: 6px 12px;\
 		border: 1px solid var(--el-border-color-light);\
-		background: var(--bg-color);\
+		background: var(--el-bg-color);\
+		user-select: none;\
 	  }\
 	  \
 	  .el-popper.is-customized .el-popper__arrow::before {\
-		background: var(--bg-color);\
+		background: var(--el-bg-color);\
 		border: 1px solid var(--el-border-color-light);\
     	background: var(--el-bg-color-overlay);\
 		right: 0;\
+		user-select: none;\
 	  }" : ".el-popper.is-customized {display: none !important;}"
-    }
+		}
 	`
-    head.appendChild(generalStyle);
+	head.appendChild(generalStyle);
 }
