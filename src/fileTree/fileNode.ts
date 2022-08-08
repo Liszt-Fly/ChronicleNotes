@@ -6,7 +6,7 @@ const matter = require("gray-matter")
 import { removeExtName } from "@/Helper"
 import { fTree, trashBin } from "@/data/configdb"
 import deepClone from "deep-clone"
-import { chronicleUserPath } from "@/init/path";
+import { piUserPath } from "@/init/path";
 import { log } from "console"
 const fsp = require("fs-extra")
 export class fileNode {

@@ -20,10 +20,10 @@ export const initAppearance = () => {
 	globalStyle.innerText = `
 		html.${appearance.theme ? "light" : "dark"} {
 			--el-color-primary: ${color};
-			--chronicle-global-en-font: ${global_en_font};
-			--chronicle-global-cn-font: ${global_cn_font};
+			--pi-global-en-font: ${global_en_font};
+			--pi-global-cn-font: ${global_cn_font};
 			--el-font-family: ${global_en_font}, ${global_cn_font};
-			--chronicle-code-font: ${code_font};
+			--pi-code-font: ${code_font};
 			--brand-height: 40px;
 		}
 

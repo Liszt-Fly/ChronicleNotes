@@ -154,7 +154,7 @@ const ToggleSidebar = () => {
     display: inline-block;
     flex: 1;
     text-align: center;
-    color: var(--chronicle-theme-color);
+    color: var(--pi-theme-color);
     font-size: 0.9rem;
     line-height: 2.5;
 

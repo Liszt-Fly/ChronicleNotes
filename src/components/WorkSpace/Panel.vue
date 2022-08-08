@@ -18,7 +18,7 @@
   height: 200px;
 
   &:hover {
-    box-shadow: var(--chronicle-theme-color) 0px 0px 0px 4px;
+    box-shadow: var(--pi-theme-color) 0px 0px 0px 4px;
   }
 }
 </style>

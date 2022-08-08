@@ -6,7 +6,7 @@ import path from "path"
 const fsp = require("fs-extra")
 import { validateFilename } from "@/Helper";
 import { currentFile, openFiles, fTree } from "@/data/configdb";
-import { chronicleUserPath } from "@/init/path";
+import { piUserPath } from "@/init/path";
 import { fileNode } from "@/FileTree/fileNode";
 import { NodeType } from "@/FileTree/type";
 import { Menu } from "@electron/remote";
@@ -28,7 +28,7 @@ function openFile(event: MouseEvent, file: fileNode) {
   if (!file.children) {
     openFiles.value.add(props.file!.path!)
     currentFile.value = props.file!.path!;
-    let params = path.relative(path.resolve(chronicleUserPath, "assets"), file.path);
+    let params = path.relative(path.resolve(piUserPath, "assets"), file.path);
     // router.push(`/Editor/${params}`);
   }
 }
