@@ -98,7 +98,8 @@ const formatParagraphSpaceTip = (val: number) => {
         </template>
 
         <template v-for="color in predefineColors">
-          <el-tooltip :content="$t(`setting.appearance.colors.${color}`)" placement="top" effect="customized" :hide-after=0>
+          <el-tooltip :content="$t(`setting.appearance.colors.${color}`)" placement="top" effect="customized"
+            :hide-after=0>
             <el-button :color="color" :dark="true" size="small" @click="appearance.color = color" class="color_picker">
             </el-button>
           </el-tooltip>

@@ -5,9 +5,8 @@ import { setupStyle } from "@/plugins/Styles";
 import { setupI18nPlugin } from "@/plugins/I18n";
 
 export function setupPlugins(app: App) {
-
     setupBootstrapPlugin()
-    setupI18nPlugin(app)
-    setupElementPlus(app)
     setupStyle()
+    setupElementPlus(app)
+    setupI18nPlugin(app)
 }
