@@ -1,18 +1,27 @@
 <template>
-  <VueEditor :editor="editor" class="milk-editor" />
+  <VueEditor :editor="editor" class="milk-editor" @keydown.meta="save($event)" />
 </template>
 <script lang="ts" setup>
 import plugins from "./plugins"
-import { Editor, rootCtx, defaultValueCtx } from "@milkdown/core";
+import {Editor, rootCtx, defaultValueCtx, editorView, editorStateCtx} from "@milkdown/core";
 
 import { VueEditor, useEditor } from "@milkdown/vue";
 import {onMounted, watch} from "vue";
 import '@milkdown/utils'
 import {replaceAll, toggleFile} from "@/components/Editor/utils/toggleFile";
 import {currentFile} from "@/data/configdb";
+import {createSerializer} from "@milkdown/transformer"
 
 let milk:Editor;
 
+
+const save=(event:KeyboardEvent)=>{
+  console.log(event.key);
+  if(event.key=="s"){
+    console.log(milk.ctx.get(editorStateCtx));
+  }
+
+}
 
 const editor = useEditor((root) =>
   milk=Editor.make()
