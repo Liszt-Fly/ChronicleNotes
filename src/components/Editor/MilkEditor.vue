@@ -4,21 +4,23 @@
 <script lang="ts" setup>
 import plugins from "./plugins"
 import {Editor, rootCtx, defaultValueCtx, editorView, editorStateCtx} from "@milkdown/core";
-
+import { Ctx, editorViewCtx, serializerCtx } from '@milkdown/core';
 import { VueEditor, useEditor } from "@milkdown/vue";
 import {onMounted, watch} from "vue";
 import '@milkdown/utils'
 import {replaceAll, toggleFile} from "@/components/Editor/utils/toggleFile";
 import {currentFile} from "@/data/configdb";
-import {createSerializer} from "@milkdown/transformer"
-
+const fsp=require("fs-extra")
 let milk:Editor;
-
 
 const save=(event:KeyboardEvent)=>{
   console.log(event.key);
   if(event.key=="s"){
     console.log(milk.ctx.get(editorStateCtx));
+    let ctx=milk.ctx
+    const view = ctx.get(editorViewCtx);
+    const serializer = ctx.get(serializerCtx);
+    fsp.writeFileSync(currentFile.value,serializer(view.state.doc),{encoding:"utf-8"})
   }
 
 }
