@@ -32,10 +32,10 @@ require('@electron/remote/main').initialize()
 async function createWindow() {
   win = new BrowserWindow({
     title: 'Main window',
-    minWidth:800,
-    minHeight:600,
-    width:800,
-    height:500,
+    minWidth: 800,
+    minHeight: 600,
+    width: 800,
+    height: 500,
     icon: join(ROOT_PATH.public, 'favicon.ico'),
     titleBarStyle: "hidden",
     webPreferences: {
@@ -44,14 +44,22 @@ async function createWindow() {
       contextIsolation: false,
     },
   })
-  if(process.platform=="darwin"){
-    app.dock.setIcon(join(ROOT_PATH.public, 'icons',"Burning Orange","apple-touch-icon.png"))
+  if (process.platform == "darwin") {
+    app.dock.setIcon(join(ROOT_PATH.public, 'icons', "Burning Orange", "apple-touch-icon.png"))
   }
   if (app.isPackaged) {
     win.loadFile(indexHtml)
   } else {
     win.loadURL(url)
     // win.webContents.openDevTools()
+
+    win!.on('maximize', function () {
+      win!.webContents.send('main-window-max');
+    })
+
+    win!.on('unmaximize', function () {
+      win!.webContents.send('main-window-unmax');
+    })
   }
   require("@electron/remote/main").enable(win.webContents)
   // Test actively push message to the Electron-Renderer
