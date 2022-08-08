@@ -1,8 +1,8 @@
+*{
+  font-variant-ligatures: common-ligatures !important;
+}
 body {
   font-family: var(--pi-global-en-font), var(--pi-global-cn-font);
-  input{
-    outline:none !important;
-  }
   line-height: 1.5;
   .trotting_horse {
     background-image: linear-gradient(
