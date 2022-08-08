@@ -21,7 +21,7 @@ export const ROOT_PATH = {
   // /dist or /public
   public: join(__dirname, app.isPackaged ? '../..' : '../../../public'),
 }
-
+console.log(join(ROOT_PATH.public, 'favicon.ico'));
 let win: BrowserWindow | null = null
 // Here, you can also use other preload
 const preload = join(__dirname, '../preload/index.js')
@@ -32,6 +32,10 @@ require('@electron/remote/main').initialize()
 async function createWindow() {
   win = new BrowserWindow({
     title: 'Main window',
+    minWidth:800,
+    minHeight:600,
+    width:800,
+    height:500,
     icon: join(ROOT_PATH.public, 'favicon.ico'),
     titleBarStyle: "hidden",
     webPreferences: {
@@ -40,7 +44,9 @@ async function createWindow() {
       contextIsolation: false,
     },
   })
-
+  if(process.platform=="darwin"){
+    app.dock.setIcon(join(ROOT_PATH.public, 'icons',"Burning Orange","apple-touch-icon.png"))
+  }
   if (app.isPackaged) {
     win.loadFile(indexHtml)
   } else {
