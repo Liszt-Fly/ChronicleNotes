@@ -19,6 +19,8 @@
     "skipLibCheck": true
   },
   "references": [
-    { "path": "./tsconfig.node.json" }
+    {
+      "path": "./tsconfig.node.json"
+    }
   ]
 }

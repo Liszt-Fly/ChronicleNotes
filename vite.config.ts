@@ -44,4 +44,10 @@ export default defineConfig({
     host: pkg.env.VITE_DEV_SERVER_HOST,
     port: pkg.env.VITE_DEV_SERVER_PORT,
   },
+  // build: {
+  //   minify: false,
+  //   commonjsOptions: {
+  //     include: /node_modules|libs/
+  //   }
+  // }
 })
