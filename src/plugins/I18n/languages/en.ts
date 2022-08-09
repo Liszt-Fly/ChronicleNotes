@@ -78,7 +78,7 @@ export const en =
             paragraph_space: "Paragraph Space"
         },
         general: {
-            workspaceName: "Workspace Name",
+            workspaceName: "Workspace",
             open: "Open With",
             lastOpenFile: "Last Open File",
             workspace: "Workspaces",

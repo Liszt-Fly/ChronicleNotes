@@ -78,7 +78,7 @@ export const cn =
             paragraph_space: "段间距"
         },
         general: {
-            workspaceName: "工作区名",
+            workspaceName: "工作区",
             open: "启动时打开",
             lastOpenFile: "上次打开的文件",
             workspace: "工作台页面",

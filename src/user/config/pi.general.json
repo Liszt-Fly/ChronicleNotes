@@ -3,7 +3,7 @@
     "openWith": "workspace",
     "devTools": false,
     "autoSave": true,
-    "tooltips": false,
+    "tooltips": true,
     "autoSaveTime": 5,
     "locale": "cn"
 }

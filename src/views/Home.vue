@@ -2,7 +2,6 @@
   <el-scrollbar>
     <div>
       <div class="info">
-        Our Home
       </div>
     </div>
   </el-scrollbar>

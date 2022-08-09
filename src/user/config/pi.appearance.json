@@ -1,8 +1,8 @@
 {
     "theme": true,
-    "color": "#8c99aa",
-    "global_en_font": "Verdana",
-    "global_cn_font": "微软雅黑",
+    "color": "#81a28b",
+    "global_en_font": "Times New Roman",
+    "global_cn_font": "楷体",
     "code_font": "Consolas",
     "trotting_horse": false,
     "font_size": 16,

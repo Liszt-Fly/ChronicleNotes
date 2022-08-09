@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref, watch } from 'vue'
-import { generalFile, generalFileDefault } from "@/init/path"
+import { generalFile } from "@/init/path"
+import { generalFileDefaultSetting } from "@/config/pi.general.default.js"
 import fs from 'fs'
 
 const restoreDialogVisible = ref(false)
@@ -8,7 +9,7 @@ const autoSaveTimes = [3, 5, 10, 60]
 const openOptions = ["lastOpenFile", "workspace"]
 
 const general = reactive({
-  workspaceName: "",
+  pi_path: "",
   openWith: "",
   devTools: false,
   autoSave: false,
@@ -38,9 +39,27 @@ const saveSetting = () => {
 
 const restoreDefault = () => {
 
-  fs.writeFile(generalFile, fs.readFileSync(generalFileDefault), () => {
+  fs.writeFile(generalFile, JSON.stringify(generalFileDefaultSetting), () => {
     location.reload()
   })
+}
+
+const fileChange = () => {
+  const fu = document.getElementById('file')
+  if (fu == null) return
+
+  console.log("文件夹路径", fu.files[0].webkitRelativePath, fu.files[0].path)
+  var webkitRelativePath = fu.files[0].webkitRelativePath
+  var path = fu.files[0].path
+  var zhenshi = path.substring(0, path.indexOf(webkitRelativePath.split("/")[webkitRelativePath.split("/").length - 1]) - 1)
+  console.log("真实路径", zhenshi.replace(/\\/g, '/'))
+  pi_path.value = zhenshi.replace(/\\/g, '/')
+  print(pi_path.value)
+}
+
+const btnChange = () => {
+  var file = document.getElementById('file')
+  file!.click()
 }
 
 let timeout: any = null
@@ -63,12 +82,14 @@ onMounted(() => {
 <template>
   <div class="general">
     <el-form label-width="180px" :model="general" label-position="left">
-      <!-- <el-form-item>
+      <el-form-item>
         <template #label>
           <i class="bi bi-person-workspace"></i> {{ $t('setting.general.workspaceName') }}
         </template>
-        <el-input v-model="general.workspaceName" maxlength="20" show-word-limit />
-      </el-form-item> -->
+        <input type="file" id="file" hidden @change="fileChange" webkitdirectory>
+        <el-input placeholder="选择文件夹" v-model="general.pi_path" class="input-with-select" @click="btnChange">
+        </el-input>
+      </el-form-item>
 
       <!-- <el-form-item>
         <template #label>

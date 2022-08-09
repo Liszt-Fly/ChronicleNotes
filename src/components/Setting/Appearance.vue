@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref, watch } from 'vue'
-import { appearanceFile, appearanceFileDefault } from "@/init/path"
+import { appearanceFile } from "@/init/path"
+import { appearanceFileDefaultSetting } from "@/config/pi.appearance.default.js"
+
 import { Sunny, Moon } from '@element-plus/icons-vue'
 import fs from 'fs'
 
@@ -45,7 +47,7 @@ const saveSetting = () => {
 }
 
 const restoreDefault = () => {
-  fs.writeFile(appearanceFile, fs.readFileSync(appearanceFileDefault), () => {
+  fs.writeFile(appearanceFile, JSON.stringify(appearanceFileDefaultSetting), () => {
     location.reload()
   })
 }

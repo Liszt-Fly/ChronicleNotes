@@ -1,5 +1,5 @@
 import fs from "fs";
-import {appearanceFile, generalFile, shortcutFile} from "@/init/path";
+import { appearanceFile, generalFile, shortcutFile } from "@/init/path";
 
 const appearanceFileData = fs.readFileSync(appearanceFile) as unknown as string
 export let appearance = JSON.parse(appearanceFileData)

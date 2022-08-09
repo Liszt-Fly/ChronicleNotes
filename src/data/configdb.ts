@@ -3,8 +3,6 @@ import path from 'path'
 import { piUserPath } from "@/init/path"
 import { fileTree } from "@/FileTree/fileTree"
 
-
-
 export let bClickedParent: Ref<boolean> = ref(false)
 //* 将所有的tag都存储在tag容器内
 export let cTagContainer: Ref<string[]> = ref([])
