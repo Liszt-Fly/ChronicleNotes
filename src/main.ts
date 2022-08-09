@@ -12,7 +12,6 @@ setupRouter(app)
 setupPlugins(app)
 //* 初始化基本配置
 init()
-await router.isReady()
 
 app.mount('#app')
     .$nextTick(() => {
