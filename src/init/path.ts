@@ -1,6 +1,6 @@
 import path from "path";
 
-export let piUserPath = path.resolve(process.cwd(), "src", "user")
+export let piUserPath = path.resolve("src", "user")
 
 export let appearanceFile = path.resolve(piUserPath, "config", "pi.appearance.json")
 
