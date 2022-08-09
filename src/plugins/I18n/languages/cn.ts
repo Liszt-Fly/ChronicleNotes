@@ -1,7 +1,8 @@
 export const cn =
 {
     control: {
-        toggle_sidebar: "切换边栏",
+        hide_sidebar: "隐藏边栏",
+        show_sidebar: "显示边栏",
         toggle_devTools: "切换开发者工具",
         refresh: "刷新",
         minimise: "最小化",
@@ -51,7 +52,9 @@ export const cn =
 
         info: {
             home: "回到起始页",
-            sponsorUs: "为我们充电"
+            sponsorUs: "为我们充电",
+            welcome: "欢迎使用",
+            made: "用 ❤️ 制作"
         },
         appearance: {
             theme: "主题",

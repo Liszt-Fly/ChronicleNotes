@@ -4,7 +4,8 @@
     <div v-if="!isMac">
 
       <el-button-group>
-        <el-tooltip :content="$t('control.toggle_sidebar')" placement="right" effect="customized" :hide-after=0>
+        <el-tooltip :content="sideBar ? $t('control.hide_sidebar') : $t('control.show_sidebar')" placement="right"
+          effect="customized" :hide-after=0>
           <el-button key="plain" text @click="ToggleSidebar" class="controlIcon">
             <i class="bi bi-window-sidebar" v-if="sideBar"></i>
             <i class="bi bi-window" v-else></i>

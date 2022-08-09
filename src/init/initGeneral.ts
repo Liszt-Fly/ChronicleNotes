@@ -31,3 +31,5 @@ export const initGeneral = () => {
 	`
 	head.appendChild(generalStyle);
 }
+
+export const locale = general.locale

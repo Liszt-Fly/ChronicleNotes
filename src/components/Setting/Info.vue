@@ -1,8 +1,8 @@
 <template>
   <div class="info">
     <el-form label-width="180px" :model="info" label-position="left">
-      <h1> Welcome to <span class="icon">π</span> 🤗</h1>
-      <h3> Made with ❤️</h3>
+      <h1> {{ $t('setting.info.welcome') }} <span class="icon">π</span> 🤗</h1>
+      <h3> {{ $t('setting.info.made') }} </h3>
 
       <img src="@/assets/img/成功.svg" />
 

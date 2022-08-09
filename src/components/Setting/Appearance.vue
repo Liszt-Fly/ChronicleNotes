@@ -85,7 +85,7 @@ const formatParagraphSpaceTip = (val: number) => {
 
 <template>
   <div class="appearance">
-    <el-form ref="formRef" :model="appearance" label-width="200px" label-position="left">
+    <el-form ref="formRef" :model="appearance" label-width="220px" label-position="left">
       <el-form-item>
         <template #label>
           <i class="bi bi-brightness-alt-high"></i> {{ $t('setting.appearance.theme') }}

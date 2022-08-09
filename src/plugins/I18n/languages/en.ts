@@ -1,7 +1,8 @@
 export const en =
 {
     control: {
-        toggle_sidebar: "Toggle Sidebar",
+        hide_sidebar: "Hide Sidebar",
+        show_sidebar: "Show Sidebar",
         toggle_devTools: "Toggle DevTools",
         refresh: "Refresh",
         minimise: "Minimise",
@@ -51,7 +52,9 @@ export const en =
 
         info: {
             "home": "Home",
-            sponsorUs: "Sponsor Us"
+            sponsorUs: "Sponsor Us",
+            welcome: "Welcome to",
+            made: "Made with ❤️"
         },
         appearance: {
             theme: "Theme",
