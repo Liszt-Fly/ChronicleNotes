@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import path from "path";
 import { bClickedParent, currentFile, fTree, menuDisplay, openFiles } from "@/data/configdb";
-import { pacakgedPath, piUserPath } from "@/init/path";
+import { piUserPath } from "@/init/path";
 import FileList from "@/components/common/FileSystem/FileList.vue";
 import { fileTree } from "@/FileTree/fileTree";
 import { NodeType } from "@/FileTree/type";
@@ -58,16 +58,12 @@ const drop = (event: DragEvent) => {
 }
 
 onMounted(() => {
-  if (getGlobal("sharedObject").bPackaged) {
-    fTree.value = new fileTree(
-      new fileNode(path.resolve(pacakgedPath, "assets"), "assets")
-    );
-  }
-  else {
-    fTree.value = new fileTree(
-      new fileNode(path.resolve(piUserPath, "assets"), "assets")
-    );
-  }
+
+
+  fTree.value = new fileTree(
+    new fileNode(path.resolve(piUserPath, "assets"), "assets")
+  );
+
   if (!fTree.value!.currentFileNode) {
     // fileTree.currentFileNode = fTree.value.root.children![0]
   }

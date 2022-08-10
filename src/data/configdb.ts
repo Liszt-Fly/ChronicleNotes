@@ -1,6 +1,6 @@
 import { Ref, ref } from "vue"
 import path from 'path'
-import { pacakgedPath, piUserPath } from "@/init/path"
+
 import { fileTree } from "@/FileTree/fileTree"
 import { getGlobal } from "@electron/remote"
 

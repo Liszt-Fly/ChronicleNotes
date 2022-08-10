@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts" setup>
-import { jottings_path, packagedJottings_path } from '@/init/path';
+import { jottings_path } from '@/init/path';
 import { getGlobal } from '@electron/remote';
 import path from 'path';
 import { Ref, ref } from 'vue';
@@ -56,7 +56,7 @@ let addJotting = ref(true)
 
 const loadJottings = () => {
 
-    let jotting_paths = getGlobal("sharedObject").bPackaged ? fs.readdirSync(packagedJottings_path) : fs.readdirSync(jottings_path)
+    let jotting_paths = fs.readdirSync(jottings_path)
     console.log('jotting_paths', jotting_paths)
     jotting_paths.forEach((jotting_path: string) => {
         jotting_path = path.resolve(jottings_path, jotting_path)

@@ -4,7 +4,7 @@
       <h1> {{ $t('setting.info.welcome') }} <span class="icon">π</span> 🤗</h1>
       <h3> {{ $t('setting.info.made') }} </h3>
 
-      <img src="@/assets/img/成功.svg" />
+      <img src="/成功.svg" />
 
       <!-- <el-button type="primary"><i class="bi bi-plugin"></i>{{ $t('setting.info.sponsorUs') }}
       </el-button> -->
