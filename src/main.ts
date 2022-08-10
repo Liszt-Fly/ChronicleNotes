@@ -13,6 +13,7 @@ setupPlugins(app)
 //* 初始化基本配置
 init()
 
+
 app.mount('#app')
     .$nextTick(() => {
         postMessage({ payload: 'removeLoading' }, '*')

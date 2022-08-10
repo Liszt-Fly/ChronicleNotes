@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import path from "path";
 import { bClickedParent, currentFile, fTree, menuDisplay, openFiles } from "@/data/configdb";
-import { piUserPath } from "@/init/path";
+import { pacakgedPath, piUserPath } from "@/init/path";
 import FileList from "@/components/common/FileSystem/FileList.vue";
 import { fileTree } from "@/FileTree/fileTree";
 import { NodeType } from "@/FileTree/type";
@@ -10,7 +10,7 @@ import { fileNode } from "@/FileTree/fileNode";
 import router from "@/router/index";
 
 import { FileSystemMenu } from "@/Menus/FileSystemMenu";
-import { Menu, MenuItem } from "@electron/remote";
+import { getGlobal, Menu, MenuItem } from "@electron/remote";
 // import {FileSystemMenu} from "@/Menus/FileSystemMenu";
 
 const fsp = require("fs-extra")
@@ -58,9 +58,16 @@ const drop = (event: DragEvent) => {
 }
 
 onMounted(() => {
-  fTree.value = new fileTree(
-    new fileNode(path.resolve(piUserPath, "assets"), "assets")
-  );
+  if (getGlobal("sharedObject").bPackaged) {
+    fTree.value = new fileTree(
+      new fileNode(path.resolve(pacakgedPath, "assets"), "assets")
+    );
+  }
+  else {
+    fTree.value = new fileTree(
+      new fileNode(path.resolve(piUserPath, "assets"), "assets")
+    );
+  }
   if (!fTree.value!.currentFileNode) {
     // fileTree.currentFileNode = fTree.value.root.children![0]
   }
