@@ -21,7 +21,9 @@ export const ROOT_PATH = {
   // /dist or /public
   public: join(__dirname, app.isPackaged ? '../..' : '../../../public'),
 }
-console.log(join(ROOT_PATH.public, 'favicon.ico'));
+global.sharedObject = {
+  bPackaged: app.isPackaged
+}
 let win: BrowserWindow | null = null
 // Here, you can also use other preload
 const preload = join(__dirname, '../preload/index.js')
@@ -39,6 +41,7 @@ async function createWindow() {
     icon: join(ROOT_PATH.public, 'favicon.ico'),
     titleBarStyle: "hidden",
     webPreferences: {
+      webSecurity: false,
       preload,
       nodeIntegration: true,
       contextIsolation: false,
