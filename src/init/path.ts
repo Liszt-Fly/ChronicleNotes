@@ -5,7 +5,7 @@ let bPackaged = getGlobal("sharedObject").bPackaged;
 
 
 
-export let piUserPath = bPackaged ? path.resolve(__dirname, "user") : path.resolve(process.cwd(), "src", "user")
+export let piUserPath = bPackaged ? getGlobal("sharedObject") : path.resolve(process.cwd(), "src", "user")
 
 export let appearanceFile = path.resolve(piUserPath, "config", "pi.appearance.json")
 

@@ -22,8 +22,10 @@ export const ROOT_PATH = {
   public: join(__dirname, app.isPackaged ? '../..' : '../../../public'),
 }
 global.sharedObject = {
-  bPackaged: app.isPackaged
+  bPackaged: app.isPackaged,
+  defaultPath: app.getPath("appData")
 }
+console.log('global.sharedObject', global.sharedObject)
 let win: BrowserWindow | null = null
 // Here, you can also use other preload
 const preload = join(__dirname, '../preload/index.js')
