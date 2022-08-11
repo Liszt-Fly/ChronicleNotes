@@ -14,7 +14,10 @@
     "artifactName": "${productName}_${version}.${ext}",
     "target": [
       "dmg"
-    ]
+    ],
+    "fileAssociations": {
+      "icon": "icons/Burning Orange/apple-touch-icon.png"
+    }
   },
   "win": {
     "target": [
@@ -25,7 +28,10 @@
         ]
       }
     ],
-    "artifactName": "${productName}_${version}.${ext}"
+    "artifactName": "${productName}_${version}.${ext}",
+    "fileAssociations": {
+      "icon": "icons/Burning Orange2/apple-touch-icon.png"
+    }
   },
   "nsis": {
     "oneClick": false,
