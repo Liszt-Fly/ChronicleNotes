@@ -1,6 +1,6 @@
 import { app, BrowserWindow, shell, ipcMain } from 'electron'
 import { release } from 'os'
-import { join } from 'path'
+import path, { join } from 'path'
 
 // Disable GPU Acceleration for Windows 7
 if (release().startsWith('6.1')) app.disableHardwareAcceleration()
@@ -23,7 +23,7 @@ export const ROOT_PATH = {
 }
 global.sharedObject = {
   bPackaged: app.isPackaged,
-  defaultPath: app.getPath("appData")
+  defaultPath: path.resolve(app.getPath("appData"), "info.PI")
 }
 console.log('global.sharedObject', global.sharedObject)
 let win: BrowserWindow | null = null
