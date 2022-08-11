@@ -33,30 +33,14 @@ const readSetting = (generalFile: string) => {
 const saveSetting = () => {
   const data = JSON.stringify(general);
   fs.writeFileSync(generalFile, data);
-  location.reload()
 }
 
 const restoreDefault = () => {
-
-  fs.writeFile(generalFile, fs.readFileSync(generalFileDefault), () => {
-    location.reload()
-  })
-}
-
-let timeout: any = null
-//@ts-ignore
-const debounce = (fn, wait) => {
-  if (timeout) clearTimeout(timeout)
-  timeout = setTimeout(() => {
-    fn()
-  }, wait)
+  fs.writeFileSync(generalFile, fs.readFileSync(generalFileDefault))
 }
 
 onMounted(() => {
   readSetting(generalFile)
-  watch(general, () => {
-    debounce(saveSetting, 2000)
-  })
 })
 </script>
 

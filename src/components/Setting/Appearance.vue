@@ -41,29 +41,14 @@ const readSetting = (appearanceFile: string) => {
 const saveSetting = () => {
   const data = JSON.stringify(appearance);
   fs.writeFileSync(appearanceFile, data);
-  location.reload()
 }
 
 const restoreDefault = () => {
-  fs.writeFile(appearanceFile, fs.readFileSync(appearanceFileDefault), () => {
-    location.reload()
-  })
-}
-
-let timeout: string | number | NodeJS.Timeout | null | undefined = null
-
-const debounce = (fn: { (): void; (): void }, wait: number | undefined) => {
-  if (timeout) clearTimeout(timeout)
-  timeout = setTimeout(() => {
-    fn()
-  }, wait)
+  fs.writeFileSync(appearanceFile, fs.readFileSync(appearanceFileDefault))
 }
 
 onMounted(() => {
   readSetting(appearanceFile)
-  watch(appearance, () => {
-    debounce(saveSetting, 1000)
-  })
 })
 
 const formatFontSizeTip = (val: number) => {

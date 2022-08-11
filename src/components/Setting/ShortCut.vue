@@ -73,7 +73,7 @@
       <el-form-item>
         <template #label>
           <i class="bi bi-file-fill" style="transform: rotate(90deg);"></i> {{
-            $t('setting.shortcut.highlight')
+              $t('setting.shortcut.highlight')
           }}
         </template>
         <el-input v-model="shortcut.highlight" />
@@ -134,16 +134,14 @@
       </el-form-item>
       <el-form-item>
         <template #label>
-          <i class="bi bi-arrow-return-left"
-             style="transform: rotateX(180deg); position: relative; bottom: 2px;"></i>
+          <i class="bi bi-arrow-return-left" style="transform: rotateX(180deg); position: relative; bottom: 2px;"></i>
           {{ $t('setting.shortcut.undo') }}
         </template>
         <el-input v-model="shortcut.undo" />
       </el-form-item>
       <el-form-item>
         <template #label>
-          <i class="bi bi-arrow-return-right"
-             style="transform: rotateX(180deg); position: relative; bottom: 2px;"></i>
+          <i class="bi bi-arrow-return-right" style="transform: rotateX(180deg); position: relative; bottom: 2px;"></i>
           {{ $t('setting.shortcut.redo') }}
         </template>
         <el-input v-model="shortcut.redo" />
@@ -253,13 +251,13 @@
   <el-dialog v-model="restoreDialogVisible" width="300px">
     <span>{{ $t("setting.restore") }}</span>
     <template #footer>
-            <span class="dialog-footer">
-                <el-button @click="restoreDialogVisible = false">{{ $t("setting.cancel") }}</el-button>
-                <el-button type="primary" @click="restoreDefault(), restoreDialogVisible = false">{{
-                    $t("setting.sure")
-                  }}
-                </el-button>
-            </span>
+      <span class="dialog-footer">
+        <el-button @click="restoreDialogVisible = false">{{ $t("setting.cancel") }}</el-button>
+        <el-button type="primary" @click="restoreDefault(), restoreDialogVisible = false">{{
+            $t("setting.sure")
+        }}
+        </el-button>
+      </span>
     </template>
   </el-dialog>
 </template>
@@ -331,29 +329,14 @@ const readSetting = (shortcutFile: string) => {
 const saveSetting = () => {
   const data = JSON.stringify(shortcut);
   fs.writeFileSync(shortcutFile, data);
-  location.reload()
 }
 
 const restoreDefault = () => {
-  fs.writeFile(shortcutFile, fs.readFileSync(shortcutFileDefault), () => {
-    location.reload()
-  })
-}
-
-let timeout: string | number | NodeJS.Timeout | null | undefined = null
-
-const debounce = (fn: { (): void; (): void }, wait: number | undefined) => {
-  if (timeout) clearTimeout(timeout)
-  timeout = setTimeout(() => {
-    fn()
-  }, wait)
+  fs.writeFileSync(shortcutFile, fs.readFileSync(shortcutFileDefault))
 }
 
 onMounted(() => {
   readSetting(shortcutFile)
-  watch(shortcut, () => {
-    debounce(saveSetting, 1000)
-  })
 })
 </script>
 
