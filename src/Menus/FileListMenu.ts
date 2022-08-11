@@ -41,9 +41,9 @@ export const FileMenu: MenuItemConstructorOptions[] = [
 
         }
     },
-    {
-        label: "🔖 添加标签", click: function () {
-            showDialog({ dialogVisible: true, node: fTree.value?.currentFileNode })
-        }
-    }
+    // {
+    //     label: "🔖 添加标签", click: function () {
+    //         showDialog({ dialogVisible: true, node: fTree.value?.currentFileNode })
+    //     }
+    // }
 ]
