@@ -1,25 +1,10 @@
-## 2022-06-04
+# 🕛 CHANGELOG
 
-[v2.0.0](https://github.com/electron-vite/electron-vite-vue/pull/156)
+## 2022.08.12 v0.1.0
 
-- 🖖 Based on the `vue-ts` template created by `npm create vite`, integrate `vite-plugin-electron`
-- ⚡️ More simplify, is in line with Vite project structure
+> 🎉 测试版本 v0.1.0 发布
 
-## 2022-01-30
-
-[v1.0.0](https://github.com/electron-vite/electron-vite-vue/releases/tag/v1.0.0)
-
-- ⚡️ Main、Renderer、preload, all built with vite
-
-## 2022-01-27
-- Refactor the scripts part.
-- Remove `configs` directory.
-
-## 2021-11-11
-- Refactor the project. Use vite.config.ts build `Main-process`, `Preload-script` and `Renderer-process` alternative rollup.
-- Scenic `Vue>=3.2.13`, `@vue/compiler-sfc` is no longer necessary.
-- If you prefer Rollup, Use rollup branch.
-
-```bash
-Error: @vitejs/plugin-vue requires vue (>=3.2.13) or @vue/compiler-sfc to be present in the dependency tree.
-```
+- 文件系统：笔记【新建、打开、编辑、重命名、移动、删除】；笔记本【新建、打开、重命名、移动、删除】
+- 编辑器：Markdown【H1~H6、段落、无序列表、有序列表、待办事项、图片、引用、表格、代码块、分割线】
+- 随笔集：随笔【新建、编辑、删除】
+- 设置：欢迎；通用【语言、开发者工具、提示】；外观【主题、主题色、走马灯；英文字体、中文字体、代码块字体；行宽、行高、段间距】

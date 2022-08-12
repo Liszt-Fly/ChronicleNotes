@@ -32,19 +32,20 @@ const uploader: Uploader = async (files, schema) => {
     }
 
     const nodes: Node[] = await Promise.all(
-
         images.map(async (image) => {
             let reader = new FileReader()
             let name = image.name.substring(0, image.name.lastIndexOf("."))
             name = name + v4() + image.name.substring(image.name.lastIndexOf("."), image.name.length)
-            console.log('name', name)
-            console.log(' ', path.resolve("public", "user", name))
+
             reader.readAsDataURL(image)
+
             let res: string = await getBase64(image) as unknown as string
             let data = res.toString().replace(/^data:image\/png;base64,/, ""),
                 binaryData = new Buffer(data, 'base64').toString('binary');
-            fs.writeFileSync(path.resolve("public", "user", name), binaryData, "binary")
-            const src = path.join("public", "user", name)
+
+            fs.writeFileSync(path.resolve("public", "user", "img", name), binaryData, "binary")
+
+            const src = path.join("public", "user", "img", name)
             const alt = image.name;
             return schema.nodes.image.createAndFill({
                 src,

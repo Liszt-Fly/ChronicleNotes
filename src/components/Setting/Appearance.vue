@@ -102,6 +102,38 @@ const formatParagraphSpaceTip = (val: number) => {
 
       <el-divider></el-divider>
 
+      <el-form-item>
+        <template #label>
+          <i class="bi bi-type"></i> {{ $t('setting.appearance.global_en_font') }}
+        </template>
+        <el-select v-model="appearance.global_en_font">
+          <el-option v-for="gf in global_en_fonts" :label="gf" :key="gf" :value="gf">{{ gf }}
+          </el-option>
+        </el-select>
+      </el-form-item>
+
+      <el-form-item>
+        <template #label>
+          <i class="bi bi-fonts"></i> {{ $t('setting.appearance.global_cn_font') }}
+        </template>
+        <el-select v-model="appearance.global_cn_font">
+          <el-option v-for="gf in global_cn_fonts" :label="gf" :key="gf" :value="gf">{{ gf }}
+          </el-option>
+        </el-select>
+      </el-form-item>
+
+      <el-form-item>
+        <template #label>
+          <i class="bi bi-braces"></i> {{ $t('setting.appearance.code_font') }}
+        </template>
+        <el-select v-model="appearance.code_font">
+          <el-option v-for="cf in code_fonts" :label="cf" :key="cf" :value="cf">{{ cf }}
+          </el-option>
+        </el-select>
+      </el-form-item>
+
+      <el-divider></el-divider>
+
       <!-- 字体大小 -->
       <!-- <el-form-item>
         <template #label>
@@ -138,37 +170,6 @@ const formatParagraphSpaceTip = (val: number) => {
           :format-tooltip="formatParagraphSpaceTip" />
       </el-form-item>
 
-      <el-divider></el-divider>
-
-      <el-form-item>
-        <template #label>
-          <i class="bi bi-type"></i> {{ $t('setting.appearance.global_en_font') }}
-        </template>
-        <el-select v-model="appearance.global_en_font">
-          <el-option v-for="gf in global_en_fonts" :label="gf" :key="gf" :value="gf">{{ gf }}
-          </el-option>
-        </el-select>
-      </el-form-item>
-
-      <el-form-item>
-        <template #label>
-          <i class="bi bi-fonts"></i> {{ $t('setting.appearance.global_cn_font') }}
-        </template>
-        <el-select v-model="appearance.global_cn_font">
-          <el-option v-for="gf in global_cn_fonts" :label="gf" :key="gf" :value="gf">{{ gf }}
-          </el-option>
-        </el-select>
-      </el-form-item>
-
-      <el-form-item>
-        <template #label>
-          <i class="bi bi-braces"></i> {{ $t('setting.appearance.code_font') }}
-        </template>
-        <el-select v-model="appearance.code_font">
-          <el-option v-for="cf in code_fonts" :label="cf" :key="cf" :value="cf">{{ cf }}
-          </el-option>
-        </el-select>
-      </el-form-item>
 
     </el-form>
 
