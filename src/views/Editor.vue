@@ -82,9 +82,9 @@ onMounted(() => {
     <div class="column-right">
       <!-- 右侧 editor -->
 
-        <div id="milkdown">
-          <milkdown></milkdown>
-        </div>
+      <div id="milkdown">
+        <milkdown></milkdown>
+      </div>
 
     </div>
   </div>

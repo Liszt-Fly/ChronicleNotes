@@ -1,7 +1,7 @@
 {
     "theme": true,
     "color": "#8c99aa",
-    "global_en_font": "Verdana",
+    "global_en_font": "Avenir",
     "global_cn_font": "微软雅黑",
     "code_font": "Consolas",
     "trotting_horse": false,

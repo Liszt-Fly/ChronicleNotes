@@ -33,7 +33,7 @@ const editor = useEditor((root) =>
   milk = Editor.make()
     .config((ctx) => {
       ctx.set(rootCtx, root);
-      ctx.set(defaultValueCtx, "# Milkdown 💖 Vue");
+      ctx.set(defaultValueCtx, "");
     })
     .use(plugins())
 );
