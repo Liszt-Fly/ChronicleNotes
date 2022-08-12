@@ -1,11 +1,10 @@
-import { getGlobal } from '@electron/remote';
 import { upload, uploadPlugin, Uploader } from '@milkdown/plugin-upload';
 import type { Node } from 'prosemirror-model';
 import path from "path"
-import { piUserPath } from '@/init/path';
 import { v4 } from 'uuid'
-// import fs from "fs-extra"
+
 const fs = require("fs-extra")
+
 function getBase64(file: File) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();

@@ -1,30 +1,20 @@
-import fs from "fs";
 import { appearanceFile, generalFile, shortcutFile } from "@/init/path";
 import { getGlobal } from "@electron/remote";
-let appearanceFileData: string
-let generalFileData: string
-let shortcutFileData: string
+
+const fs = require("fs-extra")
+
 let bPackaged = getGlobal("sharedObject").bPackaged;
-console.log('bPackaged', bPackaged)
 
+export let appearance = fs.readJsonSync(appearanceFile)
 
-appearanceFileData = fs.readFileSync(appearanceFile) as unknown as string
+export let general = fs.readJsonSync(generalFile)
 
-generalFileData = fs.readFileSync(generalFile) as unknown as string
-
-shortcutFileData = fs.readFileSync(shortcutFile) as unknown as string
-
-
-export let appearance = JSON.parse(appearanceFileData)
-
-
-export let general = JSON.parse(generalFileData)
-
-
-export let shortcut = JSON.parse(shortcutFileData)
+export let shortcut = fs.readJsonSync(shortcutFile)
 
 export let theme = appearance.theme
+
 export const locale = general.locale
+
 export const workspaceName = general.workspaceName
 
 export const head = document.head || document.getElementsByTagName('head')[0];

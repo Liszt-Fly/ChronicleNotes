@@ -2,7 +2,7 @@
 import { onMounted, reactive, ref, watch } from 'vue'
 import { appearanceFile, appearanceFileDefault } from "@/init/path"
 import { Sunny, Moon } from '@element-plus/icons-vue'
-import fs from 'fs'
+const fs = require("fs-extra")
 
 const restoreDialogVisible = ref(false)
 const global_en_fonts = ["Verdana", "Arial", "Times New Roman", "Avenir"]
@@ -27,11 +27,10 @@ let appearance = reactive({
 
 const readSetting = (appearanceFile: string) => {
   try {
-    const data = fs.readFileSync(appearanceFile).toString()
-    let JSONData = JSON.parse(data)
-    for (let key in JSONData) {
+    const data = fs.readJsonSync(appearanceFile)
+    for (let key in data) {
       //@ts-ignore
-      appearance[key] = JSONData[key]
+      appearance[key] = data[key]
     }
   } catch {
     restoreDefault()
@@ -39,12 +38,11 @@ const readSetting = (appearanceFile: string) => {
 }
 
 const saveSetting = () => {
-  const data = JSON.stringify(appearance);
-  fs.writeFileSync(appearanceFile, data);
+  fs.writeJsonSync(appearanceFile, appearance);
 }
 
 const restoreDefault = () => {
-  fs.writeFileSync(appearanceFile, fs.readFileSync(appearanceFileDefault))
+  fs.writeJsonSync(appearanceFile, fs.readJsonSync(appearanceFileDefault))
 }
 
 onMounted(() => {

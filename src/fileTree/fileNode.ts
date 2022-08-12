@@ -1,19 +1,18 @@
 import { NodeType } from "./type"
-import p from "path"
-import fs from "fs"
 import { getValidName } from "@/Helper"
-const matter = require("gray-matter")
 import { removeExtName } from "@/Helper"
-import { fTree, trashBin } from "@/data/configdb"
+
+import { resolve, parse } from "path"
 import deepClone from "deep-clone"
-import { piUserPath } from "@/init/path";
-import { log } from "console"
-const fsp = require("fs-extra")
+
+const matter = require("gray-matter")
+const fs = require("fs-extra")
+
 export class fileNode {
     //* constructor
     constructor(path: string, name: string) {
         this.data = {}
-        this.stat = fsp.statSync(path)
+        this.stat = fs.statSync(path)
         this.name = name
         this.path = path
         this.createdDate = this.stat.ctime
@@ -32,7 +31,7 @@ export class fileNode {
     name: string
     path: string
     //@ts-ignore
-    stat: fsp.Stats
+    stat: fs.Stats
     createdDate: Date
     modifiedDate: Date
     type: NodeType
@@ -47,12 +46,12 @@ export class fileNode {
         if (this.type == NodeType.FOLDER) {
             //sum 两种情况，添加文件夹或者是添加子文件
             if (createdType == NodeType.FOLDER) {
-                fsp.mkdirsSync(p.resolve(this.path, name))
+                fs.mkdirsSync(resolve(this.path, name))
             } else if (createdType == NodeType.FILE) {
-                fsp.createFileSync(p.resolve(this.path, name))
+                fs.createFileSync(resolve(this.path, name))
             }
         }
-        let node: fileNode = new fileNode(p.resolve(this.path, name), name)
+        let node: fileNode = new fileNode(resolve(this.path, name), name)
         this.children!.push(node)
         node.parent = this
     }
@@ -61,7 +60,7 @@ export class fileNode {
     removeSelf() {
         //* 情况为文件夹的情形
         if (this.type == NodeType.FOLDER) {
-            fs.rmdirSync(this.path, { recursive: true })
+            fs.removeSync(this.path)
             if (this.parent) {
                 this.parent.children = this.parent.children!.filter(item => item.name != this.name)
             }
@@ -70,8 +69,6 @@ export class fileNode {
         else if (this.type == NodeType.FILE) {
             console.log(this.path);
 
-            // fs.renameSync(this.path, )
-            // fs.rmSync(this.path, { recursive: true })
             if (this.parent) {
                 this.parent.children = this.parent.children!.filter(item => item.name != this.name)
             }
@@ -85,7 +82,7 @@ export class fileNode {
 
         this.name = newName
         let prevPath = this.path
-        let obj = p.parse(this.path)
+        let obj = parse(this.path)
         if (this.type == NodeType.FILE) {
             obj.base = newName + ".md"
         } else {
@@ -93,8 +90,8 @@ export class fileNode {
         }
         obj.name = newName
         //更新
-        this.path = p.resolve(obj.dir, obj.base)
-        fsp.renameSync(prevPath, this.path)
+        this.path = resolve(obj.dir, obj.base)
+        fs.renameSync(prevPath, this.path)
     }
 
     //* 替身
@@ -103,13 +100,13 @@ export class fileNode {
         let path
         if (this.type == NodeType.FILE) {
             name = removeExtName(this.name) + "的副本"
-            path = p.resolve(p.parse(this.path).dir, name + ".md")
-            fsp.copySync(this.path, path)
+            path = resolve(parse(this.path).dir, name + ".md")
+            fs.copySync(this.path, path)
         } else {
             name = this.name + "的副本"
-            path = p.resolve(p.parse(this.path).dir, name)
+            path = resolve(parse(this.path).dir, name)
 
-            fsp.copySync(this.path, path)
+            fs.copySync(this.path, path)
 
         }
         let children = deepClone(this.children)
@@ -127,7 +124,7 @@ export class fileNode {
             let obj = matter.read(this.path)
 
             if (Object.keys(obj.data).length == 0) {
-                fsp.writeFileSync(this.path, matter.stringify(obj.content, { star: false, tags: [] }))
+                fs.writeFileSync(this.path, matter.stringify(obj.content, { star: false, tags: [] }))
             }
         }
     }
@@ -136,7 +133,7 @@ export class fileNode {
         let obj = matter.read(this.path)
         console.log(obj)
         console.log(tags)
-        fsp.writeFileSync(this.path, matter.stringify(obj.content, { tags, star: obj.data.star }))
+        fs.writeFileSync(this.path, matter.stringify(obj.content, { tags, star: obj.data.star }))
     }
 }
 

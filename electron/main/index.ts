@@ -23,7 +23,7 @@ export const ROOT_PATH = {
 }
 global.sharedObject = {
   bPackaged: app.isPackaged,
-  defaultPath: path.resolve(app.getPath("appData"), "info.PI")
+  defaultPath: path.resolve(app.getPath("appData"), "app.PI")
 }
 // console.log('global.sharedObject', global.sharedObject)
 let win: BrowserWindow | null = null

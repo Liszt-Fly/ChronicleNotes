@@ -265,7 +265,7 @@
 <script lang="ts" setup>
 import { onMounted, reactive, ref, watch } from 'vue'
 import { shortcutFile, shortcutFileDefault } from "@/init/path"
-import fs from 'fs'
+const fs = require("fs-extra")
 
 const restoreDialogVisible = ref(false)
 
@@ -316,10 +316,9 @@ const shortcut = reactive({
 
 const readSetting = (shortcutFile: string) => {
   try {
-    const data = fs.readFileSync(shortcutFile).toString()
-    let JSONData = JSON.parse(data)
-    for (let key in JSONData) {
-      shortcut[key] = JSONData[key]
+    const data = fs.readJsonSync(shortcutFile)
+    for (let key in data) {
+      shortcut[key] = data[key]
     }
   } catch {
     restoreDefault()
@@ -327,12 +326,11 @@ const readSetting = (shortcutFile: string) => {
 }
 
 const saveSetting = () => {
-  const data = JSON.stringify(shortcut);
-  fs.writeFileSync(shortcutFile, data);
+  fs.writeJsonSync(shortcutFile, shortcut);
 }
 
 const restoreDefault = () => {
-  fs.writeFileSync(shortcutFile, fs.readFileSync(shortcutFileDefault))
+  fs.writeJsonSync(shortcutFile, fs.readJsonSync(shortcutFileDefault))
 }
 
 onMounted(() => {

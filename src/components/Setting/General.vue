@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref, watch } from 'vue'
 import { generalFile, generalFileDefault } from "@/init/path"
-import fs from 'fs'
+const fs = require("fs-extra")
 
 const restoreDialogVisible = ref(false)
 const autoSaveTimes = [3, 5, 10, 60]
@@ -19,11 +19,10 @@ const general = reactive({
 
 const readSetting = (generalFile: string) => {
   try {
-    const data = fs.readFileSync(generalFile).toString()
-    let JSONData = JSON.parse(data)
-    for (let key in JSONData) {
+    const data = fs.readJsonSync(generalFile)
+    for (let key in data) {
       //@ts-ignore
-      general[key] = JSONData[key]
+      general[key] = data[key]
     }
   } catch {
     restoreDefault()
@@ -31,12 +30,11 @@ const readSetting = (generalFile: string) => {
 }
 
 const saveSetting = () => {
-  const data = JSON.stringify(general);
-  fs.writeFileSync(generalFile, data);
+  fs.writeJsonSync(generalFile, general);
 }
 
 const restoreDefault = () => {
-  fs.writeFileSync(generalFile, fs.readFileSync(generalFileDefault))
+  fs.writeJsonSync(generalFile, fs.readJsonSync(generalFileDefault))
 }
 
 onMounted(() => {

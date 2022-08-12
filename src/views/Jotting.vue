@@ -43,10 +43,9 @@
 
 <script lang="ts" setup>
 import { jottings_path } from '@/init/path';
-import { getGlobal } from '@electron/remote';
 import path from 'path';
 import { Ref, ref } from 'vue';
-const fs = require('fs')
+const fs = require("fs-extra")
 
 type Tjotting = { path: string, text: string, fullscreen: boolean }
 
@@ -57,7 +56,7 @@ let addJotting = ref(true)
 const loadJottings = () => {
 
     let jotting_paths = fs.readdirSync(jottings_path)
-    console.log('jotting_paths', jotting_paths)
+
     jotting_paths.forEach((jotting_path: string) => {
         jotting_path = path.resolve(jottings_path, jotting_path)
         const jotting_text: string = fs.readFileSync(jotting_path, 'utf8')

@@ -8,16 +8,12 @@
     buildResources: "dist",
     output: "release/${version}",
   },
-  files: [
-    "dist"
-  ],
+  files: ["dist"],
   mac: {
     artifactName: "${productName}_${version}.${ext}",
     icon: "./icons/Burning Orange/Burning Orange.png",
     // requestedExecutionLevel: "requireAdministrator",
-    target: [
-      "dmg"
-    ],
+    target: ["dmg"],
   },
   win: {
     artifactName: "${productName}_${version}.${ext}",
@@ -26,9 +22,7 @@
     target: [
       {
         target: "nsis",
-        arch: [
-          "x64"
-        ],
+        arch: ["x64"],
       },
     ],
   },
