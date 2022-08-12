@@ -49,6 +49,7 @@ export const en =
         restore: "Sure to restore the default settings?",
         sure: "Sure",
         cancel: "Cancel",
+        hint: "Settings take effect after restart",
 
         info: {
             "home": "Home",

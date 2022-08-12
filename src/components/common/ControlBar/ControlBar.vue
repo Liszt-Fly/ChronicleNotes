@@ -13,11 +13,12 @@
         </el-tooltip>
 
         <template class="devTools">
-          <el-tooltip :content="$t('control.refresh')" placement="bottom-start" effect="customized" :hide-after=0>
+          <!-- <el-tooltip :content="$t('control.refresh')" placement="bottom-start" effect="customized" :hide-after=0>
             <el-button class="controlIcon" key="plain" text @click="Refresh">
               <i class="bi bi-bootstrap-reboot"></i>
             </el-button>
-          </el-tooltip>
+          </el-tooltip> -->
+
           <el-tooltip :content="$t('control.toggle_devTools')" placement="bottom-start" effect="customized"
             :hide-after=0>
             <el-button class="controlIcon" key="plain" text @click="ToggleDevTools">

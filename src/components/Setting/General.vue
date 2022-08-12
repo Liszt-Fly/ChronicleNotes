@@ -47,6 +47,8 @@ onMounted(() => {
 
 <template>
   <div class="general">
+    <el-alert :title="$t('setting.hint')" type="info" center class="setting-hint" />
+
     <el-form label-width="180px" :model="general" label-position="left">
       <!-- <el-form-item>
         <template #label>
@@ -140,6 +142,10 @@ onMounted(() => {
   height: 100%;
   margin: auto;
   user-select: none;
+
+  .setting-hint {
+    margin-bottom: 20px;
+  }
 
   .el-form-item__label i {
     margin-right: 1rem;

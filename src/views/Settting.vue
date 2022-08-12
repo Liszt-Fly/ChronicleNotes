@@ -1,5 +1,6 @@
 <template>
   <div class="setting">
+
     <div class="routers">
       <router-link to="/Setting/Info" @click="SettingPage = '/Setting/Info'">
         <el-button key="primary" text>

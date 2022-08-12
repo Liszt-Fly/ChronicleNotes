@@ -1,5 +1,7 @@
 <template>
   <div class="shortcut">
+    <el-alert :title="$t('setting.hint')" type="info" center class="setting-hint" />
+
     <el-form :model="shortcut" label-width="200px" label-position="left">
       <el-form-item>
         <template #label>
@@ -348,6 +350,10 @@ onMounted(() => {
   max-width: 400px;
   margin: auto;
   user-select: none;
+
+  .setting-hint {
+    margin-bottom: 20px;
+  }
 
   .el-form-item__label i {
     margin-right: 1rem;

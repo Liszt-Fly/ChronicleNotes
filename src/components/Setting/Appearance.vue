@@ -71,6 +71,8 @@ const formatParagraphSpaceTip = (val: number) => {
 
 <template>
   <div class="appearance">
+    <el-alert :title="$t('setting.hint')" type="info" center class="setting-hint" />
+
     <el-form ref="formRef" :model="appearance" label-width="220px" label-position="left">
       <el-form-item>
         <template #label>
@@ -195,6 +197,10 @@ const formatParagraphSpaceTip = (val: number) => {
   max-width: 400px;
   margin: auto;
   user-select: none;
+
+  .setting-hint {
+    margin-bottom: 20px;
+  }
 
   .el-form-item__label i {
     margin-right: 1rem;
