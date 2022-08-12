@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import { useRouter } from "vue-router";
-import { setCurrentFileNode } from "@/Helper";
-import path from "path"
-const fsp = require("fs-extra")
-import { validateFilename } from "@/Helper";
+import { setCurrentFileNode, validateFilename } from "@/helper/Helper";
 import { currentFile, openFiles, fTree } from "@/data/configdb";
 import { piUserPath } from "@/init/path";
 import { fileNode } from "@/FileTree/fileNode";
@@ -12,6 +9,10 @@ import { NodeType } from "@/FileTree/type";
 import { Menu } from "@electron/remote";
 import { MenuItem } from "@electron/remote";
 import { FileMenu, FolderMenu } from "@/Menus/FileListMenu";
+
+import path from "path"
+const fsp = require("fs-extra")
+
 const props = defineProps({
   file: Object as () => fileNode,
 });

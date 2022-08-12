@@ -10,7 +10,7 @@ import Appearance from "@/components/Setting/Appearance.vue"
 import WorkSpace from "@/components/WorkSpace/WorkSpace.vue"
 import Shortcut from "@/components/Setting/ShortCut.vue"
 import { App } from "vue";
-import { getStayTime } from "@/Helper";
+import { getStayTime } from "@/helper/Helper";
 
 const router = createRouter({
     history: createWebHistory(),

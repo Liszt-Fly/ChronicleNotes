@@ -1,8 +1,7 @@
 import { NodeType } from "./type"
-import { getValidName } from "@/Helper"
-import { removeExtName } from "@/Helper"
-
+import { getValidName, removeExtName } from "@/helper/Helper"
 import { resolve, parse } from "path"
+
 import deepClone from "deep-clone"
 
 const matter = require("gray-matter")

@@ -1,9 +1,10 @@
 //* 设置文件和文件夹在没有命名的默认名称
 import { NavigationGuardNext, RouteLocationNormalized } from "vue-router";
 import { NodeType } from "@/fileTree/type";
-import * as path from "path";
 import { fileNode } from "@/fileTree/fileNode";
 import { fTree } from "@/data/configdb";
+import path from "path";
+
 const fsp = require("fs-extra")
 
 function getDefaultName(type: NodeType): string {
