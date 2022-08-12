@@ -22,8 +22,7 @@
           <el-tooltip :content="$t('control.toggle_devTools')" placement="bottom-start" effect="customized"
             :hide-after=0>
             <el-button class="controlIcon" key="plain" text @click="ToggleDevTools">
-              <i class="bi bi-terminal-dash" v-if="devTools"></i>
-              <i class="bi bi-terminal-plus" v-else></i>
+              <i class="bi bi-terminal"></i>
             </el-button>
           </el-tooltip>
         </template>
@@ -67,7 +66,6 @@ import Tabs from "@/components/common/ControlBar/Tabs.vue"
 import { ref } from 'vue'
 let winMax = ref(true)
 let sideBar = ref(true)
-let devTools = ref(false)
 const isMac = /macintosh|mac os x/i.test(navigator.userAgent);
 
 const minWindow = () => {
@@ -84,7 +82,6 @@ const Refresh = () => {
 }
 
 const ToggleDevTools = () => {
-  devTools.value = !devTools.value;
   ipcRenderer.send('devTools');
 }
 
@@ -112,8 +109,6 @@ const ToggleSidebar = () => {
     else fileSystem.style.display = "block"
   }
 }
-
-
 </script>
 
 <style lang="scss" scoped>

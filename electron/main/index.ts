@@ -139,5 +139,5 @@ ipcMain.on('min-app', () => {
 })
 
 ipcMain.on('devTools', () => {
-  win!.webContents.toggleDevTools()
+  win!.webContents.isDevToolsOpened() ? win!.webContents.closeDevTools() : win!.webContents.openDevTools({ mode: "detach" })
 })
