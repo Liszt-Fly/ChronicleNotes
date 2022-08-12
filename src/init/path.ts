@@ -4,7 +4,7 @@ const fs = require("fs-extra")
 
 let bPackaged = getGlobal("sharedObject").bPackaged;
 
-export let piUserPath: string = bPackaged ? getGlobal("sharedObject").defaultPath : path.resolve("public", "user")
+export let piUserPath: string = bPackaged ? getGlobal("sharedObject").defaultPath : path.resolve("public", "template")
 
 export let jottings_path: string = path.resolve(piUserPath, "jottings")
 export let assets_path: string = path.resolve(piUserPath, "assets")
@@ -34,17 +34,17 @@ if (bPackaged) {
 
     if (!fArray.every(e => fs.existsSync(e))) {
         // copySync 有问题！只能读，无法写
-        // fs.copySync(path.resolve(__dirname, "user"), piUserPath, { overwrite: true })
+        // fs.copySync(path.resolve(__dirname, "template"), piUserPath, { overwrite: true })
 
-        fs.outputFileSync(path.resolve(assets_path, "🎉 欢迎使用 π.md"), fs.readFileSync(path.resolve(__dirname, "user", "assets", "🎉 欢迎使用 π.md")))
+        fs.outputFileSync(path.resolve(assets_path, "🎉 欢迎使用 π.md"), fs.readFileSync(path.resolve(__dirname, "template", "assets", "🎉 欢迎使用 π.md")))
 
-        fs.outputFileSync(path.resolve(jottings_path, "jotting.txt"), fs.readFileSync(path.resolve(__dirname, "user", "jottings", "jotting.txt")))
+        fs.outputFileSync(path.resolve(jottings_path, "jotting.txt"), fs.readFileSync(path.resolve(__dirname, "template", "jottings", "jotting.txt")))
 
-        fs.outputJsonSync(appearanceFile, fs.readJsonSync(path.resolve(__dirname, "user", "config", "pi.appearance.json")))
-        fs.outputJsonSync(appearanceFileDefault, fs.readJsonSync(path.resolve(__dirname, "user", "config", "pi.appearance.default.json")))
-        fs.outputJsonSync(shortcutFile, fs.readJsonSync(path.resolve(__dirname, "user", "config", "pi.shortcut.json")))
-        fs.outputJsonSync(shortcutFileDefault, fs.readJsonSync(path.resolve(__dirname, "user", "config", "pi.shortcut.default.json")))
-        fs.outputJsonSync(generalFile, fs.readJsonSync(path.resolve(__dirname, "user", "config", "pi.general.json")))
-        fs.outputJsonSync(generalFileDefault, fs.readJsonSync(path.resolve(__dirname, "user", "config", "pi.general.default.json")))
+        fs.outputJsonSync(appearanceFile, fs.readJsonSync(path.resolve(__dirname, "template", "config", "pi.appearance.json")))
+        fs.outputJsonSync(appearanceFileDefault, fs.readJsonSync(path.resolve(__dirname, "template", "config", "pi.appearance.default.json")))
+        fs.outputJsonSync(shortcutFile, fs.readJsonSync(path.resolve(__dirname, "template", "config", "pi.shortcut.json")))
+        fs.outputJsonSync(shortcutFileDefault, fs.readJsonSync(path.resolve(__dirname, "template", "config", "pi.shortcut.default.json")))
+        fs.outputJsonSync(generalFile, fs.readJsonSync(path.resolve(__dirname, "template", "config", "pi.general.json")))
+        fs.outputJsonSync(generalFileDefault, fs.readJsonSync(path.resolve(__dirname, "template", "config", "pi.general.default.json")))
     }
 }

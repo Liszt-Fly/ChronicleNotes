@@ -43,9 +43,9 @@ const uploader: Uploader = async (files, schema) => {
             let data = res.toString().replace(/^data:image\/png;base64,/, ""),
                 binaryData = new Buffer(data, 'base64').toString('binary');
 
-            fs.writeFileSync(path.resolve("public", "user", "img", name), binaryData, "binary")
+            fs.writeFileSync(path.resolve("public", "template", "img", name), binaryData, "binary")
 
-            const src = path.join("public", "user", "img", name)
+            const src = path.join("public", "template", "img", name)
             const alt = image.name;
             return schema.nodes.image.createAndFill({
                 src,
