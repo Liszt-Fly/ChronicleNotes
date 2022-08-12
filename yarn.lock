@@ -329,6 +329,14 @@
     twemoji "^14.0.1"
     unist-util-visit "^4.0.0"
 
+"@milkdown/plugin-history@^6.3.2":
+  version "6.3.2"
+  resolved "https://registry.npmmirror.com/@milkdown/plugin-history/-/plugin-history-6.3.2.tgz#d8dd7a2d18e93dce7cc043b880f6fd46c51b1243"
+  integrity sha512-2M2sR0oliSzld+LKGdf5k5aU0TKr82M/JFXnxU4s5VuubXTfayLNi608oR5mwAh8UKEs84UrBm4xbHq+WLUb+A==
+  dependencies:
+    "@milkdown/utils" "6.3.2"
+    tslib "^2.4.0"
+
 "@milkdown/plugin-indent@^6.3.2":
   version "6.3.2"
   resolved "https://registry.npmmirror.com/@milkdown/plugin-indent/-/plugin-indent-6.3.2.tgz#84dfce6d4cf7bfa06aa0fbf7edf2b39d2e79191a"
@@ -367,6 +375,15 @@
     "@milkdown/exception" "6.3.2"
     "@milkdown/utils" "6.3.2"
     smooth-scroll-into-view-if-needed "^1.1.32"
+    tslib "^2.4.0"
+
+"@milkdown/plugin-upload@^6.3.2":
+  version "6.3.2"
+  resolved "https://registry.npmmirror.com/@milkdown/plugin-upload/-/plugin-upload-6.3.2.tgz#128d30acbff6b6c6074a9d8dc68724a84ae84827"
+  integrity sha512-PzcJ0N9yDuZ5ShH+p1HqsEldvpQ926E0iU6ZddCeX0PHIOncyOP6jtOQXP760D4ODIbszTsCLtNAjAv1lkASzg==
+  dependencies:
+    "@milkdown/exception" "6.3.2"
+    "@milkdown/utils" "6.3.2"
     tslib "^2.4.0"
 
 "@milkdown/preset-commonmark@^6.3.2":
@@ -584,13 +601,6 @@
   integrity sha512-2HMXuwGuOqzUG+KUTm9GDJCHl0LCBKsB5cg28ujEmVi/0qgTb6jOmkVSO5K48qXksyl2Fr3C0Q2VrgD4zbwyXg==
   dependencies:
     "@types/prismjs" "*"
-
-"@types/sqlite3@^3.1.8":
-  version "3.1.8"
-  resolved "https://registry.npmmirror.com/@types/sqlite3/-/sqlite3-3.1.8.tgz#e64310c5841fc01c1a8795d960d951e4cf940296"
-  integrity sha512-sQMt/qnyUWnqiTcJXm5ZfNPIBeJ/DVvJDwxw+0tAxPJvadzfiP1QhryO1JOR6t1yfb8NpzQb/Rud06mob5laIA==
-  dependencies:
-    "@types/node" "*"
 
 "@types/unist@*", "@types/unist@^2.0.0", "@types/unist@^2.0.6":
   version "2.0.6"
@@ -4367,6 +4377,11 @@ uuid@8.0.0:
   version "8.0.0"
   resolved "https://registry.npmmirror.com/uuid/-/uuid-8.0.0.tgz#bc6ccf91b5ff0ac07bbcdbf1c7c4e150db4dbb6c"
   integrity sha512-jOXGuXZAWdsTH7eZLtyXMqUb9EcWMGZNbL9YcGBJl4MH4nrxHmZJhEHvyLFrkxo+28uLb/NYRcStH48fnD0Vzw==
+
+uuid@^8.3.2:
+  version "8.3.2"
+  resolved "https://registry.npmmirror.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
+  integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
 
 uvu@^0.5.0:
   version "0.5.6"

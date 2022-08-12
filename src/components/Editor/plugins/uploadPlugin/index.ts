@@ -3,6 +3,7 @@ import { upload, uploadPlugin, Uploader } from '@milkdown/plugin-upload';
 import type { Node } from 'prosemirror-model';
 import path from "path"
 import { piUserPath } from '@/init/path';
+import { v4 } from 'uuid'
 // import fs from "fs-extra"
 const fs = require("fs-extra")
 function getBase64(file: File) {
@@ -14,9 +15,6 @@ function getBase64(file: File) {
     });
 }
 
-function toBinaryData() {
-
-}
 const uploader: Uploader = async (files, schema) => {
     const images: File[] = [];
 
@@ -35,19 +33,19 @@ const uploader: Uploader = async (files, schema) => {
     }
 
     const nodes: Node[] = await Promise.all(
+
         images.map(async (image) => {
             let reader = new FileReader()
-
-            console.log('image', image)
-            console.log(' ', path.resolve("public", "user", image.name))
-            // fs.writeFileSync(path.resolve("public", "user", image.name), image, "binary")
-
+            let name = image.name.substring(0, image.name.lastIndexOf("."))
+            name = name + v4() + image.name.substring(image.name.lastIndexOf("."), image.name.length)
+            console.log('name', name)
+            console.log(' ', path.resolve("public", "user", name))
             reader.readAsDataURL(image)
             let res: string = await getBase64(image) as unknown as string
             let data = res.toString().replace(/^data:image\/png;base64,/, ""),
                 binaryData = new Buffer(data, 'base64').toString('binary');
-            fs.writeFileSync(path.resolve("public", "user", image.name), binaryData, "binary")
-            const src = "public/user/image.png"
+            fs.writeFileSync(path.resolve("public", "user", name), binaryData, "binary")
+            const src = path.join("public", "user", name)
             const alt = image.name;
             return schema.nodes.image.createAndFill({
                 src,
