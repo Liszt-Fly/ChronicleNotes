@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import ControlBar from "@/components/common/ControlBar/ControlBar.vue";
 import TabBar from "@/components/common/TabBar.vue";
-
-const fsp = require('fs-extra')
-
 </script>
 
 <template>

@@ -9,7 +9,7 @@ import { SettingPage } from "@/data/configdb"
         <el-tooltip :content="$t('tab.repository')" placement="right" effect="customized" :hide-after=0>
           <div class="tab-item" id="editor">
             <router-link :class="{ 'active': $route.path.includes('Editor') }" to="/Editor">
-              <i class="bi bi-box2"></i>
+              <i class="bi bi-box"></i>
             </router-link>
           </div>
         </el-tooltip>
