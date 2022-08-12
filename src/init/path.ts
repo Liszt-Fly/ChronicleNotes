@@ -1,6 +1,6 @@
 import { getGlobal } from "@electron/remote";
 import path from "path";
-import fs from "fs-extra"
+const fs = require("fs-extra")
 
 let bPackaged = getGlobal("sharedObject").bPackaged;
 fs.chmod
@@ -23,7 +23,7 @@ export let jottings_path: string = path.resolve(piUserPath, "jottings")
 if (bPackaged) {
     let array = [piUserPath, appearanceFile, shortcutFile, shortcutFileDefault, generalFile, generalFileDefault, jottings_path]
     if (!array.every(e => fs.existsSync(e))) {
-        fs.chmodSync(getGlobal("sharedObject").defaultPath,777)
+        fs.chmodSync(getGlobal("sharedObject").defaultPath, 777)
         fs.copySync(path.resolve(__dirname, "user"), getGlobal("sharedObject").defaultPath, { overwrite: true })
     }
 

@@ -1,6 +1,6 @@
 {
   "name": "pi",
-  "version": "3",
+  "version": "0.1.0",
   "main": "dist/electron/main/index.js",
   "description": "",
   "private": true,
@@ -18,12 +18,12 @@
     "electron-builder": "^23.3.3",
     "husky": "^8.0.1",
     "katex": "^0.16.0",
+    "sass": "^1.54.3",
     "typescript": "^4.7.4",
     "vite": "^3.0.4",
     "vite-plugin-electron": "^0.8.6",
     "vue": "^3.2.37",
-    "vue-tsc": "^0.39.5",
-    "sass": "^1.54.3"
+    "vue-tsc": "^0.39.5"
   },
   "env": {
     "VITE_DEV_SERVER_HOST": "127.0.0.1",
@@ -40,10 +40,12 @@
     "@electron/remote": "^2.0.8",
     "@milkdown/core": "^6.3.2",
     "@milkdown/plugin-emoji": "^6.3.2",
+    "@milkdown/plugin-history": "^6.3.2",
     "@milkdown/plugin-indent": "^6.3.2",
     "@milkdown/plugin-math": "^6.3.2",
     "@milkdown/plugin-prism": "^6.3.2",
     "@milkdown/plugin-slash": "^6.3.2",
+    "@milkdown/plugin-upload": "^6.3.2",
     "@milkdown/preset-commonmark": "^6.3.2",
     "@milkdown/preset-gfm": "^6.3.2",
     "@milkdown/prose": "^6.3.2",
@@ -61,6 +63,7 @@
     "nock": "^13.2.9",
     "path": "^0.12.7",
     "prism-themes": "^1.9.0",
+    "uuid": "^8.3.2",
     "vue-i18n": "^9.2.2",
     "vue-router": "^4.1.3"
   }
