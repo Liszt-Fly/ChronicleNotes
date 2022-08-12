@@ -11,18 +11,20 @@
   files: ["dist"],
   mac: {
     artifactName: "${productName}_${version}.${ext}",
-    target: ["dmg"],
     icon: "./icons/Burning Orange/Burning Orange.png",
+    requestedExecutionLevel: "requireAdministrator",
+    target: ["dmg"],
   },
   win: {
+    artifactName: "${productName}_${version}.${ext}",
+    icon: "./icons/Burning Orange2/Burning Orange2.png",
+    requestedExecutionLevel: "requireAdministrator",
     target: [
       {
         target: "nsis",
         arch: ["x64"],
       },
     ],
-    icon: "./icons/Burning Orange2/Burning Orange2.png",
-    artifactName: "${productName}_${version}.${ext}",
   },
   nsis: {
     oneClick: false,
