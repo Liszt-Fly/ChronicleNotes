@@ -49,6 +49,9 @@ const restoreDefault = () => {
 
 onMounted(() => {
   readSetting(appearanceFile)
+  watch(appearance, () => {
+    saveSetting()
+  })
 })
 
 const formatFontSizeTip = (val: number) => {

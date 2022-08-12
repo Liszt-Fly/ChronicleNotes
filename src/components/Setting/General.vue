@@ -41,6 +41,9 @@ const restoreDefault = () => {
 
 onMounted(() => {
   readSetting(generalFile)
+  watch(general, () => {
+    saveSetting()
+  })
 })
 </script>
 

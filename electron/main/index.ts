@@ -25,7 +25,7 @@ global.sharedObject = {
   bPackaged: app.isPackaged,
   defaultPath: path.resolve(app.getPath("appData"), "info.PI")
 }
-console.log('global.sharedObject', global.sharedObject)
+// console.log('global.sharedObject', global.sharedObject)
 let win: BrowserWindow | null = null
 // Here, you can also use other preload
 const preload = join(__dirname, '../preload/index.js')

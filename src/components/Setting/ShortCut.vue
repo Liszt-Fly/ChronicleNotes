@@ -337,6 +337,9 @@ const restoreDefault = () => {
 
 onMounted(() => {
   readSetting(shortcutFile)
+  watch(shortcut, () => {
+    saveSetting()
+  })
 })
 </script>
 
