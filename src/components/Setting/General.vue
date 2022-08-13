@@ -30,15 +30,15 @@ const readSetting = (generalFile: string) => {
 }
 
 const saveSetting = () => {
-  fs.writeJsonSync(generalFile, general);
+  fs.writeJsonSync(generalFile.value, general);
 }
 
 const restoreDefault = () => {
-  fs.writeJsonSync(generalFile, fs.readJsonSync(generalFileDefault))
+  fs.writeJsonSync(generalFile.value, fs.readJsonSync(generalFileDefault))
 }
 
 onMounted(() => {
-  readSetting(generalFile)
+  readSetting(generalFile.value)
   watch(general, () => {
     saveSetting()
   })

@@ -38,7 +38,7 @@ const readSetting = (appearanceFile: string) => {
 }
 
 const saveSetting = () => {
-  fs.writeJsonSync(appearanceFile, appearance);
+  fs.writeJsonSync(appearanceFile.value, appearance);
 }
 
 const restoreDefault = () => {
@@ -46,7 +46,7 @@ const restoreDefault = () => {
 }
 
 onMounted(() => {
-  readSetting(appearanceFile)
+  readSetting(appearanceFile.value)
   watch(appearance, () => {
     saveSetting()
   })

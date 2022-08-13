@@ -31,11 +31,11 @@ const readSetting = (appConfigPath: string) => {
 }
 
 const saveSetting = () => {
-  fs.writeJsonSync(app_config_path, appConfig);
+  fs.writeJsonSync(app_config_path.value, appConfig);
 }
 
 onMounted(() => {
-  readSetting(app_config_path)
+  readSetting(app_config_path.value)
   watch(appConfig, () => {
     saveSetting()
   })

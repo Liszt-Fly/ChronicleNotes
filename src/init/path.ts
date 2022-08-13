@@ -51,7 +51,7 @@ export const fresh = (mode: PIMODE) => {
         fs.outputFileSync(resolve(assets_path.value, "欢迎使用.md"), fs.readFileSync(resolve(folder, "template", "assets", "欢迎使用.md")))
 
 
-        fs.outputFileSync(resolve(jottings_path.value, "jotting.txt"), fs.readFileSync(resolve(folder, "template", "jottings", "jotting_.jt")))
+        fs.outputFileSync(resolve(jottings_path.value, "jotting_.jt"), fs.readFileSync(resolve(folder, "template", "jottings", "jotting_.jt")))
 
         fs.outputJsonSync(appearanceFile.value, fs.readJsonSync(resolve(folder, "template", "config", "pi.appearance.json")))
         fs.outputJsonSync(appearanceFileDefault.value, fs.readJsonSync(resolve(folder, "template", "config", "pi.appearance.default.json")))
