@@ -1,3 +1,4 @@
+import { PIMODE } from "@/types/enums";
 import { getGlobal } from "@electron/remote";
 import { resolve } from "path";
 import { Ref, ref } from "vue";
@@ -7,41 +8,60 @@ let bPackaged = getGlobal("sharedObject").bPackaged;
 
 export let piUserPath: Ref<string> = ref(bPackaged ? getGlobal("sharedObject").defaultPath : resolve("public", "template"))
 
-export let jottings_path: string = resolve(piUserPath.value, "jottings")
-export let assets_path: string = resolve(piUserPath.value, "assets")
-export let config_path: string = resolve(piUserPath.value, "config")
-export let app_config_path: string = bPackaged ? resolve(__dirname, "config", "config.json") : resolve("public", "config", "config.json")
+export let jottings_path: Ref<string> = ref(resolve(piUserPath.value, "jottings"))
+export let assets_path: Ref<string> = ref(resolve(piUserPath.value, "assets"))
+export let config_path: Ref<string> = ref(resolve(piUserPath.value, "config"))
+export let app_config_path: Ref<string> = ref(bPackaged ? resolve(__dirname, "config", "config.json") : resolve("public", "config", "config.json"))
 
-export let appearanceFile: string = resolve(config_path, "pi.appearance.json")
-export let appearanceFileDefault: string = resolve(config_path, "pi.appearance.default.json")
+export let appearanceFile: Ref<string> = ref(resolve(config_path.value, "pi.appearance.json"))
+export let appearanceFileDefault: Ref<string> = ref(resolve(config_path.value, "pi.appearance.default.json")
+)
+export let shortcutFile: Ref<string> = ref(resolve(config_path.value, "pi.shortcut.json"))
+export let shortcutFileDefault: Ref<string> = ref(resolve(config_path.value, "pi.shortcut.default.json"))
 
-export let shortcutFile: string = resolve(config_path, "pi.shortcut.json")
-export let shortcutFileDefault: string = resolve(config_path, "pi.shortcut.default.json")
+export let generalFile: Ref<string> = ref(resolve(config_path.value, "pi.general.json"))
+export let generalFileDefault: Ref<string> = ref(resolve(config_path.value, "pi.general.default.json")
+)
 
-export let generalFile: string = resolve(config_path, "pi.general.json")
-export let generalFileDefault: string = resolve(config_path, "pi.general.default.json")
+const updatePath = () => {
+    jottings_path = ref(resolve(piUserPath.value, "jottings"))
+    assets_path = ref(resolve(piUserPath.value, "assets"))
+    config_path = ref(resolve(piUserPath.value, "config"))
+    app_config_path = ref(bPackaged ? resolve(__dirname, "config", "config.json") : resolve("public", "config", "config.json"))
+    appearanceFile = ref(resolve(config_path.value, "pi.appearance.json"))
+    shortcutFile = ref(resolve(config_path.value, "pi.shortcut.json"))
+    shortcutFileDefault = ref(resolve(config_path.value, "pi.shortcut.default.json"))
+    generalFile = ref(resolve(config_path.value, "pi.general.json"))
+    generalFileDefault = ref(resolve(config_path.value, "pi.general.default.json"))
+}
+let fArray = ref([piUserPath, appearanceFile, shortcutFile, shortcutFileDefault, generalFile, generalFileDefault, jottings_path, assets_path])
+export const fresh = (mode: PIMODE) => {
+    updatePath()
+    let folder = mode == PIMODE.DEVELOPMENT ? "public" : __dirname
+    console.log('folder', folder)
+    fs.ensureDir(piUserPath.value)
+    fs.ensureDir(config_path.value)
+    fs.ensureDir(jottings_path.value)
+    fs.ensureDir(assets_path.value, (err: any) => {
+        console.log('err', err)
+    })
+    console.log('fArray.value', fArray.value)
+    if (!fArray.value.every(e => fs.existsSync(e))) {
+        alert("ok")
+        fs.outputFileSync(resolve(assets_path.value, "欢迎使用.md"), fs.readFileSync(resolve(folder, "template", "assets", "欢迎使用.md")))
 
-let fArray = [piUserPath, appearanceFile, shortcutFile, shortcutFileDefault, generalFile, generalFileDefault, jottings_path, assets_path]
 
-if (bPackaged) {
-    fs.ensureDirSync(piUserPath, 777)
-    fs.ensureDirSync(config_path, 777)
-    fs.ensureDirSync(jottings_path, 777)
-    fs.ensureDirSync(assets_path, 777)
+        fs.outputFileSync(resolve(jottings_path.value, "jotting.txt"), fs.readFileSync(resolve(folder, "template", "jottings", "jotting_.jt")))
 
-    if (!fArray.every(e => fs.existsSync(e))) {
-        // copySync 有问题！只能读，无法写
-        // fs.copySync(resolve(__dirname, "template"), piUserPath, { overwrite: true })
-
-        fs.outputFileSync(resolve(assets_path, "🎉 欢迎使用 π.md"), fs.readFileSync(resolve(__dirname, "template", "assets", "🎉 欢迎使用 π.md")))
-
-        fs.outputFileSync(resolve(jottings_path, "jotting.txt"), fs.readFileSync(resolve(__dirname, "template", "jottings", "jotting_.jt")))
-
-        fs.outputJsonSync(appearanceFile, fs.readJsonSync(resolve(__dirname, "template", "config", "pi.appearance.json")))
-        fs.outputJsonSync(appearanceFileDefault, fs.readJsonSync(resolve(__dirname, "template", "config", "pi.appearance.default.json")))
-        fs.outputJsonSync(shortcutFile, fs.readJsonSync(resolve(__dirname, "template", "config", "pi.shortcut.json")))
-        fs.outputJsonSync(shortcutFileDefault, fs.readJsonSync(resolve(__dirname, "template", "config", "pi.shortcut.default.json")))
-        fs.outputJsonSync(generalFile, fs.readJsonSync(resolve(__dirname, "template", "config", "pi.general.json")))
-        fs.outputJsonSync(generalFileDefault, fs.readJsonSync(resolve(__dirname, "template", "config", "pi.general.default.json")))
+        fs.outputJsonSync(appearanceFile.value, fs.readJsonSync(resolve(folder, "template", "config", "pi.appearance.json")))
+        fs.outputJsonSync(appearanceFileDefault.value, fs.readJsonSync(resolve(folder, "template", "config", "pi.appearance.default.json")))
+        fs.outputJsonSync(shortcutFile.value, fs.readJsonSync(resolve(folder, "template", "config", "pi.shortcut.json")))
+        fs.outputJsonSync(shortcutFileDefault.value, fs.readJsonSync(resolve(folder, "template", "config", "pi.shortcut.default.json")))
+        fs.outputJsonSync(generalFile.value, fs.readJsonSync(resolve(folder, "template", "config", "pi.general.json")))
+        fs.outputJsonSync(generalFileDefault.value, fs.readJsonSync(resolve(folder, "template", "config", "pi.general.default.json")))
     }
 }
+if (bPackaged) {
+    fresh(PIMODE.PRODUCTION)
+}
+

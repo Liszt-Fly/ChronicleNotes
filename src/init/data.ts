@@ -5,11 +5,11 @@ const fs = require("fs-extra")
 
 let bPackaged = getGlobal("sharedObject").bPackaged;
 
-export let appearance = fs.readJsonSync(appearanceFile)
+export let appearance = fs.readJsonSync(appearanceFile.value)
 
-export let general = fs.readJsonSync(generalFile)
+export let general = fs.readJsonSync(generalFile.value)
 
-export let shortcut = fs.readJsonSync(shortcutFile)
+export let shortcut = fs.readJsonSync(shortcutFile.value)
 
 export let theme = appearance.theme
 
