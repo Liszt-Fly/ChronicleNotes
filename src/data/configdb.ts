@@ -19,3 +19,4 @@ export let menuDisplay = ref("none");
 export let dialogVisible = ref(false)
 export let trashBin: Ref<fileTree | null> = ref(null)
 //* 配置全局菜单
+export let chooseWorkspace = ref(false)

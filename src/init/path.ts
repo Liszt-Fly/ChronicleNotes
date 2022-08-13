@@ -1,15 +1,16 @@
 import { getGlobal } from "@electron/remote";
 import { exec } from "child_process";
 import { resolve } from "path";
+import { Ref, ref } from "vue";
 const fs = require("fs-extra")
 
 let bPackaged = getGlobal("sharedObject").bPackaged;
 
-export let piUserPath: string = bPackaged ? getGlobal("sharedObject").defaultPath : resolve("public", "template")
+export let piUserPath: Ref<string> = ref(bPackaged ? getGlobal("sharedObject").defaultPath : resolve("public", "template"))
 
-export let jottings_path: string = resolve(piUserPath, "jottings")
-export let assets_path: string = resolve(piUserPath, "assets")
-export let config_path: string = resolve(piUserPath, "config")
+export let jottings_path: string = resolve(piUserPath.value, "jottings")
+export let assets_path: string = resolve(piUserPath.value, "assets")
+export let config_path: string = resolve(piUserPath.value, "config")
 export let app_config_path: string = bPackaged ? resolve(__dirname, "config", "config.json") : resolve("public", "config", "config.json")
 
 export let appearanceFile: string = resolve(config_path, "pi.appearance.json")

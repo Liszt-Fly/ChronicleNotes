@@ -61,7 +61,7 @@ onMounted(() => {
 
 
   fTree.value = new fileTree(
-    new fileNode(path.resolve(piUserPath, "assets"), "assets")
+    new fileNode(path.resolve(piUserPath.value, "assets"), "assets")
   );
 
   if (!fTree.value!.currentFileNode) {

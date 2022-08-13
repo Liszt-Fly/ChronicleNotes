@@ -29,7 +29,7 @@ function openFile(event: MouseEvent, file: fileNode) {
   if (!file.children) {
     openFiles.value.add(props.file!.path!)
     currentFile.value = props.file!.path!;
-    let params = path.relative(path.resolve(piUserPath, "assets"), file.path);
+    let params = path.relative(path.resolve(piUserPath.value, "assets"), file.path);
     // router.push(`/Editor/${params}`);
   }
 }
