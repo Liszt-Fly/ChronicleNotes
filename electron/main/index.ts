@@ -1,3 +1,4 @@
+import { exec } from 'child_process'
 import { app, BrowserWindow, shell, ipcMain } from 'electron'
 import { release } from 'os'
 import path, { join } from 'path'
@@ -25,6 +26,18 @@ global.sharedObject = {
   bPackaged: app.isPackaged,
   defaultPath: path.resolve(app.getPath("appData"), "app.PI")
 }
+const dealWithName = (s: string) => {
+  return s = s.replace(" ", "\\ ")
+}
+exec(` chmod -R 777 ${dealWithName(path.resolve(app.getPath("appData"), "app.PI"))}  `, (err) => {
+  if (err) {
+    console.log('err', err)
+  }
+  else {
+    console.log("success")
+  }
+
+})
 // console.log('global.sharedObject', global.sharedObject)
 let win: BrowserWindow | null = null
 // Here, you can also use other preload
