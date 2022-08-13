@@ -63,11 +63,11 @@ function toggleSubFolder(
   }
 }
 
-function enter(event: KeyboardEvent) {
+function enter(event: KeyboardEvent | FocusEvent) {
   let target = event.target as HTMLSpanElement;
   props.file!.rename(nameBox.value!.innerText)
   target.contentEditable = "false"
-  console.log("执行了 enter")
+
 }
 
 // 右键菜单
@@ -148,8 +148,9 @@ const getEmoji = (str: string) => {
       <i class="bi bi-folder2" v-show="!getEmoji(file.name) && file.type === NodeType.FOLDER"></i>
 
       <span ref="nameBox" @keydown.enter.prevent="enter($event)" :class="getEmoji(file.name) ? 'emoji' : ''"
-        :data-emoji="getEmoji(file.name) ? getEmoji(file.name) : ''">
+        :data-emoji="getEmoji(file.name) ? getEmoji(file.name) : ''" @blur="enter($event)">
         {{ getEmoji(file.name) ? validateFilename(file.name).slice(2) : validateFilename(file.name) }}
+
       </span>
     </div>
     <div class="subfolder" v-if="file.children" ref="subFolder" id="subfolder">
