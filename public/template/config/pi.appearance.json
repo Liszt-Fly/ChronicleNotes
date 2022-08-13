@@ -1,5 +1,5 @@
 {
-    "theme": false,
+    "theme": true,
     "color": "#ed764c",
     "global_en_font": "Avenir",
     "global_cn_font": "微软雅黑",
