@@ -39,6 +39,7 @@ export const cn =
         edit_time: "修改时间",
         save: "保存",
         export: "导出为笔记",
+        export_as_img: "导出为图片到剪贴板",
         delete: "删除"
     },
     stream: {

@@ -39,6 +39,7 @@ export const en =
         edit_time: "Time",
         save: "Save",
         export: "Export as A Note",
+        export_as_img: "Export as An Image to Clipboard",
         delete: "Delete"
     },
     stream: {

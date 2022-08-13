@@ -14,8 +14,7 @@
 
 ## next version
 
-- 编辑器：空白处跳转下一行；milkdown 图片路径设置
-- 随想：导出为图片
+- 编辑器：空白处跳转下一行；milkdown 图片路径设置；复制 markdown
 - 工作台：使用时间报表；奖章等
 - 设置：选择打开时模式【上次打开的文件或工作台】；自定义快捷键；翻译【右键 menu 中英文切换 https://kazupon.github.io/vue-i18n/zh/guide/locale.html】
 - 其他：打包后 components 图片路径问题

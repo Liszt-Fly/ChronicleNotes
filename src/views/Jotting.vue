@@ -7,7 +7,7 @@
                 </div>
                 <div shadow="never" class="jotting_card jotting_card_add_text" v-else>
                     <el-input v-model="jotting_input" :rows="6" type="textarea" resize="none" autofocus
-                        @keydown="saveAddAJotting($event)" />
+                        @keydown="saveAddAJotting($event)" maxlength="1000" show-word-limit />
                     <el-button circle key="plain" type="primary" class="jotting_add_btn" @click="addAJotting"><i
                             class="bi bi-plus"></i>
                     </el-button>
@@ -28,11 +28,13 @@
                             </div>
                         </el-scrollbar>
                     </div>
-                    <el-dialog v-model="jotting.show" :show-close="false">
+
+                    <el-dialog v-model="jotting.show" v-if="jotting.show" :show-close="false" width="60%">
                         <el-scrollbar height="60vh">
                             <p class="zoom">
-                                <el-input v-model="jotting.text" type="textarea" resize="none" autofocus
-                                    :autosize="{ maxRows: 14 }" @keydown="saveAJotting($event, jotting)" />
+                                <el-input v-model="jotting.text" type="textarea" resize="none" id="edit_jotting"
+                                    :autosize="{ maxRows: 14 }" @keydown="saveAJotting($event, jotting)"
+                                    maxlength="1000" show-word-limit />
                             </p>
                             <div class="jotting_btn">
                                 <el-tag effect="plain" size="large">{{ $t('jottings.word_count') + " " +
@@ -60,6 +62,13 @@
                                         </el-button>
                                     </el-tooltip>
 
+                                    <el-tooltip :content="$t('jottings.export_as_img')" placement="bottom"
+                                        effect="customized" :hide-after=0>
+                                        <el-button type="info" @click="exportAJottingAsImage(jotting)" text>
+                                            <i class="bi bi-clipboard-heart"></i>
+                                        </el-button>
+                                    </el-tooltip>
+
                                     <el-tooltip :content="$t('jottings.delete')" placement="bottom" effect="customized"
                                         :hide-after=0>
                                         <el-button type="danger" @click="deleteAJotting(jotting, index)" text>
@@ -84,6 +93,7 @@ import { ElNotification } from 'element-plus'
 
 import path from 'path';
 const fs = require("fs-extra")
+const root = ref(null);
 
 type Tjotting = { path: string, text: string, show: boolean, edit_time: string }
 
@@ -166,14 +176,63 @@ const exportAJotting = (jotting: Tjotting, index: number) => {
     fs.ensureFileSync(jotting_markdown_path)
     fs.writeFileSync(jotting_markdown_path, content)
 
-    // deleteAJotting(jotting, index)
+    deleteAJotting(jotting, index)
 
     ElNotification({
-        // title: 'Success',
         message: '导出成功！',
-        // type: 'success',
         duration: 1500
     })
+}
+
+const drawText = (ctx: CanvasRenderingContext2D, text: string, x: number, y: number, width: number) => {
+    let rows: string[] = [];
+    let temp = "";
+
+    for (let i = 0; i < text.length; i++) {
+        if (text[i] == "\n") {
+            rows.push(temp);
+            temp = "";
+        }
+        else if (ctx.measureText(temp).width > width) {
+            rows.push(temp);
+            temp = "";
+        }
+        temp += text[i];
+    }
+    rows.push(temp);
+
+    for (let i = 0; i < rows.length; i++) {
+        ctx.fillText(rows[i], x, y + (i + 1) * 32);
+    }
+}
+
+const exportAJottingAsImage = (jotting: Tjotting) => {
+    let c = document.createElement("canvas")!
+    let jotting_textarea = document.getElementById("edit_jotting")!
+
+    c.width = jotting_textarea.clientWidth + 32
+    c.height = jotting_textarea.scrollHeight + jotting_textarea.clientHeight + 20
+    // console.log(c.height);
+
+    let ctx = c.getContext("2d")!
+
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0, 0, c.width, c.height);
+
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "black";
+    ctx.textBaseline = "middle";
+    drawText(ctx, jotting.text, 8, 8, c.width - 32);
+
+    c.toBlob((blob) => {
+        const item = new ClipboardItem({ "image/png": blob! });
+        navigator.clipboard.write([item]);
+
+        ElNotification({
+            message: '导出成功！',
+            duration: 1500
+        })
+    });
 }
 
 onMounted(() => {
@@ -183,7 +242,7 @@ onMounted(() => {
 
 <style lang="scss">
 .jotting {
-    padding: 20px;
+    padding: 12px 20px;
 }
 
 .jotting_card {
@@ -205,7 +264,7 @@ onMounted(() => {
         border-radius: 20px;
 
         .el-tag {
-            margin-left: 6px;
+            margin-left: 4px;
         }
     }
 
@@ -253,6 +312,11 @@ onMounted(() => {
         top: -40px;
         right: 7px;
     }
+
+    .el-input__count {
+        top: 5px;
+        bottom: auto;
+    }
 }
 
 .zoom {
@@ -270,5 +334,12 @@ onMounted(() => {
     .el-button-group {
         float: right;
     }
+}
+
+
+::-webkit-scrollbar-thumb {
+    background-color: lightgray;
+    border-radius: 4px;
+    cursor: pointer;
 }
 </style>
