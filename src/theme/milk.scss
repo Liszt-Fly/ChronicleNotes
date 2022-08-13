@@ -6,8 +6,10 @@
     margin: 10px 0 !important;
     word-break: break-all;
   }
+
   .editor {
     padding: 0 !important;
+    min-height: calc(100% - 12px);
 
     .heading {
       margin: 12px 0 !important;
