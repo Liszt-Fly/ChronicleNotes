@@ -34,6 +34,13 @@ export const en =
             unpin: "Unpin"
         }
     },
+    jottings: {
+        word_count: "Word ",
+        edit_time: "Time",
+        save: "Save",
+        export: "Export as A Note",
+        delete: "Delete"
+    },
     stream: {
         pin: "Pin",
         tag: "Tags",

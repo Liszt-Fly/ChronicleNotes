@@ -34,6 +34,13 @@ export const cn =
             unpin: "取消收藏"
         }
     },
+    jottings: {
+        word_count: "字数",
+        edit_time: "修改时间",
+        save: "保存",
+        export: "导出为笔记",
+        delete: "删除"
+    },
     stream: {
         pin: "收藏",
         tag: "标签",

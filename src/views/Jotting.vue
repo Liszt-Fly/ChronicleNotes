@@ -5,8 +5,9 @@
                 <div shadow="never" class="jotting_card jotting_card_add" v-if="addJotting" @click="addJotting = false">
                     <i class="bi bi-plus"></i>
                 </div>
-                <div shadow="never" class="jotting_card jotting_card_text" v-else>
-                    <el-input v-model="jotting_input" :rows="6" type="textarea" resize="none" autofocus />
+                <div shadow="never" class="jotting_card jotting_card_add_text" v-else>
+                    <el-input v-model="jotting_input" :rows="6" type="textarea" resize="none" autofocus
+                        @keydown="saveAddAJotting($event)" />
                     <el-button circle key="plain" type="primary" class="jotting_add_btn" @click="addAJotting"><i
                             class="bi bi-plus"></i>
                     </el-button>
@@ -14,25 +15,59 @@
             </el-col>
             <template v-for="(jotting, index) in jottingList" :key="index">
                 <el-col :span="8">
-                    <div shadow="never" class="jotting_card" @click="jotting.fullscreen = true">
+                    <div shadow="never" class="jotting_card" @click="jotting.show = true">
                         <el-scrollbar>
                             <p>{{ jotting.text }}</p>
+                            <div class="msg">
+                                <el-tag effect="plain">{{ $t('jottings.word_count') + " " + jotting.text.length }}
+                                </el-tag>
+                                <el-tag effect="plain" v-if="jotting.edit_time">{{ $t('jottings.edit_time') + " " +
+                                        jotting.edit_time
+                                }}
+                                </el-tag>
+                            </div>
                         </el-scrollbar>
                     </div>
-                    <el-dialog v-model="jotting.fullscreen" :fullscreen="true">
-                        <el-scrollbar height="80vh">
+                    <el-dialog v-model="jotting.show" :show-close="false">
+                        <el-scrollbar height="60vh">
                             <p class="zoom">
                                 <el-input v-model="jotting.text" type="textarea" resize="none" autofocus
-                                    :autosize="{ maxRows: 20 }" />
+                                    :autosize="{ maxRows: 14 }" @keydown="saveAJotting($event, jotting)" />
                             </p>
-                            <el-button-group class="jotting_btn">
-                                <el-button type="danger" @click="deleteAJotting(jotting, index)">
-                                    <i class="bi bi-trash3"></i>
-                                </el-button>
-                                <el-button type="primary" @click="editAJotting(jotting)">
-                                    <i class="bi bi-pencil-square"></i>
-                                </el-button>
-                            </el-button-group>
+                            <div class="jotting_btn">
+                                <el-tag effect="plain" size="large">{{ $t('jottings.word_count') + " " +
+                                        jotting.text.length
+                                }}
+                                </el-tag>
+                                <el-tag effect="plain" size="large" v-if="jotting.edit_time">{{ $t('jottings.edit_time')
+                                        + " " +
+                                        jotting.edit_time
+                                }}
+                                </el-tag>
+
+                                <el-button-group>
+                                    <el-tooltip :content="$t('jottings.save')" placement="bottom" effect="customized"
+                                        :hide-after=0>
+                                        <el-button type="primary" @click="editAJotting(jotting)" text>
+                                            <i class="bi bi-save"></i>
+                                        </el-button>
+                                    </el-tooltip>
+
+                                    <el-tooltip :content="$t('jottings.export')" placement="bottom" effect="customized"
+                                        :hide-after=0>
+                                        <el-button type="info" text @click="exportAJotting(jotting, index)">
+                                            <i class="bi bi-box-arrow-up-right"></i>
+                                        </el-button>
+                                    </el-tooltip>
+
+                                    <el-tooltip :content="$t('jottings.delete')" placement="bottom" effect="customized"
+                                        :hide-after=0>
+                                        <el-button type="danger" @click="deleteAJotting(jotting, index)" text>
+                                            <i class="bi bi-trash3"></i>
+                                        </el-button>
+                                    </el-tooltip>
+                                </el-button-group>
+                            </div>
                         </el-scrollbar>
                     </el-dialog>
                 </el-col>
@@ -43,11 +78,14 @@
 
 <script lang="ts" setup>
 import { jottings_path } from '@/init/path';
+import { assets_path } from '@/init/path';
+import { onMounted, Ref, ref } from 'vue';
+import { ElNotification } from 'element-plus'
+
 import path from 'path';
-import { Ref, ref } from 'vue';
 const fs = require("fs-extra")
 
-type Tjotting = { path: string, text: string, fullscreen: boolean }
+type Tjotting = { path: string, text: string, show: boolean, edit_time: string }
 
 const jottingList: Ref<Tjotting[]> = ref([])
 let jotting_input = ref("")
@@ -60,15 +98,33 @@ const loadJottings = () => {
     jotting_paths.forEach((jotting_path: string) => {
         jotting_path = path.resolve(jottings_path, jotting_path)
         const jotting_text: string = fs.readFileSync(jotting_path, 'utf8')
-        jottingList.value.push({ "path": jotting_path, "text": jotting_text, "fullscreen": false })
+
+        let edit_time_str = path.relative(jottings_path, jotting_path)
+        edit_time_str = edit_time_str.replace("jotting_", "").replace(".jt", "")
+
+        let edit_time = ""
+        if (edit_time_str)
+            edit_time = new Date(parseInt(edit_time_str)).toLocaleDateString()
+
+        jottingList.value.push({ "path": jotting_path, "text": jotting_text, "show": false, "edit_time": edit_time })
     });
     // console.log(jottingList);
 }
 
+const saveAddAJotting = (e: KeyboardEvent) => {
+    // console.log(e.key)
+    if ((e.key == "s" || e.key == "S") && e.ctrlKey) {
+        addAJotting()
+        e.preventDefault()
+    }
+}
+
 const addAJotting = () => {
     if (jotting_input.value != "") {
-        let new_jotting_path = path.resolve(jottings_path, "jotting_" + Date.now() + ".txt")
-        jottingList.value.push({ "path": new_jotting_path, "text": jotting_input.value, "fullscreen": false })
+        let time = Date.now()
+        let edit_time = new Date(time).toLocaleDateString()
+        let new_jotting_path = path.resolve(jottings_path, "jotting_" + time + ".jt")
+        jottingList.value.push({ "path": new_jotting_path, "text": jotting_input.value, "show": false, "edit_time": edit_time })
         fs.writeFileSync(new_jotting_path, jotting_input.value)
         addJotting.value = true
         jotting_input.value = ""
@@ -76,18 +132,53 @@ const addAJotting = () => {
 }
 
 const deleteAJotting = (jotting: Tjotting, index: number) => {
-    jotting.fullscreen = false
+    jotting.show = false
     fs.unlinkSync(jotting.path)
     jottingList.value.splice(index, 1)
 }
 
-const editAJotting = (jotting: Tjotting) => {
-    fs.writeFileSync(jotting.path, jotting.text)
-    jotting.fullscreen = false
+const saveAJotting = (e: KeyboardEvent, jotting: Tjotting) => {
+    if ((e.key == "s" || e.key == "S") && e.ctrlKey) {
+        editAJotting(jotting)
+        e.preventDefault()
+    }
 }
 
-loadJottings()
+const editAJotting = (jotting: Tjotting) => {
+    let time = Date.now()
+    let new_jotting_path = path.resolve(jottings_path, "jotting_" + time + ".jt")
+    let edit_time = new Date(time).toLocaleDateString()
 
+    fs.removeSync(jotting.path)
+
+    jotting.path = new_jotting_path
+    jotting.edit_time = edit_time
+
+    fs.writeFileSync(jotting.path, jotting.text)
+    jotting.show = false
+}
+
+const exportAJotting = (jotting: Tjotting, index: number) => {
+
+    let jotting_markdown_path = path.resolve(assets_path, "jottings", path.relative(jottings_path, jotting.path).replace(".jt", ".md"))
+    let content = jotting.text
+
+    fs.ensureFileSync(jotting_markdown_path)
+    fs.writeFileSync(jotting_markdown_path, content)
+
+    // deleteAJotting(jotting, index)
+
+    ElNotification({
+        // title: 'Success',
+        message: '导出成功！',
+        // type: 'success',
+        duration: 1500
+    })
+}
+
+onMounted(() => {
+    loadJottings()
+})
 </script>
 
 <style lang="scss">
@@ -106,10 +197,26 @@ loadJottings()
     margin-bottom: 12px;
     font-size: 0.9rem;
 
+    .msg {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 1);
+        border-radius: 20px;
+
+        .el-tag {
+            margin-left: 6px;
+        }
+    }
+
     &:hover {
         padding: 3px 7px;
         border: 2px solid var(--el-color-info-light-9);
         cursor: pointer;
+
+        .msg {
+            display: none;
+        }
     }
 }
 
@@ -128,7 +235,7 @@ loadJottings()
     }
 }
 
-.jotting_card_text {
+.jotting_card_add_text {
     text-align: center;
     padding: 0;
     border: none;
@@ -154,7 +261,14 @@ loadJottings()
 }
 
 .jotting_btn {
-    float: right;
     margin-top: 12px;
+
+    .el-tag {
+        margin-right: 6px;
+    }
+
+    .el-button-group {
+        float: right;
+    }
 }
 </style>
