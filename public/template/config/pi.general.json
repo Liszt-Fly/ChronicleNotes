@@ -1,1 +1,13 @@
+<<<<<<< HEAD
 {"workspaceName":"Pi","openWith":"workspace","devTools":true,"autoSave":true,"tooltips":true,"autoSaveTime":5,"locale":"en"}
+=======
+{
+    "workspaceName": "Pi",
+    "openWith": "workspace",
+    "devTools": true,
+    "autoSave": true,
+    "tooltips": true,
+    "autoSaveTime": 5,
+    "locale": "cn"
+}
+>>>>>>> e895163bd9895ddfdbf06d03d62f89a0ba12d1ea
