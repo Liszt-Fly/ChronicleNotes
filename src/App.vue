@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import ControlBar from "@/components/common/ControlBar/ControlBar.vue";
 import TabBar from "@/components/common/TabBar.vue";
-
-
-
 </script>
 
 <template>
@@ -24,6 +21,6 @@ import TabBar from "@/components/common/TabBar.vue";
 
 <style>
 .article {
-  width: 100%;
+  width: calc(100% - 48px);
 }
 </style>

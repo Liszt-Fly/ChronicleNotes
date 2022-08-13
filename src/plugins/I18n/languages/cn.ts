@@ -38,7 +38,7 @@ export const cn =
         word_count: "字数",
         edit_time: "修改时间",
         save: "保存",
-        export: "导出为笔记",
+        export: "导出到笔记",
         export_as_img: "导出为图片到剪贴板",
         delete: "删除"
     },

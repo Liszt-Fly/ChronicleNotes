@@ -15,15 +15,14 @@ export const initGeneral = () => {
 	${tooltips ? ".el-popper.is-customized {\
 		/* Set padding to ensure the height is 32px */\
 		padding: 6px 12px;\
-		border: 1px solid var(--el-border-color-light);\
-		background: var(--el-bg-color);\
+		border: 1px solid var(--el-fill-color);\
+		background: var(--el-fill-color);\
 		user-select: none;\
 	  }\
 	  \
 	  .el-popper.is-customized .el-popper__arrow::before {\
-		background: var(--el-bg-color);\
-		border: 1px solid var(--el-border-color-light);\
-    	background: var(--el-bg-color-overlay);\
+		background: var(--el-fill-color);\
+		border: 1px solid var(--el-fill-color);\
 		right: 0;\
 		user-select: none;\
 	  }" : ".el-popper.is-customized {display: none !important;}"
