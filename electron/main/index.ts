@@ -134,7 +134,6 @@ ipcMain.handle('open-win', (event, arg) => {
   }
 })
 
-
 ipcMain.on('close-app', () => {
   if (win) {
     win.close()
@@ -154,5 +153,5 @@ ipcMain.on('min-app', () => {
 })
 
 ipcMain.on('devTools', () => {
-  win!.webContents.isDevToolsOpened() ? win!.webContents.closeDevTools() : win!.webContents.openDevTools({ mode: "detach" })
+  win!.webContents.isDevToolsOpened() ? win!.webContents.closeDevTools() : win!.webContents.openDevTools({ mode: "right" })
 })

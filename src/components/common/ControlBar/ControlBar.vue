@@ -96,10 +96,19 @@ const ToggleSidebar = () => {
   sideBar.value = !sideBar.value
 
   let tab = document.getElementsByClassName("tab-system")[0] as HTMLDivElement;
+  let article = document.getElementsByClassName("article")[0] as HTMLDivElement
+
   if (tab) {
-    if (tab.style.display != "none")
+    // 隐藏侧栏
+    if (tab.style.display != "none") {
       tab.style.display = "none"
-    else tab.style.display = "flex"
+      article.style.width = "100%"
+    }
+    // 显示侧栏
+    else {
+      tab.style.display = "flex"
+      article.style.width = "calc(100% - 48px)"
+    }
   }
 
   let fileSystem = document.getElementsByClassName("column-left")[0] as HTMLDivElement;
