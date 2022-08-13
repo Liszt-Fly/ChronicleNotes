@@ -23,10 +23,6 @@ const save = (event: KeyboardEvent) => {
     const serializer = ctx.get(serializerCtx);
     fsp.writeFileSync(currentFile.value, serializer(view.state.doc), { encoding: "utf-8" })
   }
-
-
-
-
 }
 
 const editor = useEditor((root) =>
