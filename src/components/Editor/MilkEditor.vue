@@ -1,6 +1,7 @@
 <template>
   <VueEditor :editor="editor" class="milk-editor" @keydown.meta="save($event)" @keydown.ctrl="save($event)" />
 </template>
+
 <script lang="ts" setup>
 import plugins from "./plugins"
 import { Editor, rootCtx, defaultValueCtx, editorView, editorStateCtx } from "@milkdown/core";
@@ -43,6 +44,7 @@ export default {
   name: "Milkdown"
 }
 </script>
+
 <style lang="scss">
 .milk-editor {
   width: 100%;

@@ -9,9 +9,6 @@
   - https://www.zybuluo.com/cmd/
   - https://macdown.uranusjr.com/
 
-- 文件夹重命名无效：完成重命名之后，聚焦到其他位置，不会自动失去焦点，blur 之后不会保存名称，需要 Enter
-- 编辑器的黑暗模式
-
 ## next version
 
 - 编辑器：空白处跳转下一行；milkdown 图片路径设置；复制 markdown

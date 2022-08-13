@@ -57,7 +57,7 @@ export const cn =
         restore: "确定恢复默认设置吗？",
         sure: "确定",
         cancel: "取消",
-        hint: "设置重启后生效",
+        hint: "重启应用后生效",
 
         info: {
             home: "回到起始页",
