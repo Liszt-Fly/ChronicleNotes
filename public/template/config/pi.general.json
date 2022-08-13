@@ -1,9 +1,1 @@
-{
-    "workspaceName": "Pi",
-    "openWith": "workspace",
-    "devTools": true,
-    "autoSave": true,
-    "tooltips": true,
-    "autoSaveTime": 5,
-    "locale": "en"
-}
+{"workspaceName":"Pi","openWith":"workspace","devTools":true,"autoSave":true,"tooltips":true,"autoSaveTime":5,"locale":"en"}
