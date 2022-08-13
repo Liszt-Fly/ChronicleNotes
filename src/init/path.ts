@@ -1,5 +1,4 @@
 import { getGlobal } from "@electron/remote";
-import { exec } from "child_process";
 import { resolve } from "path";
 const fs = require("fs-extra")
 
@@ -28,8 +27,6 @@ if (bPackaged) {
     fs.ensureDirSync(config_path, 777)
     fs.ensureDirSync(jottings_path, 777)
     fs.ensureDirSync(assets_path, 777)
-
-
 
     if (!fArray.every(e => fs.existsSync(e))) {
         // copySync 有问题！只能读，无法写
