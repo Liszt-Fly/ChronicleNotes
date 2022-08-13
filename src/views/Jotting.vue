@@ -21,7 +21,8 @@
                             <div class="msg">
                                 <el-tag effect="plain">{{ $t('jottings.word_count') + " " + jotting.text.length }}
                                 </el-tag>
-                                <el-tag effect="plain" v-if="jotting.edit_time">{{ $t('jottings.edit_time') + " " +
+                                <el-tag effect="plain" v-if="jotting.edit_time" class="right-tag">{{
+                                        $t('jottings.edit_time') + " " +
                                         jotting.edit_time
                                 }}
                                 </el-tag>
@@ -41,7 +42,8 @@
                                         jotting.text.length
                                 }}
                                 </el-tag>
-                                <el-tag effect="plain" size="large" v-if="jotting.edit_time">{{ $t('jottings.edit_time')
+                                <el-tag effect="plain" size="large" v-if="jotting.edit_time" class="right-tag">{{
+                                        $t('jottings.edit_time')
                                         + " " +
                                         jotting.edit_time
                                 }}
@@ -90,10 +92,10 @@ import { jottings_path } from '@/init/path';
 import { assets_path } from '@/init/path';
 import { onMounted, Ref, ref } from 'vue';
 import { ElNotification } from 'element-plus'
+import { i18n } from "@/plugins/I18n/index"
 
 import path from 'path';
 const fs = require("fs-extra")
-const root = ref(null);
 
 type Tjotting = { path: string, text: string, show: boolean, edit_time: string }
 
@@ -179,12 +181,12 @@ const exportAJotting = (jotting: Tjotting, index: number) => {
     deleteAJotting(jotting, index)
 
     ElNotification({
-        message: '导出成功！',
+        message: i18n.global.t('jottings.export_success'),
         duration: 1500
     })
 }
 
-const drawText = (ctx: CanvasRenderingContext2D, text: string, x: number, y: number, width: number) => {
+const drawText = (ctx: CanvasRenderingContext2D, text: string, x: number, y: number, width: number, ratio: number) => {
     let rows: string[] = [];
     let temp = "";
 
@@ -193,7 +195,7 @@ const drawText = (ctx: CanvasRenderingContext2D, text: string, x: number, y: num
             rows.push(temp);
             temp = "";
         }
-        else if (ctx.measureText(temp).width > width) {
+        else if (ctx.measureText(temp).width * ratio > width) {
             rows.push(temp);
             temp = "";
         }
@@ -207,29 +209,37 @@ const drawText = (ctx: CanvasRenderingContext2D, text: string, x: number, y: num
 }
 
 const exportAJottingAsImage = (jotting: Tjotting) => {
-    let c = document.createElement("canvas")!
     let jotting_textarea = document.getElementById("edit_jotting")!
+    let jotting_styles: CSSStyleDeclaration = window.getComputedStyle(jotting_textarea)!
+    // console.log(window.getComputedStyle(jotting_textarea));
 
-    c.width = jotting_textarea.clientWidth + 32
-    c.height = jotting_textarea.scrollHeight + jotting_textarea.clientHeight + 20
+    let c = document.createElement("canvas")!
+    let ratio = 3
+
+    c.width = 400 * ratio
+    c.height = (jotting_textarea.scrollHeight + jotting_textarea.clientHeight + 20) * ratio
     // console.log(c.height);
 
     let ctx = c.getContext("2d")!
 
-    ctx.fillStyle = '#fff';
+    ctx.scale(ratio, ratio);
+
+    ctx.fillStyle = jotting_styles["background-color"];
     ctx.fillRect(0, 0, c.width, c.height);
 
-    ctx.font = "16px Arial";
-    ctx.fillStyle = "black";
+    ctx.font = jotting_styles["font-size"] + jotting_styles["font-family"]
+    ctx.fillStyle = jotting_styles["color"];
     ctx.textBaseline = "middle";
-    drawText(ctx, jotting.text, 8, 8, c.width - 32);
+    drawText(ctx, jotting.text, 8, 8, c.width - 20 * ratio, ratio);
 
     c.toBlob((blob) => {
         const item = new ClipboardItem({ "image/png": blob! });
         navigator.clipboard.write([item]);
 
+        // console.log(i18n, i18n.locale, i18n.message)
+
         ElNotification({
-            message: '导出成功！',
+            message: i18n.global.t('jottings.export_success'),
             duration: 1500
         })
     });
@@ -260,12 +270,8 @@ onMounted(() => {
         position: absolute;
         bottom: 0;
         right: 0;
-        background: rgba(255, 255, 255, 1);
-        border-radius: 20px;
-
-        .el-tag {
-            margin-left: 4px;
-        }
+        background: var(--el-bg-color);
+        padding: 0;
     }
 
     &:hover {
@@ -327,19 +333,12 @@ onMounted(() => {
 .jotting_btn {
     margin-top: 12px;
 
-    .el-tag {
-        margin-right: 6px;
-    }
-
     .el-button-group {
         float: right;
     }
 }
 
-
-::-webkit-scrollbar-thumb {
-    background-color: lightgray;
-    border-radius: 4px;
-    cursor: pointer;
+.right-tag {
+    margin-left: 4px;
 }
 </style>

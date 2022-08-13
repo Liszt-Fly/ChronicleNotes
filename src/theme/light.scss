@@ -33,4 +33,10 @@ html.light {
   .resize-bar:active ~ .resize-line {
     border-right: 4px dashed var(--pi-theme-color);
   }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: lightgray;
+    border-radius: 4px;
+    cursor: pointer;
+  }
 }

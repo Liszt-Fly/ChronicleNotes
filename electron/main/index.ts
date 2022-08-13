@@ -1,7 +1,7 @@
 import { exec } from 'child_process'
 import { app, BrowserWindow, shell, ipcMain } from 'electron'
 import { release } from 'os'
-import path, { join } from 'path'
+import { join, resolve } from 'path'
 
 // Disable GPU Acceleration for Windows 7
 if (release().startsWith('6.1')) app.disableHardwareAcceleration()
@@ -24,20 +24,22 @@ export const ROOT_PATH = {
 }
 global.sharedObject = {
   bPackaged: app.isPackaged,
-  defaultPath: path.resolve(app.getPath("appData"), "app.PI")
+  defaultPath: resolve(app.getPath("appData"), "app.PI")
 }
 const dealWithName = (s: string) => {
   return s = s.replace(" ", "\\ ")
 }
-exec(` chmod -R 777 ${dealWithName(path.resolve(app.getPath("appData"), "app.PI"))}  `, (err) => {
-  if (err) {
-    console.log('err', err)
-  }
-  else {
-    console.log("success")
-  }
 
-})
+if (process.platform === 'darwin') {
+  exec(` chmod -R 777 ${dealWithName(resolve(app.getPath("appData"), "app.PI"))}  `, (err) => {
+    if (err) {
+      console.log('err', err)
+    }
+    else {
+      console.log("success")
+    }
+  })
+}
 // console.log('global.sharedObject', global.sharedObject)
 let win: BrowserWindow | null = null
 // Here, you can also use other preload
@@ -132,7 +134,6 @@ ipcMain.handle('open-win', (event, arg) => {
   }
 })
 
-
 ipcMain.on('close-app', () => {
   if (win) {
     win.close()
@@ -152,5 +153,5 @@ ipcMain.on('min-app', () => {
 })
 
 ipcMain.on('devTools', () => {
-  win!.webContents.isDevToolsOpened() ? win!.webContents.closeDevTools() : win!.webContents.openDevTools({ mode: "detach" })
+  win!.webContents.isDevToolsOpened() ? win!.webContents.closeDevTools() : win!.webContents.openDevTools({ mode: "right" })
 })

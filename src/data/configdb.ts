@@ -1,10 +1,5 @@
 import { Ref, ref } from "vue"
-import path from 'path'
-
 import { fileTree } from "@/FileTree/fileTree"
-import { getGlobal } from "@electron/remote"
-
-
 
 export let bClickedParent: Ref<boolean> = ref(false)
 //* 将所有的tag都存储在tag容器内

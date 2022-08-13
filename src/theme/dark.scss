@@ -37,4 +37,10 @@ html.dark {
   .vditor-ir pre.vditor-reset {
     background-color: unset;
   }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #444;
+    border-radius: 4px;
+    cursor: pointer;
+  }
 }

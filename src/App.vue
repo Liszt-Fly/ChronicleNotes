@@ -31,6 +31,6 @@ import { chooseWorkspace } from "@/data/configdb"
 
 <style lang="scss">
 .article {
-  width: 100%;
+  width: calc(100% - 48px);
 }
 </style>
