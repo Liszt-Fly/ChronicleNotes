@@ -67,6 +67,7 @@ function enter(event: KeyboardEvent | FocusEvent) {
   let target = event.target as HTMLSpanElement;
   props.file!.rename(nameBox.value!.innerText)
   target.contentEditable = "false"
+  console.log('触发 ',)
 
 }
 

@@ -1,4 +1,5 @@
 import { getGlobal } from "@electron/remote";
+import { exec } from "child_process";
 import { resolve } from "path";
 const fs = require("fs-extra")
 
@@ -28,10 +29,7 @@ if (bPackaged) {
     fs.ensureDirSync(jottings_path, 777)
     fs.ensureDirSync(assets_path, 777)
 
-    // for (const f in fArray) {
-    //     if (!fs.existsSync(f)) {
-    //     }
-    // }
+
 
     if (!fArray.every(e => fs.existsSync(e))) {
         // copySync 有问题！只能读，无法写
@@ -39,7 +37,7 @@ if (bPackaged) {
 
         fs.outputFileSync(resolve(assets_path, "🎉 欢迎使用 π.md"), fs.readFileSync(resolve(__dirname, "template", "assets", "🎉 欢迎使用 π.md")))
 
-        fs.outputFileSync(resolve(jottings_path, "jotting.txt"), fs.readFileSync(resolve(__dirname, "template", "jottings", "jotting.txt")))
+        fs.outputFileSync(resolve(jottings_path, "jotting.txt"), fs.readFileSync(resolve(__dirname, "template", "jottings", "jotting_.jt")))
 
         fs.outputJsonSync(appearanceFile, fs.readJsonSync(resolve(__dirname, "template", "config", "pi.appearance.json")))
         fs.outputJsonSync(appearanceFileDefault, fs.readJsonSync(resolve(__dirname, "template", "config", "pi.appearance.default.json")))
