@@ -13,7 +13,7 @@
 
 - 编辑器：milkdown 图片路径设置；复制 markdown
 - 工作台：使用时间报表；奖章等
-- 设置：选择打开时模式【上次打开的文件或工作台】；自定义快捷键；翻译【右键 menu 中英文切换 https://kazupon.github.io/vue-i18n/zh/guide/locale.html】
+- 设置：选择打开时模式【上次打开的文件或工作台】；自定义快捷键；
 - 其他：打包后 components 图片路径问题
 
 # future

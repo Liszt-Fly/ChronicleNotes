@@ -92,10 +92,10 @@ import { jottings_path } from '@/init/path';
 import { assets_path } from '@/init/path';
 import { onMounted, Ref, ref } from 'vue';
 import { ElNotification } from 'element-plus'
+import { i18n } from "@/plugins/I18n/index"
 
 import path from 'path';
 const fs = require("fs-extra")
-const root = ref(null);
 
 type Tjotting = { path: string, text: string, show: boolean, edit_time: string }
 
@@ -181,7 +181,7 @@ const exportAJotting = (jotting: Tjotting, index: number) => {
     deleteAJotting(jotting, index)
 
     ElNotification({
-        message: '导出成功！',
+        message: i18n.global.t('jottings.export_success'),
         duration: 1500
     })
 }
@@ -236,8 +236,10 @@ const exportAJottingAsImage = (jotting: Tjotting) => {
         const item = new ClipboardItem({ "image/png": blob! });
         navigator.clipboard.write([item]);
 
+        // console.log(i18n, i18n.locale, i18n.message)
+
         ElNotification({
-            message: '导出成功！',
+            message: i18n.global.t('jottings.export_success'),
             duration: 1500
         })
     });

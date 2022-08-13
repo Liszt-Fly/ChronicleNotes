@@ -40,7 +40,8 @@ export const en =
         save: "Save",
         export: "Export as A Note",
         export_as_img: "Export as An Image to Clipboard",
-        delete: "Delete"
+        delete: "Delete",
+        export_success: "Export Successfully"
     },
     stream: {
         pin: "Pin",
