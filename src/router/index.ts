@@ -7,7 +7,6 @@ import Trash from "@/views/Trash.vue"
 import Info from "@/components/Setting/Info.vue"
 import General from "@/components/Setting/General.vue"
 import Appearance from "@/components/Setting/Appearance.vue"
-import WorkSpace from "@/components/WorkSpace/WorkSpace.vue"
 import Shortcut from "@/components/Setting/ShortCut.vue"
 import { App } from "vue";
 import { getStayTime } from "@/helper/Helper";
@@ -17,7 +16,6 @@ const router = createRouter({
     linkActiveClass: "active",
     routes: [
         { path: "/", name: "Home", component: Editor },
-        { path: "/WorkSpace", name: "WorkSpace", component: WorkSpace },
         { path: "/Editor", name: "EditorPage", component: Editor },
         { path: "/Jotting", name: "JottingPage", component: Jotting },
         { path: "/Trash", name: "TrashPage", component: Trash },

@@ -19,8 +19,6 @@ else {
     piUserPath.value = resolve("public", "template")
 }
 
-console.log(piUserPath.value);
-
 export let jottings_path: Ref<string> = ref(resolve(piUserPath.value, "jottings"))
 export let assets_path: Ref<string> = ref(resolve(piUserPath.value, "assets"))
 export let config_path: Ref<string> = ref(resolve(piUserPath.value, "config"))
@@ -35,7 +33,7 @@ export let generalFile: Ref<string> = ref(resolve(config_path.value, "pi.general
 export let generalFileDefault: Ref<string> = ref(resolve(config_path.value, "pi.general.default.json")
 )
 
-let pi_files = ref([piUserPath, appearanceFile, shortcutFile, shortcutFileDefault, generalFile, generalFileDefault, jottings_path, assets_path])
+let pi_files = ref([piUserPath, assets_path, appearanceFile, appearanceFileDefault, shortcutFile, shortcutFileDefault, generalFile, generalFileDefault, jottings_path])
 
 const updatePath = () => {
     jottings_path.value = resolve(piUserPath.value, "jottings")
@@ -48,8 +46,6 @@ const updatePath = () => {
     shortcutFileDefault.value = resolve(config_path.value, "pi.shortcut.default.json")
     generalFile.value = resolve(config_path.value, "pi.general.json")
     generalFileDefault.value = resolve(config_path.value, "pi.general.default.json")
-
-    console.log(pi_files)
 }
 
 export const fresh = (mode: PIMODE) => {
@@ -61,7 +57,7 @@ export const fresh = (mode: PIMODE) => {
     fs.ensureDir(jottings_path.value)
     fs.ensureDir(assets_path.value)
 
-    if (!pi_files.value.every(e => fs.existsSync(e))) {
+    if (!pi_files.value.every(f => fs.existsSync(f.value))) {
         let template_assets_path = resolve(folder, "template", "assets")
         let assets = fs.readdirSync(template_assets_path)
 

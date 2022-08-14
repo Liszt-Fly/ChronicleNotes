@@ -150,6 +150,7 @@ export const en =
     },
     workspace: {
         new_workspace: "Create New Workspace",
-        remove_workspace: "Remove A Workspace"
+        enter_workspace:"Enter Workspace",
+        remove_workspace: "Remove This Workspace"
     }
 }

@@ -17,7 +17,7 @@
                 <el-col :span="24">
                   <el-input :placeholder="$t('workspace.new_workspace')" v-model="name">
                     <template #append>
-                      <el-button class="button" @click="click" :icon="Plus"></el-button>
+                      <el-button class="button" @click="createWorkspace" :icon="Plus"></el-button>
                     </template>
                   </el-input>
                 </el-col>
@@ -38,13 +38,16 @@
 
                 <el-col :span="10">
                   <el-button-group>
-                    <el-button text @click="go(workspace)">
-                      <i class="bi bi-arrow-right-square"></i>
-                    </el-button>
+                    <el-tooltip :content="$t('workspace.enter_workspace')" placement="bottom" effect="customized"
+                      :hide-after=0>
+                      <el-button text @click="enter_workspace(workspace)">
+                        <i class="bi bi-arrow-right-square"></i>
+                      </el-button>
+                    </el-tooltip>
 
                     <el-tooltip :content="$t('workspace.remove_workspace')" placement="bottom" effect="customized"
                       :hide-after=0>
-                      <el-button text @click.stop="close(i)" type="danger">
+                      <el-button text @click.stop="remove_workspace(i)" type="danger">
                         <i class="bi bi-eraser"></i>
                       </el-button>
                     </el-tooltip>
@@ -65,64 +68,55 @@
 
 <script lang="ts" setup>
 import { Plus } from '@element-plus/icons-vue'
-import { onMounted, Ref, ref } from "vue";
+import { Ref, ref } from "vue";
 import { reactive } from "vue";
 import { dialog, getGlobal } from "@electron/remote";
 import { fresh, piUserPath } from "@/init/path";
 import { chooseWorkspace } from "@/data/configdb";
 import { PIMODE } from "@/types/enums";
 import { app_config_path } from "@/init/path";
-// import fsp from "fs-extra"
 
 import path from 'path';
-import { indexOf } from 'lodash';
-import router from '@/router';
 const fsp = require("fs-extra");
+
 let filename = ref("");
 let name = ref("")
-let config: appConfig = fsp.readJSONSync(app_config_path)
+let config: Ref<appConfig> = ref(fsp.readJSONSync(app_config_path))
 const info = reactive({});
 
-const go = (ws: workspace) => {
+const enter_workspace = (ws: workspace) => {
   piUserPath.value = ws.path
   fresh(getGlobal("sharedObject").bPackaged ? PIMODE.PRODUCTION : PIMODE.DEVELOPMENT);
   chooseWorkspace.value = true
-  config.recent = ws
-  fsp.writeJSONSync(app_config_path, config)
+  config.value.recent = ws
+  fsp.writeJSONSync(app_config_path, config.value)
 }
 
-const close = (i: number) => {
-  config.workspaces.splice(i, 1)
+const remove_workspace = (i: number) => {
+  config.value.workspaces.splice(i, 1)
+  fsp.writeJSONSync(app_config_path, config.value)
 }
 
-const createWorkspace = (name: string, path: string) => {
-  let workspace: workspace = {
-    name,
-    totalWorktime: "0",
-    createdDate: new Date().getTime().toString(),
-    modifiedDate: new Date().getTime().toString(),
-    path
-  }
-  config.workspaces.push(workspace)
-  return workspace
-}
-
-const click = () => {
+const createWorkspace = () => {
   dialog.showOpenDialog({ properties: ["openDirectory"] }).then((v) => {
     if (v.canceled) {
       return;
     }
+
     filename.value = v.filePaths[0];
     let ws = path.resolve(filename.value, name.value)
     fsp.ensureDir(ws)
-    piUserPath.value = ws
-    let space = createWorkspace(name.value, ws)
-    // chooseWorkspace.value = true;
 
-    //TODO 设置最近的workspace
-    fsp.writeJSONSync(app_config_path, config)
-    console.log('getGlobal("sharedObject").bPackaged', getGlobal("sharedObject").bPackaged)
-    // fresh(getGlobal("sharedObject").bPackaged ? PIMODE.PRODUCTION : PIMODE.DEVELOPMENT);
+    let workspace: workspace = {
+      name: name.value,
+      totalWorktime: "0",
+      createdDate: new Date().getTime().toString(),
+      modifiedDate: new Date().getTime().toString(),
+      path: ws
+    }
+    config.value.workspaces.push(workspace)
+
+    enter_workspace(workspace)
   });
 };
 </script>
