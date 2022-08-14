@@ -65,7 +65,7 @@ onMounted(() => {
         </el-select>
         <el-tooltip :content="$t('setting.general.add_workspace')" placement="bottom" effect="customized" :hide-after=0>
           <el-button plain class="addWorkspace">
-            <i class="bi bi-plus"></i>
+            <i class="bi bi-plus-lg"></i>
           </el-button>
         </el-tooltip>
       </el-form-item>
@@ -171,7 +171,6 @@ onMounted(() => {
     padding: 5px;
 
     i {
-      font-size: 1.2rem;
       margin-right: 0;
     }
   }
