@@ -47,21 +47,17 @@
     </div>
     <el-divider direction="vertical"></el-divider>
     <div class="initial">
-      <el-form>
-        <el-form-item>
-          <div class="workspace">
-            <el-button class="button" @click="click">选择工作区 - <span>{{ filename }}</span></el-button>
-          </div>
-        </el-form-item>
-        <el-form-item>
-          <el-button>进入默认工作区</el-button>
-        </el-form-item>
-      </el-form>
+      <el-row>
+        <el-col :span="24">
+          <el-button class="button" @click="click" :icon="Plus">添加工作区</el-button>
+        </el-col>
+      </el-row>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { Plus } from '@element-plus/icons-vue'
 import { ref } from "vue";
 import { reactive } from "vue";
 import { dialog } from "@electron/remote";
