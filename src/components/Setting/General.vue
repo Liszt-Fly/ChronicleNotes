@@ -5,10 +5,15 @@ const fs = require("fs-extra")
 
 const restoreDialogVisible = ref(false)
 const autoSaveTimes = [3, 5, 10, 60]
-const openOptions = ["lastOpenFile", "workspace"]
+const openOptions = ["lastOpenFile", "chooseWorkspace"]
+const workspaces = [
+  { name: "工作区1", path: "工作区1" },
+  { name: "工作区2", path: "工作区2" },
+  { name: "工作区3", path: "工作区3" }
+]
 
 const general = reactive({
-  workspaceName: "",
+  workspace: "",
   openWith: "",
   devTools: false,
   autoSave: false,
@@ -50,22 +55,31 @@ onMounted(() => {
     <el-alert :title="$t('setting.hint')" type="info" center class="setting-hint" />
 
     <el-form label-width="180px" :model="general" label-position="left">
-      <!-- <el-form-item>
+      <el-form-item>
         <template #label>
-          <i class="bi bi-person-workspace"></i> {{ $t('setting.general.workspaceName') }}
+          <i class="bi bi-person-workspace"></i> {{ $t('setting.general.workspace') }}
         </template>
-        <el-input v-model="general.workspaceName" maxlength="20" show-word-limit />
-      </el-form-item> -->
+        <el-select v-model="general.workspace" :placeholder="general.workspace" class="chooseWorkspaces">
+          <el-option v-for="workspace in workspaces" :key="workspace.name" :label="workspace.name"
+            :value="workspace.path" />
+        </el-select>
+        <el-tooltip :content="$t('setting.general.add_workspace')" placement="bottom" effect="customized" :hide-after=0>
+          <el-button plain class="addWorkspace">
+            <i class="bi bi-plus"></i>
+          </el-button>
+        </el-tooltip>
+      </el-form-item>
 
-      <!-- <el-form-item>
+      <el-form-item>
         <template #label>
           <i class="bi bi-bounding-box-circles"></i> {{ $t('setting.general.open') }}
         </template>
         <el-select v-model="general.openWith">
-          <el-option v-for="openOption in openOptions" :label="openOption" :key="openOption"
-                     :value="openOption">{{ $t(`setting.general.${openOption}`) }}</el-option>
+          <el-option v-for="openOption in openOptions" :label="openOption" :key="openOption" :value="openOption">{{
+              $t(`setting.general.${openOption}`)
+          }}</el-option>
         </el-select>
-      </el-form-item> -->
+      </el-form-item>
 
       <!-- <el-divider></el-divider> -->
 
@@ -145,6 +159,21 @@ onMounted(() => {
 
   .setting-hint {
     margin-bottom: 20px;
+  }
+
+  .chooseWorkspaces {
+    width: 162px;
+    margin-right: 8px;
+  }
+
+  .addWorkspace {
+    width: 32px;
+    padding: 5px;
+
+    i {
+      font-size: 1.2rem;
+      margin-right: 0;
+    }
   }
 
   .el-form-item__label i {

@@ -70,11 +70,11 @@ export const en =
             theme: "Theme",
             color: "Primary Color",
             colors: {
-                "#9fd7b6": "light green",
-                "#8c99aa": "dark green",
-                "#5a5ec6": "blue",
-                "#ed764c": "red",
-                "#ffb11b": "orange"
+                "#9fd7b6": "Jadeite",
+                "#444444": "Obsidian",
+                "#5a5ec6": "Sapphire",
+                "#ed764c": "Coral",
+                "#ffb11b": "Citrine"
             },
             trotting_horse: "Trotting Horse Lamp",
 
@@ -88,10 +88,11 @@ export const en =
             paragraph_space: "Paragraph Space"
         },
         general: {
-            workspaceName: "Workspace Name",
+            workspace: "Workspace",
+            add_workspace: "Add Workspace",
             open: "Open With",
-            lastOpenFile: "Last Open File",
-            workspace: "Workspaces",
+            lastOpenFile: "Last Opened Workspace",
+            chooseWorkspace: "Choose Workspace",
             tooltips: "Tooltips",
             dev_tools: "DevTools",
             autosave: "Autosave",

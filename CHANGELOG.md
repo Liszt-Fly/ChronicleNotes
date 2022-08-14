@@ -26,14 +26,14 @@
 ## FIXME
 
 - 编辑器：打开上次关闭应用时的文件
-- 工作台：指定文件路径；选择其他工作区
+- 工作区：指定文件路径；选择其他工作区
 - 其他：介绍页面、发布网站文档【[typora](https://www.typora.io/)、[CuteMarkEd](https://cloose.github.io/CuteMarkEd/)、[cmd](https://www.zybuluo.com/cmd/)、[macdown](https://macdown.uranusjr.com/)】
 
 ## Next Version
 
 - 编辑器：milkdown 图片路径设置；复制 markdown
 - 工作区：使用时间报表；奖章等
-- 设置：选择打开时模式【上次打开的文件或工作台】；自定义快捷键；
+- 设置：选择打开时模式【上次打开的文件或工作区】；自定义快捷键；
 - 其他：打包后 components 图片路径问题
 
 ## Future
