@@ -40,6 +40,7 @@
   ],
   "dependencies": {
     "@electron/remote": "^2.0.8",
+    "@element-plus/icons-vue": "^2.0.9",
     "@milkdown/core": "^6.3.2",
     "@milkdown/plugin-emoji": "^6.3.2",
     "@milkdown/plugin-history": "^6.3.2",
