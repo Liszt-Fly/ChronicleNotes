@@ -15,7 +15,7 @@ export const cn =
         stream: "流",
         jotting: "随想",
         security: "保险箱",
-        workspace: "工作台",
+        workspace: "工作区",
         setting: "设置",
         trash: "废纸篓"
     },
@@ -71,7 +71,7 @@ export const cn =
             color: "主题色",
             colors: {
                 "#9fd7b6": "翡翠",
-                "#8c99aa": "冷杉",
+                "#444444": "墨",
                 "#5a5ec6": "花青",
                 "#ed764c": "胭脂",
                 "#ffb11b": "丹"
@@ -88,10 +88,11 @@ export const cn =
             paragraph_space: "段间距"
         },
         general: {
-            workspaceName: "工作区名",
-            open: "启动时打开",
-            lastOpenFile: "上次打开的文件",
-            workspace: "工作台页面",
+            workspace: "工作区",
+            add_workspace: "添加工作区",
+            open: "启动时",
+            lastOpenFile: "上一次打开的工作区",
+            chooseWorkspace: "选择工作区",
             tooltips: "提示",
             dev_tools: "开发者工具",
             autosave: "自动保存",
