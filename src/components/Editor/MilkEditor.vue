@@ -11,18 +11,17 @@ import { onMounted, watch } from "vue";
 import '@milkdown/utils'
 import { replaceAll, toggleFile } from "@/components/Editor/utils/toggleFile";
 import { currentFile } from "@/data/configdb";
-const fsp = require("fs-extra")
+const fs = require("fs-extra")
 let milk: Editor;
 
 const save = (event: KeyboardEvent) => {
   const isMac = /macintosh|mac os x/i.test(navigator.userAgent);
 
   if (event.key == "s") {
-    console.log(milk.ctx.get(editorStateCtx));
     let ctx = milk.ctx
     const view = ctx.get(editorViewCtx);
     const serializer = ctx.get(serializerCtx);
-    fsp.writeFileSync(currentFile.value, serializer(view.state.doc), { encoding: "utf-8" })
+    fs.writeFileSync(currentFile.value, serializer(view.state.doc), { encoding: "utf-8" })
   }
 }
 
@@ -36,7 +35,6 @@ const editor: EditorInfo = useEditor((root) =>
 ) as unknown as EditorInfo
 
 watch(() => currentFile.value, (value, oldValue) => {
-  console.log("change");
   milk.action(replaceAll(toggleFile(currentFile.value)))
 })
 </script>

@@ -1,23 +1,24 @@
 <script setup lang="ts">
-import { onMounted, reactive, ref, watch } from 'vue'
+import { onMounted, reactive, ref, watch, Ref } from 'vue'
 import { general_config_path, general_config_path_default } from "@/util/init/initPath"
+import { enter_workspace, createWorkspace } from "@/util/workspace/workspace"
+import { config } from "@/data/configdb";
+
 const fs = require("fs-extra")
+
+let workspaceName: Ref<string> | any = ref("")
+const workspaces = config.value.workspaces
+const this_workspace = config.value.recent
 
 const restoreDialogVisible = ref(false)
 const autoSaveTimes = [3, 5, 10, 60]
-const openOptions = ["lastOpenFile", "chooseWorkspace"]
-const workspaces = [
-  { name: "工作区1", path: "工作区1" },
-  { name: "工作区2", path: "工作区2" },
-  { name: "工作区3", path: "工作区3" }
-]
+const openOptions = ["LastOpenedWorkspace", "ChooseWorkspace"]
 
 const general = reactive({
-  workspace: "",
   openWith: "",
   devTools: false,
   autoSave: false,
-  "tooltips": "",
+  tooltips: "",
   autoSaveTime: 3,
   locale: "cn"
 })
@@ -48,6 +49,11 @@ onMounted(() => {
     saveSetting()
   })
 })
+
+const jumpToWorkspace = () => {
+  if (workspaces.includes(workspaceName.value))
+    enter_workspace(workspaceName.value)
+}
 </script>
 
 <template>
@@ -59,13 +65,13 @@ onMounted(() => {
         <template #label>
           <i class="bi bi-person-workspace"></i> {{ $t('setting.general.workspace') }}
         </template>
-        <el-select v-model="general.workspace" multiple filterable allow-create default-first-option
-          :reserve-keyword="false" :placeholder="$t('setting.general.workspace')" class="chooseWorkspaces">
-          <el-option v-for="workspace in workspaces" :key="workspace.name" :label="workspace.name"
-            :value="workspace.path" />
+        <el-select v-model="workspaceName" allow-create :placeholder="this_workspace.name" filterable
+          class="ChooseWorkspaces" @change="jumpToWorkspace">
+          <el-option v-for="workspace in workspaces" :key="workspace.name" :label="workspace.name" :value="workspace" />
         </el-select>
         <el-tooltip :content="$t('setting.general.add_workspace')" placement="bottom" effect="customized" :hide-after=0>
-          <el-button plain class="addWorkspace">
+          <el-button plain class="createWorkspace" @click="createWorkspace(workspaceName)"
+            :disabled="workspaceName.value == ''">
             <i class="bi bi-plus-lg"></i>
           </el-button>
         </el-tooltip>
@@ -76,9 +82,10 @@ onMounted(() => {
           <i class="bi bi-bounding-box-circles"></i> {{ $t('setting.general.open') }}
         </template>
         <el-select v-model="general.openWith">
-          <el-option v-for="openOption in openOptions" :label="openOption" :key="openOption" :value="openOption">{{
-              $t(`setting.general.${openOption}`)
-          }}</el-option>
+          <el-option v-for="openOption in openOptions" :label="$t(`setting.general.${openOption}`)" :key="openOption"
+            :value="openOption">{{
+                $t(`setting.general.${openOption}`)
+            }}</el-option>
         </el-select>
       </el-form-item>
 
@@ -162,12 +169,12 @@ onMounted(() => {
     margin-bottom: 20px;
   }
 
-  .chooseWorkspaces {
+  .ChooseWorkspaces {
     width: 162px;
     margin-right: 8px;
   }
 
-  .addWorkspace {
+  .createWorkspace {
     width: 32px;
     padding: 5px;
 

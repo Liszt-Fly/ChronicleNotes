@@ -6,12 +6,12 @@ import { NodeType } from "@/util/FileTree/type";
 import { fileNode } from "@/util/FileTree/fileNode";
 import { FileSystemMenu } from "@/util/Menus/FileSystemMenu";
 import { Menu, MenuItem } from "@electron/remote";
-import { onMounted, Ref, ref } from "vue";
+import { onMounted, Ref, ref, watch } from "vue";
 
 import FileItem from "@/components/common/FileSystem/FileItem.vue";
 import router from "@/router/index";
 import path from "path";
-const fsp = require("fs-extra")
+const fs = require("fs-extra")
 
 let targetDom: Ref<null | HTMLElement> = ref(null);
 
@@ -38,14 +38,14 @@ const isRoot = (event: MouseEvent) => {
 const drop = (event: DragEvent) => {
   let filepath = event.dataTransfer?.getData("path") as string
   if (filepath == fTree.value!.root.path) return
-  console.log(event.target)
+
   let target = event.target as HTMLElement
   if (!target.classList.contains("item")) {
     let folder = fTree.value!.root
 
     //* 寻找节点
     let node = fTree.value?.getNode(filepath, fTree.value.root)!
-    fsp.copySync(node.path, path.resolve(folder.path, node.name))
+    fs.copySync(node.path, path.resolve(folder.path, node.name))
 
     //* 节点操作
     let generatedNode = new fileNode(path.resolve(folder.path, node.name), node.name)
@@ -56,14 +56,16 @@ const drop = (event: DragEvent) => {
   }
 }
 
+watch(piUserPath, () => {
+  fTree.value = new fileTree(
+    new fileNode(path.resolve(piUserPath.value, "assets"), "assets")
+  );
+})
+
 onMounted(() => {
   fTree.value = new fileTree(
     new fileNode(path.resolve(piUserPath.value, "assets"), "assets")
   );
-
-  if (!fTree.value!.currentFileNode) {
-    // fileTree.currentFileNode = fTree.value.root.children![0]
-  }
 });
 
 const remove = () => {

@@ -28,10 +28,8 @@
 
 - 编辑器
   - 打开上次关闭时的文件
-- 设置
-  - 工作区：选择打开时模式【上次打开的文件或工作区】
 - 其他
-  - 介绍页面、发布网站文档【[typora](https://www.typora.io/)、[CuteMarkEd](https://cloose.github.io/CuteMarkEd/)、[cmd](https://www.zybuluo.com/cmd/)、[macdown](https://macdown.uranusjr.com/)】
+  - 介绍页面、发布网站文档【[typora](https://www.typora.io/)、[cmd](https://www.zybuluo.com/cmd/)】
 
 ## Next Version
 

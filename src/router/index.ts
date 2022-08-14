@@ -15,7 +15,7 @@ const router = createRouter({
     history: createWebHistory(),
     linkActiveClass: "active",
     routes: [
-        { path: "/", name: "Home", component: Editor },
+        { path: "/", name: "Home", component: Setting },
         { path: "/Editor", name: "EditorPage", component: Editor },
         { path: "/Jotting", name: "JottingPage", component: Jotting },
         { path: "/Trash", name: "TrashPage", component: Trash },

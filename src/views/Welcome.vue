@@ -3,7 +3,7 @@
     <el-row justify="center" :gutter="20">
       <el-col :span="8">
         <div class="welcome">
-          <h1>{{ $t("setting.info.welcome") }}</h1>
+          <h1>{{ $t("setting.info.welcome") }} 🪸</h1>
         </div>
       </el-col>
       <el-col :span="16">
@@ -13,11 +13,13 @@
             <div class="add">
               <el-row justify="center" :gutter="20">
                 <el-col :span="24">
-                  <el-input :placeholder="$t('workspace.new_workspace_name')" v-model="name">
+                  <el-input :placeholder="$t('workspace.new_workspace_name')" v-model="workspaceName">
                     <template #append>
                       <el-tooltip :content="$t('workspace.add_workspace')" placement="bottom" effect="customized"
                         :hide-after=0>
-                        <el-button class="button" @click="createWorkspace" :icon="Plus"></el-button>
+                        <el-button class="button" @click="createWorkspace(workspaceName)">
+                          <i class="bi bi-plus-lg"></i>
+                        </el-button>
                       </el-tooltip>
                     </template>
                   </el-input>
@@ -30,34 +32,33 @@
 
           <el-scrollbar height="60vh">
             <el-card class="panel" shadow="never" v-for="(workspace, i) of config.workspaces" :key="workspace.name">
-              <el-row>
-                <el-col :span="14">
-                  <h3>
-                    {{ workspace.name }}
-                  </h3>
-                </el-col>
+              <div>
+                <h3>
+                  <el-tag effect="dark">
+                    {{ workspace.name[0] }}
+                  </el-tag>
+                  {{ workspace.name }}
+                </h3>
 
-                <el-col :span="10">
-                  <el-button-group>
-                    <el-tooltip :content="$t('workspace.enter_workspace')" placement="bottom" effect="customized"
-                      :hide-after=0>
-                      <el-button text @click="enter_workspace(workspace)">
-                        <i class="bi bi-arrow-right-square"></i>
-                      </el-button>
-                    </el-tooltip>
+                <el-button-group>
+                  <el-tooltip :content="$t('workspace.enter_workspace')" placement="bottom" effect="customized"
+                    :hide-after=0>
+                    <el-button text @click="enter_workspace(workspace)">
+                      <i class="bi bi-arrow-right-square"></i>
+                    </el-button>
+                  </el-tooltip>
 
-                    <el-tooltip :content="$t('workspace.remove_workspace')" placement="bottom" effect="customized"
-                      :hide-after=0>
-                      <el-button text @click.stop="remove_workspace(i)" type="danger">
-                        <i class="bi bi-eraser"></i>
-                      </el-button>
-                    </el-tooltip>
-                  </el-button-group>
-                </el-col>
-              </el-row>
+                  <el-tooltip :content="$t('workspace.remove_workspace')" placement="bottom" effect="customized"
+                    :hide-after=0>
+                    <el-button text @click.stop="remove_workspace(i)" type="danger">
+                      <i class="bi bi-eraser"></i>
+                    </el-button>
+                  </el-tooltip>
+                </el-button-group>
+              </div>
 
               <div class="workspace-info">
-                <el-skeleton :rows="2" animated />
+                <el-skeleton :rows="3" animated />
               </div>
             </el-card>
           </el-scrollbar>
@@ -68,58 +69,11 @@
 </template>
 
 <script lang="ts" setup>
-import { Plus } from '@element-plus/icons-vue'
-import { Ref, ref } from "vue";
-import { dialog, getGlobal } from "@electron/remote";
-import { app_config_path, freshWorkspace, piUserPath, initWorkspace } from "@/util/init/initPath";
-import { chooseWorkspace } from "@/data/configdb";
-import { PIMODE } from "@/util/types/enums";
+import { ref, Ref } from "vue";
+import { enter_workspace, remove_workspace, createWorkspace } from "@/util/workspace/workspace"
+import { config } from "@/data/configdb";
 
-import path from 'path';
-import router from '@/router';
-const fsp = require("fs-extra");
-
-let filename = ref("");
-let name = ref("")
-let config: Ref<appConfig> = ref(fsp.readJSONSync(app_config_path))
-
-const enter_workspace = (ws: workspace) => {
-  piUserPath.value = ws.path
-  freshWorkspace();
-  chooseWorkspace.value = true
-  config.value.recent = ws
-  fsp.writeJSONSync(app_config_path, config.value)
-  router.push("/Editor")
-}
-
-const remove_workspace = (i: number) => {
-  config.value.workspaces.splice(i, 1)
-  fsp.writeJSONSync(app_config_path, config.value)
-}
-
-const createWorkspace = () => {
-  dialog.showOpenDialog({ properties: ["openDirectory"] }).then((v) => {
-    if (v.canceled) {
-      return;
-    }
-
-    filename.value = v.filePaths[0];
-    let ws = path.resolve(filename.value, name.value)
-    fsp.ensureDir(ws)
-
-    let workspace: workspace = {
-      name: name.value,
-      totalWorktime: "0",
-      createdDate: new Date().getTime().toString(),
-      modifiedDate: new Date().getTime().toString(),
-      path: ws
-    }
-    config.value.workspaces.push(workspace)
-
-    enter_workspace(workspace)
-    initWorkspace(getGlobal("sharedObject").bPackaged ? PIMODE.PRODUCTION : PIMODE.DEVELOPMENT)
-  });
-};
+let workspaceName: Ref<string> = ref("")
 </script>
 
 <style lang="scss">
@@ -149,6 +103,10 @@ const createWorkspace = () => {
       flex-direction: column;
       margin: 20px;
 
+      .el-input {
+        height: 54px;
+      }
+
       .container {
         overflow: scroll;
         margin-top: 100px;
@@ -177,10 +135,29 @@ const createWorkspace = () => {
 
     .panel {
       margin: 10px 20px;
-      height: 72px;
+      height: 52px;
+
+      .el-card__body {
+        padding: 12px;
+      }
 
       h3 {
         margin-bottom: 20px;
+        width: calc(100% - 90px);
+        display: inline-block;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+        .el-tag {
+          position: relative;
+          bottom: 2px;
+        }
+      }
+
+      .el-button-group {
+        position: absolute;
+        float: right;
       }
 
       .workspace-info {
