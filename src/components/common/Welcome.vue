@@ -91,7 +91,7 @@
 import { Plus } from '@element-plus/icons-vue'
 import { onMounted, Ref, ref } from "vue";
 import { reactive } from "vue";
-import { dialog } from "@electron/remote";
+import { dialog, getGlobal } from "@electron/remote";
 import { fresh, piUserPath } from "@/init/path";
 import { chooseWorkspace } from "@/data/configdb";
 import { PIMODE } from "@/types/enums";
@@ -108,47 +108,17 @@ let config: Ref<appConfig> = ref(fsp.readJSONSync(app_config_path.value))
 
 const go = (ws: workspace) => {
   piUserPath.value = ws.path
-  fresh(PIMODE.DEVELOPMENT);
+  fresh(getGlobal("sharedObject").bPackaged ? PIMODE.PRODUCTION : PIMODE.DEVELOPMENT);
   chooseWorkspace.value = true
   config.value.recent = ws
   fsp.writeJSONSync(app_config_path.value, config.value)
+
 
 }
 const close = (i: number) => {
   config.value.workspaces.splice(i, 1)
 }
-const value = ref("123123");
 const info = reactive({});
-// const workspaceExamples = reactive([
-//   {
-//     name: "抽象代数",
-//     totalWorktime: "0",
-//     createdDate: new Date().getTime().toString(),
-//     modifiedDate: new Date().getTime().toString(),
-//     path: ""
-//   },
-//   {
-//     name: "汉语言文学",
-//     totalWorktime: "0",
-//     createdDate: new Date().getTime().toString(),
-//     modifiedDate: new Date().getTime().toString(),
-//     path: ""
-//   },
-//   {
-//     name: "食品科学",
-//     totalWorktime: "0",
-//     createdDate: new Date().getTime().toString(),
-//     modifiedDate: new Date().getTime().toString(),
-//     path: ""
-//   },
-//   {
-//     name: "软件工程",
-//     totalWorktime: "0",
-//     createdDate: new Date().getTime().toString(),
-//     modifiedDate: new Date().getTime().toString(),
-//     path: ""
-//   }
-// ])
 const createWorkspace = (name: string, path: string) => {
   let workspace: workspace = {
     name,
@@ -175,7 +145,8 @@ const click = () => {
 
     //TODO 设置最近的workspace
     fsp.writeJSONSync(app_config_path.value, config.value)
-    fresh(PIMODE.DEVELOPMENT);
+    console.log('getGlobal("sharedObject").bPackaged', getGlobal("sharedObject").bPackaged)
+    fresh(getGlobal("sharedObject").bPackaged ? PIMODE.PRODUCTION : PIMODE.DEVELOPMENT);
   });
 };
 </script>
@@ -259,7 +230,7 @@ const click = () => {
 }
 
 .recent {
-  background-color: #1abc9c;
+  background-color: #778ca3;
   color: #fff;
 }
 </style>

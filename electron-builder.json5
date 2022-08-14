@@ -1,0 +1,39 @@
+/**
+ * @see https://www.electron.build/configuration/configuration
+ */
+{
+  "appId": "YourAppID",
+  "asar": true,
+  "directories": {
+    "buildResources": "dist",
+    "output": "release/${version}"
+  },
+  "files": [
+    "dist"
+  ],
+  "mac": {
+    "artifactName": "${productName}_${version}.${ext}",
+    "icon": "./icons/Burning Orange/Burning Orange.png",
+    "target": [
+      "dmg"
+    ]
+  },
+  "win": {
+    "artifactName": "${productName}_${version}.${ext}",
+    "icon": "./icons/Burning Orange2/Burning Orange2.png",
+    "target": [
+      {
+        "target": "nsis",
+        "arch": [
+          "x64"
+        ]
+      }
+    ]
+  },
+  "nsis": {
+    "oneClick": false,
+    "perMachine": false,
+    "allowToChangeInstallationDirectory": true,
+    "deleteAppDataOnUninstall": false
+  }
+}

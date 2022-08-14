@@ -40,8 +40,10 @@ const updatePath = () => {
 let fArray = ref([piUserPath, appearanceFile, shortcutFile, shortcutFileDefault, generalFile, generalFileDefault, jottings_path, assets_path])
 
 export const fresh = (mode: PIMODE) => {
-    updatePath()
+    console.log('mode', mode)
     let folder = mode == PIMODE.DEVELOPMENT ? "public" : __dirname
+    updatePath()
+
 
     fs.ensureDir(piUserPath.value)
     fs.ensureDir(config_path.value)
