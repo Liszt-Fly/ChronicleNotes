@@ -1,8 +1,1 @@
-{
-    "openWith": "LastOpenedWorkspace",
-    "devTools": true,
-    "autoSave": true,
-    "tooltips": true,
-    "autoSaveTime": 5,
-    "locale": "en"
-}
+{"openWith":"ChooseWorkspace","devTools":true,"autoSave":true,"tooltips":true,"autoSaveTime":5,"locale":"en"}
