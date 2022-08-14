@@ -4,6 +4,7 @@ import { resolve } from "path";
 import { Ref, ref } from "vue";
 
 const fs = require("fs-extra")
+// import fs from "fs-extra"
 
 let bPackaged = getGlobal("sharedObject").bPackaged;
 
@@ -17,18 +18,20 @@ export let shortcut_config_path: string = resolve(config_path, ".shortcut.pi")
 export let shortcut_config_path_default: string = resolve(config_path, ".shortcut.default.pi")
 export let general_config_path: string = resolve(config_path, ".general.pi")
 export let general_config_path_default: string = resolve(config_path, ".general.default.pi")
-
-let app_config = fs.readJsonSync(app_config_path)
-
 if (bPackaged) {
+    if (!fs.existsSync(config_path)) {
+        fs.mkdirSync(config_path)
+    }
     if (!fs.existsSync(app_config_path)) {
         let pi_config_path = resolve(__dirname, "config")
-        let configs = fs.readdirSync(config_path)
+        let configs = fs.readdirSync(pi_config_path)
         for (const i in configs) {
             fs.outputFileSync(resolve(config_path, configs[i]), fs.readFileSync(resolve(pi_config_path, configs[i])))
         }
     }
 }
+
+let app_config = fs.readJsonSync(app_config_path)
 
 // data
 
