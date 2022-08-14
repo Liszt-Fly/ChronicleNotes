@@ -15,12 +15,12 @@ const autoSaveTimes = [3, 5, 10, 60]
 const openOptions = ["LastOpenedWorkspace", "ChooseWorkspace"]
 
 const general = reactive({
-  openWith: "",
-  devTools: false,
-  autoSave: false,
-  tooltips: "",
-  autoSaveTime: 3,
-  locale: "cn"
+  "openWith": "ChooseWorkspace",
+  "locale": "cn",
+  "devTools": false,
+  "tooltips": true,
+  "autoSave": true,
+  "autoSaveTime": 5
 })
 
 const readSetting = (general_config_path: string) => {
@@ -65,7 +65,7 @@ const jumpToWorkspace = () => {
         <template #label>
           <i class="bi bi-person-workspace"></i> {{ $t('setting.general.workspace') }}
         </template>
-        <el-select v-model="workspaceName" allow-create :placeholder="this_workspace.name" filterable
+        <el-select v-model="workspaceName" allow-create :placeholder="(this_workspace as workspace).name" filterable
           class="ChooseWorkspaces" @change="jumpToWorkspace">
           <el-option v-for="workspace in workspaces" :key="workspace.name" :label="workspace.name" :value="workspace" />
         </el-select>

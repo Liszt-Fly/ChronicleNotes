@@ -1,9 +1,8 @@
 {
-    "workspaceName": "Pi",
-    "openWith": "workspace",
+    "openWith": "ChooseWorkspace",
+    "locale": "cn",
     "devTools": false,
-    "autoSave": true,
     "tooltips": true,
-    "autoSaveTime": 5,
-    "locale": "cn"
+    "autoSave": true,
+    "autoSaveTime": 5
 }

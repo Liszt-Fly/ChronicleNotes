@@ -1,8 +1,8 @@
 {
     "theme": "light",
-    "color": "#81a28b",
-    "global_en_font": "Times New Roman",
-    "global_cn_font": "楷体",
+    "color": "#ed764c",
+    "global_en_font": "Avenir",
+    "global_cn_font": "微软雅黑",
     "code_font": "Consolas",
     "trotting_horse": false,
     "font_size": 16,

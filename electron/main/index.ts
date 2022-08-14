@@ -54,7 +54,7 @@ async function createWindow() {
     minWidth: 800,
     minHeight: 600,
     width: 800,
-    height: 500,
+    height: 600,
     icon: join(ROOT_PATH.public, 'favicon.ico'),
     titleBarStyle: "hidden",
     webPreferences: {
