@@ -7,7 +7,7 @@ const fs = require("fs-extra")
 
 let bPackaged = getGlobal("sharedObject").bPackaged;
 
-export let app_config_path: Ref<string> = ref(bPackaged ? resolve(__dirname, "config", "config.json") : resolve("public", "config", "config.json"))
+export let app_config_path: Ref<string> = ref(bPackaged ? resolve(__dirname, "config", ".pi") : resolve("public", "config", ".pi"))
 
 export let piUserPath: Ref<string> = ref(bPackaged ? getGlobal("sharedObject").defaultPath : resolve("public", "template"))
 
@@ -29,7 +29,7 @@ const updatePath = () => {
     jottings_path = ref(resolve(piUserPath.value, "jottings"))
     assets_path = ref(resolve(piUserPath.value, "assets"))
     config_path = ref(resolve(piUserPath.value, "config"))
-    app_config_path = ref(bPackaged ? resolve(__dirname, "config", "config.json") : resolve("public", "config", "config.json"))
+    app_config_path = ref(bPackaged ? resolve(__dirname, "config", ".pi") : resolve("public", "config", ".pi"))
     appearanceFile = ref(resolve(config_path.value, "pi.appearance.json"))
     shortcutFile = ref(resolve(config_path.value, "pi.shortcut.json"))
     shortcutFileDefault = ref(resolve(config_path.value, "pi.shortcut.default.json"))
