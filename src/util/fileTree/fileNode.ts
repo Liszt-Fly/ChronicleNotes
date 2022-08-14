@@ -57,9 +57,11 @@ export class fileNode {
 
     //* 删除
     removeSelf() {
+        console.log('this.path', this.path)
+        fs.removeSync(this.path)
         //* 情况为文件夹的情形
         if (this.type == NodeType.FOLDER) {
-            fs.removeSync(this.path)
+
             if (this.parent) {
                 this.parent.children = this.parent.children!.filter(item => item.name != this.name)
             }
