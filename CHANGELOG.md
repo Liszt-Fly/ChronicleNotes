@@ -1,10 +1,9 @@
 # 🕛 CHANGELOG
 
-- [🕛 CHANGELOG](#-changelog)
-  - [v0.1.0](#v010)
-  - [FIXME](#fixme)
-  - [Next Version](#next-version)
-  - [Future](#future)
+- [v0.1.0](#v010)
+- [FIXME](#fixme)
+- [Next Version](#next-version)
+- [Future](#future)
 
 ## v0.1.0
 
@@ -21,13 +20,15 @@
   - 随笔：新建、编辑、删除；修改时间；导出到编辑器；导出为图片到剪贴板
 - 设置
   - 欢迎
-  - 通用：语言、开发者工具、提示
+  - 通用：语言、开发者工具、提示、工作区
   - 外观：主题、主题色、走马灯；英文字体、中文字体、代码块字体；行宽、行高、段间距
+- 工作区
+  - 创建工作区
+  - 选择工作区
 
 ## FIXME
 
 - 编辑器：打开上次关闭应用时的文件
-- 工作区：指定文件路径；选择其他工作区
 - 其他：介绍页面、发布网站文档【[typora](https://www.typora.io/)、[CuteMarkEd](https://cloose.github.io/CuteMarkEd/)、[cmd](https://www.zybuluo.com/cmd/)、[macdown](https://macdown.uranusjr.com/)】
 
 ## Next Version
@@ -36,7 +37,6 @@
 - 工作区：使用时间报表；奖章等
 - 设置：选择打开时模式【上次打开的文件或工作区】；自定义快捷键；
 - 其他：打包后 components 图片路径问题
-- Env 环境变量配置
 
 ## Future
 
