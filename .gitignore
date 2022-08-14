@@ -25,7 +25,7 @@ release
 .vscode/.debug.env
 
 # config
-public/template/config/pi.appearance.json
-public/template/config/pi.general.json
-public/template/config/pi.shortcut.json
-public/config/.pi
+# public/template/config/pi.appearance.json
+# public/template/config/pi.general.json
+# public/template/config/pi.shortcut.json
+# public/config/.pi

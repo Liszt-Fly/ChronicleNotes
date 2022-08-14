@@ -9,7 +9,7 @@
           <el-input v-model="jotting_input" :rows="6" type="textarea" resize="none" autofocus
             @keydown="saveAddAJotting($event)" maxlength="1000" show-word-limit />
           <el-button circle key="plain" type="primary" class="jotting_add_btn" @click="addAJotting"><i
-              class="bi bi-plus"></i>
+              class="bi bi-plus-lg"></i>
           </el-button>
         </div>
       </el-col>
@@ -285,7 +285,7 @@ onMounted(() => {
 
   &:hover {
     padding: 3px 7px;
-    border: 2px solid var(--el-color-info-light-9);
+    border: 2px solid var(--el-color-primary);
     cursor: pointer;
 
     .msg {
@@ -300,6 +300,7 @@ onMounted(() => {
   align-items: center;
 
   &:hover {
+    border: 2px solid var(--el-color-info-light-7);
     background-color: var(--el-color-info-light-9);
     cursor: pointer;
   }
@@ -316,6 +317,7 @@ onMounted(() => {
 
   &:hover {
     padding: 0;
+    border: 2px solid var(--el-color-info-light-7);
     background-color: var(--el-color-info-light-9);
     cursor: pointer;
     border: none;

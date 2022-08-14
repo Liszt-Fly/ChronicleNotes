@@ -149,7 +149,8 @@ export const cn =
         }
     },
     workspace: {
-        new_workspace: "创建工作区",
+        new_workspace_name: "新工作区名",
+        add_workspace: "添加工作区",
         enter_workspace: "进入工作区",
         remove_workspace: "移除工作区"
     }

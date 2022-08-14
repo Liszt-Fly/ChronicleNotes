@@ -266,7 +266,7 @@
 
 <script lang="ts" setup>
 import { onMounted, reactive, ref, watch } from 'vue'
-import { shortcutFile, shortcutFileDefault } from "@/init/path"
+import { shortcut_config_path, shortcut_config_path_default } from "@/init/path"
 const fs = require("fs-extra")
 
 const restoreDialogVisible = ref(false)
@@ -316,9 +316,9 @@ const shortcut = reactive({
   replace: 'Ctrl+H'
 })
 
-const readSetting = (shortcutFile: string) => {
+const readSetting = (shortcut_config_path: string) => {
   try {
-    const data = fs.readJsonSync(shortcutFile)
+    const data = fs.readJsonSync(shortcut_config_path)
     for (let key in data) {
       // @ts-ignore
       shortcut[key] = data[key]
@@ -329,15 +329,15 @@ const readSetting = (shortcutFile: string) => {
 }
 
 const saveSetting = () => {
-  fs.writeJsonSync(shortcutFile, shortcut);
+  fs.writeJsonSync(shortcut_config_path, shortcut);
 }
 
 const restoreDefault = () => {
-  fs.writeJsonSync(shortcutFile, fs.readJsonSync(shortcutFileDefault))
+  fs.writeJsonSync(shortcut_config_path, fs.readJsonSync(shortcut_config_path_default))
 }
 
 onMounted(() => {
-  readSetting(shortcutFile.value)
+  readSetting(shortcut_config_path)
   watch(shortcut, () => {
     saveSetting()
   })

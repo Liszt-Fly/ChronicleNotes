@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref, watch } from 'vue'
-import { generalFile, generalFileDefault } from "@/init/path"
+import { general_config_path, general_config_path_default } from "@/init/path"
 const fs = require("fs-extra")
 
 const restoreDialogVisible = ref(false)
@@ -22,9 +22,9 @@ const general = reactive({
   locale: "cn"
 })
 
-const readSetting = (generalFile: string) => {
+const readSetting = (general_config_path: string) => {
   try {
-    const data = fs.readJsonSync(generalFile)
+    const data = fs.readJsonSync(general_config_path)
     for (let key in data) {
       //@ts-ignore
       general[key] = data[key]
@@ -35,15 +35,15 @@ const readSetting = (generalFile: string) => {
 }
 
 const saveSetting = () => {
-  fs.writeJsonSync(generalFile.value, general);
+  fs.writeJsonSync(general_config_path, general);
 }
 
 const restoreDefault = () => {
-  fs.writeJsonSync(generalFile.value, fs.readJsonSync(generalFileDefault))
+  fs.writeJsonSync(general_config_path, fs.readJsonSync(general_config_path_default))
 }
 
 onMounted(() => {
-  readSetting(generalFile.value)
+  readSetting(general_config_path)
   watch(general, () => {
     saveSetting()
   })

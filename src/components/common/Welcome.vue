@@ -3,9 +3,7 @@
     <el-row justify="center" :gutter="20">
       <el-col :span="8">
         <div class="welcome">
-          <el-form label-width="180px" :model="info" label-position="left">
-            <h1>{{ $t("setting.info.welcome") }}</h1>
-          </el-form>
+          <h1>{{ $t("setting.info.welcome") }}</h1>
         </div>
       </el-col>
       <el-col :span="16">
@@ -15,9 +13,12 @@
             <div class="add">
               <el-row justify="center" :gutter="20">
                 <el-col :span="24">
-                  <el-input :placeholder="$t('workspace.new_workspace')" v-model="name">
+                  <el-input :placeholder="$t('workspace.new_workspace_name')" v-model="name">
                     <template #append>
-                      <el-button class="button" @click="createWorkspace" :icon="Plus"></el-button>
+                      <el-tooltip :content="$t('workspace.add_workspace')" placement="bottom" effect="customized"
+                        :hide-after=0>
+                        <el-button class="button" @click="createWorkspace" :icon="Plus"></el-button>
+                      </el-tooltip>
                     </template>
                   </el-input>
                 </el-col>
@@ -69,27 +70,27 @@
 <script lang="ts" setup>
 import { Plus } from '@element-plus/icons-vue'
 import { Ref, ref } from "vue";
-import { reactive } from "vue";
 import { dialog, getGlobal } from "@electron/remote";
-import { fresh, piUserPath } from "@/init/path";
+import { freshWorkspace, piUserPath, initWorkspace } from "@/init/path";
 import { chooseWorkspace } from "@/data/configdb";
 import { PIMODE } from "@/types/enums";
 import { app_config_path } from "@/init/path";
 
 import path from 'path';
+import router from '@/router';
 const fsp = require("fs-extra");
 
 let filename = ref("");
 let name = ref("")
 let config: Ref<appConfig> = ref(fsp.readJSONSync(app_config_path))
-const info = reactive({});
 
 const enter_workspace = (ws: workspace) => {
   piUserPath.value = ws.path
-  fresh(getGlobal("sharedObject").bPackaged ? PIMODE.PRODUCTION : PIMODE.DEVELOPMENT);
+  freshWorkspace();
   chooseWorkspace.value = true
   config.value.recent = ws
   fsp.writeJSONSync(app_config_path, config.value)
+  router.push("/Editor")
 }
 
 const remove_workspace = (i: number) => {
@@ -117,6 +118,7 @@ const createWorkspace = () => {
     config.value.workspaces.push(workspace)
 
     enter_workspace(workspace)
+    initWorkspace(getGlobal("sharedObject").bPackaged ? PIMODE.PRODUCTION : PIMODE.DEVELOPMENT)
   });
 };
 </script>
@@ -131,11 +133,10 @@ const createWorkspace = () => {
     margin: auto;
     user-select: none;
     height: 100%;
-
-    h1 {
-      margin: 20px;
-      text-align: center;
-    }
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
   }
 
   .workspace {

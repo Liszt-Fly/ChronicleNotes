@@ -1,11 +1,11 @@
-import { appearanceFile, generalFile, shortcutFile } from "@/init/path";
+import { appearance_config_path, general_config_path, shortcut_config_path } from "@/init/path";
 const fs = require("fs-extra")
 
-export let appearance = fs.readJsonSync(appearanceFile.value)
+export let appearance = fs.readJsonSync(appearance_config_path)
 
-export let general = fs.readJsonSync(generalFile.value)
+export let general = fs.readJsonSync(general_config_path)
 
-export let shortcut = fs.readJsonSync(shortcutFile.value)
+export let shortcut = fs.readJsonSync(shortcut_config_path)
 
 export let theme = appearance.theme
 

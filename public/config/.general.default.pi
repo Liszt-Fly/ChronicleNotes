@@ -1,7 +1,7 @@
 {
     "workspaceName": "Pi",
     "openWith": "workspace",
-    "devTools": true,
+    "devTools": false,
     "autoSave": true,
     "tooltips": true,
     "autoSaveTime": 5,

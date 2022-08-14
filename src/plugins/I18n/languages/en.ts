@@ -149,8 +149,9 @@ export const en =
         }
     },
     workspace: {
-        new_workspace: "Create New Workspace",
-        enter_workspace:"Enter Workspace",
+        new_workspace_name: "New Workspace Name",
+        add_workspace: "Add New Workspace",
+        enter_workspace: "Enter Workspace",
         remove_workspace: "Remove This Workspace"
     }
 }
