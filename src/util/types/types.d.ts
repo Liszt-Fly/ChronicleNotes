@@ -13,5 +13,5 @@ interface workspace {
 
 interface appConfig {
     workspaces: workspace[],
-    recent: workspace | null
+    recent: workspace | string
 }

@@ -8,7 +8,7 @@ const fs = require("fs-extra")
 
 let workspaceName: Ref<string> | any = ref("")
 const workspaces = config.value.workspaces
-const this_workspace = config.value.recent
+const this_workspace = config.value.recent!
 
 const restoreDialogVisible = ref(false)
 const autoSaveTimes = [3, 5, 10, 60]
