@@ -90,7 +90,7 @@ export const cn =
         general: {
             workspace: "工作区",
             add_workspace: "添加工作区",
-            open: "启动时",
+            open: "启动时进入",
             lastOpenFile: "上一次打开的工作区",
             chooseWorkspace: "选择工作区页面",
             tooltips: "提示",
