@@ -95,7 +95,7 @@ const rename = () => {
 };
 
 const duplicate = () => {
-  fTree.value!.currentFileNode.duplicate();
+  // fTree.value!.currentFileNode.duplicate();
 };
 
 const exportFile = () => {

@@ -1,9 +1,8 @@
 <template>
   <el-scrollbar>
     <div class="scrollbar-flex-content">
-      <el-tag v-for="file in openFiles" effect="plain" :key="file" closable type="info"
-              @click="toggleCurrentFile(file)" class="tab-item" @close="remove(file)"
-              :class="{ 'tab-item-active': file === currentFile }">
+      <el-tag v-for="file in openFiles" effect="plain" :key="file" closable type="info" @click="toggleCurrentFile(file)"
+        class="tab-item" @close="remove(file)" :class="{ 'tab-item-active': file === currentFile }">
         {{ path.relative(path.join(piUserPath, "assets"), file).replaceAll("\\", "/").slice(0, -3) }}
       </el-tag>
     </div>
@@ -18,7 +17,7 @@ import router from "@/router";
 
 let toggleCurrentFile = (file: string) => {
   currentFile.value = file
-  router.push(`/Editor/${path.relative(path.join(piUserPath, "assets"), file).replaceAll("\\", "/")}`)
+  router.push(`/Editor/${path.relative(path.join(piUserPath.value, "assets"), file).replaceAll("\\", "/")}`)
 }
 
 let remove = (file: string) => {

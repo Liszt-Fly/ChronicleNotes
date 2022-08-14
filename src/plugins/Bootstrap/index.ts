@@ -1,5 +1,5 @@
 import 'bootstrap-icons/font/bootstrap-icons.scss'
 
-export const setupBootstrapPlugin=()=>{
+export const setupBootstrapPlugin = () => {
 
 }

@@ -2,32 +2,14 @@
   <div class="jotting">
     <el-row :gutter="12">
       <el-col :span="8">
-        <div
-          shadow="never"
-          class="jotting_card jotting_card_add"
-          v-if="addJotting"
-          @click="addJotting = false"
-        >
+        <div shadow="never" class="jotting_card jotting_card_add" v-if="addJotting" @click="addJotting = false">
           <i class="bi bi-plus"></i>
         </div>
         <div shadow="never" class="jotting_card jotting_card_add_text" v-else>
-          <el-input
-            v-model="jotting_input"
-            :rows="6"
-            type="textarea"
-            resize="none"
-            autofocus
-            @keydown="saveAddAJotting($event)"
-            maxlength="1000"
-            show-word-limit
-          />
-          <el-button
-            circle
-            key="plain"
-            type="primary"
-            class="jotting_add_btn"
-            @click="addAJotting"
-            ><i class="bi bi-plus"></i>
+          <el-input v-model="jotting_input" :rows="6" type="textarea" resize="none" autofocus
+            @keydown="saveAddAJotting($event)" maxlength="1000" show-word-limit />
+          <el-button circle key="plain" type="primary" class="jotting_add_btn" @click="addAJotting"><i
+              class="bi bi-plus"></i>
           </el-button>
         </div>
       </el-col>
@@ -37,87 +19,52 @@
             <el-scrollbar>
               <p>{{ jotting.text }}</p>
               <div class="msg">
-                <el-tag effect="plain"
-                  >{{ $t("jottings.word_count") + " " + jotting.text.length }}
+                <el-tag effect="plain">{{ $t("jottings.word_count") + " " + jotting.text.length }}
                 </el-tag>
-                <el-tag effect="plain" v-if="jotting.edit_time" class="right-tag"
-                  >{{ $t("jottings.edit_time") + " " + jotting.edit_time }}
+                <el-tag effect="plain" v-if="jotting.edit_time" class="right-tag">{{ $t("jottings.edit_time") + " " +
+                    jotting.edit_time
+                }}
                 </el-tag>
               </div>
             </el-scrollbar>
           </div>
 
-          <el-dialog
-            v-model="jotting.show"
-            v-if="jotting.show"
-            :show-close="false"
-            width="60%"
-          >
+          <el-dialog v-model="jotting.show" v-if="jotting.show" :show-close="false" width="60%">
             <el-scrollbar height="60vh">
               <p class="zoom">
-                <el-input
-                  v-model="jotting.text"
-                  type="textarea"
-                  resize="none"
-                  id="edit_jotting"
-                  :autosize="{ maxRows: 14 }"
-                  @keydown="saveAJotting($event, jotting)"
-                  maxlength="1000"
-                  show-word-limit
-                />
+                <el-input v-model="jotting.text" type="textarea" resize="none" id="edit_jotting"
+                  :autosize="{ maxRows: 14 }" @keydown="saveAJotting($event, jotting)" maxlength="1000"
+                  show-word-limit />
               </p>
               <div class="jotting_btn">
-                <el-tag effect="plain" size="large"
-                  >{{ $t("jottings.word_count") + " " + jotting.text.length }}
+                <el-tag effect="plain" size="large">{{ $t("jottings.word_count") + " " + jotting.text.length }}
                 </el-tag>
-                <el-tag
-                  effect="plain"
-                  size="large"
-                  v-if="jotting.edit_time"
-                  class="right-tag"
-                  >{{ $t("jottings.edit_time") + " " + jotting.edit_time }}
+                <el-tag effect="plain" size="large" v-if="jotting.edit_time" class="right-tag">{{
+                    $t("jottings.edit_time") + " " + jotting.edit_time
+                }}
                 </el-tag>
 
                 <el-button-group>
-                  <el-tooltip
-                    :content="$t('jottings.save')"
-                    placement="bottom"
-                    effect="customized"
-                    :hide-after="0"
-                  >
+                  <el-tooltip :content="$t('jottings.save')" placement="bottom" effect="customized" :hide-after="0">
                     <el-button type="primary" @click="editAJotting(jotting)" text>
                       <i class="bi bi-save"></i>
                     </el-button>
                   </el-tooltip>
 
-                  <el-tooltip
-                    :content="$t('jottings.export')"
-                    placement="bottom"
-                    effect="customized"
-                    :hide-after="0"
-                  >
+                  <el-tooltip :content="$t('jottings.export')" placement="bottom" effect="customized" :hide-after="0">
                     <el-button type="info" text @click="exportAJotting(jotting, index)">
                       <i class="bi bi-box-arrow-up-right"></i>
                     </el-button>
                   </el-tooltip>
 
-                  <el-tooltip
-                    :content="$t('jottings.export_as_img')"
-                    placement="bottom"
-                    effect="customized"
-                    :hide-after="0"
-                  >
+                  <el-tooltip :content="$t('jottings.export_as_img')" placement="bottom" effect="customized"
+                    :hide-after="0">
                     <el-button type="info" @click="exportAJottingAsImage(jotting)" text>
                       <i class="bi bi-clipboard-heart"></i>
                     </el-button>
                   </el-tooltip>
 
-                  <el-tooltip
-                    :content="$t('jottings.delete')"
-                    placement="bottom"
-                    effect="customized"
-                    :hide-after="0"
-                  >
+                  <el-tooltip :content="$t('jottings.delete')" placement="bottom" effect="customized" :hide-after="0">
                     <el-button type="danger" @click="deleteAJotting(jotting, index)" text>
                       <i class="bi bi-trash3"></i>
                     </el-button>
@@ -286,10 +233,10 @@ const exportAJottingAsImage = (jotting: Tjotting) => {
 
   ctx.scale(ratio, ratio);
 
-  ctx.fillStyle = jotting_styles["background-color"];
+  ctx.fillStyle = jotting_styles.backgroundColor
   ctx.fillRect(0, 0, c.width, c.height);
 
-  ctx.font = jotting_styles["font-size"] + jotting_styles["font-family"];
+  ctx.font = jotting_styles.fontSize + jotting_styles.fontFamily;
   ctx.fillStyle = jotting_styles["color"];
   ctx.textBaseline = "middle";
   drawText(ctx, jotting.text, 8, 8, c.width - 20 * ratio, ratio);
