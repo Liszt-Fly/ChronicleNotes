@@ -3,7 +3,7 @@
     <el-row justify="center" :gutter="20">
       <el-col :span="8">
         <div class="welcome">
-          <h1>{{ $t("setting.info.welcome") }}</h1>
+          <h1>{{ $t("setting.info.welcome") }} 🪸</h1>
         </div>
       </el-col>
       <el-col :span="16">
@@ -30,34 +30,33 @@
 
           <el-scrollbar height="60vh">
             <el-card class="panel" shadow="never" v-for="(workspace, i) of config.workspaces" :key="workspace.name">
-              <el-row>
-                <el-col :span="14">
-                  <h3>
-                    {{ workspace.name }}
-                  </h3>
-                </el-col>
+              <div>
+                <h3>
+                  <el-tag effect="dark">
+                    {{ workspace.name[0] }}
+                  </el-tag>
+                  {{ workspace.name }}
+                </h3>
 
-                <el-col :span="10">
-                  <el-button-group>
-                    <el-tooltip :content="$t('workspace.enter_workspace')" placement="bottom" effect="customized"
-                      :hide-after=0>
-                      <el-button text @click="enter_workspace(workspace)">
-                        <i class="bi bi-arrow-right-square"></i>
-                      </el-button>
-                    </el-tooltip>
+                <el-button-group>
+                  <el-tooltip :content="$t('workspace.enter_workspace')" placement="bottom" effect="customized"
+                    :hide-after=0>
+                    <el-button text @click="enter_workspace(workspace)">
+                      <i class="bi bi-arrow-right-square"></i>
+                    </el-button>
+                  </el-tooltip>
 
-                    <el-tooltip :content="$t('workspace.remove_workspace')" placement="bottom" effect="customized"
-                      :hide-after=0>
-                      <el-button text @click.stop="remove_workspace(i)" type="danger">
-                        <i class="bi bi-eraser"></i>
-                      </el-button>
-                    </el-tooltip>
-                  </el-button-group>
-                </el-col>
-              </el-row>
+                  <el-tooltip :content="$t('workspace.remove_workspace')" placement="bottom" effect="customized"
+                    :hide-after=0>
+                    <el-button text @click.stop="remove_workspace(i)" type="danger">
+                      <i class="bi bi-eraser"></i>
+                    </el-button>
+                  </el-tooltip>
+                </el-button-group>
+              </div>
 
               <div class="workspace-info">
-                <el-skeleton :rows="2" animated />
+                <el-skeleton :rows="3" animated />
               </div>
             </el-card>
           </el-scrollbar>
@@ -149,6 +148,10 @@ const createWorkspace = () => {
       flex-direction: column;
       margin: 20px;
 
+      .el-input {
+        height: 54px;
+      }
+
       .container {
         overflow: scroll;
         margin-top: 100px;
@@ -177,10 +180,29 @@ const createWorkspace = () => {
 
     .panel {
       margin: 10px 20px;
-      height: 72px;
+      height: 52px;
+
+      .el-card__body {
+        padding: 12px;
+      }
 
       h3 {
         margin-bottom: 20px;
+        width: calc(100% - 90px);
+        display: inline-block;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+        .el-tag {
+          position: relative;
+          bottom: 2px;
+        }
+      }
+
+      .el-button-group {
+        position: absolute;
+        float: right;
       }
 
       .workspace-info {
