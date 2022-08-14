@@ -14,7 +14,7 @@ import uploader from "./uploadPlugin"
 
 import "@/theme/milk.scss"
 
-const nord = getNord(!theme)
+const nord = getNord(theme == "dark")
 
 export default function getPlugins(): MilkdownPlugin[] {
     return [nord, ...gfm, prism, ...indent, ...emoji, ...math, ...slash, ...history, ...uploader]

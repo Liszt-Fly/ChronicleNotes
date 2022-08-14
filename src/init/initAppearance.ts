@@ -64,7 +64,7 @@ export const initAppearance = () => {
 
 	let globalStyle = document.createElement('style');
 	globalStyle.innerText = `
-		html.${appearance.theme ? "light" : "dark"} {
+		html.${appearance.theme} {
 			--el-color-primary: ${color};
 			--pi-global-en-font: ${global_en_font};
 			--pi-global-cn-font: ${global_cn_font};
@@ -94,5 +94,5 @@ export const initAppearance = () => {
 	`
 	head.appendChild(globalStyle);
 
-	document.getElementsByTagName("html")[0].className = appearance.theme ? "light" : "dark"
+	document.getElementsByTagName("html")[0].className = appearance.theme
 }

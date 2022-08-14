@@ -78,7 +78,8 @@ const formatParagraphSpaceTip = (val: number) => {
         <template #label>
           <i class="bi bi-brightness-alt-high"></i> {{ $t('setting.appearance.theme') }}
         </template>
-        <el-switch v-model="appearance.theme" :inactive-icon="Moon" :active-icon="Sunny" inline-prompt />
+        <el-switch v-model="appearance.theme" :active-icon="Moon" :inactive-icon="Sunny" inline-prompt
+          active-value="dark" inactive-value="light" />
       </el-form-item>
       <el-form-item>
         <template #label>

@@ -147,5 +147,9 @@ export const en =
             global_search: "Global Search",
             replace: "Replace"
         }
+    },
+    workspace: {
+        new_workspace: "Create New Workspace",
+        remove_workspace: "Remove A Workspace"
     }
 }

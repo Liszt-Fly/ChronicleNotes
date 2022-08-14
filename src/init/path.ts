@@ -7,9 +7,19 @@ const fs = require("fs-extra")
 
 let bPackaged = getGlobal("sharedObject").bPackaged;
 
-export let app_config_path: Ref<string> = ref(bPackaged ? resolve(__dirname, "config", ".pi") : resolve("public", "config", ".pi"))
+export let app_config_path: string = bPackaged ? resolve(__dirname, "config", ".pi") : resolve("public", "config", ".pi")
+let app_config = fs.readJsonSync(app_config_path)
 
-export let piUserPath: Ref<string> = ref(bPackaged ? getGlobal("sharedObject").defaultPath : resolve("public", "template"))
+export let piUserPath: Ref<string> = ref("")
+
+if (app_config.recent != "") {
+    piUserPath.value = app_config.recent.path
+}
+else {
+    piUserPath.value = resolve("public", "template")
+}
+
+console.log(piUserPath.value);
 
 export let jottings_path: Ref<string> = ref(resolve(piUserPath.value, "jottings"))
 export let assets_path: Ref<string> = ref(resolve(piUserPath.value, "assets"))
@@ -25,32 +35,33 @@ export let generalFile: Ref<string> = ref(resolve(config_path.value, "pi.general
 export let generalFileDefault: Ref<string> = ref(resolve(config_path.value, "pi.general.default.json")
 )
 
+let pi_files = ref([piUserPath, appearanceFile, shortcutFile, shortcutFileDefault, generalFile, generalFileDefault, jottings_path, assets_path])
+
 const updatePath = () => {
-    jottings_path = ref(resolve(piUserPath.value, "jottings"))
-    assets_path = ref(resolve(piUserPath.value, "assets"))
-    config_path = ref(resolve(piUserPath.value, "config"))
-    app_config_path = ref(bPackaged ? resolve(__dirname, "config", ".pi") : resolve("public", "config", ".pi"))
-    appearanceFile = ref(resolve(config_path.value, "pi.appearance.json"))
-    shortcutFile = ref(resolve(config_path.value, "pi.shortcut.json"))
-    shortcutFileDefault = ref(resolve(config_path.value, "pi.shortcut.default.json"))
-    generalFile = ref(resolve(config_path.value, "pi.general.json"))
-    generalFileDefault = ref(resolve(config_path.value, "pi.general.default.json"))
+    jottings_path.value = resolve(piUserPath.value, "jottings")
+    assets_path.value = resolve(piUserPath.value, "assets")
+    config_path.value = resolve(piUserPath.value, "config")
+
+    appearanceFile.value = resolve(config_path.value, "pi.appearance.json")
+    appearanceFileDefault.value = resolve(config_path.value, "pi.appearance.default.json")
+    shortcutFile.value = resolve(config_path.value, "pi.shortcut.json")
+    shortcutFileDefault.value = resolve(config_path.value, "pi.shortcut.default.json")
+    generalFile.value = resolve(config_path.value, "pi.general.json")
+    generalFileDefault.value = resolve(config_path.value, "pi.general.default.json")
+
+    console.log(pi_files)
 }
 
-let fArray = ref([piUserPath, appearanceFile, shortcutFile, shortcutFileDefault, generalFile, generalFileDefault, jottings_path, assets_path])
-
 export const fresh = (mode: PIMODE) => {
-    console.log('mode', mode)
     let folder = mode == PIMODE.DEVELOPMENT ? "public" : __dirname
     updatePath()
-
 
     fs.ensureDir(piUserPath.value)
     fs.ensureDir(config_path.value)
     fs.ensureDir(jottings_path.value)
     fs.ensureDir(assets_path.value)
 
-    if (!fArray.value.every(e => fs.existsSync(e))) {
+    if (!pi_files.value.every(e => fs.existsSync(e))) {
         let template_assets_path = resolve(folder, "template", "assets")
         let assets = fs.readdirSync(template_assets_path)
 

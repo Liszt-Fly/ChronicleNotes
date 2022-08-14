@@ -1,9 +1,5 @@
 import { appearanceFile, generalFile, shortcutFile } from "@/init/path";
-import { getGlobal } from "@electron/remote";
-
 const fs = require("fs-extra")
-
-let bPackaged = getGlobal("sharedObject").bPackaged;
 
 export let appearance = fs.readJsonSync(appearanceFile.value)
 

@@ -92,7 +92,7 @@ export const cn =
             add_workspace: "添加工作区",
             open: "启动时",
             lastOpenFile: "上一次打开的工作区",
-            chooseWorkspace: "选择工作区",
+            chooseWorkspace: "选择工作区页面",
             tooltips: "提示",
             dev_tools: "开发者工具",
             autosave: "自动保存",
@@ -147,5 +147,9 @@ export const cn =
             global_search: "全局搜索",
             replace: "替换"
         }
+    },
+    workspace: {
+        new_workspace: "创建工作区",
+        remove_workspace: "移除工作区"
     }
 }

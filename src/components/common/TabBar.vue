@@ -46,13 +46,13 @@ import { SettingPage } from "@/data/configdb"
         </el-tooltip> -->
       </div>
       <div class="sub-tab">
-        <el-tooltip :content="$t('tab.workspace')" placement="right" effect="customized" :hide-after=0>
+        <!-- <el-tooltip :content="$t('tab.workspace')" placement="right" effect="customized" :hide-after=0>
           <div class="tab-item" id="workspace">
             <router-link to="/WorkSpace">
               <i class="bi bi-collection"></i>
             </router-link>
           </div>
-        </el-tooltip>
+        </el-tooltip> -->
 
         <el-tooltip :content="$t('tab.setting')" placement="right" effect="customized" :hide-after=0>
           <div class="tab-item" id="setting">
