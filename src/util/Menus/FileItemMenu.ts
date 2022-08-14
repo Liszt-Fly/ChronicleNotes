@@ -16,7 +16,6 @@ export const FolderMenu: MenuItemConstructorOptions[] = [
     },
     {
         label: i18n.global.t('editor.menu.rename'), click: function () {
-            console.log(fTree.value!.currentFileNode.data);
             fTree.value!.currentFileNode.data.rename!(fTree.value!.currentFileNode.data.nameBox!)
         }
     },

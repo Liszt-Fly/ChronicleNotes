@@ -3,7 +3,7 @@ import { currentFile, openFiles, fTree } from "@/data/configdb";
 import { piUserPath } from "@/util/init/initPath";
 import { fileNode } from "@/util/FileTree/fileNode";
 import { NodeType } from "@/util/FileTree/type";
-import { FileMenu, FolderMenu } from "@/util/Menus/FileListMenu";
+import { FileMenu, FolderMenu } from "@/util/Menus/FileItemMenu";
 import { setCurrentFileNode, validateFilename } from "@/util/Helper";
 
 import { reactive, ref } from 'vue'
@@ -12,7 +12,7 @@ import { Menu } from "@electron/remote";
 import { MenuItem } from "@electron/remote";
 
 import path from "path"
-const fsp = require("fs-extra")
+const fs = require("fs-extra")
 
 const props = defineProps({
   file: fileNode,
@@ -102,7 +102,7 @@ const drop = (e: DragEvent) => {
   if (props.file!.type == NodeType.FOLDER) {
 
     //* 进行文件操作
-    fsp.copySync(node.path, path.resolve(props.file!.path, node.name))
+    fs.copySync(node.path, path.resolve(props.file!.path, node.name))
     //* 生成一个node
     let generatedNode = new fileNode(path.resolve(props.file!.path, node.name), node.name)
     generatedNode.parent = props.file!
@@ -115,7 +115,7 @@ const drop = (e: DragEvent) => {
     //* 开展寻根行动
     let parent = props.file!.parent!
     //* 进行文件操作
-    fsp.copySync(node.path, path.resolve(parent.path, node.name))
+    fs.copySync(node.path, path.resolve(parent.path, node.name))
     //* 生成一个node
     let generatedNode = new fileNode(path.resolve(parent.path, node.name), node.name)
     generatedNode.parent = parent

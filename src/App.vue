@@ -3,6 +3,19 @@ import ControlBar from "@/components/common/ControlBar/ControlBar.vue";
 import TabBar from "@/components/common/TabBar.vue";
 import Welcome from "@/views/Welcome.vue"
 import { chooseWorkspace } from "@/data/configdb"
+import { app_config_path, general_config_path } from "@/util/init/initPath"
+import { Ref, ref } from "vue";
+import { enter_workspace } from "@/util/workspace/workspace"
+
+const fs = require("fs-extra")
+
+const openWith = fs.readJSONSync(general_config_path).openWith
+let config: Ref<appConfig> = ref(fs.readJSONSync(app_config_path))
+
+if (openWith == "LastOpenedWorkspace" && config.value.recent != null) {
+  const recent_workspace = config.value.recent
+  enter_workspace(recent_workspace)
+}
 
 </script>
 

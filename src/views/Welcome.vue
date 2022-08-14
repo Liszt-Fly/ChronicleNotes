@@ -13,11 +13,13 @@
             <div class="add">
               <el-row justify="center" :gutter="20">
                 <el-col :span="24">
-                  <el-input :placeholder="$t('workspace.new_workspace_name')" v-model="name">
+                  <el-input :placeholder="$t('workspace.new_workspace_name')" v-model="workspaceName">
                     <template #append>
                       <el-tooltip :content="$t('workspace.add_workspace')" placement="bottom" effect="customized"
                         :hide-after=0>
-                        <el-button class="button" @click="createWorkspace" :icon="Plus"></el-button>
+                        <el-button class="button" @click="createWorkspace(workspaceName)">
+                          <i class="bi bi-plus-lg"></i>
+                        </el-button>
                       </el-tooltip>
                     </template>
                   </el-input>
@@ -67,58 +69,11 @@
 </template>
 
 <script lang="ts" setup>
-import { Plus } from '@element-plus/icons-vue'
-import { Ref, ref } from "vue";
-import { dialog, getGlobal } from "@electron/remote";
-import { app_config_path, freshWorkspace, piUserPath, initWorkspace } from "@/util/init/initPath";
-import { chooseWorkspace } from "@/data/configdb";
-import { PIMODE } from "@/util/types/enums";
+import { ref, Ref } from "vue";
+import { enter_workspace, remove_workspace, createWorkspace } from "@/util/workspace/workspace"
+import { config } from "@/data/configdb";
 
-import path from 'path';
-import router from '@/router';
-const fsp = require("fs-extra");
-
-let filename = ref("");
-let name = ref("")
-let config: Ref<appConfig> = ref(fsp.readJSONSync(app_config_path))
-
-const enter_workspace = (ws: workspace) => {
-  piUserPath.value = ws.path
-  freshWorkspace();
-  chooseWorkspace.value = true
-  config.value.recent = ws
-  fsp.writeJSONSync(app_config_path, config.value)
-  router.push("/Editor")
-}
-
-const remove_workspace = (i: number) => {
-  config.value.workspaces.splice(i, 1)
-  fsp.writeJSONSync(app_config_path, config.value)
-}
-
-const createWorkspace = () => {
-  dialog.showOpenDialog({ properties: ["openDirectory"] }).then((v) => {
-    if (v.canceled) {
-      return;
-    }
-
-    filename.value = v.filePaths[0];
-    let ws = path.resolve(filename.value, name.value)
-    fsp.ensureDir(ws)
-
-    let workspace: workspace = {
-      name: name.value,
-      totalWorktime: "0",
-      createdDate: new Date().getTime().toString(),
-      modifiedDate: new Date().getTime().toString(),
-      path: ws
-    }
-    config.value.workspaces.push(workspace)
-
-    enter_workspace(workspace)
-    initWorkspace(getGlobal("sharedObject").bPackaged ? PIMODE.PRODUCTION : PIMODE.DEVELOPMENT)
-  });
-};
+let workspaceName: Ref<string> = ref("")
 </script>
 
 <style lang="scss">

@@ -1,4 +1,4 @@
-const fsp = require("fs-extra")
+const fs = require("fs-extra")
 import path from "path";
 import { piUserPath } from "@/util/init/initPath";
 import { fileNode } from "@/util/fileTree/fileNode";
@@ -6,8 +6,8 @@ import { fileTree } from "@/util/fileTree/fileTree";
 import { trashBin } from "@/data/configdb";
 
 let initTrashBin = () => {
-    if (!fsp.existsSync(path.resolve(piUserPath.value, ".trash"))) {
-        fsp.mkdirSync(path.resolve(piUserPath.value, ".trash"))
+    if (!fs.existsSync(path.resolve(piUserPath.value, ".trash"))) {
+        fs.mkdirSync(path.resolve(piUserPath.value, ".trash"))
     }
     let trashRoot = new fileNode(path.resolve(piUserPath.value, ".trash"), ".trash")
     trashBin.value = new fileTree(trashRoot)

@@ -9,10 +9,9 @@ interface workspace {
     modifiedDate: string
     path: string
     totalWorktime: string
-
 }
 
 interface appConfig {
     workspaces: workspace[],
-    recent: workspace
+    recent: workspace | null
 }

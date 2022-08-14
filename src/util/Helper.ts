@@ -5,7 +5,7 @@ import { fileNode } from "@/util/fileTree/fileNode";
 import { fTree } from "@/data/configdb";
 import path from "path";
 
-const fsp = require("fs-extra")
+const fs = require("fs-extra")
 
 function getDefaultName(type: NodeType): string {
     return type == NodeType.FOLDER ? "笔记本" : "笔记"
@@ -15,13 +15,13 @@ function getDefaultName(type: NodeType): string {
 export function getValidNumber(basePath: string, index: number, type: NodeType): number {
     //* 如果是文件夹
     if (type == NodeType.FOLDER) {
-        if (fsp.existsSync(path.resolve(basePath, getDefaultName(type) + index.toString()))) {
+        if (fs.existsSync(path.resolve(basePath, getDefaultName(type) + index.toString()))) {
             return getValidNumber(basePath, index + 1, type)
         }
     }
     //* 如果是文件
     else if (type == NodeType.FILE) {
-        if (fsp.existsSync(path.resolve(basePath, getDefaultName(type) + index.toString()) + ".md")) {
+        if (fs.existsSync(path.resolve(basePath, getDefaultName(type) + index.toString()) + ".md")) {
             return getValidNumber(basePath, index + 1, type)
         }
     }
