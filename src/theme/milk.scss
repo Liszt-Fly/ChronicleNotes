@@ -1,10 +1,11 @@
 .milkdown {
   font-family: var(--pi-global-font) !important;
   overflow-x: hidden !important;
+  word-wrap: normal !important;
 
-  .editor > * {
+  .editor>* {
     margin: 10px 0 !important;
-    word-break: break-all;
+    // word-break: break-all;
   }
 
   .editor {
@@ -19,17 +20,17 @@
 
     h1 {
       font-size: 2rem !important;
-      border-bottom: 1px #eee solid !important ;
+      border-bottom: 1px #eee solid !important;
     }
 
     h2 {
       font-size: 1.8rem !important;
-      border-bottom: 1px #eee solid !important ;
+      border-bottom: 1px #eee solid !important;
     }
 
     h3 {
       font-size: 1.6rem !important;
-      border-bottom: 1px #eee solid !important ;
+      border-bottom: 1px #eee solid !important;
     }
 
     h4 {
