@@ -1,9 +1,10 @@
 # 🕛 CHANGELOG
 
-- [v0.1.0](#v010)
-- [FIXME](#fixme)
-- [Next Version](#next-version)
-- [Future](#future)
+- [🕛 CHANGELOG](#-changelog)
+  - [v0.1.0](#v010)
+  - [FIXME](#fixme)
+  - [Next Version](#next-version)
+  - [Future](#future)
 
 ## v0.1.0
 
@@ -28,6 +29,7 @@
 - 工作区：使用时间报表；奖章等
 - 设置：选择打开时模式【上次打开的文件或工作台】；自定义快捷键；
 - 其他：打包后 components 图片路径问题
+- Env 环境变量配置
 
 ## Future
 
