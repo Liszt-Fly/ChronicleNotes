@@ -50,7 +50,7 @@
       <div class="add">
         <el-row justify="center" :gutter="20">
           <el-col :span="24">
-            <el-input placeholder="请先完成工作区命名再添加工作区" v-model="name">
+            <el-input placeholder="请先完成工作区命名再添加" v-model="name">
               <template #append>
                 <el-button class="button" @click="click" :icon="Plus"></el-button>
               </template>
@@ -64,17 +64,18 @@
       </div>
 
       <div class="container">
-        <template v-for="(workspace, i) of workspaceExamples" :key="workspace.name">
-          <div class="workspace-button" @click="go">
+        <template v-for="(workspace, i) of config.workspaces" :key="workspace.name">
+          <div @click="go(workspace)"
+            :class="[' workspace-button', { 'recent': config.recent.path == workspace.path }]">
 
             <div class="button-container">
               <el-icon style="margin-right:10px;">
                 <Files />
               </el-icon>
-              <span>{{ workspace.name }}</span>
+              <span>{{ workspace.name }} </span>
 
             </div>
-            <div class="icon" @click="close(i)">
+            <div class="icon" @click.stop="close(i)">
               <el-icon>
                 <Close />
               </el-icon>
@@ -88,11 +89,10 @@
 
 <script lang="ts" setup>
 import { Plus } from '@element-plus/icons-vue'
-import { ref } from "vue";
+import { onMounted, Ref, ref } from "vue";
 import { reactive } from "vue";
 import { dialog } from "@electron/remote";
 import { fresh, piUserPath } from "@/init/path";
-
 import { chooseWorkspace } from "@/data/configdb";
 import { PIMODE } from "@/types/enums";
 import { app_config_path } from "@/init/path";
@@ -104,44 +104,51 @@ import router from '@/router';
 const fsp = require("fs-extra");
 let filename = ref("");
 let name = ref("")
-const go = () => {
+let config: Ref<appConfig> = ref(fsp.readJSONSync(app_config_path.value))
+
+const go = (ws: workspace) => {
+  piUserPath.value = ws.path
+  fresh(PIMODE.DEVELOPMENT);
   chooseWorkspace.value = true
+  config.value.recent = ws
+  fsp.writeJSONSync(app_config_path.value, config.value)
+
 }
 const close = (i: number) => {
-  workspaceExamples.splice(i, 1)
+  config.value.workspaces.splice(i, 1)
 }
 const value = ref("123123");
 const info = reactive({});
-const workspaceExamples = reactive([
-  {
-    name: "抽象代数",
-    totalWorktime: "0",
-    createdDate: new Date().getTime().toString(),
-    modifiedDate: new Date().getTime().toString(),
-    path: ""
-  },
-  {
-    name: "汉语言文学",
-    totalWorktime: "0",
-    createdDate: new Date().getTime().toString(),
-    modifiedDate: new Date().getTime().toString(),
-    path: ""
-  },
-  {
-    name: "食品科学",
-    totalWorktime: "0",
-    createdDate: new Date().getTime().toString(),
-    modifiedDate: new Date().getTime().toString(),
-    path: ""
-  },
-  {
-    name: "软件工程",
-    totalWorktime: "0",
-    createdDate: new Date().getTime().toString(),
-    modifiedDate: new Date().getTime().toString(),
-    path: ""
-  }
-])
+// const workspaceExamples = reactive([
+//   {
+//     name: "抽象代数",
+//     totalWorktime: "0",
+//     createdDate: new Date().getTime().toString(),
+//     modifiedDate: new Date().getTime().toString(),
+//     path: ""
+//   },
+//   {
+//     name: "汉语言文学",
+//     totalWorktime: "0",
+//     createdDate: new Date().getTime().toString(),
+//     modifiedDate: new Date().getTime().toString(),
+//     path: ""
+//   },
+//   {
+//     name: "食品科学",
+//     totalWorktime: "0",
+//     createdDate: new Date().getTime().toString(),
+//     modifiedDate: new Date().getTime().toString(),
+//     path: ""
+//   },
+//   {
+//     name: "软件工程",
+//     totalWorktime: "0",
+//     createdDate: new Date().getTime().toString(),
+//     modifiedDate: new Date().getTime().toString(),
+//     path: ""
+//   }
+// ])
 const createWorkspace = (name: string, path: string) => {
   let workspace: workspace = {
     name,
@@ -150,7 +157,7 @@ const createWorkspace = (name: string, path: string) => {
     modifiedDate: new Date().getTime().toString(),
     path
   }
-  workspaceExamples.push(workspace)
+  config.value.workspaces.push(workspace)
   return workspace
 }
 const click = () => {
@@ -166,10 +173,8 @@ const click = () => {
     let space = createWorkspace(name.value, ws)
     // chooseWorkspace.value = true;
 
-    let config = fsp.readJSONSync(app_config_path.value);
-    config.workspaces.push(space);
     //TODO 设置最近的workspace
-    fsp.writeJSONSync(app_config_path.value, config)
+    fsp.writeJSONSync(app_config_path.value, config.value)
     fresh(PIMODE.DEVELOPMENT);
   });
 };
@@ -211,10 +216,11 @@ const click = () => {
     padding: 2rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+
     flex: 4;
 
     .container {
+      overflow: scroll;
       margin-top: 100px;
       width: 100%;
       padding-top: 0.1rem;
@@ -251,5 +257,10 @@ const click = () => {
 
     }
   }
+}
+
+.recent {
+  background-color: #1abc9c;
+  color: #fff;
 }
 </style>
