@@ -7,7 +7,9 @@ const fs = require("fs-extra")
 
 let bPackaged = getGlobal("sharedObject").bPackaged;
 
-export let config_path: string = bPackaged ? resolve(__dirname, "config") : resolve("public", "config")
+// config
+
+export let config_path: string = bPackaged ? getGlobal("sharedObject").defaultPath : resolve("public", "config")
 export let app_config_path: string = resolve(config_path, ".pi")
 export let appearance_config_path: string = resolve(config_path, ".appearance.pi")
 export let appearance_config_path_default: string = resolve(config_path, ".appearance.default.pi")
@@ -17,6 +19,18 @@ export let general_config_path: string = resolve(config_path, ".general.pi")
 export let general_config_path_default: string = resolve(config_path, ".general.default.pi")
 
 let app_config = fs.readJsonSync(app_config_path)
+
+if (bPackaged) {
+    if (!fs.existsSync(app_config_path)) {
+        let pi_config_path = resolve(__dirname, "config")
+        let configs = fs.readdirSync(config_path)
+        for (const i in configs) {
+            fs.outputFileSync(resolve(config_path, configs[i]), fs.readFileSync(resolve(pi_config_path, configs[i])))
+        }
+    }
+}
+
+// data
 
 export let piUserPath: Ref<string> = ref(app_config.recent != "" ? app_config.recent.path : resolve("public", "template"))
 export let jottings_path: Ref<string> = ref(resolve(piUserPath.value, "jottings"))
@@ -32,17 +46,13 @@ export const initWorkspace = (mode: PIMODE) => {
 
     let template_assets_path = resolve(folder, "template", "assets")
     let assets = fs.readdirSync(template_assets_path)
-
     for (const i in assets) {
         fs.outputFileSync(resolve(assets_path.value, assets[i]), fs.readFileSync(resolve(template_assets_path, assets[i])))
     }
 
     let template_jottings_path = resolve(folder, "template", "jottings")
     let jottings = fs.readdirSync(template_jottings_path)
-
     for (const i in jottings) {
         fs.outputFileSync(resolve(jottings_path.value, jottings[i]), fs.readFileSync(resolve(template_jottings_path, jottings[i])))
     }
 }
-
-

@@ -1,7 +1,7 @@
 # 🕛 CHANGELOG
 
 - [v0.1.0](#v010)
-- [FIXME](#fixme)
+- [FIXME: TODO:](#fixme-todo)
 - [Next Version](#next-version)
 - [Future](#future)
 
@@ -22,25 +22,45 @@
   - 欢迎
   - 通用：语言、开发者工具、提示、工作区
   - 外观：主题、主题色、走马灯；英文字体、中文字体、代码块字体；行宽、行高、段间距
-- 工作区
-  - 创建工作区
-  - 选择工作区
 
-## FIXME
+## FIXME: TODO:
 
-- 编辑器：打开上次关闭应用时的文件
-- 其他：介绍页面、发布网站文档【[typora](https://www.typora.io/)、[CuteMarkEd](https://cloose.github.io/CuteMarkEd/)、[cmd](https://www.zybuluo.com/cmd/)、[macdown](https://macdown.uranusjr.com/)】
+- 编辑器
+  - 打开上次关闭时的文件
+- 设置
+  - 工作区：选择打开时模式【上次打开的文件或工作区】
+- 其他
+  - 介绍页面、发布网站文档【[typora](https://www.typora.io/)、[CuteMarkEd](https://cloose.github.io/CuteMarkEd/)、[cmd](https://www.zybuluo.com/cmd/)、[macdown](https://macdown.uranusjr.com/)】
+  - 打包后 maximise 和 minimize
 
 ## Next Version
 
-- 编辑器：milkdown 图片路径设置；复制 markdown
-- 工作区：使用时间报表；奖章等
-- 设置：选择打开时模式【上次打开的文件或工作区】；自定义快捷键；
-- 其他：打包后 components 图片路径问题
+- 文件系统
+  - 打开多文件
+- 编辑器
+  - milkdown 图片路径设置
+  - 复制 markdown
+  - 字数统计
+- 工作区
+  - 使用时间报表
+- 设置
+  - 自定义快捷键；
+- 其他
+  - 打包后 components 图片路径问题
 
 ## Future
 
-- 文件系统：收藏；锁【加锁、解锁】；导出为 PDF；git 式增量自动保存/历史记录
-- 编辑器：字数统计；
-- 流页面：排序【创建日期、修改日期、标题】；跳转到编辑器展开；跳转到随想；全局搜索
-- 废纸篓：自动删除；复原；平展模式
+- 文件系统
+  - 收藏
+  - 锁
+  - 导出为 PDF
+  - git 式增量自动保存/历史记录
+- 流页面
+  - 排序【创建日期、修改日期、标题】
+  - 跳转到编辑器展开
+  - 跳转到随想
+  - 全局搜索
+- 废纸篓
+  - 一周自动删除
+  - 复原
+  - 平展模式
