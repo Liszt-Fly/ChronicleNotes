@@ -9,7 +9,10 @@ rmSync('dist', { recursive: true, force: true }) // v14.14.0
 // https://vitejs.dev/config/
 export default defineConfig({
   resolve: {
-    alias: { "@": resolve(__dirname, "src") }
+    alias: {
+      "@": resolve(__dirname, "src"),
+      'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js'
+    }
   },
   plugins: [
     vue(),

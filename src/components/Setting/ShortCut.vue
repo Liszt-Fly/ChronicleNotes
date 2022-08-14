@@ -320,6 +320,7 @@ const readSetting = (shortcutFile: string) => {
   try {
     const data = fs.readJsonSync(shortcutFile)
     for (let key in data) {
+      // @ts-ignore
       shortcut[key] = data[key]
     }
   } catch {
@@ -336,7 +337,7 @@ const restoreDefault = () => {
 }
 
 onMounted(() => {
-  readSetting(shortcutFile)
+  readSetting(shortcutFile.value)
   watch(shortcut, () => {
     saveSetting()
   })

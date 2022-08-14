@@ -14,7 +14,7 @@ import path from "path"
 const fsp = require("fs-extra")
 
 const props = defineProps({
-  file: Object as () => fileNode,
+  file: fileNode,
 });
 
 const router = useRouter();
@@ -67,8 +67,6 @@ function enter(event: KeyboardEvent | FocusEvent) {
   let target = event.target as HTMLSpanElement;
   props.file!.rename(nameBox.value!.innerText)
   target.contentEditable = "false"
-  console.log('触发 ',)
-
 }
 
 // 右键菜单
@@ -124,6 +122,7 @@ const drop = (e: DragEvent) => {
     node.removeSelf()
   }
 }
+
 const startDrag = (e: DragEvent) => {
   e.dataTransfer?.setData("path", props.file!.path)
 }
@@ -134,15 +133,14 @@ const getEmoji = (str: string) => {
     return group[0]
   else return false
 }
-
 </script>
 
 <template>
 
   <div class="folder" v-if="file" ref="fileDom"
-    @contextmenu.stop.prevent="setCurrentFileNode(props.file, renameNote, nameBox); showMenu()">
+    @contextmenu.stop.prevent="setCurrentFileNode(props.file!, renameNote, nameBox!); showMenu()">
     <div class="item" tabindex="1" draggable="true" @dragover.prevent @drop="drop($event)"
-      @dragstart="startDrag($event)" @click="toggleSubFolder($event, file); openFile($event, file)"
+      @dragstart="startDrag($event)" @click="toggleSubFolder($event, file!); openFile($event, file!)"
       :data-path="file.path" v-if="validateFilename(file.name)" :class="[{ 'clicked': file.path === currentFile }]">
 
       <i class="bi bi-file-earmark-text" v-show="!getEmoji(file.name) && file.type === NodeType.FILE"></i>
@@ -150,7 +148,7 @@ const getEmoji = (str: string) => {
 
       <span ref="nameBox" @keydown.enter.prevent="enter($event)" :class="getEmoji(file.name) ? 'emoji' : ''"
         :data-emoji="getEmoji(file.name) ? getEmoji(file.name) : ''" @blur="enter($event)">
-        {{ getEmoji(file.name) ? validateFilename(file.name).slice(2) : validateFilename(file.name) }}
+        {{ getEmoji(file.name) ? validateFilename(file.name)!.slice(2) : validateFilename(file.name) }}
 
       </span>
     </div>
@@ -158,8 +156,6 @@ const getEmoji = (str: string) => {
       <file-list :files="file.children" :file="f" v-for="f in file.children" :key="f.path"></file-list>
     </div>
   </div>
-
-
 </template>
 
 <style scoped>

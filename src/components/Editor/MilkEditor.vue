@@ -6,7 +6,7 @@
 import plugins from "./plugins"
 import { Editor, rootCtx, defaultValueCtx, editorView, editorStateCtx } from "@milkdown/core";
 import { Ctx, editorViewCtx, serializerCtx } from '@milkdown/core';
-import { VueEditor, useEditor } from "@milkdown/vue";
+import { VueEditor, useEditor, EditorInfo, UseEditorReturn } from "@milkdown/vue";
 import { onMounted, watch } from "vue";
 import '@milkdown/utils'
 import { replaceAll, toggleFile } from "@/components/Editor/utils/toggleFile";
@@ -26,22 +26,24 @@ const save = (event: KeyboardEvent) => {
   }
 }
 
-const editor = useEditor((root) =>
+const editor: EditorInfo = useEditor((root) =>
   milk = Editor.make()
     .config((ctx) => {
       ctx.set(rootCtx, root);
       ctx.set(defaultValueCtx, "");
     })
     .use(plugins())
-);
+) as unknown as EditorInfo
+
 watch(() => currentFile.value, (value, oldValue) => {
   console.log("change");
   milk.action(replaceAll(toggleFile(currentFile.value)))
 })
 </script>
+
 <script lang="ts">
 export default {
-  name: "Milkdown"
+  name: "Milkdown",
 }
 </script>
 

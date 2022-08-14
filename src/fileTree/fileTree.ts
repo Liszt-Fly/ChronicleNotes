@@ -1,7 +1,8 @@
 import { fileNode } from "./fileNode";
-const fs = require('fs-extra')
-import path from "path"
 import { NodeType } from "./type";
+import path from "path"
+const fs = require('fs-extra')
+
 export class fileTree {
     //* 文件树的根节点
     root: fileNode

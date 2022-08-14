@@ -1,6 +1,4 @@
-interface data{
-    rename?:(v:HTMLSpanElement)=>void,
-    nameBox?:HTMLSpanElement
+interface data {
+    rename?: (v: HTMLSpanElement) => void,
+    nameBox?: HTMLSpanElement
 }
-
-

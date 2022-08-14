@@ -12,6 +12,4 @@
 </script>
 
 <style>
-.trash {
-}
 </style>

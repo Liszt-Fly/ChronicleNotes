@@ -1,3 +1,3 @@
-export const initShortCut=()=>{
+export const initShortCut = () => {
 
 }
