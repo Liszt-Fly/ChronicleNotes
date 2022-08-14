@@ -1,10 +1,9 @@
 # 🕛 CHANGELOG
 
-- [🕛 CHANGELOG](#-changelog)
-  - [v0.1.0](#v010)
-  - [FIXME: TODO:](#fixme-todo)
-  - [Next Version](#next-version)
-  - [Future](#future)
+- [v0.1.0](#v010)
+- [FIXME: TODO:](#fixme-todo)
+- [Next Version](#next-version)
+- [Future](#future)
 
 ## v0.1.0
 
@@ -37,7 +36,7 @@
   - 打开多文件
 - 编辑器
   - milkdown 图片路径设置
-- 
+-
 - 工作区
   - 使用时间报表
 - 设置

@@ -12,9 +12,9 @@ const fs = require("fs-extra")
 const openWith = fs.readJSONSync(general_config_path).openWith
 let config: Ref<appConfig> = ref(fs.readJSONSync(app_config_path))
 
-if (openWith == "LastOpenedWorkspace" && config.value.recent != null) {
-  const recent_workspace = config.value.recent
-  enter_workspace(recent_workspace)
+if (openWith == "LastOpenedWorkspace" && config.value.recent != "") {
+  const recent_workspace = config.value.recent!
+  enter_workspace(recent_workspace as workspace)
 }
 
 </script>
@@ -44,5 +44,6 @@ if (openWith == "LastOpenedWorkspace" && config.value.recent != null) {
 <style lang="scss">
 .article {
   width: calc(100% - 48px);
+  padding: 0 6px;
 }
 </style>

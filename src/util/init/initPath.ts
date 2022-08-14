@@ -9,7 +9,6 @@ const fs = require("fs-extra")
 let bPackaged = getGlobal("sharedObject").bPackaged;
 
 // config
-
 export let config_path: string = bPackaged ? getGlobal("sharedObject").defaultPath : resolve("public", "config")
 export let app_config_path: string = resolve(config_path, ".pi")
 export let appearance_config_path: string = resolve(config_path, ".appearance.pi")
@@ -18,6 +17,7 @@ export let shortcut_config_path: string = resolve(config_path, ".shortcut.pi")
 export let shortcut_config_path_default: string = resolve(config_path, ".shortcut.default.pi")
 export let general_config_path: string = resolve(config_path, ".general.pi")
 export let general_config_path_default: string = resolve(config_path, ".general.default.pi")
+
 if (bPackaged) {
     if (!fs.existsSync(config_path)) {
         fs.mkdirSync(config_path)
@@ -31,13 +31,10 @@ if (bPackaged) {
     }
 }
 
-let app_config = fs.readJsonSync(app_config_path)
-
 // data
-
-export let piUserPath: Ref<string> = ref(app_config.recent != "" ? app_config.recent.path : resolve("public", "template"))
-export let jottings_path: Ref<string> = ref(resolve(piUserPath.value, "jottings"))
-export let assets_path: Ref<string> = ref(resolve(piUserPath.value, "assets"))
+export let piUserPath: Ref<string> = ref("")
+export let jottings_path: Ref<string> = ref("")
+export let assets_path: Ref<string> = ref("")
 
 export const freshWorkspace = () => {
     jottings_path.value = resolve(piUserPath.value, "jottings")
