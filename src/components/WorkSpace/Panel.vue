@@ -13,7 +13,7 @@ import { app_config_path } from "@/init/path"
 import { onMounted, reactive, watch } from "vue";
 const fs = require("fs-extra")
 
-let appConfig = reactive({
+let appConfig:appConfig = reactive({
   workspaces: []
 })
 
