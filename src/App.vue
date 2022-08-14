@@ -44,5 +44,6 @@ if (openWith == "LastOpenedWorkspace" && config.value.recent != "") {
 <style lang="scss">
 .article {
   width: calc(100% - 48px);
+  padding: 0 6px;
 }
 </style>

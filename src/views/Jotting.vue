@@ -261,6 +261,10 @@ onMounted(() => {
 <style lang="scss">
 .jotting {
   padding: 12px 20px;
+
+  .el-col {
+    height: 148px;
+  }
 }
 
 .jotting_card {
