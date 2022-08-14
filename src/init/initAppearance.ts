@@ -68,7 +68,7 @@ export const initAppearance = () => {
 			--el-color-primary: ${color};
 			--pi-global-en-font: ${global_en_font};
 			--pi-global-cn-font: ${global_cn_font};
-			--el-font-family: ${global_en_font}, ${global_cn_font};
+			--pi-global-font: ${global_en_font}, ${global_cn_font}, "NotoColorEmoji";
 			--pi-code-font: ${code_font};
 			--brand-height: 40px;
 			${primary_color};

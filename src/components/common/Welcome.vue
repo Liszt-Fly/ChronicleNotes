@@ -2,7 +2,7 @@
   <div class="info">
     <div class="welcome">
       <el-form label-width="180px" :model="info" label-position="left">
-        <h1>{{ $t("setting.info.welcome") }} <span class="icon">π</span> 🤗</h1>
+        <h1>{{ $t("setting.info.welcome") }}</h1>
         <!-- <img src="/img/success.svg" alt="success" /> -->
         <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -112,7 +112,6 @@ const click = () => {
       margin: 20px;
 
       .icon {
-        font-family: sans-serif;
         color: var(--pi-theme-color);
         font-size: 3rem;
         font-weight: bolder;
