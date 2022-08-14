@@ -42,10 +42,10 @@
             <i class="bi bi-dash-lg"></i>
           </el-button>
         </el-tooltip>
-        <el-tooltip :content="winMax ? $t('control.maximise') : $t('control.restore')" placement="bottom"
+        <el-tooltip :content="isWindowMax ? $t('control.maximise') : $t('control.restore')" placement="bottom"
           effect="customized" :hide-after=0>
           <el-button key="plain" text @click="maxRestoreWindow">
-            <i class="bi bi-square" v-if="winMax"></i>
+            <i class="bi bi-square" v-if="!isWindowMax"></i>
             <i class="bi bi-files" v-else style="transform: scaleX(1.3)"></i>
           </el-button>
         </el-tooltip>
@@ -65,19 +65,23 @@ import { chooseWorkspace } from "@/data/configdb"
 import { ipcRenderer } from 'electron'
 import { ref } from 'vue'
 
-let winMax = ref(true)
+let isWindowMax = ref(false)
 let sideBar = ref(true)
 const isMac = /macintosh|mac os x/i.test(navigator.userAgent);
 
 const minWindow = () => {
   ipcRenderer.send('min-app')
 }
+
 const closeWindow = () => {
   ipcRenderer.send('close-app')
 }
+
 const maxRestoreWindow = () => {
   ipcRenderer.send('window-max');
+  isWindowMax.value = !isWindowMax.value
 }
+
 const Refresh = () => {
   location.reload()
 }
@@ -85,13 +89,6 @@ const Refresh = () => {
 const ToggleDevTools = () => {
   ipcRenderer.send('devTools');
 }
-
-ipcRenderer.on('main-window-max', () => {
-  winMax.value = false
-});
-ipcRenderer.on('main-window-unmax', () => {
-  winMax.value = true
-});
 
 const ToggleSidebar = () => {
   sideBar.value = !sideBar.value

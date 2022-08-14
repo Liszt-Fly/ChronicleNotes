@@ -71,15 +71,6 @@ async function createWindow() {
     win.loadFile(indexHtml)
   } else {
     win.loadURL(url)
-    // win.webContents.openDevTools()
-
-    win!.on('maximize', function () {
-      win!.webContents.send('main-window-max');
-    })
-
-    win!.on('unmaximize', function () {
-      win!.webContents.send('main-window-unmax');
-    })
   }
   require("@electron/remote/main").enable(win.webContents)
   // Test actively push message to the Electron-Renderer
