@@ -1,5 +1,5 @@
 // 通用初始化
-import { general } from "@/init/data";
+import { general } from "@/data/data";
 
 export const initGeneral = () => {
 	const head = document.head || document.getElementsByTagName('head')[0];

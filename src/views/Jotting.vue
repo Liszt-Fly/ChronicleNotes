@@ -80,8 +80,7 @@
 </template>
 
 <script lang="ts" setup>
-import { jottings_path } from "@/init/path";
-import { assets_path } from "@/init/path";
+import { assets_path, jottings_path } from "@/util/init/initPath";
 import { onMounted, Ref, ref } from "vue";
 import { ElNotification } from "element-plus";
 import { i18n } from "@/plugins/I18n/index";

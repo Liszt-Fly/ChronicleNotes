@@ -11,7 +11,7 @@
 
 <script lang="ts" setup>
 import { openFiles, currentFile } from "@/data/configdb"
-import { piUserPath } from "@/init/path"
+import { piUserPath } from "@/util/init/initPath"
 import path from 'path'
 import router from "@/router";
 

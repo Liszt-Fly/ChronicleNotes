@@ -1,4 +1,4 @@
-import { PIMODE } from "@/types/enums";
+import { PIMODE } from "@/util/types/enums";
 import { getGlobal } from "@electron/remote";
 import { resolve } from "path";
 import { Ref, ref } from "vue";

@@ -1,4 +1,4 @@
-import { appearance_config_path, general_config_path, shortcut_config_path } from "@/init/path";
+import { appearance_config_path, general_config_path, shortcut_config_path } from "@/util/init/initPath";
 const fs = require("fs-extra")
 
 export let appearance = fs.readJsonSync(appearance_config_path)

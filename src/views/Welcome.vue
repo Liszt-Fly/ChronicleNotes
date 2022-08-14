@@ -71,10 +71,9 @@
 import { Plus } from '@element-plus/icons-vue'
 import { Ref, ref } from "vue";
 import { dialog, getGlobal } from "@electron/remote";
-import { freshWorkspace, piUserPath, initWorkspace } from "@/init/path";
+import { app_config_path, freshWorkspace, piUserPath, initWorkspace } from "@/util/init/initPath";
 import { chooseWorkspace } from "@/data/configdb";
-import { PIMODE } from "@/types/enums";
-import { app_config_path } from "@/init/path";
+import { PIMODE } from "@/util/types/enums";
 
 import path from 'path';
 import router from '@/router';

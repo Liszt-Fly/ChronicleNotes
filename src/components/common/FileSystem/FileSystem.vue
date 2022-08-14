@@ -1,18 +1,16 @@
 <script setup lang="ts">
-import path from "path";
 import { bClickedParent, currentFile, fTree, menuDisplay, openFiles } from "@/data/configdb";
-import { piUserPath } from "@/init/path";
-import FileList from "@/components/common/FileSystem/FileList.vue";
-import { fileTree } from "@/FileTree/fileTree";
-import { NodeType } from "@/FileTree/type";
+import { piUserPath } from "@/util/init/initPath";
+import { fileTree } from "@/util/FileTree/fileTree";
+import { NodeType } from "@/util/FileTree/type";
+import { fileNode } from "@/util/FileTree/fileNode";
+import { FileSystemMenu } from "@/util/Menus/FileSystemMenu";
+import { Menu, MenuItem } from "@electron/remote";
 import { onMounted, Ref, ref } from "vue";
-import { fileNode } from "@/FileTree/fileNode";
+
+import FileItem from "@/components/common/FileSystem/FileItem.vue";
 import router from "@/router/index";
-
-import { FileSystemMenu } from "@/Menus/FileSystemMenu";
-import { getGlobal, Menu, MenuItem } from "@electron/remote";
-// import {FileSystemMenu} from "@/Menus/FileSystemMenu";
-
+import path from "path";
 const fsp = require("fs-extra")
 
 let targetDom: Ref<null | HTMLElement> = ref(null);
@@ -36,6 +34,7 @@ const isRoot = (event: MouseEvent) => {
     menu.popup()
   }
 }
+
 const drop = (event: DragEvent) => {
   let filepath = event.dataTransfer?.getData("path") as string
   if (filepath == fTree.value!.root.path) return
@@ -58,8 +57,6 @@ const drop = (event: DragEvent) => {
 }
 
 onMounted(() => {
-
-
   fTree.value = new fileTree(
     new fileNode(path.resolve(piUserPath.value, "assets"), "assets")
   );
@@ -137,7 +134,7 @@ let menu_items = [
   <div class="file-system " ref="filesystem" @dragover.prevent @drop="drop($event)" @contextmenu="isRoot($event)">
     <el-scrollbar height="calc(100vh - var(--brand-height))" class="root">
       <template v-for="file in fTree?.tree.children" :key="file.path">
-        <file-list :file="file"></file-list>
+        <FileItem :file="file"></FileItem>
       </template>
       <div style="padding-bottom: 40px;"></div>
     </el-scrollbar>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref, watch } from 'vue'
-import { appearance_config_path, appearance_config_path_default } from "@/init/path"
+import { appearance_config_path, appearance_config_path_default } from "@/util/init/initPath"
 import { Sunny, Moon } from '@element-plus/icons-vue'
 const fs = require("fs-extra")
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref, watch } from 'vue'
-import { general_config_path, general_config_path_default } from "@/init/path"
+import { general_config_path, general_config_path_default } from "@/util/init/initPath"
 const fs = require("fs-extra")
 
 const restoreDialogVisible = ref(false)

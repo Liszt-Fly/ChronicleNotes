@@ -1,14 +1,15 @@
 <script setup lang="ts">
+import { currentFile, openFiles, fTree } from "@/data/configdb";
+import { piUserPath } from "@/util/init/initPath";
+import { fileNode } from "@/util/FileTree/fileNode";
+import { NodeType } from "@/util/FileTree/type";
+import { FileMenu, FolderMenu } from "@/util/Menus/FileListMenu";
+import { setCurrentFileNode, validateFilename } from "@/util/Helper";
+
 import { reactive, ref } from 'vue'
 import { useRouter } from "vue-router";
-import { setCurrentFileNode, validateFilename } from "@/helper/Helper";
-import { currentFile, openFiles, fTree } from "@/data/configdb";
-import { piUserPath } from "@/init/path";
-import { fileNode } from "@/FileTree/fileNode";
-import { NodeType } from "@/FileTree/type";
 import { Menu } from "@electron/remote";
 import { MenuItem } from "@electron/remote";
-import { FileMenu, FolderMenu } from "@/Menus/FileListMenu";
 
 import path from "path"
 const fsp = require("fs-extra")
@@ -153,7 +154,7 @@ const getEmoji = (str: string) => {
       </span>
     </div>
     <div class="subfolder" v-if="file.children" ref="subFolder" id="subfolder">
-      <file-list :files="file.children" :file="f" v-for="f in file.children" :key="f.path"></file-list>
+      <FileItem :files="file.children" :file="f" v-for="f in file.children" :key="f.path"></FileItem>
     </div>
   </div>
 </template>

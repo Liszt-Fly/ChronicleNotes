@@ -1,7 +1,7 @@
 import { createI18n } from 'vue-i18n'
 import { App } from "vue";
 import { messages } from "@/plugins/I18n/languages/language";
-import { locale } from "@/init/initGeneral"
+import { locale } from "@/util/init/initGeneral"
 
 export const i18n = createI18n({
     locale: 'cn',

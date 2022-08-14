@@ -5,7 +5,6 @@ export enum chronTypeEnum {
     CODEBLOCK = "CodeBlock",
     DIVIDER = "Divider",
     TABLE = "Table",
-
 }
 
 export enum PIMODE {

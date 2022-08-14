@@ -29,7 +29,7 @@
     </div>
 
     <!-- <div class="tabs" :style="!isMac && winMax ? '' : 'padding-left: 72px;'">
-      <Tabs></Tabs>
+      <OpenFileTabs></OpenFileTabs>
     </div> -->
 
     <div class="brand">
@@ -60,7 +60,7 @@
 </template>
 
 <script lang="ts" setup>
-import Tabs from "@/components/common/ControlBar/Tabs.vue"
+import OpenFileTabs from "@/components/common/ControlBar/OpenFileTabs.vue"
 import { chooseWorkspace } from "@/data/configdb"
 import { ipcRenderer } from 'electron'
 import { ref } from 'vue'

@@ -1,5 +1,5 @@
 // 样式初始化
-import { appearance, head } from "@/init/data";
+import { appearance, head } from "@/data/data";
 
 const primary_colors = {
 	// 翡翠

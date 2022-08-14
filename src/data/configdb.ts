@@ -1,5 +1,5 @@
 import { Ref, ref } from "vue"
-import { fileTree } from "@/FileTree/fileTree"
+import { fileTree } from "@/util/fileTree/fileTree"
 
 export let bClickedParent: Ref<boolean> = ref(false)
 //* 将所有的tag都存储在tag容器内

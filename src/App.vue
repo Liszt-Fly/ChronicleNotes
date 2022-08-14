@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import ControlBar from "@/components/common/ControlBar/ControlBar.vue";
 import TabBar from "@/components/common/TabBar.vue";
-import Welcome from "@/components/common/Welcome.vue"
+import Welcome from "@/views/Welcome.vue"
 import { chooseWorkspace } from "@/data/configdb"
 
 </script>

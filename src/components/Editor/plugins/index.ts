@@ -4,7 +4,7 @@ import { slash } from '@milkdown/plugin-slash';
 import { history } from '@milkdown/plugin-history'
 import { MilkdownPlugin } from "@milkdown/core";
 
-import { theme } from "@/init/data"
+import { theme } from "@/data/data"
 
 import gfm from './gfmPlugin'
 import indent from "./indentPlugin"

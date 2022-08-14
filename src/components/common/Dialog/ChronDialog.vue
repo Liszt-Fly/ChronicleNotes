@@ -27,7 +27,7 @@
 <script lang="ts" setup>
 import { ElInput, ElDivider, ElForm, ElTag, ElButton, ElCol, ElFormItem, ElRow } from 'element-plus'
 import { reactive, ref } from "vue";
-import { fileNode } from "@/fileTree/fileNode";
+import { fileNode } from "@/util/fileTree/fileNode";
 const props = defineProps({
   dialogVisible: Boolean,
   node: fileNode

@@ -9,7 +9,7 @@ import General from "@/components/Setting/General.vue"
 import Appearance from "@/components/Setting/Appearance.vue"
 import Shortcut from "@/components/Setting/ShortCut.vue"
 import { App } from "vue";
-import { getStayTime } from "@/helper/Helper";
+import { getStayTime } from "@/util/Helper";
 
 const router = createRouter({
     history: createWebHistory(),
