@@ -81,5 +81,6 @@ import Milkdown from "@/components/Editor/MilkEditor.vue";
 #milkdown {
   height: calc(100vh - var(--brand-height));
   overflow: hidden;
+
 }
 </style>

@@ -53,6 +53,7 @@ export class fileNode {
         let node: fileNode = new fileNode(resolve(this.path, name), name)
         this.children!.push(node)
         node.parent = this
+        return node
     }
 
     //* 删除
