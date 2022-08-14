@@ -9,9 +9,11 @@ interface workspace {
     modifiedDate: string
     path: string
     totalWorktime: string
+    lastOpenFile: string
 }
 
 interface appConfig {
     workspaces: workspace[],
     recent: workspace | string
+
 }

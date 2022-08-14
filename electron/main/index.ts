@@ -2,6 +2,8 @@ import { exec } from 'child_process'
 import { app, BrowserWindow, shell, ipcMain } from 'electron'
 import { release } from 'os'
 import { join, resolve } from 'path'
+import fsp from "fs-extra"
+import { config } from 'yargs'
 
 // Disable GPU Acceleration for Windows 7
 if (release().startsWith('6.1')) app.disableHardwareAcceleration()
@@ -22,10 +24,18 @@ export const ROOT_PATH = {
   // /dist or /public
   public: join(__dirname, app.isPackaged ? '../..' : '../../../public'),
 }
+
+
 global.sharedObject = {
   bPackaged: app.isPackaged,
-  defaultPath: resolve(app.getPath("appData"), "app.PI")
+  defaultPath: resolve(app.getPath("appData"), "app.PI"),
+
 }
+
+let config_path: string = app.isPackaged ? global.sharedObject.defaultPath : resolve(ROOT_PATH.public, "config")
+
+let app_config_path: string = resolve(config_path, ".pi")
+console.log('app_config_path', app_config_path)
 const dealWithName = (s: string) => {
   return s = s.replace(" ", "\\ ")
 }
@@ -89,6 +99,7 @@ app.whenReady().then(createWindow)
 
 app.on('window-all-closed', () => {
   win = null
+
   if (process.platform !== 'darwin') app.quit()
 })
 

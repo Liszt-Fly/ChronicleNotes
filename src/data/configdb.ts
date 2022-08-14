@@ -19,3 +19,6 @@ export let trashBin: Ref<fileTree | null> = ref(null)
 export let chooseWorkspace = ref(false)
 
 export let config: Ref<appConfig> = ref(fs.readJSONSync(app_config_path))
+
+//* 当前的工作区
+export let currentWorkSpace: Ref<workspace | null> = ref(null)

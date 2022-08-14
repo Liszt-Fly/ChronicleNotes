@@ -1,9 +1,10 @@
 # 🕛 CHANGELOG
 
-- [v0.1.0](#v010)
-- [FIXME: TODO:](#fixme-todo)
-- [Next Version](#next-version)
-- [Future](#future)
+- [🕛 CHANGELOG](#-changelog)
+  - [v0.1.0](#v010)
+  - [FIXME: TODO:](#fixme-todo)
+  - [Next Version](#next-version)
+  - [Future](#future)
 
 ## v0.1.0
 
@@ -25,8 +26,12 @@
 
 ## FIXME: TODO:
 
+- mac 菜单修改 去掉 electron
+
 - 编辑器
+
   - 打开上次关闭时的文件
+
 - 其他
   - 介绍页面、发布网站文档【[typora](https://www.typora.io/)、[cmd](https://www.zybuluo.com/cmd/)】
 

@@ -10,6 +10,7 @@
 </template>
 
 <script lang="ts" setup>
+import { findCurrentWorkSpace } from "@/util/workspace/workspace"
 import plugins from "./plugins"
 import { Editor, rootCtx, defaultValueCtx, editorView, editorStateCtx, editorViewOptionsCtx } from "@milkdown/core";
 import { Ctx, editorViewCtx, serializerCtx } from '@milkdown/core';
@@ -17,12 +18,24 @@ import { VueEditor, useEditor, EditorInfo, UseEditorReturn } from "@milkdown/vue
 import { onMounted, watch, watchEffect } from "vue";
 import '@milkdown/utils'
 import { replaceAll, toggleFile } from "@/components/Editor/utils/toggleFile";
-import { currentFile, fTree } from "@/data/configdb";
+import { currentFile, currentWorkSpace, fTree } from "@/data/configdb";
 import { fileTree } from "@/util/fileTree/fileTree";
 import { NodeType } from "@/util/fileTree/type";
+import { getGlobal } from "@electron/remote";
+import { app_config_path, piUserPath } from "@/util/init/initPath";
+const fsp = require('fs-extra')
+onMounted(() => {
 
+})
 const fs = require("fs-extra")
 let milk: Editor;
+
+const fileInWorkspace = () => {
+  let recentFileArray: string[] = getGlobal("sharedObject").recentFile
+  console.log(recentFileArray.find(file => {
+    return file.includes(piUserPath.value)
+  }))
+}
 const click = () => {
   let node = fTree.value?.currentFileNode.addChildren(NodeType.FILE)
 
@@ -53,6 +66,9 @@ const editor: EditorInfo = useEditor((root) =>
 watch(() => currentFile.value, (value, oldValue) => {
   console.log('currentFile.value', currentFile.value)
   milk.action(replaceAll(toggleFile(currentFile.value)))
+  //设置当前激活的文件
+  console.log('findCurrentWorkSpace()', findCurrentWorkSpace())
+
 
 })
 </script>
