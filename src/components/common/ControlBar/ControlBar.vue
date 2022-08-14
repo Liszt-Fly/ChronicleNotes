@@ -1,10 +1,10 @@
 <template>
   <div class="control">
 
-    <div v-if="!isMac">
+    <div v-if="!isMac && chooseWorkspace">
 
       <el-button-group>
-        <el-tooltip :content="sideBar ? $t('control.hide_sidebar') : $t('control.show_sidebar')" placement="right"
+        <el-tooltip :content="sideBar ? $t('control.hide_sidebar') : $t('control.show_sidebar')" placement="bottom"
           effect="customized" :hide-after=0>
           <el-button key="plain" text @click="ToggleSidebar" class="controlIcon">
             <i class="bi bi-window-sidebar" v-if="sideBar"></i>
@@ -13,14 +13,13 @@
         </el-tooltip>
 
         <template class="devTools">
-          <!-- <el-tooltip :content="$t('control.refresh')" placement="bottom-start" effect="customized" :hide-after=0>
+          <!-- <el-tooltip :content="$t('control.refresh')" placement="bottom" effect="customized" :hide-after=0>
             <el-button class="controlIcon" key="plain" text @click="Refresh">
               <i class="bi bi-bootstrap-reboot"></i>
             </el-button>
           </el-tooltip> -->
 
-          <el-tooltip :content="$t('control.toggle_devTools')" placement="bottom-start" effect="customized"
-            :hide-after=0>
+          <el-tooltip :content="$t('control.toggle_devTools')" placement="bottom" effect="customized" :hide-after=0>
             <el-button class="controlIcon" key="plain" text @click="ToggleDevTools">
               <i class="bi bi-terminal"></i>
             </el-button>
@@ -38,19 +37,19 @@
 
     <div class="btn-groups" v-if="!isMac">
       <el-button-group>
-        <el-tooltip :content="$t('control.minimise')" placement="bottom-start" effect="customized" :hide-after=0>
+        <el-tooltip :content="$t('control.minimise')" placement="bottom" effect="customized" :hide-after=0>
           <el-button key="plain" text @click="minWindow">
             <i class="bi bi-dash-lg"></i>
           </el-button>
         </el-tooltip>
-        <el-tooltip :content="winMax ? $t('control.maximise') : $t('control.restore')" placement="bottom-start"
+        <el-tooltip :content="winMax ? $t('control.maximise') : $t('control.restore')" placement="bottom"
           effect="customized" :hide-after=0>
           <el-button key="plain" text @click="maxRestoreWindow">
             <i class="bi bi-square" v-if="winMax"></i>
             <i class="bi bi-files" v-else style="transform: scaleX(1.3)"></i>
           </el-button>
         </el-tooltip>
-        <el-tooltip :content="$t('control.close')" placement="bottom-start" effect="customized" :hide-after=0>
+        <el-tooltip :content="$t('control.close')" placement="bottom" effect="customized" :hide-after=0>
           <el-button key="plain" text @click="closeWindow" class="danger">
             <i class="bi bi-x-lg" @click=""></i>
           </el-button>
@@ -61,9 +60,11 @@
 </template>
 
 <script lang="ts" setup>
-import { ipcRenderer } from 'electron'
 import Tabs from "@/components/common/ControlBar/Tabs.vue"
+import { chooseWorkspace } from "@/data/configdb"
+import { ipcRenderer } from 'electron'
 import { ref } from 'vue'
+
 let winMax = ref(true)
 let sideBar = ref(true)
 const isMac = /macintosh|mac os x/i.test(navigator.userAgent);

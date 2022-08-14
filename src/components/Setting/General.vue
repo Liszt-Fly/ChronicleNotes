@@ -59,7 +59,8 @@ onMounted(() => {
         <template #label>
           <i class="bi bi-person-workspace"></i> {{ $t('setting.general.workspace') }}
         </template>
-        <el-select v-model="general.workspace" :placeholder="general.workspace" class="chooseWorkspaces">
+        <el-select v-model="general.workspace" multiple filterable allow-create default-first-option
+          :reserve-keyword="false" :placeholder="$t('setting.general.workspace')" class="chooseWorkspaces">
           <el-option v-for="workspace in workspaces" :key="workspace.name" :label="workspace.name"
             :value="workspace.path" />
         </el-select>
