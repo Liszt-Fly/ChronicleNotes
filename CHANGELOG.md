@@ -1,9 +1,10 @@
 # 🕛 CHANGELOG
 
-- [v0.1.0](#v010)
-- [TODO:](#todo)
-- [Next Version](#next-version)
-- [Future](#future)
+- [🕛 CHANGELOG](#-changelog)
+  - [v0.1.0](#v010)
+  - [TODO:](#todo)
+  - [Next Version](#next-version)
+  - [Future](#future)
 
 ## v0.1.0
 
@@ -29,7 +30,8 @@
   - 【中英文】介绍页面、发布网站文档【[typora](https://www.typora.io/)、[cmd](https://www.zybuluo.com/cmd/)】
   - mac 菜单修改 去掉 electron
   - B 站视频
-
+  - code高亮样式过于丑陋，需要进行更新
+![El8Z6c](https://mikes.oss-cn-beijing.aliyuncs.com/uPic/El8Z6c.png)
 ## Next Version
 
 - 文件系统
