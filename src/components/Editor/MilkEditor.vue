@@ -13,7 +13,7 @@
       </p>
 
       <p class="item">
-        <el-button text size="large" @click="">
+        <el-button text size="large" @click="addFolder">
           <i class="bi bi-folder-plus"></i> {{ $t('editor.menu.add_folder') }}
         </el-button>
       </p>
@@ -40,7 +40,9 @@ import { getMarkdownContentWithoutHeader } from "@/util/Helper";
 const fsp = require('fs-extra')
 
 
-
+const addFolder = () => {
+  fTree.value?.currentFileNode.addChildren(NodeType.FOLDER)
+}
 const showHistoryArticleOrHidden = () => {
   //读取对应的配置
   let config: appConfig = fsp.readJSONSync(app_config_path)
