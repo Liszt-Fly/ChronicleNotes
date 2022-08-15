@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "*.mytho": "json"
+        "*.mytho": "json",
+        "*.json5": "jsonc"
     }
 }

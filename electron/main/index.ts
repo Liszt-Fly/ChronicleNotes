@@ -65,7 +65,7 @@ async function createWindow() {
     minHeight: 600,
     width: 800,
     height: 600,
-    icon: join(ROOT_PATH.public, 'favicon.ico'),
+    icon: join(ROOT_PATH.public, 'noto.ico'),
     titleBarStyle: "hidden",
     webPreferences: {
       webSecurity: false,
@@ -75,7 +75,7 @@ async function createWindow() {
     },
   })
   if (process.platform == "darwin") {
-    app.dock.setIcon(join(ROOT_PATH.public, 'icons', "Burning Orange", "apple-touch-icon.png"))
+    app.dock.setIcon(join(ROOT_PATH.public, 'icons', "Parthenon", "noto filled", "noto filled.png"))
   }
   if (app.isPackaged) {
     win.loadFile(indexHtml)
