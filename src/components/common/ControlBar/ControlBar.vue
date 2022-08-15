@@ -62,8 +62,10 @@
 <script lang="ts" setup>
 import OpenFileTabs from "@/components/common/ControlBar/OpenFileTabs.vue"
 import { chooseWorkspace } from "@/data/configdb"
+import { assets_path } from "@/util/init/initPath";
 import { ipcRenderer } from 'electron'
 import { ref } from 'vue'
+const fs = require("fs-extra")
 
 let isWindowMax = ref(false)
 let sideBar = ref(true)
@@ -94,26 +96,19 @@ const ToggleSidebar = () => {
   sideBar.value = !sideBar.value
 
   let tab = document.getElementsByClassName("tab-system")[0] as HTMLDivElement;
-  let article = document.getElementsByClassName("article")[0] as HTMLDivElement
+  let fileSystem = document.getElementsByClassName("column-left")[0] as HTMLDivElement;
 
   if (tab) {
     // 隐藏侧栏
     if (tab.style.display != "none") {
       tab.style.display = "none"
-      article.style.width = "100%"
+      fileSystem.style.display = "none"
     }
     // 显示侧栏
     else {
       tab.style.display = "flex"
-      article.style.width = "calc(100% - 48px)"
+      if (fs.readdirSync(assets_path.value).length != 0) { fileSystem.style.display = "block" }
     }
-  }
-
-  let fileSystem = document.getElementsByClassName("column-left")[0] as HTMLDivElement;
-  if (fileSystem) {
-    if (fileSystem.style.display != "none")
-      fileSystem.style.display = "none"
-    else fileSystem.style.display = "block"
   }
 }
 </script>
