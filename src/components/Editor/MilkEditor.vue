@@ -24,18 +24,20 @@ import { NodeType } from "@/util/fileTree/type";
 import { getGlobal } from "@electron/remote";
 import { app_config_path, piUserPath } from "@/util/init/initPath";
 const fsp = require('fs-extra')
-onMounted(() => {
+const showHistoryArticleOrHidden = () => {
+  //读取对应的配置
+  let config: appConfig = fsp.readJSONSync(app_config_path)
+  if (findCurrentWorkSpace() != -1) {
+    currentFile.value = config.workspaces[findCurrentWorkSpace()].lastOpenFile
+  }
+  return currentFile.value
+}
 
-})
+
 const fs = require("fs-extra")
 let milk: Editor;
 
-const fileInWorkspace = () => {
-  let recentFileArray: string[] = getGlobal("sharedObject").recentFile
-  console.log(recentFileArray.find(file => {
-    return file.includes(piUserPath.value)
-  }))
-}
+
 const click = () => {
   let node = fTree.value?.currentFileNode.addChildren(NodeType.FILE)
 
@@ -67,9 +69,10 @@ watch(() => currentFile.value, (value, oldValue) => {
   console.log('currentFile.value', currentFile.value)
   milk.action(replaceAll(toggleFile(currentFile.value)))
   //设置当前激活的文件
-  console.log('findCurrentWorkSpace()', findCurrentWorkSpace())
+  let config: appConfig = fsp.readJSONSync(app_config_path)
+  config.workspaces[findCurrentWorkSpace()].lastOpenFile = currentFile.value
 
-
+  fsp.writeJSONSync(app_config_path, config)
 })
 </script>
 
