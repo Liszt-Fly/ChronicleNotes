@@ -1,7 +1,7 @@
 # 🕛 CHANGELOG
 
 - [v0.1.0](#v010)
-- [FIXME: TODO:](#fixme-todo)
+- [TODO:](#todo)
 - [Next Version](#next-version)
 - [Future](#future)
 
@@ -23,12 +23,13 @@
   - 通用：语言、开发者工具、提示、工作区
   - 外观：主题、主题色、走马灯；英文字体、中文字体、代码块字体；行宽、行高、段间距
 
-## FIXME: TODO:
+## TODO:
 
 - 其他
-  - 介绍页面、发布网站文档【[typora](https://www.typora.io/)、[cmd](https://www.zybuluo.com/cmd/)】
+  - 【中英文】介绍页面、发布网站文档【[typora](https://www.typora.io/)、[cmd](https://www.zybuluo.com/cmd/)】
   - mac 菜单修改 去掉 electron
   - logo 和名字
+  - B 站视频
 
 ## Next Version
 

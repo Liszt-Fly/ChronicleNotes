@@ -1,7 +1,7 @@
 <template>
   <div class="jotting">
     <el-row :gutter="12">
-      <el-col :span="8">
+      <el-col :xs="12" :sm="8" :md="6" :lg="6" :xl="4">
         <div shadow="never" class="jotting_card jotting_card_add" v-if="addJotting" @click="addJotting = false">
           <i class="bi bi-plus"></i>
         </div>
@@ -14,7 +14,7 @@
         </div>
       </el-col>
       <template v-for="(jotting, index) in jottingList" :key="index">
-        <el-col :span="8">
+        <el-col :xs="12" :sm="8" :md="6" :lg="6" :xl="4">
           <div shadow="never" class="jotting_card" @click="jotting.show = true">
             <el-scrollbar>
               <p>{{ jotting.text }}</p>
