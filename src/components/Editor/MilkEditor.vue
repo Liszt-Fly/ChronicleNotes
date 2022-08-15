@@ -36,7 +36,11 @@ import { fileTree } from "@/util/fileTree/fileTree";
 import { NodeType } from "@/util/fileTree/type";
 import { getGlobal } from "@electron/remote";
 import { app_config_path, piUserPath } from "@/util/init/initPath";
+import { getMarkdownContentWithoutHeader } from "@/util/Helper";
 const fsp = require('fs-extra')
+
+
+
 const showHistoryArticleOrHidden = () => {
   //读取对应的配置
   let config: appConfig = fsp.readJSONSync(app_config_path)
@@ -45,7 +49,7 @@ const showHistoryArticleOrHidden = () => {
   }
   return currentFile.value
 }
-
+console.log(showHistoryArticleOrHidden())
 
 const fs = require("fs-extra")
 let milk: Editor;
@@ -72,7 +76,7 @@ const editor: EditorInfo = useEditor((root) =>
   milk = Editor.make()
     .config((ctx) => {
       ctx.set(rootCtx, root);
-      ctx.set(defaultValueCtx, "");
+      ctx.set(defaultValueCtx, getMarkdownContentWithoutHeader(currentFile.value));
     })
     .use(plugins())
 ) as unknown as EditorInfo
@@ -93,6 +97,7 @@ watch(() => currentFile.value, (value, oldValue) => {
 </script>
 
 <script lang="ts">
+
 export default {
   name: "Milkdown",
 }

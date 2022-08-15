@@ -3,6 +3,7 @@ import { NavigationGuardNext, RouteLocationNormalized } from "vue-router";
 import { NodeType } from "@/util/fileTree/type";
 import { fileNode } from "@/util/fileTree/fileNode";
 import { fTree } from "@/data/configdb";
+const matter = require("gray-matter")
 import path from "path";
 
 const fs = require("fs-extra")
@@ -84,4 +85,10 @@ export function validateFilename(f: string) {
     else if (path.extname(f) == ".md" || path.extname(f) == "")
         return f.substring(0, length)
     else return undefined
+}
+
+//* 获取没有header部分的markdown content
+
+export const getMarkdownContentWithoutHeader = (path: string) => {
+    return matter.read(path).content
 }
