@@ -65,7 +65,7 @@ async function createWindow() {
   win = new BrowserWindow({
     title: 'Main window',
     minWidth: 800,
-    minHeight: 600,
+    minHeight: 500,
     width: 800,
     height: 600,
     icon: join(ROOT_PATH.public, 'noto.ico'),
