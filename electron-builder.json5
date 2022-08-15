@@ -13,14 +13,14 @@
   ],
   "mac": {
     "artifactName": "${productName}_${version}.${ext}",
-    "icon": "./icons/Burning Orange/Burning Orange.png",
+    "icon": "./icons/Parthenon/noto filled/noto filled.png",
     "target": [
       "dmg"
     ]
   },
   "win": {
     "artifactName": "${productName}_${version}.${ext}",
-    "icon": "./icons/Burning Orange2/Burning Orange2.png",
+    "icon": "./icons/Parthenon/noto/noto.png",
     "target": [
       {
         "target": "nsis",
