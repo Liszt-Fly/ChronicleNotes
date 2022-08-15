@@ -27,8 +27,10 @@
 ## TODO:
 
 - 其他
-  - 【中英文】介绍页面、发布网站文档【[typora](https://www.typora.io/)、[cmd](https://www.zybuluo.com/cmd/)】
-  - mac 菜单修改 去掉 electron
+  - 【中英文】介绍页面
+  - 发布网站文档【[typora](https://www.typora.io/)、[cmd](https://www.zybuluo.com/cmd/)】
+  - 关于页面
+  - 技巧
   - B 站视频
   - code高亮样式过于丑陋，需要进行更新
 ![El8Z6c](https://mikes.oss-cn-beijing.aliyuncs.com/uPic/El8Z6c.png)

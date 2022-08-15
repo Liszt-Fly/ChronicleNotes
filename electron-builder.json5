@@ -13,14 +13,14 @@
   ],
   "mac": {
     "artifactName": "${productName}_${version}.${ext}",
-    "icon": "./icons/Parthenon/noto filled/noto filled.png",
+    "icon": "./icons/Parthenon/fluent filled/fluent filled.png",
     "target": [
       "dmg"
     ]
   },
   "win": {
     "artifactName": "${productName}_${version}.${ext}",
-    "icon": "./icons/Parthenon/noto/noto.png",
+    "icon": "./icons/Parthenon/fluent/fluent.png",
     "target": [
       {
         "target": "nsis",

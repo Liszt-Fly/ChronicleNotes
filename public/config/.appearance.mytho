@@ -1,1 +1,12 @@
-{"theme":"light","color":"#81a28b","global_en_font":"Avenir","global_cn_font":"微软雅黑","code_font":"Consolas","trotting_horse":false,"font_size":16,"line_height":1.5,"paragraph_space":1.5,"line_width":80}
+{
+    "theme": "light",
+    "color": "#81a28b",
+    "global_en_font": "Avenir",
+    "global_cn_font": "微软雅黑",
+    "code_font": "Consolas",
+    "trotting_horse": false,
+    "font_size": 16,
+    "line_height": 1.5,
+    "paragraph_space": 1.5,
+    "line_width": 80
+}

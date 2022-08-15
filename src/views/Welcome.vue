@@ -37,7 +37,7 @@
               <div>
                 <h3>
                   <el-tag effect="dark">
-                    {{ workspace.name[0] }}
+                    {{ workspace.name[0].toUpperCase() }}
                   </el-tag>
                   {{ workspace.name }}
                 </h3>
@@ -171,7 +171,7 @@ let workspaceName: Ref<string> = ref("")
 
       &:hover {
         // height: 220px;
-        box-shadow: var(--mytho-theme-color) 0px 0px 0px 4px;
+        box-shadow: var(--mytho-theme-color) 0px 0px 0px 2px;
 
         // .workspace-info {
         //   display: block;

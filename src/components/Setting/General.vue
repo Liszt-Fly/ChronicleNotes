@@ -133,7 +133,7 @@ const jumpToWorkspace = () => {
       </el-form-item>
       <el-form-item>
         <template #label>
-          <i class="bi bi-chat-square" style="transform: rotate(180deg); position: relative; bottom: 1px;"></i> {{
+          <i class="bi bi-chat-square"></i> {{
               $t('setting.general.tooltips')
           }}
         </template>
