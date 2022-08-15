@@ -41,14 +41,17 @@ const dealWithName = (s: string) => {
 }
 
 if (process.platform === 'darwin') {
-  exec(` chmod -R 777 ${dealWithName(resolve(app.getPath("appData"), "app.mytho"))}  `, (err) => {
-    if (err) {
-      console.log('err', err)
-    }
-    else {
-      console.log("success")
-    }
-  })
+  
+  if(app.isPackaged){
+    exec(` chmod -R 777 ${dealWithName(resolve(app.getPath("appData"), "app.mytho"))}  `, (err) => {
+      if (err) {
+        console.log('err', err)
+      }
+      else {
+        console.log("success")
+      }
+    })
+  }
 }
 // console.log('global.sharedObject', global.sharedObject)
 let win: BrowserWindow | null = null
@@ -62,9 +65,9 @@ async function createWindow() {
   win = new BrowserWindow({
     title: 'Main window',
     minWidth: 800,
-    minHeight: 600,
+    minHeight: 500,
     width: 800,
-    height: 600,
+    height: 500,
     icon: join(ROOT_PATH.public, 'favicon.ico'),
     titleBarStyle: "hidden",
     webPreferences: {
