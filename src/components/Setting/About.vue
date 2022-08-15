@@ -30,7 +30,7 @@ const info = reactive({})
     margin: 20px;
 
     .icon {
-      color: var(--pi-theme-color);
+      color: var(--mytho-theme-color);
       font-size: 3rem;
       font-weight: bolder;
       position: relative;

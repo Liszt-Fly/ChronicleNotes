@@ -3,7 +3,7 @@
 }
 
 body {
-  font-family: var(--pi-global-font);
+  font-family: var(--mytho-global-font);
   line-height: 1.5;
 
   *:focus {
@@ -18,22 +18,22 @@ body {
     background-image: linear-gradient(
         90deg,
         rgba(255, 255, 255, 0) 0%,
-        var(--pi-theme-color) 100%
+        var(--mytho-theme-color) 100%
       ),
       linear-gradient(
         0deg,
-        var(--pi-theme-color) 0%,
+        var(--mytho-theme-color) 0%,
         rgba(255, 255, 255, 0) 100%
       ),
       linear-gradient(
         -90deg,
         rgba(255, 255, 255, 0) 0%,
-        var(--pi-theme-color) 100%
+        var(--mytho-theme-color) 100%
       ),
       linear-gradient(
         0deg,
         rgba(255, 255, 255, 0) 0%,
-        var(--pi-theme-color) 100%
+        var(--mytho-theme-color) 100%
       );
     background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
     background-size: 200px 4px, 4px 200px, 200px 4px, 4px 200px;
@@ -100,11 +100,11 @@ body {
   }
 
   input {
-    font-family: var(--pi-global-font);
+    font-family: var(--mytho-global-font);
   }
 
   .el-button > span {
-    font-family: var(--pi-global-font);
+    font-family: var(--mytho-global-font);
   }
 
   .tab-system {
@@ -194,7 +194,7 @@ body {
         }
 
         &.clicked {
-          background-color: var(--pi-theme-color);
+          background-color: var(--mytho-theme-color);
           color: var(--el-bg-color);
           border-radius: 6px;
         }

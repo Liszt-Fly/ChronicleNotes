@@ -1,0 +1,8 @@
+{
+    "openWith": "ChooseWorkspace",
+    "locale": "cn",
+    "devTools": false,
+    "tooltips": true,
+    "autoSave": true,
+    "autoSaveTime": 5
+}

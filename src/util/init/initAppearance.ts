@@ -66,10 +66,10 @@ export const initAppearance = () => {
 	globalStyle.innerText = `
 		html.${appearance.theme} {
 			--el-color-primary: ${color};
-			--pi-global-en-font: ${global_en_font};
-			--pi-global-cn-font: ${global_cn_font};
-			--pi-global-font: ${global_en_font}, ${global_cn_font}, "NotoColorEmoji";
-			--pi-code-font: ${code_font};
+			--mytho-global-en-font: ${global_en_font};
+			--mytho-global-cn-font: ${global_cn_font};
+			--mytho-global-font: ${global_en_font}, ${global_cn_font}, "NotoColorEmoji";
+			--mytho-code-font: ${code_font};
 			--brand-height: 40px;
 			${primary_color};
 		}

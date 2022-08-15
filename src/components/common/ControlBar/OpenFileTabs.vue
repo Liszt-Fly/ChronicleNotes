@@ -45,20 +45,20 @@ let remove = (file: string) => {
   &:hover {
     background-color: var(--el-tag-bg-color);
     border: 2px solid var(--el-color-info-light-9);
-    color: var(--pi-theme-color);
+    color: var(--mytho-theme-color);
     padding-right: 5px !important;
   }
 }
 
 
 .tab-item-active {
-  background-color: var(--pi-theme-color);
+  background-color: var(--mytho-theme-color);
   color: var(--el-bg-color);
-  border: 2px solid var(--pi-theme-color);
+  border: 2px solid var(--mytho-theme-color);
 
   &:hover {
     background-color: var(--el-color-info-light-9);
-    border: 2px solid var(--pi-theme-color);
+    border: 2px solid var(--mytho-theme-color);
   }
 }
 </style>

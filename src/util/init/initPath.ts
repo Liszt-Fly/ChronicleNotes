@@ -10,13 +10,13 @@ let bPackaged = getGlobal("sharedObject").bPackaged;
 
 // config
 export let config_path: string = bPackaged ? getGlobal("sharedObject").defaultPath : resolve("public", "config")
-export let app_config_path: string = resolve(config_path, ".pi")
-export let appearance_config_path: string = resolve(config_path, ".appearance.pi")
-export let appearance_config_path_default: string = resolve(config_path, ".appearance.default.pi")
-export let shortcut_config_path: string = resolve(config_path, ".shortcut.pi")
-export let shortcut_config_path_default: string = resolve(config_path, ".shortcut.default.pi")
-export let general_config_path: string = resolve(config_path, ".general.pi")
-export let general_config_path_default: string = resolve(config_path, ".general.default.pi")
+export let app_config_path: string = resolve(config_path, ".mytho")
+export let appearance_config_path: string = resolve(config_path, ".appearance.mytho")
+export let appearance_config_path_default: string = resolve(config_path, ".appearance.default.mytho")
+export let shortcut_config_path: string = resolve(config_path, ".shortcut.mytho")
+export let shortcut_config_path_default: string = resolve(config_path, ".shortcut.default.mytho")
+export let general_config_path: string = resolve(config_path, ".general.mytho")
+export let general_config_path_default: string = resolve(config_path, ".general.default.mytho")
 
 if (bPackaged) {
     if (!fs.existsSync(config_path)) {

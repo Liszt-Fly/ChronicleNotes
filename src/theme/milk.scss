@@ -1,5 +1,5 @@
 .milkdown {
-  font-family: var(--pi-global-font) !important;
+  font-family: var(--mytho-global-font) !important;
   overflow-x: hidden !important;
   word-wrap: normal !important;
 
@@ -54,12 +54,12 @@
     }
 
     .code-fence pre code {
-      font-family: var(--pi-code-font) !important;
+      font-family: var(--mytho-code-font) !important;
     }
 
     .code-inline {
       font-weight: bolder !important;
-      font-family: var(--pi-code-font) !important;
+      font-family: var(--mytho-code-font) !important;
       border: 1px solid #e7eaed !important;
       background-color: #f8f8f8 !important;
       color: rgba(46, 52, 64, 1) !important;

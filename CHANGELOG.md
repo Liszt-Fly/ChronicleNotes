@@ -28,7 +28,6 @@
 - 其他
   - 【中英文】介绍页面、发布网站文档【[typora](https://www.typora.io/)、[cmd](https://www.zybuluo.com/cmd/)】
   - mac 菜单修改 去掉 electron
-  - logo 和名字
   - B 站视频
 
 ## Next Version

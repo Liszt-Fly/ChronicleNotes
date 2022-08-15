@@ -2,7 +2,7 @@
   "name": "mytho",
   "version": "0.1.0",
   "main": "dist/electron/main/index.js",
-  "author": "pi team",
+  "author": "mytho team",
   "description": "Next Generation Note App",
   "private": true,
   "scripts": {

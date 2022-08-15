@@ -1,8 +1,8 @@
 html.light {
-  --pi-code-font: "cascadia code";
-  --pi-global-en-font: "Geogrgia";
-  --pi-global-cn-font: "楷体";
-  --pi-theme-color: var(--el-color-primary);
+  --mytho-code-font: "cascadia code";
+  --mytho-global-en-font: "Geogrgia";
+  --mytho-global-cn-font: "楷体";
+  --mytho-theme-color: var(--el-color-primary);
 
   .tab-system .tab-bar .tab-item {
     border: 2px solid var(--el-bg-color);
@@ -11,12 +11,12 @@ html.light {
       border: 2px solid var(--el-color-info-light-9);
 
       a {
-        color: var(--pi-theme-color);
+        color: var(--mytho-theme-color);
       }
     }
 
     a.active {
-      background-color: var(--pi-theme-color);
+      background-color: var(--mytho-theme-color);
       color: white;
     }
   }
@@ -28,7 +28,7 @@ html.light {
       border: 2px solid var(--el-color-info-light-9);
 
       a {
-        color: var(--pi-theme-color);
+        color: var(--mytho-theme-color);
       }
     }
   }
@@ -39,7 +39,7 @@ html.light {
 
   .resize-bar:hover ~ .resize-line,
   .resize-bar:active ~ .resize-line {
-    border-right: 4px dashed var(--pi-theme-color);
+    border-right: 4px dashed var(--mytho-theme-color);
   }
 
   ::-webkit-scrollbar-thumb {
