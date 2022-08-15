@@ -68,7 +68,7 @@ async function createWindow() {
     minHeight: 500,
     width: 800,
     height: 600,
-    icon: join(ROOT_PATH.public, 'noto.ico'),
+    icon: join(ROOT_PATH.public, 'fluent.ico'),
     titleBarStyle: "hidden",
     webPreferences: {
       webSecurity: false,
@@ -78,7 +78,7 @@ async function createWindow() {
     },
   })
   if (process.platform == "darwin") {
-    app.dock.setIcon(join(ROOT_PATH.public, 'icons', "Parthenon", "noto filled", "noto filled.png"))
+    app.dock.setIcon(join(ROOT_PATH.public, 'icons', "Parthenon", "fluent filled", "fluent filled.png"))
   }
   if (app.isPackaged) {
     win.loadFile(indexHtml)
