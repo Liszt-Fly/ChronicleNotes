@@ -28,6 +28,8 @@
 - 其他
   - 【中英文】介绍页面
   - 发布网站文档【[typora](https://www.typora.io/)、[cmd](https://www.zybuluo.com/cmd/)】
+  - 关于页面
+  - 技巧
   - B 站视频
 
 ## Next Version
