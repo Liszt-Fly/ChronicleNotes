@@ -9,7 +9,7 @@ const global_en_fonts = ["Verdana", "Arial", "Times New Roman", "Avenir"]
 const global_cn_fonts = ["微软雅黑", "楷体", "宋体", "Avenir"]
 const code_fonts = ["Consolas", "Cascadia Code", "Courier"]
 const predefineColors = [
-  "#ed764c", "#ffb11b", "#9fd7b6", "#5a5ec6", "#444444"
+  "#ed764c", "#ffb11b", "#9fd7b6", "#5a5ec6", "#81a28b"
 ]
 
 const appearance = reactive({

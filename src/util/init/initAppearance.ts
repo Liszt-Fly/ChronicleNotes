@@ -10,14 +10,14 @@ const primary_colors = {
 				--el-color-primary-light-8: #ecf7f0;
 				--el-color-primary-light-9: #f5fbf8;
 				--el-color-primary-dark-2: #7fac92;`,
-	// 墨
-	"#444444": `--el-color-primary: #444444;
-				--el-color-primary-light-3: #7c7c7c;
-				--el-color-primary-light-5: #a2a2a2;
-				--el-color-primary-light-7: #c7c7c7;
-				--el-color-primary-light-8: #dadada;
-				--el-color-primary-light-9: #ececec;
-				--el-color-primary-dark-2: #363636;`,
+	// 冷杉
+	"#81a28b": `--el-color-primary: #81a28b;
+				--el-color-primary-light-3: #a7beae;
+				--el-color-primary-light-5: #c0d1c5;
+				--el-color-primary-light-7: #d9e3dc;
+				--el-color-primary-light-8: #e6ece8;
+				--el-color-primary-light-9: #f2f6f3;
+				--el-color-primary-dark-2: #67826f;`,
 	// 花青
 	"#5a5ec6": `--el-color-primary: #5a5ec6;
 				--el-color-primary-light-3: #8c8ed7;

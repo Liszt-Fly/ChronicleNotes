@@ -72,7 +72,7 @@ export const en =
             color: "Primary Color",
             colors: {
                 "#9fd7b6": "Jadeite",
-                "#444444": "Obsidian",
+                "#81a28b": "Obsidian",
                 "#5a5ec6": "Sapphire",
                 "#ed764c": "Coral",
                 "#ffb11b": "Citrine"
