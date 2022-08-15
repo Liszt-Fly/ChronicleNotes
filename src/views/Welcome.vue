@@ -3,7 +3,8 @@
     <el-row justify="center" :gutter="20">
       <el-col :span="8">
         <div class="welcome">
-          <h1>{{ $t("setting.info.welcome") }}🏛️</h1>
+          <h1>🏛️</h1>
+          <h3>{{ $t("setting.info.welcome") }}</h3>
         </div>
       </el-col>
       <el-col :span="16">
@@ -89,6 +90,7 @@ let workspaceName: Ref<string> = ref("")
     user-select: none;
     height: 100%;
     display: flex;
+    flex-direction: column;
     text-align: center;
     justify-content: center;
     align-items: center;
@@ -169,7 +171,7 @@ let workspaceName: Ref<string> = ref("")
 
       &:hover {
         // height: 220px;
-        box-shadow: var(--pi-theme-color) 0px 0px 0px 4px;
+        box-shadow: var(--mytho-theme-color) 0px 0px 0px 4px;
 
         // .workspace-info {
         //   display: block;
