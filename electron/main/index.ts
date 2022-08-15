@@ -1,10 +1,99 @@
 import { exec } from 'child_process'
-import { app, BrowserWindow, shell, ipcMain } from 'electron'
+import { app, BrowserWindow, shell, ipcMain, Menu } from 'electron'
 import { release } from 'os'
+
 import { join, resolve } from 'path'
 import fsp from "fs-extra"
-import { config } from 'yargs'
+import { setMenuTemplate } from './MenuTemplate.js'
 
+
+
+const setMenuTemplate = () => {
+  const isMac = process.platform === "darwin"
+
+  const template = [
+    // { role: 'appMenu' }
+    ...(isMac
+      ? [
+        {
+          label: app.name,
+          submenu: [
+            { role: "about" },
+            { type: "separator" },
+            { role: "services" },
+            { type: "separator" },
+            { role: "hide" },
+            { role: "hideOthers" },
+            { role: "unhide" },
+            { type: "separator" },
+            { role: "quit" },
+          ],
+        },
+      ]
+      : []),
+    // { role: 'fileMenu' }
+    {
+      label: "File",
+      submenu: [isMac ? { role: "close" } : { role: "quit" }],
+    },
+    // { role: 'editMenu' }
+    {
+      label: "Edit",
+      submenu: [
+        { role: "undo" },
+        { role: "redo" },
+        { type: "separator" },
+        { role: "cut" },
+        { role: "copy" },
+        { role: "paste" },
+        ...(isMac
+          ? [
+            { role: "pasteAndMatchStyle" },
+            { role: "delete" },
+            { role: "selectAll" },
+            { type: "separator" },
+          ]
+          : [{ role: "delete" }, { type: "separator" }, { role: "selectAll" }]),
+      ],
+    },
+    // { role: 'viewMenu' }
+    {
+      label: "View",
+      submenu: [
+        { role: "reload" },
+        { role: "forceReload" },
+        { role: "toggleDevTools" },
+        { type: "separator" },
+        { role: "resetZoom" },
+        { role: "zoomIn" },
+        { role: "zoomOut" },
+        { type: "separator" },
+        { role: "togglefullscreen" },
+      ],
+    },
+    // { role: 'windowMenu' }
+    {
+      label: "Window",
+      submenu: [
+        { role: "minimize" },
+        { role: "zoom" },
+        ...(isMac
+          ? [
+            { type: "separator" },
+            { role: "front" },
+            { type: "separator" },
+            { role: "window" },
+          ]
+          : [{ role: "close" }]),
+      ],
+    },
+
+  ]
+  //@ts-ignore
+  const menu = Menu.buildFromTemplate(template)
+  Menu.setApplicationMenu(menu)
+}
+setMenuTemplate()
 // Disable GPU Acceleration for Windows 7
 if (release().startsWith('6.1')) app.disableHardwareAcceleration()
 
@@ -24,7 +113,19 @@ export const ROOT_PATH = {
   // /dist or /public
   public: join(__dirname, app.isPackaged ? '../..' : '../../../public'),
 }
-
+const dockMenu = Menu.buildFromTemplate([
+  {
+    label: 'New Window',
+    click() { console.log('New Window') }
+  }, {
+    label: 'New Window with Settings',
+    submenu: [
+      { label: 'Basic' },
+      { label: 'Pro' }
+    ]
+  },
+  { label: 'New Command...' }
+])
 
 global.sharedObject = {
   bPackaged: app.isPackaged,
@@ -41,6 +142,7 @@ const dealWithName = (s: string) => {
 }
 
 if (process.platform === 'darwin') {
+  app.dock.setMenu(dockMenu)
   exec(` chmod -R 777 ${dealWithName(resolve(app.getPath("appData"), "app.PI"))}  `, (err) => {
     if (err) {
       console.log('err', err)
