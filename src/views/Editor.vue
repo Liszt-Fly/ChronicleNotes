@@ -7,6 +7,10 @@ import { Ref, ref } from "vue";
 const fs = require("fs-extra")
 
 let file_exist: Ref<Boolean> = ref(false)
+if (fs.readdirSync(assets_path.value).length != 0) {
+  file_exist.value = true
+}
+
 fs.watch(assets_path.value, () => {
   if (fs.readdirSync(assets_path.value).length != 0) {
     file_exist.value = true
