@@ -4,10 +4,10 @@
     v-show="currentFile != ''" />
   <template v-if="currentFile == ''">
     <div class="empty_mask">
-      <h1 class="icon"> 🪸</h1>
+      <h1 class="icon">🏛️</h1>
 
       <p class="item">
-        <el-button text size="large" @click="click">
+        <el-button text size="large" @click="addFile">
           <i class="bi bi-file-earmark-plus"></i> {{ $t('editor.menu.add_file') }}
         </el-button>
       </p>
@@ -17,7 +17,6 @@
           <i class="bi bi-folder-plus"></i> {{ $t('editor.menu.add_folder') }}
         </el-button>
       </p>
-      <!-- <H2 class="button">Click Me to add new Note</H2> -->
     </div>
   </template>
 </template>
@@ -39,10 +38,10 @@ import { app_config_path, piUserPath } from "@/util/init/initPath";
 import { getMarkdownContentWithoutHeader } from "@/util/Helper";
 const fsp = require('fs-extra')
 
-
 const addFolder = () => {
-  fTree.value?.currentFileNode.addChildren(NodeType.FOLDER)
+  fTree.value?.root.addChildren(NodeType.FOLDER)
 }
+
 const showHistoryArticleOrHidden = () => {
   //读取对应的配置
   let config: appConfig = fsp.readJSONSync(app_config_path)
@@ -51,15 +50,13 @@ const showHistoryArticleOrHidden = () => {
   }
   return currentFile.value
 }
-console.log(showHistoryArticleOrHidden())
 
 const fs = require("fs-extra")
 let milk: Editor;
 
 
-const click = () => {
-  let node = fTree.value?.currentFileNode.addChildren(NodeType.FILE)
-
+const addFile = () => {
+  let node = fTree.value?.root.addChildren(NodeType.FILE)
   currentFile.value = node!.path
 }
 
@@ -78,23 +75,27 @@ const editor: EditorInfo = useEditor((root) =>
   milk = Editor.make()
     .config((ctx) => {
       ctx.set(rootCtx, root);
-      ctx.set(defaultValueCtx, getMarkdownContentWithoutHeader(currentFile.value));
+      if (currentFile.value != "") {
+        ctx.set(defaultValueCtx, getMarkdownContentWithoutHeader(currentFile.value));
+      }
+      else {
+        ctx.set(defaultValueCtx, "");
+      }
     })
     .use(plugins())
 ) as unknown as EditorInfo
 
 watch(() => currentFile.value, (value, oldValue) => {
-  console.log('currentFile.value', currentFile.value)
-  milk.action(replaceAll(toggleFile(currentFile.value)))
+  // console.log('currentFile.value', currentFile.value)
+
   //设置当前激活的文件
+  if (currentFile.value != "") { milk.action(replaceAll(toggleFile(currentFile.value))) }
 
+  // 保存最近读取的文件
   let config: appConfig = fsp.readJSONSync(app_config_path)
-  config.workspaces[findCurrentWorkSpace()].lastOpenFile = currentFile.value
-
+  config.workspaces[findCurrentWorkSpace()].lastOpenFile = currentFile.value;
+  (config.recent as workspace).lastOpenFile = currentFile.value;
   fsp.writeJSONSync(app_config_path, config)
-
-  console.log('findCurrentWorkSpace()', findCurrentWorkSpace())
-
 })
 </script>
 
@@ -131,6 +132,14 @@ export default {
     button {
       width: 60%;
       margin: 0 20%;
+
+      &:focus {
+        background-color: var(--el-bg-color) !important;
+      }
+
+      &:hover {
+        background-color: var(--el-fill-color-light) !important;
+      }
     }
 
     i {

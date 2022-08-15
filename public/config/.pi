@@ -1,18 +1,4 @@
 {
-    "workspaces": [
-        {
-            "name": "抽象代数",
-            "totalWorktime": "0",
-            "createdDate": "1660484469948",
-            "modifiedDate": "1660484469949",
-            "path": "/Users/qiaoyang/Desktop/test/抽象代数"
-        }
-    ],
-    "recent": {
-        "name": "抽象代数",
-        "totalWorktime": "0",
-        "createdDate": "1660484469948",
-        "modifiedDate": "1660484469949",
-        "path": "/Users/qiaoyang/Desktop/test/抽象代数"
-    }
+    "workspaces": [],
+    "recent": ""
 }

@@ -80,10 +80,13 @@
 </template>
 
 <script lang="ts" setup>
-import { assets_path, jottings_path } from "@/util/init/initPath";
+import { assets_path, jottings_path, piUserPath } from "@/util/init/initPath";
 import { onMounted, Ref, ref } from "vue";
 import { ElNotification } from "element-plus";
 import { i18n } from "@/plugins/I18n/index";
+import { fTree } from "@/data/configdb";
+import { fileTree } from "@/util/FileTree/fileTree";
+import { fileNode } from "@/util/FileTree/fileNode";
 
 import path from "path";
 const fs = require("fs-extra");
@@ -181,6 +184,10 @@ const exportAJotting = (jotting: Tjotting, index: number) => {
   fs.writeFileSync(jotting_markdown_path, content);
 
   deleteAJotting(jotting, index);
+
+  fTree.value = new fileTree(
+    new fileNode(path.resolve(piUserPath.value, "assets"), "assets")
+  );
 
   ElNotification({
     message: i18n.global.t("jottings.export_success"),

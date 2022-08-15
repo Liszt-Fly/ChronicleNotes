@@ -3,29 +3,14 @@ import { getValidName, removeExtName } from "@/util/Helper"
 import { resolve, parse } from "path"
 
 import deepClone from "deep-clone"
+import { currentFile } from "@/data/configdb"
+import { app_config_path } from "@/util/init/initPath"
+import { findCurrentWorkSpace } from "@/util/workspace/workspace"
 
 const matter = require("gray-matter")
 const fs = require("fs-extra")
 
 export class fileNode {
-    //* constructor
-    constructor(path: string, name: string) {
-        this.data = {}
-        this.stat = fs.statSync(path)
-        this.name = name
-        this.path = path
-        this.createdDate = this.stat.ctime
-        this.modifiedDate = this.stat.mtime
-        this.type = this.stat.isDirectory() ? NodeType.FOLDER : NodeType.FILE
-        this.tags = []
-        this.parent = null
-
-        if (this.type == NodeType.FOLDER) {
-            this.children = []
-        }
-        this.checkValidateFrontMatter()
-    }
-
     //* property
     name: string
     path: string
@@ -38,6 +23,25 @@ export class fileNode {
     parent: fileNode | null
     children?: fileNode[] | null
     data: data
+    subFolderShow: boolean
+
+    //* constructor
+    constructor(path: string, name: string) {
+        this.data = {}
+        this.stat = fs.statSync(path)
+        this.name = name
+        this.path = path
+        this.createdDate = this.stat.ctime
+        this.modifiedDate = this.stat.mtime
+        this.type = this.stat.isDirectory() ? NodeType.FOLDER : NodeType.FILE
+        this.tags = []
+        this.parent = null
+        this.subFolderShow = false
+        if (this.type == NodeType.FOLDER) {
+            this.children = []
+        }
+        this.checkValidateFrontMatter()
+    }
 
     //* methods
     addChildren(createdType: NodeType) {
@@ -58,19 +62,24 @@ export class fileNode {
 
     //* 删除
     removeSelf() {
-        console.log('this.path', this.path)
         fs.removeSync(this.path)
+
+        if (currentFile.value == this.path) {
+            currentFile.value = ""
+
+            let config: appConfig = fs.readJSONSync(app_config_path)
+            config.workspaces[findCurrentWorkSpace()].lastOpenFile = "";
+            (config.recent as workspace).lastOpenFile = "";
+            fs.writeJSONSync(app_config_path, config)
+        }
         //* 情况为文件夹的情形
         if (this.type == NodeType.FOLDER) {
-
             if (this.parent) {
                 this.parent.children = this.parent.children!.filter(item => item.name != this.name)
             }
         }
         //* 情况为文件
         else if (this.type == NodeType.FILE) {
-            console.log(this.path);
-
             if (this.parent) {
                 this.parent.children = this.parent.children!.filter(item => item.name != this.name)
             }
@@ -138,4 +147,3 @@ export class fileNode {
         fs.writeFileSync(this.path, matter.stringify(obj.content, { tags, star: obj.data.star }))
     }
 }
-

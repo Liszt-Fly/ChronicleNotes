@@ -7,11 +7,21 @@ export const FolderMenu: MenuItemConstructorOptions[] = [
     {
         label: i18n.global.t('editor.menu.add_folder'), click: function () {
             fTree.value!.currentFileNode.addChildren(NodeType.FOLDER)
+            if (!fTree.value!.currentFileNode.subFolderShow) {
+                // console.log(fTree.value!.currentFileNode.data.nameBox!.parentNode!)
+                (fTree.value!.currentFileNode.data.nameBox!.parentNode as HTMLDivElement)!.click()
+                fTree.value!.currentFileNode.subFolderShow = true
+            }
         }
     },
     {
         label: i18n.global.t('editor.menu.add_file'), click: function () {
             fTree.value!.currentFileNode.addChildren(NodeType.FILE)
+            if (!fTree.value!.currentFileNode.subFolderShow) {
+                // console.log(fTree.value!.currentFileNode.data.nameBox!.parentNode!)
+                (fTree.value!.currentFileNode.data.nameBox!.parentNode as HTMLDivElement)!.click()
+                fTree.value!.currentFileNode.subFolderShow = true
+            }
         }
     },
     {
@@ -29,11 +39,8 @@ export const FolderMenu: MenuItemConstructorOptions[] = [
 export const FileMenu: MenuItemConstructorOptions[] = [
     {
         label: i18n.global.t('editor.menu.rename'), click: function () {
-
             const rename = fTree.value!.currentFileNode.data.rename!
-
             rename(fTree.value?.currentFileNode.data.nameBox!)
-
         }
     },
     // {

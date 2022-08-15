@@ -57,8 +57,10 @@ function toggleSubFolder(
       folder.classList.toggle("bi-folder2-open");
       if (folder.classList.contains("bi-folder2-open")) {
         subFolder.value!.style.display = "block"
+        file.subFolderShow = true
       } else {
         subFolder.value!.style.display = "";
+        file.subFolderShow = false
       }
     }
   }

@@ -1,7 +1,7 @@
 <template>
   <div class="info">
     <el-form label-width="180px" :model="info" label-position="left">
-      <h1>🪸</h1>
+      <h1>🏛️</h1>
     </el-form>
   </div>
 </template>

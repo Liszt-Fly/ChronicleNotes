@@ -45,7 +45,6 @@ export const toggleFile = (file: string): string => {
         let content = fsp.readFileSync(file, { encoding: "utf-8" })
         if (matter.test(content)) {
             let header = matter.read(file)
-
             return matter.read(file).content
         }
         else {

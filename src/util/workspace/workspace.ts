@@ -44,7 +44,7 @@ export const createWorkspace = (workspaceName: string) => {
         config.value.workspaces.push(workspace)
 
         enter_workspace(workspace)
-        initWorkspace(getGlobal("sharedObject").bPackaged ? PIMODE.PRODUCTION : PIMODE.DEVELOPMENT)
+        // initWorkspace(getGlobal("sharedObject").bPackaged ? PIMODE.PRODUCTION : PIMODE.DEVELOPMENT)
     });
 };
 

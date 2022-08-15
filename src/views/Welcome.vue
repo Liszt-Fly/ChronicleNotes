@@ -3,7 +3,7 @@
     <el-row justify="center" :gutter="20">
       <el-col :span="8">
         <div class="welcome">
-          <h1>{{ $t("setting.info.welcome") }} 🪸</h1>
+          <h1>{{ $t("setting.info.welcome") }}🏛️</h1>
         </div>
       </el-col>
       <el-col :span="16">
@@ -17,7 +17,8 @@
                     <template #append>
                       <el-tooltip :content="$t('workspace.add_workspace')" placement="bottom" effect="customized"
                         :hide-after=0>
-                        <el-button class="button" @click="createWorkspace(workspaceName)">
+                        <el-button class="button" @click="createWorkspace(workspaceName)"
+                          :disabled="workspaceName == ''">
                           <i class="bi bi-plus-lg"></i>
                         </el-button>
                       </el-tooltip>

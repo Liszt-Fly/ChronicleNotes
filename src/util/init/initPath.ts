@@ -35,10 +35,16 @@ if (bPackaged) {
 export let piUserPath: Ref<string> = ref("")
 export let jottings_path: Ref<string> = ref("")
 export let assets_path: Ref<string> = ref("")
+export let img_path: Ref<string> = ref("")
 
 export const freshWorkspace = () => {
     jottings_path.value = resolve(piUserPath.value, "jottings")
     assets_path.value = resolve(piUserPath.value, "assets")
+    img_path.value = resolve(piUserPath.value, "img")
+
+    fs.ensureDirSync(jottings_path.value)
+    fs.ensureDirSync(assets_path.value)
+    fs.ensureDirSync(img_path.value)
 }
 
 export const initWorkspace = (mode: PIMODE) => {

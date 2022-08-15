@@ -66,6 +66,16 @@ onMounted(() => {
   fTree.value = new fileTree(
     new fileNode(path.resolve(piUserPath.value, "assets"), "assets")
   );
+
+  setTimeout(() => {
+    let folder_item_list = document.getElementsByClassName("item")
+    for (let folder_item: HTMLElement of folder_item_list) {
+      // console.log(folder_item);
+      if (currentFile.value.includes(folder_item.dataset.path)) {
+        folder_item.click()
+      }
+    }
+  }, 0)
 });
 
 const remove = () => {
