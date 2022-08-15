@@ -28,20 +28,20 @@ export const ROOT_PATH = {
 
 global.sharedObject = {
   bPackaged: app.isPackaged,
-  defaultPath: resolve(app.getPath("appData"), "app.mytho"),
+  defaultPath: resolve(app.getPath("appData"), "app.PI"),
 
 }
 
 let config_path: string = app.isPackaged ? global.sharedObject.defaultPath : resolve(ROOT_PATH.public, "config")
 
-let app_config_path: string = resolve(config_path, ".mytho")
-// console.log('app_config_path', app_config_path)
+let app_config_path: string = resolve(config_path, ".pi")
+console.log('app_config_path', app_config_path)
 const dealWithName = (s: string) => {
   return s = s.replace(" ", "\\ ")
 }
 
 if (process.platform === 'darwin') {
-  exec(` chmod -R 777 ${dealWithName(resolve(app.getPath("appData"), "app.mytho"))}  `, (err) => {
+  exec(` chmod -R 777 ${dealWithName(resolve(app.getPath("appData"), "app.PI"))}  `, (err) => {
     if (err) {
       console.log('err', err)
     }
