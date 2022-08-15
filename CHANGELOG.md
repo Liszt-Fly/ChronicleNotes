@@ -19,20 +19,16 @@
 - 随笔集
   - 随笔：新建、编辑、删除；修改时间；导出到编辑器；导出为图片到剪贴板
 - 设置
-  - 欢迎
+  - 关于
   - 通用：语言、开发者工具、提示、工作区
   - 外观：主题、主题色、走马灯；英文字体、中文字体、代码块字体；行宽、行高、段间距
 
 ## FIXME: TODO:
 
-- mac 菜单修改 去掉 electron
-
-- 编辑器
-
-  - 打开上次关闭时的文件
-
 - 其他
   - 介绍页面、发布网站文档【[typora](https://www.typora.io/)、[cmd](https://www.zybuluo.com/cmd/)】
+  - mac 菜单修改 去掉 electron
+  - logo 和名字
 
 ## Next Version
 

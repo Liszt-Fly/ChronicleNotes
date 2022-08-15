@@ -50,7 +50,7 @@ export const cn =
         global_search: "全局搜索"
     },
     setting: {
-        info_tab: "欢迎",
+        about_tab: "关于",
         general_tab: "通用",
         appearance_tab: "外观",
         shortcut_tab: "快捷键",

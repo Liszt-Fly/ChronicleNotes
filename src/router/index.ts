@@ -4,7 +4,7 @@ import Editor from "@/views/Editor.vue"
 import Setting from "@/views/Settting.vue"
 import Jotting from "@/views/Jotting.vue"
 import Trash from "@/views/Trash.vue"
-import Info from "@/components/Setting/Info.vue"
+import About from "@/components/Setting/About.vue"
 import General from "@/components/Setting/General.vue"
 import Appearance from "@/components/Setting/Appearance.vue"
 import Shortcut from "@/components/Setting/ShortCut.vue"
@@ -22,7 +22,7 @@ const router = createRouter({
         {
             path: "/Setting", name: "Setting", component: Setting,
             children: [
-                { path: 'Info', component: Info },
+                { path: 'About', component: About },
                 { path: 'General', component: General },
                 { path: 'Appearance', component: Appearance },
                 { path: 'Shortcut', component: Shortcut }

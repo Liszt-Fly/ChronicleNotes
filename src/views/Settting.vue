@@ -2,10 +2,10 @@
   <div class="setting">
 
     <div class="routers">
-      <router-link to="/Setting/Info" @click="SettingPage = '/Setting/Info'">
+      <router-link to="/Setting/About" @click="SettingPage = '/Setting/About'">
         <el-button key="primary" text>
           <i class="bi bi-house-heart"></i>
-          {{ $t('setting.info_tab') }}
+          {{ $t('setting.about_tab') }}
         </el-button>
       </router-link>
       <router-link to="/Setting/General" @click="SettingPage = '/Setting/General'">

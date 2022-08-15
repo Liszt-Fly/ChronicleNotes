@@ -11,7 +11,7 @@ export let openFiles: Ref<Set<string>> = ref(new Set([]))
 export let currentFile = ref<string>("")
 
 export let fTree: Ref<fileTree | null> = ref(null)
-export let SettingPage: Ref<string> = ref("/Setting/Info")
+export let SettingPage: Ref<string> = ref("/Setting/About")
 export let menuDisplay = ref("none");
 export let dialogVisible = ref(false)
 export let trashBin: Ref<fileTree | null> = ref(null)

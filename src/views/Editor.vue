@@ -1,11 +1,24 @@
 <script setup lang="ts">
 import FileSystem from "@/components/common/FileSystem/FileSystem.vue";
 import Milkdown from "@/components/Editor/MilkEditor.vue";
+import { assets_path } from "@/util/init/initPath"
+import { Ref, ref } from "vue";
+
+const fs = require("fs-extra")
+
+let file_exist: Ref<Boolean> = ref(false)
+fs.watch(assets_path.value, () => {
+  if (fs.readdirSync(assets_path.value).length != 0) {
+    file_exist.value = true
+  } else {
+    file_exist.value = false
+  }
+})
 </script>
 
 <template>
   <div class="column">
-    <div class="column-left">
+    <div class="column-left" v-show="file_exist">
       <!-- 中间调整大小 -->
       <div class="resize-bar"></div>
       <div class="resize-line"></div>

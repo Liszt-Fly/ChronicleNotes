@@ -50,7 +50,7 @@ export const en =
         global_search: "Global Search"
     },
     setting: {
-        info_tab: "Welcome",
+        about_tab: "About",
         general_tab: "General",
         appearance_tab: "Appearance",
         shortcut_tab: "Shortcut",
