@@ -57,9 +57,10 @@
                 </el-button-group>
               </div>
 
-              <div class="workspace-info">
+              <!-- todo: -->
+              <!-- <div class="workspace-info">
                 <el-skeleton :rows="3" animated />
-              </div>
+              </div> -->
             </el-card>
           </el-scrollbar>
         </div>
@@ -96,7 +97,7 @@ let workspaceName: Ref<string> = ref("")
     display: flex;
     flex-direction: column;
     padding: 20px;
-
+    user-select: none;
 
     .initial {
       display: flex;
@@ -136,6 +137,7 @@ let workspaceName: Ref<string> = ref("")
     .panel {
       margin: 10px 20px;
       height: 52px;
+      box-shadow: 0 0 0 0.5px var(--el-input-border-color, var(--el-border-color)) inset;
 
       .el-card__body {
         padding: 12px;
@@ -165,12 +167,12 @@ let workspaceName: Ref<string> = ref("")
       }
 
       &:hover {
-        height: 220px;
+        // height: 220px;
         box-shadow: var(--pi-theme-color) 0px 0px 0px 4px;
 
-        .workspace-info {
-          display: block;
-        }
+        // .workspace-info {
+        //   display: block;
+        // }
       }
     }
   }

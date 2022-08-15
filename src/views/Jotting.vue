@@ -247,7 +247,7 @@ const exportAJottingAsImage = (jotting: Tjotting) => {
     // console.log(i18n, i18n.locale, i18n.message)
 
     ElNotification({
-      message: i18n.global.t("jottings.export_success"),
+      message: i18n.global.t("jottings.export_as_img_success"),
       duration: 1500,
     });
   });
@@ -303,7 +303,7 @@ onMounted(() => {
   align-items: center;
 
   &:hover {
-    border: 2px solid var(--el-color-info-light-7);
+    border: 2px solid var(--el-color-info-light-9);
     background-color: var(--el-color-info-light-9);
     cursor: pointer;
   }

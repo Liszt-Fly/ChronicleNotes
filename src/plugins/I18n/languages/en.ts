@@ -21,8 +21,8 @@ export const en =
     },
     editor: {
         menu: {
-            add_File: "Add A New File",
-            add_Folder: "Add A New Folder",
+            add_file: "Add A New File",
+            add_folder: "Add A New Folder",
             duplicate: "Duplicate",
             export_PDF: "Export as PDF",
             export_all: "Export All as PDF",
@@ -39,9 +39,10 @@ export const en =
         edit_time: "Time",
         save: "Save",
         export: "Export as A Note",
+        export_success: "Export successfully! Now you can see it in Journals.",
         export_as_img: "Export as An Image to Clipboard",
-        delete: "Delete",
-        export_success: "Export Successfully"
+        export_as_img_success: "Export successfully! Now you can paste to your friends.",
+        delete: "Delete"
     },
     stream: {
         pin: "Pin",

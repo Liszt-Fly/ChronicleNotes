@@ -3,8 +3,21 @@
   <VueEditor :editor="editor" :class="['milk-editor']" @keydown.meta="save($event)" @keydown.ctrl="save($event)"
     v-show="currentFile != ''" />
   <template v-if="currentFile == ''">
-    <div class="container">
-      <H2 class="button" @click="click">Click Me to add new Note</H2>
+    <div class="empty_mask">
+      <h1 class="icon"> 🪸</h1>
+
+      <p class="item">
+        <el-button text size="large" @click="click">
+          <i class="bi bi-file-earmark-plus"></i> {{ $t('editor.menu.add_file') }}
+        </el-button>
+      </p>
+
+      <p class="item">
+        <el-button text size="large" @click="">
+          <i class="bi bi-folder-plus"></i> {{ $t('editor.menu.add_folder') }}
+        </el-button>
+      </p>
+      <!-- <H2 class="button">Click Me to add new Note</H2> -->
     </div>
   </template>
 </template>
@@ -40,9 +53,8 @@ const click = () => {
   let node = fTree.value?.currentFileNode.addChildren(NodeType.FILE)
 
   currentFile.value = node!.path
-
-
 }
+
 const save = (event: KeyboardEvent) => {
   const isMac = /macintosh|mac os x/i.test(navigator.userAgent);
 
@@ -68,8 +80,6 @@ watch(() => currentFile.value, (value, oldValue) => {
   milk.action(replaceAll(toggleFile(currentFile.value)))
   //设置当前激活的文件
   console.log('findCurrentWorkSpace()', findCurrentWorkSpace())
-
-
 })
 </script>
 
@@ -85,16 +95,31 @@ export default {
   height: 100%;
 }
 
-.container {
+.empty_mask {
   height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.button {
-  cursor: pointer;
+  flex-direction: column;
   user-select: none;
+
+  .icon {
+    font-size: 4rem;
+  }
+
+  .item {
+    margin-top: 6px;
+    width: 100%;
+
+    button {
+      width: 60%;
+      margin: 0 20%;
+    }
+
+    i {
+      margin-right: 6px;
+    }
+  }
 }
 </style>
