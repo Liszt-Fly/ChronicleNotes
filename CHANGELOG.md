@@ -1,10 +1,9 @@
 # 🕛 CHANGELOG
 
-- [🕛 CHANGELOG](#-changelog)
-  - [v0.1.0](#v010)
-  - [FIXME: TODO:](#fixme-todo)
-  - [Next Version](#next-version)
-  - [Future](#future)
+- [v0.1.0](#v010)
+- [FIXME: TODO:](#fixme-todo)
+- [Next Version](#next-version)
+- [Future](#future)
 
 ## v0.1.0
 

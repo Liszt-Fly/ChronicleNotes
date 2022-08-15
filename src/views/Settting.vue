@@ -29,7 +29,7 @@
       </router-link> -->
     </div>
 
-    <el-scrollbar>
+    <el-scrollbar class="settingView">
       <router-view></router-view>
     </el-scrollbar>
   </div>
@@ -50,16 +50,16 @@ import { SettingPage } from "@/data/configdb"
     flex-direction: row;
     justify-content: space-evenly;
     width: 80%;
-    margin: auto;
+    margin: 0 5%;
+    padding-bottom: 10px;
+    position: fixed;
+    z-index: 999;
+    background: var(--el-bg-color);
   }
 
-  // .el-button.is-text:not(.is-disabled):focus {
-  //     background-color: var(--el-bg-color);
-  // }
-
-  // .el-button.is-text:not(.is-disabled):focus:hover {
-  //     background-color: var(--el-fill-color-light);
-  // }
+  .settingView {
+    margin-top: 42px;
+  }
 
   .el-button i {
     font-size: 1rem;

@@ -7,6 +7,7 @@ import { config } from "@/data/configdb";
 const fs = require("fs-extra")
 
 let workspaceName: Ref<string> | any = ref("")
+let add_workspace_disable: Ref<boolean> = ref(true)
 const workspaces = config.value.workspaces
 const this_workspace = config.value.recent!
 
@@ -51,6 +52,8 @@ onMounted(() => {
 })
 
 const jumpToWorkspace = () => {
+  add_workspace_disable.value = workspaceName.value == '' || typeof workspaceName.value == 'object'
+
   if (workspaces.includes(workspaceName.value))
     enter_workspace(workspaceName.value)
 }
@@ -71,7 +74,7 @@ const jumpToWorkspace = () => {
         </el-select>
         <el-tooltip :content="$t('setting.general.add_workspace')" placement="bottom" effect="customized" :hide-after=0>
           <el-button plain class="createWorkspace" @click="createWorkspace(workspaceName)"
-            :disabled="workspaceName.value == ''">
+            :disabled="add_workspace_disable">
             <i class="bi bi-plus-lg"></i>
           </el-button>
         </el-tooltip>
@@ -177,9 +180,17 @@ const jumpToWorkspace = () => {
   .createWorkspace {
     width: 32px;
     padding: 5px;
+    box-shadow: 0 0 0 0.5px var(--el-input-border-color, var(--el-border-color)) inset;
 
     i {
       margin-right: 0;
+      color: var(--el-border-color);
+    }
+
+    &:hover {
+      i {
+        color: var(--el-primary-color);
+      }
     }
   }
 

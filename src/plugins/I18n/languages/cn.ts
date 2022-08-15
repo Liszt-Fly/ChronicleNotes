@@ -21,8 +21,8 @@ export const cn =
     },
     editor: {
         menu: {
-            add_File: "新建文件",
-            add_Folder: "新建文件夹",
+            add_file: "新建文件",
+            add_folder: "新建文件夹",
             duplicate: "创建副本",
             export_PDF: "导出为 PDF",
             export_all: "全导出为 PDF",
@@ -39,9 +39,10 @@ export const cn =
         edit_time: "修改时间",
         save: "保存",
         export: "导出到笔记",
+        export_success: "导出到笔记成功！",
         export_as_img: "导出为图片到剪贴板",
+        export_as_img_success: "导出成功，现在你可以粘贴给朋友！",
         delete: "删除",
-        export_success: "导出成功"
     },
     stream: {
         pin: "收藏",
@@ -58,7 +59,7 @@ export const cn =
         restore: "确定恢复默认设置吗？",
         sure: "确定",
         cancel: "取消",
-        hint: "重启应用后生效",
+        hint: "重启后生效",
 
         info: {
             home: "回到起始页",

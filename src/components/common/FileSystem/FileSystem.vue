@@ -120,8 +120,8 @@ const addFile = () => {
 };
 
 let menu_items = [
-  { icon: "bi bi-file-earmark-plus", text: "add_File", func: addFile },
-  { icon: "bi bi-folder-plus", text: "add_File", func: addFoler },
+  { icon: "bi bi-file-earmark-plus", text: "add_file", func: addFile },
+  { icon: "bi bi-folder-plus", text: "add_file", func: addFoler },
   { icon: "bi bi-files", text: "duplicate", func: duplicate },
   { icon: "bi bi-reply", style: "transform: rotate(90deg)", text: "export_PDF", func: exportFile },
   { icon: "bi bi-reply-all", text: "export_all", func: exportDir },
