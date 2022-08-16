@@ -12,12 +12,11 @@
 
 ```javascript
 export function setupPlugins(app: App) {
-    setupBootstrapPlugin()
-    setupStyle()
-    setupElementPlus(app)
-    setupI18nPlugin(app)
+  setupBootstrapPlugin();
+  setupStyle();
+  setupElementPlus(app);
+  setupI18nPlugin(app);
 }
-
 ```
 
 `我是行内代码`
@@ -26,9 +25,9 @@ export function setupPlugins(app: App) {
 
 > 这是引用
 
-| 这是表格 |    |    |
-| :--- | :- | :- |
-|      |    |    |
-|      |    |    |
+| 这是表格 |     |     |
+| :------- | :-- | :-- |
+|          |     |     |
+|          |     |     |
 
 ![Evq6xd](https://mikes.oss-cn-beijing.aliyuncs.com/uPic/Evq6xd.jpg)
