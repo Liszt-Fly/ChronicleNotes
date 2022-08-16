@@ -1,10 +1,9 @@
 # 🕛 CHANGELOG
 
-- [🕛 CHANGELOG](#-changelog)
-  - [v0.1.0](#v010)
-  - [TODO:](#todo)
-  - [Next Version](#next-version)
-  - [Future](#future)
+- [v0.1.0](#v010)
+- [TODO:](#todo)
+- [Next Version](#next-version)
+- [Future](#future)
 
 ## v0.1.0
 
@@ -32,8 +31,7 @@
   - 关于页面
   - 技巧
   - B 站视频
-  - code高亮样式过于丑陋，需要进行更新
-![El8Z6c](https://mikes.oss-cn-beijing.aliyuncs.com/uPic/El8Z6c.png)
+
 ## Next Version
 
 - 文件系统
