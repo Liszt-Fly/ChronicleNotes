@@ -7,7 +7,7 @@ export enum chronTypeEnum {
     TABLE = "Table",
 }
 
-export enum PIMODE {
+export enum MYTHOMODE {
     DEVELOPMENT,
     PRODUCTION
 }

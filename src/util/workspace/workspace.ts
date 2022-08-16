@@ -1,6 +1,6 @@
 import { dialog, getGlobal } from "@electron/remote";
 import { chooseWorkspace, currentWorkSpace } from "@/data/configdb";
-import { PIMODE } from "@/util/types/enums";
+import { MYTHOMODE } from "@/util/types/enums";
 import { app_config_path, freshWorkspace, mythoUserPath, initWorkspace } from "@/util/init/initPath";
 import { config } from "@/data/configdb";
 
@@ -44,7 +44,7 @@ export const createWorkspace = (workspaceName: string) => {
         config.value.workspaces.push(workspace)
 
         enter_workspace(workspace)
-        // initWorkspace(getGlobal("sharedObject").bPackaged ? PIMODE.PRODUCTION : PIMODE.DEVELOPMENT)
+        // initWorkspace(getGlobal("sharedObject").bPackaged ? MYTHOMODE.PRODUCTION : MYTHOMODE.DEVELOPMENT)
     });
 };
 
