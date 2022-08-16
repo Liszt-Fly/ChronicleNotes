@@ -41,8 +41,8 @@ const dealWithName = (s: string) => {
 }
 
 if (process.platform === 'darwin') {
-  
-  if(app.isPackaged){
+
+  if (app.isPackaged) {
     exec(` chmod -R 777 ${dealWithName(resolve(app.getPath("appData"), "app.mytho"))}  `, (err) => {
       if (err) {
         console.log('err', err)
@@ -65,10 +65,10 @@ async function createWindow() {
   win = new BrowserWindow({
     title: 'Main window',
     minWidth: 800,
-    minHeight: 500,
+    minHeight: 600,
     width: 800,
     height: 600,
-    icon: join(ROOT_PATH.public, 'fluent.ico'),
+    icon: join(ROOT_PATH.public, 'icons', 'fluent.png'),
     titleBarStyle: "hidden",
     webPreferences: {
       webSecurity: false,
@@ -78,7 +78,7 @@ async function createWindow() {
     },
   })
   if (process.platform == "darwin") {
-    app.dock.setIcon(join(ROOT_PATH.public, 'icons', "Parthenon", "fluent filled", "fluent filled.png"))
+    app.dock.setIcon(join(ROOT_PATH.public, 'icons', "fluent filled.png"))
   }
   if (app.isPackaged) {
     win.loadFile(indexHtml)
