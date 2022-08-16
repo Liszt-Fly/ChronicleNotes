@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { currentFile, openFiles, fTree } from "@/data/configdb";
-import { mythoUserPath } from "@/util/init/initPath";
+import configInstance from "@/util/configs/config"
 import { fileNode } from "@/util/FileTree/fileNode";
 import { NodeType } from "@/util/FileTree/type";
 import { FileMenu, FolderMenu } from "@/util/Menus/FileItemMenu";
@@ -30,7 +30,7 @@ function openFile(event: MouseEvent, file: fileNode) {
   if (!file.children) {
     openFiles.value.add(props.file!.path!)
     currentFile.value = props.file!.path!;
-    let params = path.relative(path.resolve(mythoUserPath.value, "assets"), file.path);
+    let params = path.relative(path.resolve(configInstance.mythoUserPath.value, "assets"), file.path);
     // router.push(`/Editor/${params}`);
   }
 }

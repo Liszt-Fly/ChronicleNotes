@@ -62,7 +62,7 @@
 <script lang="ts" setup>
 import OpenFileTabs from "@/components/common/ControlBar/OpenFileTabs.vue"
 import { chooseWorkspace } from "@/data/configdb"
-import { assets_path } from "@/util/init/initPath";
+import configInstance from "@/util/configs/config"
 import { ipcRenderer } from 'electron'
 import { ref } from 'vue'
 const fs = require("fs-extra")
@@ -107,7 +107,7 @@ const ToggleSidebar = () => {
     // 显示侧栏
     else {
       tab.style.display = "flex"
-      if (fs.readdirSync(assets_path.value).length != 0) { fileSystem.style.display = "block" }
+      if (fs.readdirSync(configInstance.assets_path.value).length != 0) { fileSystem.style.display = "block" }
     }
   }
 }

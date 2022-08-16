@@ -1,11 +1,11 @@
-import { appearance_config_path, general_config_path, shortcut_config_path } from "@/util/init/initPath";
+import configInstance from "@/util/configs/config"
 const fs = require("fs-extra")
 
-export let appearance = fs.readJsonSync(appearance_config_path)
+export let appearance = fs.readJsonSync(configInstance.appearance_config_path)
 
-export let general = fs.readJsonSync(general_config_path)
+export let general = fs.readJsonSync(configInstance.general_config_path)
 
-export let shortcut = fs.readJsonSync(shortcut_config_path)
+export let shortcut = fs.readJsonSync(configInstance.shortcut_config_path)
 
 export let theme = appearance.theme
 

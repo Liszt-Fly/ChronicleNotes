@@ -5,7 +5,6 @@ import { fileNode } from "@/util/fileTree/fileNode";
 import { fTree } from "@/data/configdb";
 const matter = require("gray-matter")
 import path from "path";
-
 const fs = require("fs-extra")
 
 function getDefaultName(type: NodeType): string {
@@ -88,7 +87,6 @@ export function validateFilename(f: string) {
 }
 
 //* 获取没有header部分的markdown content
-
 export const getMarkdownContentWithoutHeader = (path: string) => {
     return matter.read(path).content
 }

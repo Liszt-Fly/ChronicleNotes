@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { bClickedParent, currentFile, fTree, menuDisplay, openFiles } from "@/data/configdb";
-import { mythoUserPath } from "@/util/init/initPath";
+import configInstance from "@/util/configs/config"
 import { fileTree } from "@/util/FileTree/fileTree";
 import { NodeType } from "@/util/FileTree/type";
 import { fileNode } from "@/util/FileTree/fileNode";
@@ -56,22 +56,23 @@ const drop = (event: DragEvent) => {
   }
 }
 
-watch(mythoUserPath, () => {
+watch(configInstance.mythoUserPath, () => {
   fTree.value = new fileTree(
-    new fileNode(path.resolve(mythoUserPath.value, "assets"), "assets")
+    new fileNode(path.resolve(configInstance.mythoUserPath.value, "assets"), "assets")
   );
 })
 
 onMounted(() => {
   fTree.value = new fileTree(
-    new fileNode(path.resolve(mythoUserPath.value, "assets"), "assets")
+    new fileNode(path.resolve(configInstance.mythoUserPath.value, "assets"), "assets")
   );
 
   setTimeout(() => {
     let folder_item_list = document.getElementsByClassName("item")
     for (let folder_item: HTMLElement of folder_item_list) {
-      // console.log(folder_item);
+      // @ts-ignore
       if (currentFile.value.includes(folder_item.dataset.path)) {
+        //@ts-ignore
         folder_item.click()
       }
     }

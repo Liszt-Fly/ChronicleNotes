@@ -4,7 +4,7 @@ import { resolve, parse } from "path"
 
 import deepClone from "deep-clone"
 import { currentFile } from "@/data/configdb"
-import { app_config_path } from "@/util/init/initPath"
+import configInstance from "@/util/configs/config"
 import { findCurrentWorkSpace } from "@/util/workspace/workspace"
 
 const matter = require("gray-matter")
@@ -67,10 +67,10 @@ export class fileNode {
         if (currentFile.value == this.path) {
             currentFile.value = ""
 
-            let config: appConfig = fs.readJSONSync(app_config_path)
+            let config: appConfig = configInstance.readAppConfig()
             config.workspaces[findCurrentWorkSpace()].lastOpenFile = "";
             (config.recent as workspace).lastOpenFile = "";
-            fs.writeJSONSync(app_config_path, config)
+            fs.writeJSONSync(configInstance.app_config_path, config)
         }
         //* 情况为文件夹的情形
         if (this.type == NodeType.FOLDER) {

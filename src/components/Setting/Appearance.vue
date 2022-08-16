@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref, watch } from 'vue'
-import { appearance_config_path, appearance_config_path_default } from "@/util/init/initPath"
+import configInstance from "@/util/configs/config"
 import { Sunny, Moon } from '@element-plus/icons-vue'
 const fs = require("fs-extra")
 
@@ -38,15 +38,15 @@ const readSetting = (appearance_config_path: string) => {
 }
 
 const saveSetting = () => {
-  fs.writeJsonSync(appearance_config_path, appearance);
+  fs.writeJsonSync(configInstance.appearance_config_path, appearance);
 }
 
 const restoreDefault = () => {
-  fs.writeJsonSync(appearance_config_path, fs.readJsonSync(appearance_config_path_default))
+  fs.writeJsonSync(configInstance.appearance_config_path, fs.readJsonSync(configInstance.appearance_config_path_default))
 }
 
 onMounted(() => {
-  readSetting(appearance_config_path)
+  readSetting(configInstance.appearance_config_path)
   watch(appearance, () => {
     saveSetting()
   })

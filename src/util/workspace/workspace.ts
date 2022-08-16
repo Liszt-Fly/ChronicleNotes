@@ -1,26 +1,24 @@
-import { dialog, getGlobal } from "@electron/remote";
+import { dialog } from "@electron/remote";
 import { chooseWorkspace, currentWorkSpace } from "@/data/configdb";
-import { MYTHOMODE } from "@/util/types/enums";
-import { app_config_path, freshWorkspace, mythoUserPath, initWorkspace } from "@/util/init/initPath";
 import { config } from "@/data/configdb";
-
+import configInstance from "@/util/configs/config"
 import router from '@/router';
 import path from 'path';
 const fs = require("fs-extra");
 
 export const enter_workspace = (ws: workspace) => {
-    mythoUserPath.value = ws.path
-    freshWorkspace();
+    configInstance.mythoUserPath.value = ws.path
+    configInstance.freshWorkspace();
     chooseWorkspace.value = true
     config.value.recent = ws
     currentWorkSpace.value = ws
-    fs.writeJSONSync(app_config_path, config.value)
+    configInstance.writeAppConfig(config.value)
     router.push("/Editor")
 }
 
 export const remove_workspace = (i: number) => {
     config.value.workspaces.splice(i, 1)
-    fs.writeJSONSync(app_config_path, config.value)
+    configInstance.writeAppConfig(config.value)
 }
 
 export const createWorkspace = (workspaceName: string) => {
@@ -44,12 +42,11 @@ export const createWorkspace = (workspaceName: string) => {
         config.value.workspaces.push(workspace)
 
         enter_workspace(workspace)
-        // initWorkspace(getGlobal("sharedObject").bPackaged ? MYTHOMODE.PRODUCTION : MYTHOMODE.DEVELOPMENT)
     });
 };
 
 export const findCurrentWorkSpace = () => {
-    let config = fs.readJSONSync(app_config_path)
+    let config = configInstance.readAppConfig()
     let index = -1;
     let workspaces: workspace[] = config.workspaces
     workspaces.forEach((v, i) => {

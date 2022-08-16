@@ -266,7 +266,7 @@
 
 <script lang="ts" setup>
 import { onMounted, reactive, ref, watch } from 'vue'
-import { shortcut_config_path, shortcut_config_path_default } from "@/util/init/initPath"
+import configInstance from "@/util/configs/config"
 const fs = require("fs-extra")
 
 const restoreDialogVisible = ref(false)
@@ -329,15 +329,15 @@ const readSetting = (shortcut_config_path: string) => {
 }
 
 const saveSetting = () => {
-  fs.writeJsonSync(shortcut_config_path, shortcut);
+  fs.writeJsonSync(configInstance.shortcut_config_path, shortcut);
 }
 
 const restoreDefault = () => {
-  fs.writeJsonSync(shortcut_config_path, fs.readJsonSync(shortcut_config_path_default))
+  fs.writeJsonSync(configInstance.shortcut_config_path, fs.readJsonSync(configInstance.shortcut_config_path_default))
 }
 
 onMounted(() => {
-  readSetting(shortcut_config_path)
+  readSetting(configInstance.shortcut_config_path)
   watch(shortcut, () => {
     saveSetting()
   })

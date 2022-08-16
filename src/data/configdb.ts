@@ -1,6 +1,6 @@
 import { Ref, ref } from "vue"
 import { fileTree } from "@/util/fileTree/fileTree"
-import { app_config_path } from "@/util/init/initPath"
+import configInstance from "@/util/configs/config"
 const fs = require("fs-extra")
 
 export let bClickedParent: Ref<boolean> = ref(false)
@@ -18,7 +18,7 @@ export let trashBin: Ref<fileTree | null> = ref(null)
 //* 配置全局菜单
 export let chooseWorkspace = ref(false)
 
-export let config: Ref<appConfig> = ref(fs.readJSONSync(app_config_path))
+export let config: Ref<appConfig> = ref(configInstance.readAppConfig())
 
 //* 当前的工作区
 export let currentWorkSpace: Ref<workspace | null> = ref(null)

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref, watch, Ref } from 'vue'
-import { general_config_path, general_config_path_default } from "@/util/init/initPath"
+import configInstance from "@/util/configs/config"
 import { enter_workspace, createWorkspace } from "@/util/workspace/workspace"
 import { config } from "@/data/configdb";
 
@@ -37,15 +37,15 @@ const readSetting = (general_config_path: string) => {
 }
 
 const saveSetting = () => {
-  fs.writeJsonSync(general_config_path, general);
+  fs.writeJsonSync(configInstance.general_config_path, general);
 }
 
 const restoreDefault = () => {
-  fs.writeJsonSync(general_config_path, fs.readJsonSync(general_config_path_default))
+  fs.writeJsonSync(configInstance.general_config_path, fs.readJsonSync(configInstance.general_config_path_default))
 }
 
 onMounted(() => {
-  readSetting(general_config_path)
+  readSetting(configInstance.general_config_path)
   watch(general, () => {
     saveSetting()
   })

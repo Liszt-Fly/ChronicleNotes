@@ -2,9 +2,9 @@ import { exec } from 'child_process'
 import { app, BrowserWindow, shell, ipcMain } from 'electron'
 import { release } from 'os'
 import { join, resolve } from 'path'
-import fsp from "fs-extra"
-import { config } from 'yargs'
 
+import { config } from 'yargs'
+const fs=require("fs-extra")
 // Disable GPU Acceleration for Windows 7
 if (release().startsWith('6.1')) app.disableHardwareAcceleration()
 

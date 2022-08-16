@@ -34,9 +34,9 @@ import { currentFile, currentWorkSpace, fTree } from "@/data/configdb";
 import { fileTree } from "@/util/fileTree/fileTree";
 import { NodeType } from "@/util/fileTree/type";
 import { getGlobal } from "@electron/remote";
-import { app_config_path, mythoUserPath } from "@/util/init/initPath";
 import { getMarkdownContentWithoutHeader } from "@/util/Helper";
-const fsp = require('fs-extra')
+import conifgInstance from "@/util/configs/config"
+const fs = require("fs-extra")
 
 const addFolder = () => {
   fTree.value?.root.addChildren(NodeType.FOLDER)
@@ -44,17 +44,14 @@ const addFolder = () => {
 
 const showHistoryArticleOrHidden = () => {
   //读取对应的配置
-  let config: appConfig = fsp.readJSONSync(app_config_path)
-    console.log('import.meta.env.PROD',import.meta.env.PROD)
-  console.log('findCurrentWorkSpace()',findCurrentWorkSpace())
+  let config: appConfig = conifgInstance.readAppConfig()
   if (findCurrentWorkSpace() != -1) {
     currentFile.value = config.workspaces[findCurrentWorkSpace()].lastOpenFile
-    console.log('currentFile.value',currentFile.value)
   }
   return currentFile.value
 }
 
-const fs = require("fs-extra")
+
 let milk: Editor;
 showHistoryArticleOrHidden()
 
@@ -92,10 +89,10 @@ watch(() => currentFile.value, (value, oldValue) => {
   if (currentFile.value != "") { milk.action(replaceAll(toggleFile(currentFile.value))) }
 
   // 保存最近读取的文件
-  let config: appConfig = fsp.readJSONSync(app_config_path)
+  let config = conifgInstance.readAppConfig()
   config.workspaces[findCurrentWorkSpace()].lastOpenFile = currentFile.value;
   (config.recent as workspace).lastOpenFile = currentFile.value;
-  fsp.writeJSONSync(app_config_path, config)
+  conifgInstance.writeAppConfig(config)
 })
 </script>
 

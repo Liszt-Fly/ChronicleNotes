@@ -80,14 +80,14 @@
 </template>
 
 <script lang="ts" setup>
-import { assets_path, jottings_path, mythoUserPath } from "@/util/init/initPath";
+
 import { onMounted, Ref, ref } from "vue";
 import { ElNotification } from "element-plus";
 import { i18n } from "@/plugins/I18n/index";
 import { fTree } from "@/data/configdb";
 import { fileTree } from "@/util/FileTree/fileTree";
 import { fileNode } from "@/util/FileTree/fileNode";
-
+import configInstance from "@/util/configs/config"
 import path from "path";
 const fs = require("fs-extra");
 
@@ -98,13 +98,13 @@ let jotting_input = ref("");
 let addJotting = ref(true);
 
 const loadJottings = () => {
-  let jotting_paths = fs.readdirSync(jottings_path.value);
+  let jotting_paths = fs.readdirSync(configInstance.jottings_path.value);
 
   jotting_paths.forEach((jotting_path: string) => {
-    jotting_path = path.resolve(jottings_path.value, jotting_path);
+    jotting_path = path.resolve(configInstance.jottings_path.value, jotting_path);
     const jotting_text: string = fs.readFileSync(jotting_path, "utf8");
 
-    let edit_time_str = path.relative(jottings_path.value, jotting_path);
+    let edit_time_str = path.relative(configInstance.jottings_path.value, jotting_path);
     edit_time_str = edit_time_str.replace("jotting_", "").replace(".jt", "");
 
     let edit_time = "";
@@ -132,7 +132,7 @@ const addAJotting = () => {
   if (jotting_input.value != "") {
     let time = Date.now();
     let edit_time = new Date(time).toLocaleDateString();
-    let new_jotting_path = path.resolve(jottings_path.value, "jotting_" + time + ".jt");
+    let new_jotting_path = path.resolve(configInstance.jottings_path.value, "jotting_" + time + ".jt");
     jottingList.value.push({
       path: new_jotting_path,
       text: jotting_input.value,
@@ -160,7 +160,7 @@ const saveAJotting = (e: KeyboardEvent, jotting: Tjotting) => {
 
 const editAJotting = (jotting: Tjotting) => {
   let time = Date.now();
-  let new_jotting_path = path.resolve(jottings_path.value, "jotting_" + time + ".jt");
+  let new_jotting_path = path.resolve(configInstance.jottings_path.value, "jotting_" + time + ".jt");
   let edit_time = new Date(time).toLocaleDateString();
 
   fs.removeSync(jotting.path);
@@ -174,9 +174,9 @@ const editAJotting = (jotting: Tjotting) => {
 
 const exportAJotting = (jotting: Tjotting, index: number) => {
   let jotting_markdown_path = path.resolve(
-    assets_path.value,
+    configInstance.assets_path.value,
     "jottings",
-    path.relative(jottings_path.value, jotting.path).replace(".jt", ".md")
+    path.relative(configInstance.jottings_path.value, jotting.path).replace(".jt", ".md")
   );
   let content = jotting.text;
 
@@ -186,7 +186,7 @@ const exportAJotting = (jotting: Tjotting, index: number) => {
   deleteAJotting(jotting, index);
 
   fTree.value = new fileTree(
-    new fileNode(path.resolve(mythoUserPath.value, "assets"), "assets")
+    new fileNode(path.resolve(configInstance.mythoUserPath.value, "assets"), "assets")
   );
 
   ElNotification({
