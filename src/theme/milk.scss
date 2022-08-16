@@ -61,9 +61,6 @@
     .code-inline {
       font-weight: bolder !important;
       font-family: var(--mytho-code-font) !important;
-      border: 1px solid #e7eaed !important;
-      background-color: #f8f8f8 !important;
-      color: rgba(46, 52, 64, 1) !important;
       border-radius: 4px !important;
       padding: 2px 4px 2px 4px !important;
       font-size: 0.9em !important;
@@ -80,11 +77,22 @@
 .light {
   .milkdown {
     background: unset !important;
+
+    .code-inline {
+      border: 1px solid #e7eaed !important;
+      background-color: #f8f8f8 !important;
+      color: rgba(46, 52, 64, 1) !important;
+    }
   }
 }
 
 .dark {
   .milkdown {
     background: unset !important;
+    .code-inline {
+      border: 1px solid #444 !important;
+      background-color: rgba(46, 52, 64, 1) !important;
+      color: #f8f8f8 !important;
+    }
   }
 }
