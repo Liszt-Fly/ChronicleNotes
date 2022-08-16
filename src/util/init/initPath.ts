@@ -1,4 +1,4 @@
-import { PIMODE } from "@/util/types/enums";
+import { MYTHOMODE } from "@/util/types/enums";
 import { getGlobal } from "@electron/remote";
 import path, { resolve } from "path";
 import { Ref, ref } from "vue";
@@ -48,8 +48,8 @@ export const freshWorkspace = () => {
     fs.ensureDirSync(img_path.value)
 }
 
-export const initWorkspace = (mode: PIMODE) => {
-    let folder = mode == PIMODE.DEVELOPMENT ? "public" : __dirname
+export const initWorkspace = (mode: MYTHOMODE) => {
+    let folder = mode == MYTHOMODE.DEVELOPMENT ? "public" : __dirname
 
     let template_assets_path = resolve(folder, "template", "assets")
     let assets = fs.readdirSync(template_assets_path)
