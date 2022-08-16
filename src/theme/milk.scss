@@ -68,6 +68,11 @@
       padding: 2px 4px 2px 4px !important;
       font-size: 0.9em !important;
     }
+
+    p:last-child,
+    .heading:last-child {
+      padding-bottom: 60px;
+    }
   }
 
   &::-webkit-scrollbar {
