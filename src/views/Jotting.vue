@@ -80,7 +80,7 @@
 </template>
 
 <script lang="ts" setup>
-import { assets_path, jottings_path, piUserPath } from "@/util/init/initPath";
+import { assets_path, jottings_path, mythoUserPath } from "@/util/init/initPath";
 import { onMounted, Ref, ref } from "vue";
 import { ElNotification } from "element-plus";
 import { i18n } from "@/plugins/I18n/index";
@@ -186,7 +186,7 @@ const exportAJotting = (jotting: Tjotting, index: number) => {
   deleteAJotting(jotting, index);
 
   fTree.value = new fileTree(
-    new fileNode(path.resolve(piUserPath.value, "assets"), "assets")
+    new fileNode(path.resolve(mythoUserPath.value, "assets"), "assets")
   );
 
   ElNotification({

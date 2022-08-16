@@ -1,7 +1,7 @@
 import { dialog, getGlobal } from "@electron/remote";
 import { chooseWorkspace, currentWorkSpace } from "@/data/configdb";
 import { PIMODE } from "@/util/types/enums";
-import { app_config_path, freshWorkspace, piUserPath, initWorkspace } from "@/util/init/initPath";
+import { app_config_path, freshWorkspace, mythoUserPath, initWorkspace } from "@/util/init/initPath";
 import { config } from "@/data/configdb";
 
 import router from '@/router';
@@ -9,7 +9,7 @@ import path from 'path';
 const fs = require("fs-extra");
 
 export const enter_workspace = (ws: workspace) => {
-    piUserPath.value = ws.path
+    mythoUserPath.value = ws.path
     freshWorkspace();
     chooseWorkspace.value = true
     config.value.recent = ws

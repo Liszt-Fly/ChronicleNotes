@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { bClickedParent, currentFile, fTree, menuDisplay, openFiles } from "@/data/configdb";
-import { piUserPath } from "@/util/init/initPath";
+import { mythoUserPath } from "@/util/init/initPath";
 import { fileTree } from "@/util/FileTree/fileTree";
 import { NodeType } from "@/util/FileTree/type";
 import { fileNode } from "@/util/FileTree/fileNode";
@@ -56,15 +56,15 @@ const drop = (event: DragEvent) => {
   }
 }
 
-watch(piUserPath, () => {
+watch(mythoUserPath, () => {
   fTree.value = new fileTree(
-    new fileNode(path.resolve(piUserPath.value, "assets"), "assets")
+    new fileNode(path.resolve(mythoUserPath.value, "assets"), "assets")
   );
 })
 
 onMounted(() => {
   fTree.value = new fileTree(
-    new fileNode(path.resolve(piUserPath.value, "assets"), "assets")
+    new fileNode(path.resolve(mythoUserPath.value, "assets"), "assets")
   );
 
   setTimeout(() => {

@@ -34,7 +34,7 @@ import { currentFile, currentWorkSpace, fTree } from "@/data/configdb";
 import { fileTree } from "@/util/fileTree/fileTree";
 import { NodeType } from "@/util/fileTree/type";
 import { getGlobal } from "@electron/remote";
-import { app_config_path, piUserPath } from "@/util/init/initPath";
+import { app_config_path, mythoUserPath } from "@/util/init/initPath";
 import { getMarkdownContentWithoutHeader } from "@/util/Helper";
 const fsp = require('fs-extra')
 
@@ -45,15 +45,18 @@ const addFolder = () => {
 const showHistoryArticleOrHidden = () => {
   //读取对应的配置
   let config: appConfig = fsp.readJSONSync(app_config_path)
+    console.log('import.meta.env.PROD',import.meta.env.PROD)
+  console.log('findCurrentWorkSpace()',findCurrentWorkSpace())
   if (findCurrentWorkSpace() != -1) {
     currentFile.value = config.workspaces[findCurrentWorkSpace()].lastOpenFile
+    console.log('currentFile.value',currentFile.value)
   }
   return currentFile.value
 }
 
 const fs = require("fs-extra")
 let milk: Editor;
-
+showHistoryArticleOrHidden()
 
 const addFile = () => {
   let node = fTree.value?.root.addChildren(NodeType.FILE)
@@ -61,8 +64,6 @@ const addFile = () => {
 }
 
 const save = (event: KeyboardEvent) => {
-  const isMac = /macintosh|mac os x/i.test(navigator.userAgent);
-
   if (event.key == "s") {
     let ctx = milk.ctx
     const view = ctx.get(editorViewCtx);
@@ -86,7 +87,6 @@ const editor: EditorInfo = useEditor((root) =>
 ) as unknown as EditorInfo
 
 watch(() => currentFile.value, (value, oldValue) => {
-  // console.log('currentFile.value', currentFile.value)
 
   //设置当前激活的文件
   if (currentFile.value != "") { milk.action(replaceAll(toggleFile(currentFile.value))) }

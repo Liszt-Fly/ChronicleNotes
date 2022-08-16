@@ -1,10 +1,11 @@
 import { PIMODE } from "@/util/types/enums";
 import { getGlobal } from "@electron/remote";
-import { resolve } from "path";
+import path, { resolve } from "path";
 import { Ref, ref } from "vue";
-
-const fs = require("fs-extra")
+import { createWorkspace } from "../workspace/workspace";
 // import fs from "fs-extra"
+const fs = require("fs-extra")
+
 
 let bPackaged = getGlobal("sharedObject").bPackaged;
 
@@ -32,15 +33,15 @@ if (bPackaged) {
 }
 
 // data
-export let piUserPath: Ref<string> = ref("")
+export let mythoUserPath: Ref<string> = ref("")
 export let jottings_path: Ref<string> = ref("")
 export let assets_path: Ref<string> = ref("")
 export let img_path: Ref<string> = ref("")
 
 export const freshWorkspace = () => {
-    jottings_path.value = resolve(piUserPath.value, "jottings")
-    assets_path.value = resolve(piUserPath.value, "assets")
-    img_path.value = resolve(piUserPath.value, "img")
+    jottings_path.value = resolve(mythoUserPath.value, "jottings")
+    assets_path.value = resolve(mythoUserPath.value, "assets")
+    img_path.value = resolve(mythoUserPath.value, "img")
 
     fs.ensureDirSync(jottings_path.value)
     fs.ensureDirSync(assets_path.value)
@@ -60,5 +61,22 @@ export const initWorkspace = (mode: PIMODE) => {
     let jottings = fs.readdirSync(template_jottings_path)
     for (const i in jottings) {
         fs.outputFileSync(resolve(jottings_path.value, jottings[i]), fs.readFileSync(resolve(template_jottings_path, jottings[i])))
+    }
+}
+//* 创建初始化仓库 Workspace
+export const createInitialWorksapce=()=>{
+    //* 开发环境
+    if(!getGlobal("sharedObject").bPackaged){
+        let workspace:workspace={
+            name:"init",
+            createdDate:new Date().toString(),
+            modifiedDate:new Date().toString(),
+            totalWorktime:"0",
+            lastOpenFile:"",
+            path:path.resolve("public","initialWorkspace")
+        }
+        let workspaceConfig:appConfig=fs.readJSONSync(app_config_path)
+        workspaceConfig.workspaces.push(workspace)
+        fs.writeJSONSync(app_config_path,workspaceConfig)
     }
 }
