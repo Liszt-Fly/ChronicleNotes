@@ -2,6 +2,7 @@
 
 - [v0.1.0](#v010)
 - [TODO:](#todo)
+- [FIXME:](#fixme)
 - [Next Version](#next-version)
 - [Future](#future)
 
@@ -32,13 +33,15 @@
   - 技巧
   - B 站视频
 
+## FIXME:
+
 ## Next Version
 
 - 文件系统
   - 打开多文件
 - 编辑器
   - milkdown 图片路径设置
--
+  - 写到页面底端不方便键入
 - 工作区
   - 使用时间报表
 - 设置
