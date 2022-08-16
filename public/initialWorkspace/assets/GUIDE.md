@@ -1,3 +1,7 @@
+---
+star: false
+tags: []
+---
 # &#x20;Welcome to Mytho!
 
 ![frankie-k-QHBEEOpjCDQ-unsplash](https://mikes.oss-cn-beijing.aliyuncs.com/uPic/frankie-k-QHBEEOpjCDQ-unsplash.jpg)
