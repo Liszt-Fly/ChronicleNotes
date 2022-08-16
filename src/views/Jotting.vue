@@ -295,7 +295,7 @@ onMounted(() => {
 
   &:hover {
     padding: 3px 7px;
-    border: 2px solid var(--el-color-primary);
+    border: 2px solid var(--mytho-theme-color);
     cursor: pointer;
 
     .msg {

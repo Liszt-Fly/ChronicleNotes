@@ -66,6 +66,7 @@ export const initAppearance = () => {
 	globalStyle.innerText = `
 		html.${appearance.theme} {
 			--el-color-primary: ${color};
+			--mytho-theme-color: ${color};
 			--mytho-global-en-font: ${global_en_font};
 			--mytho-global-cn-font: ${global_cn_font};
 			--mytho-global-font: ${global_en_font}, ${global_cn_font}, "NotoColorEmoji";

@@ -1,9 +1,4 @@
 html.dark {
-  --mytho-code-font: "cascadia code";
-  --mytho-global-en-font: "Geogrgia";
-  --mytho-global-cn-font: "楷体";
-  --mytho-theme-color: var(--el-color-primary);
-
   .tab-system .tab-bar .tab-item {
     border: 2px solid #12121200;
 
@@ -38,9 +33,11 @@ html.dark {
     background-color: unset;
   }
 
-  ::-webkit-scrollbar-thumb {
-    background-color: #444;
-    border-radius: 4px;
-    cursor: pointer;
+  textarea {
+    ::-webkit-scrollbar-thumb {
+      background-color: #444;
+      border-radius: 4px;
+      cursor: pointer;
+    }
   }
 }

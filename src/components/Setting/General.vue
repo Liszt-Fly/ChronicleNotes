@@ -189,7 +189,7 @@ const jumpToWorkspace = () => {
 
     &:hover {
       i {
-        color: var(--el-primary-color);
+        color: var(--mytho-theme-color);
       }
     }
   }

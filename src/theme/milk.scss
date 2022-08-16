@@ -2,8 +2,9 @@
   font-family: var(--mytho-global-font) !important;
   overflow-x: hidden !important;
   word-wrap: normal !important;
+  // padding-bottom: 60px;
 
-  .editor>* {
+  .editor > * {
     margin: 10px 0 !important;
     // word-break: break-all;
   }
@@ -67,6 +68,10 @@
       padding: 2px 4px 2px 4px !important;
       font-size: 0.9em !important;
     }
+  }
+
+  &::-webkit-scrollbar {
+    width: 10px;
   }
 }
 
