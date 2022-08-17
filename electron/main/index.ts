@@ -4,7 +4,7 @@ import { release } from 'os'
 import { join, resolve } from 'path'
 
 import { config } from 'yargs'
-const fs=require("fs-extra")
+const fs = require("fs-extra")
 // Disable GPU Acceleration for Windows 7
 if (release().startsWith('6.1')) app.disableHardwareAcceleration()
 

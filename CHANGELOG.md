@@ -1,9 +1,9 @@
 # 🕛 CHANGELOG
 
 - [v0.1.0](#v010)
+- [Next Version](#next-version)
 - [TODO:](#todo)
 - [FIXME:](#fixme)
-- [Next Version](#next-version)
 - [Future](#future)
 
 ## v0.1.0
@@ -24,17 +24,6 @@
   - 通用：语言、开发者工具、提示、工作区
   - 外观：主题、主题色、走马灯；英文字体、中文字体、代码块字体；行宽、行高、段间距
 
-## TODO:
-
-- 其他
-  - 【中英文】介绍页面
-  - 发布网站文档【[typora](https://www.typora.io/)、[cmd](https://www.zybuluo.com/cmd/)】
-  - 关于页面
-  - 技巧
-  - B 站视频
-
-## FIXME:
-
 ## Next Version
 
 - 文件系统
@@ -48,6 +37,13 @@
   - 自定义快捷键；
 - 其他
   - 打包后 components 图片路径问题
+- 技巧
+
+## TODO:
+
+## FIXME:
+
+- 编辑器：粘贴照片多一个 !
 
 ## Future
 
@@ -65,3 +61,4 @@
   - 一周自动删除
   - 复原
   - 平展模式
+- B 站视频
