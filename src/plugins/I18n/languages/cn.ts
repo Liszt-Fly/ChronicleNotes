@@ -1,5 +1,8 @@
 export const cn =
 {
+    welcome: {
+        welcome: "欢迎使用"
+    },
     control: {
         hide_sidebar: "隐藏边栏",
         show_sidebar: "显示边栏",
@@ -61,11 +64,17 @@ export const cn =
         cancel: "取消",
         hint: "重启后生效",
 
-        info: {
-            home: "回到起始页",
-            sponsorUs: "为我们充电",
-            welcome: "欢迎使用",
-            made: "用 ❤️ 制作"
+        about: {
+            feedback: "提交建议",
+            homepage: "访问主页",
+            intro: `# 🏛️ Mytho
+            
+**Mytho** \`[ˈmɪθɒ]\` 是一款 markdown 编辑器，其名字源于 mythology——神话故事。
+
+你可以在这里随时记录你的灵感和笔记，构建个人知识库。
+
+祝你使用愉快 :)
+            `
         },
         appearance: {
             theme: "主题",
