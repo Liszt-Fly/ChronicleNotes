@@ -3,10 +3,23 @@ import FileSystem from "@/components/common/FileSystem/FileSystem.vue";
 import Milkdown from "@/components/Editor/MilkEditor.vue";
 import { Ref, ref } from "vue";
 import configInstance from "@/util/configs/config"
+import { currentFile, currentWorkSpace, fTree } from "@/data/configdb";
+import { NodeType } from "@/util/fileTree/type";
+
 const fs = require("fs-extra")
 let file_exist: Ref<Boolean> = ref(false)
 if (fs.readdirSync(configInstance.assets_path.value).length != 0) {
   file_exist.value = true
+}
+
+const addFile = () => {
+  let node = fTree.value?.root.addChildren(NodeType.FILE)
+  currentFile.value = node!.path
+}
+
+
+const addFolder = () => {
+  fTree.value?.root.addChildren(NodeType.FOLDER)
 }
 
 fs.watch(configInstance.assets_path.value, () => {
@@ -19,7 +32,7 @@ fs.watch(configInstance.assets_path.value, () => {
 </script>
 
 <template>
-  <div class="column">
+  <div class="column" v-show="currentFile != ''">
     <div class="column-left" v-show="file_exist">
       <!-- 中间调整大小 -->
       <div class="resize-bar"></div>
@@ -38,6 +51,24 @@ fs.watch(configInstance.assets_path.value, () => {
 
     </div>
   </div>
+
+  <template v-if="currentFile == ''">
+    <div class="empty_mask">
+      <h1 class="icon">🏛️</h1>
+
+      <p class="item">
+        <el-button text size="large" @click="addFile">
+          <i class="bi bi-file-earmark-plus"></i> {{ $t('editor.menu.add_file') }}
+        </el-button>
+      </p>
+
+      <p class="item">
+        <el-button text size="large" @click="addFolder">
+          <i class="bi bi-folder-plus"></i> {{ $t('editor.menu.add_folder') }}
+        </el-button>
+      </p>
+    </div>
+  </template>
 </template>
 
 <style lang="scss" scoped>
@@ -97,5 +128,42 @@ fs.watch(configInstance.assets_path.value, () => {
   height: calc(100vh - var(--brand-height));
   overflow: hidden;
 
+}
+
+
+.empty_mask {
+  height: calc(100vh - 48px);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  user-select: none;
+
+  .icon {
+    font-size: 4rem;
+  }
+
+  .item {
+    margin-top: 6px;
+    width: 100%;
+
+    button {
+      width: 60%;
+      margin: 0 20%;
+
+      &:focus {
+        background-color: var(--el-bg-color) !important;
+      }
+
+      &:hover {
+        background-color: var(--el-fill-color-light) !important;
+      }
+    }
+
+    i {
+      margin-right: 6px;
+    }
+  }
 }
 </style>
