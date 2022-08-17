@@ -1,6 +1,6 @@
 import { initAppearance } from "@/util/init/initAppearance";
 import { initGeneral } from "@/util/init/initGeneral";
-import { initShortCut } from "@/util/init/initShortCut";
+import { init_keyboard_shortcuts } from "@/util/init/initKeyboardShortcuts";
 import configInstance from "@/util/configs/config"
 export const init = () => {
     //* 样式初始化
@@ -8,6 +8,6 @@ export const init = () => {
     //* 通用初始化
     initGeneral()
     //* 快捷键初始化
-    initShortCut()
+    init_keyboard_shortcuts()
     configInstance.createInitialWorksapce()
 }

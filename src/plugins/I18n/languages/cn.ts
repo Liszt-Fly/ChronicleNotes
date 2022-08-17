@@ -56,7 +56,7 @@ export const cn =
         about_tab: "关于",
         general_tab: "通用",
         appearance_tab: "外观",
-        shortcut_tab: "快捷键",
+        keyboard_shortcuts_tab: "快捷键",
         save: "保存",
         default: "恢复默认设置",
         restore: "确定恢复默认设置吗？",
@@ -113,7 +113,7 @@ export const cn =
             cn: "中文",
             en: "英文",
         },
-        shortcut: {
+        keyboard_shortcuts: {
             h1: "设为一级标题",
             h2: "设为二级标题",
             h3: "设为三级标题",

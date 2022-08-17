@@ -1,248 +1,248 @@
 <template>
-  <div class="shortcut">
+  <div class="keyboard_shortcuts">
     <el-alert :title="$t('setting.hint')" type="info" center class="setting-hint" />
 
-    <el-form :model="shortcut" label-width="200px" label-position="left">
+    <el-form :model="keyboard_shortcuts" label-width="200px" label-position="left">
       <el-form-item>
         <template #label>
-          <i class="bi bi-type-h1"></i> {{ $t('setting.shortcut.h1') }}
+          <i class="bi bi-type-h1"></i> {{ $t('setting.keyboard_shortcuts.h1') }}
         </template>
-        <el-input v-model="shortcut.h1" />
+        <el-input v-model="keyboard_shortcuts.h1" />
       </el-form-item>
       <el-form-item>
         <template #label>
-          <i class="bi bi-type-h2"></i> {{ $t('setting.shortcut.h2') }}
+          <i class="bi bi-type-h2"></i> {{ $t('setting.keyboard_shortcuts.h2') }}
         </template>
-        <el-input v-model="shortcut.h2" />
+        <el-input v-model="keyboard_shortcuts.h2" />
       </el-form-item>
       <el-form-item>
         <template #label>
-          <i class="bi bi-type-h3"></i> {{ $t('setting.shortcut.h3') }}
+          <i class="bi bi-type-h3"></i> {{ $t('setting.keyboard_shortcuts.h3') }}
         </template>
-        <el-input v-model="shortcut.h3" />
+        <el-input v-model="keyboard_shortcuts.h3" />
       </el-form-item>
       <el-form-item>
         <template #label>
-          <i class="bi bi-sort-up"></i> {{ $t('setting.shortcut.h_up') }}
+          <i class="bi bi-sort-up"></i> {{ $t('setting.keyboard_shortcuts.h_up') }}
         </template>
-        <el-input v-model="shortcut.h_up" />
+        <el-input v-model="keyboard_shortcuts.h_up" />
       </el-form-item>
       <el-form-item>
         <template #label>
-          <i class="bi bi-sort-down"></i> {{ $t('setting.shortcut.h_down') }}
+          <i class="bi bi-sort-down"></i> {{ $t('setting.keyboard_shortcuts.h_down') }}
         </template>
-        <el-input v-model="shortcut.h_down" />
+        <el-input v-model="keyboard_shortcuts.h_down" />
       </el-form-item>
       <el-form-item>
         <template #label>
-          <i class="bi bi-paragraph"></i> {{ $t('setting.shortcut.paragraph') }}
+          <i class="bi bi-paragraph"></i> {{ $t('setting.keyboard_shortcuts.paragraph') }}
         </template>
-        <el-input v-model="shortcut.paragraph" />
+        <el-input v-model="keyboard_shortcuts.paragraph" />
       </el-form-item>
 
       <el-divider></el-divider>
 
       <el-form-item>
         <template #label>
-          <i class="bi bi-type-bold"></i> {{ $t('setting.shortcut.bold') }}
+          <i class="bi bi-type-bold"></i> {{ $t('setting.keyboard_shortcuts.bold') }}
         </template>
-        <el-input v-model="shortcut.bold" />
+        <el-input v-model="keyboard_shortcuts.bold" />
       </el-form-item>
       <el-form-item>
         <template #label>
-          <i class="bi bi-type-italic"></i> {{ $t('setting.shortcut.italics') }}
+          <i class="bi bi-type-italic"></i> {{ $t('setting.keyboard_shortcuts.italics') }}
         </template>
-        <el-input v-model="shortcut.italics" />
+        <el-input v-model="keyboard_shortcuts.italics" />
       </el-form-item>
       <el-form-item>
         <template #label>
-          <i class="bi bi-code"></i> {{ $t('setting.shortcut.code') }}
+          <i class="bi bi-code"></i> {{ $t('setting.keyboard_shortcuts.code') }}
         </template>
-        <el-input v-model="shortcut.code" />
+        <el-input v-model="keyboard_shortcuts.code" />
       </el-form-item>
       <el-form-item>
         <template #label>
-          <i class="bi bi-type-underline"></i> {{ $t('setting.shortcut.underline') }}
+          <i class="bi bi-type-underline"></i> {{ $t('setting.keyboard_shortcuts.underline') }}
         </template>
-        <el-input v-model="shortcut.underline" />
+        <el-input v-model="keyboard_shortcuts.underline" />
       </el-form-item>
       <el-form-item>
         <template #label>
-          <i class="bi bi-type-strikethrough"></i> {{ $t('setting.shortcut.strikethrough') }}
+          <i class="bi bi-type-strikethrough"></i> {{ $t('setting.keyboard_shortcuts.strikethrough') }}
         </template>
-        <el-input v-model="shortcut.strikethrough" />
+        <el-input v-model="keyboard_shortcuts.strikethrough" />
       </el-form-item>
       <el-form-item>
         <template #label>
           <i class="bi bi-file-fill" style="transform: rotate(90deg);"></i> {{
-              $t('setting.shortcut.highlight')
+          $t('setting.keyboard_shortcuts.highlight')
           }}
         </template>
-        <el-input v-model="shortcut.highlight" />
+        <el-input v-model="keyboard_shortcuts.highlight" />
       </el-form-item>
       <el-form-item>
         <template #label>
-          <i class="bi bi-text-indent-left"></i> {{ $t('setting.shortcut.indent_right') }}
+          <i class="bi bi-text-indent-left"></i> {{ $t('setting.keyboard_shortcuts.indent_right') }}
         </template>
-        <el-input v-model="shortcut.indent_right" />
+        <el-input v-model="keyboard_shortcuts.indent_right" />
       </el-form-item>
       <el-form-item>
         <template #label>
-          <i class="bi bi-text-indent-right"></i> {{ $t('setting.shortcut.indent_left') }}
+          <i class="bi bi-text-indent-right"></i> {{ $t('setting.keyboard_shortcuts.indent_left') }}
         </template>
-        <el-input v-model="shortcut.indent_left" />
-      </el-form-item>
-
-      <el-divider></el-divider>
-
-      <el-form-item>
-        <template #label>
-          <i class="bi bi-card-image"></i> {{ $t('setting.shortcut.insert_img') }}
-        </template>
-        <el-input v-model="shortcut.insert_img" />
-      </el-form-item>
-      <el-form-item>
-        <template #label>
-          <i class="bi bi-table"></i> {{ $t('setting.shortcut.insert_table') }}
-        </template>
-        <el-input v-model="shortcut.insert_table" />
-      </el-form-item>
-      <el-form-item>
-        <template #label>
-          <i class="bi bi-quote"></i> {{ $t('setting.shortcut.insert_quote') }}
-        </template>
-        <el-input v-model="shortcut.insert_quote" />
-      </el-form-item>
-      <el-form-item>
-        <template #label>
-          <i class="bi bi-code-square"></i> {{ $t('setting.shortcut.insert_code') }}
-        </template>
-        <el-input v-model="shortcut.insert_code" />
-      </el-form-item>
-      <el-form-item>
-        <template #label>
-          <i class="bi bi-infinity"></i> {{ $t('setting.shortcut.insert_formula') }}
-        </template>
-        <el-input v-model="shortcut.insert_formula" />
+        <el-input v-model="keyboard_shortcuts.indent_left" />
       </el-form-item>
 
       <el-divider></el-divider>
 
       <el-form-item>
         <template #label>
-          <i class="bi bi-list-columns-reverse"></i> {{ $t('setting.shortcut.all') }}
+          <i class="bi bi-card-image"></i> {{ $t('setting.keyboard_shortcuts.insert_img') }}
         </template>
-        <el-input v-model="shortcut.all" />
+        <el-input v-model="keyboard_shortcuts.insert_img" />
+      </el-form-item>
+      <el-form-item>
+        <template #label>
+          <i class="bi bi-table"></i> {{ $t('setting.keyboard_shortcuts.insert_table') }}
+        </template>
+        <el-input v-model="keyboard_shortcuts.insert_table" />
+      </el-form-item>
+      <el-form-item>
+        <template #label>
+          <i class="bi bi-quote"></i> {{ $t('setting.keyboard_shortcuts.insert_quote') }}
+        </template>
+        <el-input v-model="keyboard_shortcuts.insert_quote" />
+      </el-form-item>
+      <el-form-item>
+        <template #label>
+          <i class="bi bi-code-square"></i> {{ $t('setting.keyboard_shortcuts.insert_code') }}
+        </template>
+        <el-input v-model="keyboard_shortcuts.insert_code" />
+      </el-form-item>
+      <el-form-item>
+        <template #label>
+          <i class="bi bi-infinity"></i> {{ $t('setting.keyboard_shortcuts.insert_formula') }}
+        </template>
+        <el-input v-model="keyboard_shortcuts.insert_formula" />
+      </el-form-item>
+
+      <el-divider></el-divider>
+
+      <el-form-item>
+        <template #label>
+          <i class="bi bi-list-columns-reverse"></i> {{ $t('setting.keyboard_shortcuts.all') }}
+        </template>
+        <el-input v-model="keyboard_shortcuts.all" />
       </el-form-item>
       <el-form-item>
         <template #label>
           <i class="bi bi-arrow-return-left" style="transform: rotateX(180deg); position: relative; bottom: 2px;"></i>
-          {{ $t('setting.shortcut.undo') }}
+          {{ $t('setting.keyboard_shortcuts.undo') }}
         </template>
-        <el-input v-model="shortcut.undo" />
+        <el-input v-model="keyboard_shortcuts.undo" />
       </el-form-item>
       <el-form-item>
         <template #label>
           <i class="bi bi-arrow-return-right" style="transform: rotateX(180deg); position: relative; bottom: 2px;"></i>
-          {{ $t('setting.shortcut.redo') }}
+          {{ $t('setting.keyboard_shortcuts.redo') }}
         </template>
-        <el-input v-model="shortcut.redo" />
+        <el-input v-model="keyboard_shortcuts.redo" />
       </el-form-item>
       <el-form-item>
         <template #label>
-          <i class="bi bi-clipboard-check"></i> {{ $t('setting.shortcut.copy') }}
+          <i class="bi bi-clipboard-check"></i> {{ $t('setting.keyboard_shortcuts.copy') }}
         </template>
-        <el-input v-model="shortcut.copy" />
+        <el-input v-model="keyboard_shortcuts.copy" />
       </el-form-item>
       <el-form-item>
         <template #label>
-          <i class="bi bi-clipboard-plus"></i> {{ $t('setting.shortcut.copy_markdown') }}
+          <i class="bi bi-clipboard-plus"></i> {{ $t('setting.keyboard_shortcuts.copy_markdown') }}
         </template>
-        <el-input v-model="shortcut.copy_markdown" />
+        <el-input v-model="keyboard_shortcuts.copy_markdown" />
       </el-form-item>
       <el-form-item>
         <template #label>
-          <i class="bi bi-clipboard-minus"></i> {{ $t('setting.shortcut.paste') }}
+          <i class="bi bi-clipboard-minus"></i> {{ $t('setting.keyboard_shortcuts.paste') }}
         </template>
-        <el-input v-model="shortcut.paste" />
+        <el-input v-model="keyboard_shortcuts.paste" />
       </el-form-item>
       <el-form-item>
         <template #label>
-          <i class="bi bi-clipboard"></i> {{ $t('setting.shortcut.paste_txt') }}
+          <i class="bi bi-clipboard"></i> {{ $t('setting.keyboard_shortcuts.paste_txt') }}
         </template>
-        <el-input v-model="shortcut.paste_txt" />
+        <el-input v-model="keyboard_shortcuts.paste_txt" />
       </el-form-item>
       <el-form-item>
         <template #label>
-          <i class="bi bi-clipboard-x"></i> {{ $t('setting.shortcut.cut') }}
+          <i class="bi bi-clipboard-x"></i> {{ $t('setting.keyboard_shortcuts.cut') }}
         </template>
-        <el-input v-model="shortcut.cut" />
-      </el-form-item>
-
-      <el-divider></el-divider>
-
-      <el-form-item>
-        <template #label>
-          <i class="bi bi-file-earmark-plus"></i> {{ $t('setting.shortcut.new_file') }}
-        </template>
-        <el-input v-model="shortcut.new_file" />
-      </el-form-item>
-      <el-form-item>
-        <template #label>
-          <i class="bi bi-save"></i> {{ $t('setting.shortcut.save_file') }}
-        </template>
-        <el-input v-model="shortcut.save_file" />
-      </el-form-item>
-      <el-form-item>
-        <template #label>
-          <i class="bi bi-save2"></i> {{ $t('setting.shortcut.save_as') }}
-        </template>
-        <el-input v-model="shortcut.save_as" />
-      </el-form-item>
-      <el-form-item>
-        <template #label>
-          <i class="bi bi-x-circle"></i> {{ $t('setting.shortcut.close_file') }}
-        </template>
-        <el-input v-model="shortcut.close_file" />
-      </el-form-item>
-      <el-form-item>
-        <template #label>
-          <i class="bi bi-lock"></i> {{ $t('setting.shortcut.lock_file') }}
-        </template>
-        <el-input v-model="shortcut.lock_file" />
-      </el-form-item>
-      <el-form-item>
-        <template #label>
-          <i class="bi bi-unlock"></i> {{ $t('setting.shortcut.unlock_file') }}
-        </template>
-        <el-input v-model="shortcut.unlock_file" />
+        <el-input v-model="keyboard_shortcuts.cut" />
       </el-form-item>
 
       <el-divider></el-divider>
 
       <el-form-item>
         <template #label>
-          <i class="bi bi-arrows-fullscreen"></i> {{ $t('setting.shortcut.full_sreen') }}
+          <i class="bi bi-file-earmark-plus"></i> {{ $t('setting.keyboard_shortcuts.new_file') }}
         </template>
-        <el-input v-model="shortcut.full_sreen" />
+        <el-input v-model="keyboard_shortcuts.new_file" />
       </el-form-item>
       <el-form-item>
         <template #label>
-          <i class="bi bi-search"></i> {{ $t('setting.shortcut.search') }}
+          <i class="bi bi-save"></i> {{ $t('setting.keyboard_shortcuts.save_file') }}
         </template>
-        <el-input v-model="shortcut.search" />
+        <el-input v-model="keyboard_shortcuts.save_file" />
       </el-form-item>
       <el-form-item>
         <template #label>
-          <i class="bi bi-binoculars"></i> {{ $t('setting.shortcut.global_search') }}
+          <i class="bi bi-save2"></i> {{ $t('setting.keyboard_shortcuts.save_as') }}
         </template>
-        <el-input v-model="shortcut.global_search" />
+        <el-input v-model="keyboard_shortcuts.save_as" />
       </el-form-item>
       <el-form-item>
         <template #label>
-          <i class="bi bi-intersect"></i> {{ $t('setting.shortcut.replace') }}
+          <i class="bi bi-x-circle"></i> {{ $t('setting.keyboard_shortcuts.close_file') }}
         </template>
-        <el-input v-model="shortcut.replace" />
+        <el-input v-model="keyboard_shortcuts.close_file" />
+      </el-form-item>
+      <el-form-item>
+        <template #label>
+          <i class="bi bi-lock"></i> {{ $t('setting.keyboard_shortcuts.lock_file') }}
+        </template>
+        <el-input v-model="keyboard_shortcuts.lock_file" />
+      </el-form-item>
+      <el-form-item>
+        <template #label>
+          <i class="bi bi-unlock"></i> {{ $t('setting.keyboard_shortcuts.unlock_file') }}
+        </template>
+        <el-input v-model="keyboard_shortcuts.unlock_file" />
+      </el-form-item>
+
+      <el-divider></el-divider>
+
+      <el-form-item>
+        <template #label>
+          <i class="bi bi-arrows-fullscreen"></i> {{ $t('setting.keyboard_shortcuts.full_sreen') }}
+        </template>
+        <el-input v-model="keyboard_shortcuts.full_sreen" />
+      </el-form-item>
+      <el-form-item>
+        <template #label>
+          <i class="bi bi-search"></i> {{ $t('setting.keyboard_shortcuts.search') }}
+        </template>
+        <el-input v-model="keyboard_shortcuts.search" />
+      </el-form-item>
+      <el-form-item>
+        <template #label>
+          <i class="bi bi-binoculars"></i> {{ $t('setting.keyboard_shortcuts.global_search') }}
+        </template>
+        <el-input v-model="keyboard_shortcuts.global_search" />
+      </el-form-item>
+      <el-form-item>
+        <template #label>
+          <i class="bi bi-intersect"></i> {{ $t('setting.keyboard_shortcuts.replace') }}
+        </template>
+        <el-input v-model="keyboard_shortcuts.replace" />
       </el-form-item>
     </el-form>
 
@@ -256,7 +256,7 @@
       <span class="dialog-footer">
         <el-button @click="restoreDialogVisible = false">{{ $t("setting.cancel") }}</el-button>
         <el-button type="primary" @click="restoreDefault(), restoreDialogVisible = false">{{
-            $t("setting.sure")
+        $t("setting.sure")
         }}
         </el-button>
       </span>
@@ -271,7 +271,7 @@ const fs = require("fs-extra")
 
 const restoreDialogVisible = ref(false)
 
-const shortcut = reactive({
+const keyboard_shortcuts = reactive({
   h1: 'Ctrl+1',
   h2: 'Ctrl+2',
   h3: 'Ctrl+3',
@@ -316,12 +316,12 @@ const shortcut = reactive({
   replace: 'Ctrl+H'
 })
 
-const readSetting = (shortcut_config_path: string) => {
+const readSetting = (keyboard_shortcuts_config_path: string) => {
   try {
-    const data = fs.readJsonSync(shortcut_config_path)
+    const data = fs.readJsonSync(keyboard_shortcuts_config_path)
     for (let key in data) {
       // @ts-ignore
-      shortcut[key] = data[key]
+      keyboard_shortcuts[key] = data[key]
     }
   } catch {
     restoreDefault()
@@ -329,23 +329,23 @@ const readSetting = (shortcut_config_path: string) => {
 }
 
 const saveSetting = () => {
-  fs.writeJsonSync(configInstance.shortcut_config_path, shortcut);
+  fs.writeJsonSync(configInstance.keyboard_shortcuts_config_path, keyboard_shortcuts);
 }
 
 const restoreDefault = () => {
-  fs.writeJsonSync(configInstance.shortcut_config_path, fs.readJsonSync(configInstance.shortcut_config_path_default))
+  fs.writeJsonSync(configInstance.keyboard_shortcuts_config_path, fs.readJsonSync(configInstance.keyboard_shortcuts_config_path_default))
 }
 
 onMounted(() => {
-  readSetting(configInstance.shortcut_config_path)
-  watch(shortcut, () => {
+  readSetting(configInstance.keyboard_shortcuts_config_path)
+  watch(keyboard_shortcuts, () => {
     saveSetting()
   })
 })
 </script>
 
 <style lang="scss" scoped>
-.shortcut {
+.keyboard_shortcuts {
   padding: 1rem;
   text-align: center;
   max-width: 400px;

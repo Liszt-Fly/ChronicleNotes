@@ -21,10 +21,10 @@
         </el-button>
       </router-link>
 
-      <!-- <router-link to="/Setting/Shortcut" @click="SettingPage = '/Setting/Shortcut'">
+      <!-- <router-link to="/Setting/KeyboardShortcuts" @click="SettingPage = '/Setting/KeyboardShortcuts'">
         <el-button key="primary" text>
           <i class="bi bi-command"></i>
-          {{ $t('setting.shortcut_tab') }}
+          {{ $t('setting.keyboard_shortcuts_tab') }}
         </el-button>
       </router-link> -->
     </div>

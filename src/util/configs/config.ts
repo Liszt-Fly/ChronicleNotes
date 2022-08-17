@@ -12,10 +12,10 @@ class config {
     public root: string
     public config_path: string
     public app_config_path: string
-    public shortcut_config_path: string
+    public keyboard_shortcuts_config_path: string
     public general_config_path: string
     public general_config_path_default: string
-    public shortcut_config_path_default: string
+    public keyboard_shortcuts_config_path_default: string
     public appearance_config_path_default: string
     public appearance_config_path: string
     public mode: MYTHOMODE
@@ -33,9 +33,9 @@ class config {
         //* 默认的外观路径
         this.appearance_config_path = resolve(this.config_path, ".appearance.mytho")
         //* 快捷键设置的路径
-        this.shortcut_config_path = resolve(this.config_path, ".shortcut.mytho")
+        this.keyboard_shortcuts_config_path = resolve(this.config_path, ".keyboard_shortcuts.mytho")
         //* 快捷键默认设置的路径
-        this.shortcut_config_path_default = resolve(this.config_path, ".shortcut.default.mytho")
+        this.keyboard_shortcuts_config_path_default = resolve(this.config_path, ".keyboard_shortcuts.default.mytho")
         //* 通用配置的路径
         this.general_config_path = resolve(this.config_path, ".general.mytho")
         //* 通用配置的默认路径

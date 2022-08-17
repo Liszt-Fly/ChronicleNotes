@@ -5,7 +5,7 @@ export let appearance = fs.readJsonSync(configInstance.appearance_config_path)
 
 export let general = fs.readJsonSync(configInstance.general_config_path)
 
-export let shortcut = fs.readJsonSync(configInstance.shortcut_config_path)
+export let keyboard_shortcuts = fs.readJsonSync(configInstance.keyboard_shortcuts_config_path)
 
 export let theme = appearance.theme
 

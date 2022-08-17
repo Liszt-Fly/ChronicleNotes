@@ -56,7 +56,7 @@ export const en =
         about_tab: "About",
         general_tab: "General",
         appearance_tab: "Appearance",
-        shortcut_tab: "Shortcut",
+        keyboard_shortcuts_tab: "Keyboard Shortcuts",
         save: "Save",
         default: "Restore Default",
         restore: "Sure to restore the default settings?",
@@ -113,7 +113,7 @@ Have a great time :)
             cn: "cn",
             en: "en"
         },
-        shortcut: {
+        keyboard_shortcuts: {
             h1: "First Level Title",
             h2: "Second Level Title",
             h3: "Third Level Title",
