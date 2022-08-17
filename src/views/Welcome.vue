@@ -4,7 +4,7 @@
       <el-col :span="8">
         <div class="welcome">
           <h1>🏛️</h1>
-          <h3>{{ $t("setting.info.welcome") }}</h3>
+          <h3>{{ $t("setting.welcome.welcome") }}</h3>
         </div>
       </el-col>
       <el-col :span="16">
@@ -161,7 +161,7 @@ let workspaceName: Ref<string> = ref("")
       }
 
       .el-button-group {
-     
+
         float: right;
       }
 
