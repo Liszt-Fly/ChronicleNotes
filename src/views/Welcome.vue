@@ -161,7 +161,7 @@ let workspaceName: Ref<string> = ref("")
       }
 
       .el-button-group {
-        position: absolute;
+     
         float: right;
       }
 

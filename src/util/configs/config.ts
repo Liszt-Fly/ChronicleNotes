@@ -2,6 +2,7 @@ import { getGlobal } from "@electron/remote";
 import { resolve } from "path";
 import { ref, Ref } from "vue";
 import { MYTHOMODE } from "../types/enums";
+
 const fs = require("fs-extra")
 class config {
     public mythoUserPath: Ref<string> = ref("")
@@ -84,6 +85,15 @@ class config {
             fs.outputFileSync(resolve(this.jottings_path.value, jottings[i]), fs.readFileSync(resolve(template_jottings_path, jottings[i])))
         }
     }
+        //* 返回对应的appConfig
+        readAppConfig(): appConfig {
+            return fs.readJSONSync(this.app_config_path) as appConfig
+        }
+    
+    //* 写入对应的appConfig
+    writeAppConfig(config: appConfig) {
+        fs.writeJSONSync(this.app_config_path, config)
+    }
     //* 建立init仓库
     createInitialWorksapce() {
         let workspace: workspace = {
@@ -94,22 +104,11 @@ class config {
             lastOpenFile: "",
             path: resolve(this.root, "initialWorkspace")
         }
-        let workspaceConfig: appConfig = fs.readJSONSync(this.app_config_path)
-        console.log('workspace.path', workspace.path)
-        console.log('fs.existsSync(workspace.path)', fs.existsSync(workspace.path))
-        if (fs.existsSync(workspace.path)) {
+        let workspaceConfig: appConfig = this.readAppConfig()
+        if (fs.existsSync(workspace.path)&&this.readAppConfig().workspaces.find(w=>w.path==workspace.path)==undefined) {
             workspaceConfig.workspaces.push(workspace)
-            fs.writeJSONSync(this.app_config_path, workspaceConfig)
+            this.writeAppConfig(workspaceConfig)
         }
     }
-    //* 返回对应的appConfig
-    readAppConfig(): appConfig {
-        return fs.readJSONSync(this.app_config_path) as appConfig
-    }
-    //* 写入对应的appConfig
-    writeAppConfig(config: appConfig) {
-        fs.writeJSONSync(this.app_config_path, config)
-    }
-
 }
 export default new config() 
